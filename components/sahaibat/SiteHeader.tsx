@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { LanguagePill } from "@/components/sahaibat/LanguagePill";
 import { useI18n } from "@/components/sahaibat/LanguageProvider";
