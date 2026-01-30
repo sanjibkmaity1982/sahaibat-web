@@ -1,4 +1,0 @@
-{
-"buildCommand": "cd sahaibat-web && npm install && npm run build",
-"outputDirectory": "sahaibat-web/.next"
-}
