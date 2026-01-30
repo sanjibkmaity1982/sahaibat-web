@@ -25,6 +25,11 @@ export type I18nKey =
   | "story.reviewerText"
   | "story.partnerTitle"
   | "story.partnerText"
+  | "whyDifferent.title"
+  | "earlyTriage.title"
+  | "reporting.title"
+  | "supports.title"
+  | "strategy.title"
   | "impact.title"
   | "impact.item1"
   | "impact.item2"
@@ -73,6 +78,12 @@ export const DICT: Record<Lang, Record<I18nKey, string>> = {
     "story.partnerText":
       "Our goal is to build SahAIbat for the world. We work with NGOs as partners, adapting workflows to each community — not selling a one-size-fits-all product.",
 
+    "whyDifferent.title": "Why SahAIbat is different",
+    "earlyTriage.title": "Supporting early triage — for communities and patients",
+    "reporting.title": "Clear reporting, ready to integrate",
+    "supports.title": "Designed for high-impact community health programs",
+    "strategy.title": "Built for programs working closest to the community",
+
     "impact.title": "What impact can this create?",
     "impact.item1": "More consistent triage in the field",
     "impact.item2": "Earlier escalation when danger signs appear",
@@ -110,19 +121,25 @@ export const DICT: Record<Lang, Record<I18nKey, string>> = {
 
     "story.whatTitle": "Apa itu SahAIbat?",
     "story.whatText":
-      "SahAIbat adalah cara sederhana berbasis cerita untuk membantu keputusan perawatan saat waktu terbatas dan bantuan dibutuhkan sekarang. Bukan soal teknologi rumit — tapi panduan yang tenang untuk orang nyata.",
+      "SahAIbat adalah cara sederhana berbasis cerita untuk membantu keputusan perawatan saat waktu terbatas dan bantuan dibutuhkan sekarang.",
     "story.localTitle": "Bukan dibuat dari Amerika Utara — dibuat bersama realitas lokal",
     "story.localText":
-      "SahAIbat dirancang agar terasa familiar. Kami menghormati bahasa dan budaya setempat, serta cara kerja layanan komunitas — sambil tetap berpegang pada cara berpikir keselamatan klinis global.",
+      "SahAIbat dirancang agar terasa familiar. Kami menghormati bahasa dan budaya setempat serta cara kerja layanan komunitas.",
     "story.kaderTitle": "Bagaimana membantu Kader",
     "story.kaderText":
-      "Saat kunjungan di desa, Kader tidak seharusnya menebak apa yang harus ditanya. SahAIbat membantu mengumpulkan informasi penting, mengenali tanda bahaya lebih dini, dan tahu kapan harus eskalasi — dengan jelas dan manusiawi.",
+      "SahAIbat membantu mengumpulkan informasi penting, mengenali tanda bahaya lebih dini, dan tahu kapan harus eskalasi — dengan jelas dan manusiawi.",
     "story.reviewerTitle": "Bagaimana membantu perawat dan dokter",
     "story.reviewerText":
-      "Sering kali peninjau menerima cerita yang tidak lengkap. SahAIbat membantu merapikan temuan lapangan agar handoff lebih jelas, sehingga prioritas lebih cepat dan keputusan lebih aman.",
+      "SahAIbat membantu merapikan temuan lapangan agar handoff lebih jelas sehingga prioritas lebih cepat dan keputusan lebih aman.",
     "story.partnerTitle": "Gratis — dan kami adalah mitra, bukan vendor",
     "story.partnerText":
-      "Tujuan kami adalah membangun SahAIbat untuk dunia. Kami bekerja bersama NGO sebagai mitra, menyesuaikan alur kerja dengan setiap komunitas — bukan menjual produk satu untuk semua.",
+      "Kami bekerja bersama NGO sebagai mitra, menyesuaikan alur kerja dengan setiap komunitas.",
+
+    "whyDifferent.title": "Mengapa SahAIbat berbeda",
+    "earlyTriage.title": "Dukungan triase awal — untuk komunitas dan pasien",
+    "reporting.title": "Pelaporan jelas, siap integrasi",
+    "supports.title": "Dirancang untuk program kesehatan komunitas berdampak tinggi",
+    "strategy.title": "Dibangun untuk program yang paling dekat dengan komunitas",
 
     "impact.title": "Dampak yang bisa tercipta",
     "impact.item1": "Triase lapangan lebih konsisten",
@@ -153,7 +170,7 @@ export const DICT: Record<Lang, Record<I18nKey, string>> = {
 
     "hero.title": "Healthcare closer than ever.",
     "hero.subtitle":
-      "SahAIbat est conçu pour les communautés réelles — aider les agents communautaires, infirmier·e·s et médecins à soutenir les familles plus vite, avec clarté, empathie et des prochaines étapes plus sûres.",
+      "SahAIbat est conçu pour les communautés réelles — aider les agents communautaires et cliniciens à soutenir les familles plus vite avec clarté et empathie.",
     "hero.pill":
       "Co-conçu avec les communautés locales. Guidé par des principes mondiaux de sécurité clinique.",
     "hero.ctaPrimary": "Partenariat",
@@ -161,28 +178,34 @@ export const DICT: Record<Lang, Record<I18nKey, string>> = {
 
     "story.whatTitle": "Qu’est-ce que SahAIbat ?",
     "story.whatText":
-      "SahAIbat est une approche simple et humaine pour soutenir les décisions de soins quand le temps est limité. Ce n’est pas du jargon technologique — c’est une guidance calme pour des personnes réelles.",
-    "story.localTitle": "Pas conçu depuis l’Amérique du Nord — conçu avec la réalité locale",
+      "SahAIbat est une approche simple et humaine pour soutenir les décisions de soins quand le temps est limité.",
+    "story.localTitle": "Conçu avec la réalité locale",
     "story.localText":
-      "SahAIbat est pensé pour être familier. Nous respectons la langue, la culture et la manière dont les soins communautaires fonctionnent vraiment — tout en restant ancrés dans une logique mondiale de sécurité clinique.",
-    "story.kaderTitle": "Comment cela aide les Kader (agents communautaires)",
+      "SahAIbat respecte la langue, la culture et la façon dont les soins communautaires fonctionnent réellement.",
+    "story.kaderTitle": "Comment cela aide les agents communautaires",
     "story.kaderText":
-      "Lors d’une visite en zone rurale, un·e Kader ne devrait pas deviner quoi demander. SahAIbat aide à recueillir l’essentiel, repérer plus tôt les signes de danger et savoir quand escalader — avec dignité et clarté.",
-    "story.reviewerTitle": "Comment cela aide les infirmier·e·s et les médecins",
+      "SahAIbat aide à recueillir l’essentiel, repérer les signes de danger et savoir quand escalader — avec dignité et clarté.",
+    "story.reviewerTitle": "Comment cela aide les infirmier·e·s et médecins",
     "story.reviewerText":
-      "Les cliniciens reçoivent souvent des informations incomplètes. SahAIbat aide à transformer les observations terrain en transmissions plus claires, pour prioriser plus vite et décider plus prudemment.",
-    "story.partnerTitle": "Gratuit — et construit comme un partenaire, pas un fournisseur",
+      "SahAIbat transforme les observations terrain en transmissions plus claires pour prioriser plus vite.",
+    "story.partnerTitle": "Gratuit — et construit comme un partenaire",
     "story.partnerText":
-      "Notre objectif est de construire SahAIbat pour le monde. Nous travaillons avec les ONG comme partenaires, en adaptant les parcours à chaque communauté — pas en vendant une solution unique.",
+      "Nous travaillons avec les ONG comme partenaires, en adaptant les parcours à chaque communauté.",
+
+    "whyDifferent.title": "Pourquoi SahAIbat est différent",
+    "earlyTriage.title": "Soutenir le triage précoce — communautés et patients",
+    "reporting.title": "Reporting clair, prêt à s’intégrer",
+    "supports.title": "Conçu pour des programmes à fort impact",
+    "strategy.title": "Pour les programmes au plus près des communautés",
 
     "impact.title": "Quel impact possible ?",
-    "impact.item1": "Un triage plus cohérent sur le terrain",
-    "impact.item2": "Une escalade plus précoce en cas de signes de danger",
-    "impact.item3": "De meilleures transmissions entre Kader et cliniciens",
+    "impact.item1": "Un triage plus cohérent",
+    "impact.item2": "Une escalade plus précoce",
+    "impact.item3": "De meilleures transmissions",
 
     "partner.pageTitle": "Partenariat avec SahAIbat",
     "partner.pageSubtitle":
-      "Parlez-nous de votre ONG ou programme. Nous répondrons avec des étapes simples pour explorer un pilote ensemble.",
+      "Parlez-nous de votre ONG ou programme. Nous répondrons avec des étapes simples pour explorer un pilote.",
     "partner.formTitle": "Formulaire de partenariat",
     "partner.org": "Nom de l’organisation",
     "partner.country": "Pays",
