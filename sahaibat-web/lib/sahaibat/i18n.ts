@@ -1,123 +1,199 @@
-export type Lang = "en" | "id" | "fr";
+export type Lang = "id" | "en" | "fr";
 
 export const LANG_LABEL: Record<Lang, string> = {
-  en: "English",
   id: "Bahasa",
+  en: "English",
   fr: "Français",
 };
 
 export type I18nKey =
   | "brand.name"
   | "brand.tagline"
+  | "nav.partner"
   | "hero.title"
   | "hero.subtitle"
   | "hero.pill"
-  | "cta.partner"
-  | "story.what"
-  | "story.local"
-  | "story.kader"
-  | "story.doctor"
-  | "story.partner"
+  | "hero.ctaPrimary"
+  | "hero.ctaSecondary"
+  | "story.whatTitle"
+  | "story.whatText"
+  | "story.localTitle"
+  | "story.localText"
+  | "story.kaderTitle"
+  | "story.kaderText"
+  | "story.reviewerTitle"
+  | "story.reviewerText"
+  | "story.partnerTitle"
+  | "story.partnerText"
   | "impact.title"
-  | "impact.one"
-  | "impact.two"
-  | "impact.three"
-  | "partner.title"
-  | "partner.subtitle"
+  | "impact.item1"
+  | "impact.item2"
+  | "impact.item3"
+  | "partner.pageTitle"
+  | "partner.pageSubtitle"
+  | "partner.formTitle"
+  | "partner.org"
+  | "partner.country"
+  | "partner.region"
+  | "partner.focus"
+  | "partner.size"
+  | "partner.email"
+  | "partner.message"
   | "partner.submit"
+  | "partner.directEmail"
   | "disclaimer";
 
 export const DICT: Record<Lang, Record<I18nKey, string>> = {
   en: {
     "brand.name": "SahAIbat",
     "brand.tagline": "healthcare closer than ever.",
+    "nav.partner": "Partner with us",
+
     "hero.title": "Healthcare closer than ever.",
     "hero.subtitle":
-      "SahAIbat helps community health workers, nurses, and doctors support families faster — with local understanding and global clinical safety principles.",
+      "SahAIbat is built for real communities — helping Kader, nurses, and doctors support families faster with clarity, empathy, and safer next steps.",
     "hero.pill":
       "Built with local communities. Guided by global clinical safety principles.",
-    "cta.partner": "Partner with us",
-    "story.what":
-      "SahAIbat is built for moments where care is needed now — not technology for its own sake, but calm guidance for real people.",
-    "story.local":
-      "This is not built from North America. SahAIbat respects local language, culture, and how community care truly works.",
-    "story.kader":
-      "For Kader, SahAIbat helps ask the right questions, recognize danger signs early, and escalate with confidence.",
-    "story.doctor":
-      "For nurses and doctors, SahAIbat turns field notes into clear summaries that are easier to review and act on.",
-    "story.partner":
-      "SahAIbat is free and built as a partner — not a vendor. We work alongside NGOs to adapt to each community.",
+    "hero.ctaPrimary": "Partner with us",
+    "hero.ctaSecondary": "See the story",
+
+    "story.whatTitle": "What is SahAIbat?",
+    "story.whatText":
+      "SahAIbat is a simple, story-first way to support care decisions when time is limited and help is needed now. It’s not about fancy technology — it’s about calm guidance for real people.",
+    "story.localTitle": "Not built from North America — built with local reality",
+    "story.localText":
+      "SahAIbat is designed to feel familiar. We respect language, culture, and how community care actually works — while staying grounded in global clinical safety thinking.",
+    "story.kaderTitle": "How it helps Kader (Community Health Workers)",
+    "story.kaderText":
+      "In a rural visit, a Kader shouldn’t have to guess what to ask next. SahAIbat helps gather the right information, notice danger signs early, and know when to escalate — with dignity and clarity.",
+    "story.reviewerTitle": "How it helps nurses and doctors",
+    "story.reviewerText":
+      "Reviewers often receive incomplete stories. SahAIbat helps turn field observations into clearer handoffs, so nurses and doctors can prioritize faster and support safer decisions.",
+    "story.partnerTitle": "Free — and built as a partner, not a vendor",
+    "story.partnerText":
+      "Our goal is to build SahAIbat for the world. We work with NGOs as partners, adapting workflows to each community — not selling a one-size-fits-all product.",
+
     "impact.title": "What impact can this create?",
-    "impact.one": "More consistent triage in the field",
-    "impact.two": "Earlier escalation when danger signs appear",
-    "impact.three": "Better handoff between community and clinicians",
-    "partner.title": "Partner with SahAIbat",
-    "partner.subtitle":
-      "Tell us about your NGO or program. We’ll explore a pilot together.",
+    "impact.item1": "More consistent triage in the field",
+    "impact.item2": "Earlier escalation when danger signs appear",
+    "impact.item3": "Better handoff between Kader and clinical reviewers",
+
+    "partner.pageTitle": "Partner with SahAIbat",
+    "partner.pageSubtitle":
+      "Tell us about your NGO or program. We’ll respond with simple next steps to explore a pilot together.",
+    "partner.formTitle": "Partnership form",
+    "partner.org": "Organization name",
+    "partner.country": "Country",
+    "partner.region": "Region / District",
+    "partner.focus": "Program focus (e.g., TB, maternal, child health)",
+    "partner.size": "CHW/Kader cohort size (approx.)",
+    "partner.email": "Your email",
+    "partner.message": "Message / context",
     "partner.submit": "Send partnership request",
+    "partner.directEmail": "Or email us directly:",
     "disclaimer":
-      "SahAIbat provides triage support and care guidance — not diagnosis or emergency services.",
+      "SahAIbat provides triage support and care guidance — not diagnosis, not emergency services.",
   },
 
   id: {
     "brand.name": "SahAIbat",
     "brand.tagline": "healthcare closer than ever.",
+    "nav.partner": "Bermitra dengan kami",
+
     "hero.title": "Healthcare closer than ever.",
     "hero.subtitle":
-      "SahAIbat membantu kader, perawat, dan dokter mendampingi keluarga dengan lebih cepat dan aman.",
+      "SahAIbat dibuat untuk komunitas nyata — membantu Kader, perawat, dan dokter mendampingi keluarga lebih cepat dengan jelas, empatik, dan langkah berikutnya yang lebih aman.",
     "hero.pill":
       "Dibangun bersama komunitas lokal. Berpanduan pada prinsip keselamatan klinis global.",
-    "cta.partner": "Bermitra dengan kami",
-    "story.what":
-      "SahAIbat dibuat untuk situasi nyata di lapangan — membantu keputusan yang lebih aman, bukan teknologi rumit.",
-    "story.local":
-      "Bukan dibuat dari Amerika Utara. SahAIbat menghormati bahasa, budaya, dan cara kerja komunitas lokal.",
-    "story.kader":
-      "Untuk Kader, SahAIbat membantu mengenali tanda bahaya lebih dini dan tahu kapan harus eskalasi.",
-    "story.doctor":
-      "Untuk perawat dan dokter, SahAIbat menyederhanakan ringkasan kasus dari lapangan.",
-    "story.partner":
-      "SahAIbat gratis dan dibangun sebagai mitra — bukan vendor.",
+    "hero.ctaPrimary": "Bermitra dengan kami",
+    "hero.ctaSecondary": "Lihat ceritanya",
+
+    "story.whatTitle": "Apa itu SahAIbat?",
+    "story.whatText":
+      "SahAIbat adalah cara sederhana berbasis cerita untuk membantu keputusan perawatan saat waktu terbatas dan bantuan dibutuhkan sekarang. Bukan soal teknologi rumit — tapi panduan yang tenang untuk orang nyata.",
+    "story.localTitle": "Bukan dibuat dari Amerika Utara — dibuat bersama realitas lokal",
+    "story.localText":
+      "SahAIbat dirancang agar terasa familiar. Kami menghormati bahasa dan budaya setempat, serta cara kerja layanan komunitas — sambil tetap berpegang pada cara berpikir keselamatan klinis global.",
+    "story.kaderTitle": "Bagaimana membantu Kader",
+    "story.kaderText":
+      "Saat kunjungan di desa, Kader tidak seharusnya menebak apa yang harus ditanya. SahAIbat membantu mengumpulkan informasi penting, mengenali tanda bahaya lebih dini, dan tahu kapan harus eskalasi — dengan jelas dan manusiawi.",
+    "story.reviewerTitle": "Bagaimana membantu perawat dan dokter",
+    "story.reviewerText":
+      "Sering kali peninjau menerima cerita yang tidak lengkap. SahAIbat membantu merapikan temuan lapangan agar handoff lebih jelas, sehingga prioritas lebih cepat dan keputusan lebih aman.",
+    "story.partnerTitle": "Gratis — dan kami adalah mitra, bukan vendor",
+    "story.partnerText":
+      "Tujuan kami adalah membangun SahAIbat untuk dunia. Kami bekerja bersama NGO sebagai mitra, menyesuaikan alur kerja dengan setiap komunitas — bukan menjual produk satu untuk semua.",
+
     "impact.title": "Dampak yang bisa tercipta",
-    "impact.one": "Triase lapangan lebih konsisten",
-    "impact.two": "Eskalasi lebih cepat",
-    "impact.three": "Koordinasi yang lebih baik",
-    "partner.title": "Bermitra dengan SahAIbat",
-    "partner.subtitle":
-      "Ceritakan tentang NGO atau program Anda. Kita bisa mulai dengan pilot kecil.",
-    "partner.submit": "Kirim permintaan",
+    "impact.item1": "Triase lapangan lebih konsisten",
+    "impact.item2": "Eskalasi lebih cepat saat ada tanda bahaya",
+    "impact.item3": "Handoff lebih baik antara Kader dan peninjau klinis",
+
+    "partner.pageTitle": "Bermitra dengan SahAIbat",
+    "partner.pageSubtitle":
+      "Ceritakan tentang NGO atau program Anda. Kami akan membalas dengan langkah sederhana untuk menjajaki pilot bersama.",
+    "partner.formTitle": "Form kemitraan",
+    "partner.org": "Nama organisasi",
+    "partner.country": "Negara",
+    "partner.region": "Wilayah / Kabupaten / Kecamatan",
+    "partner.focus": "Fokus program (mis. TB, ibu & anak)",
+    "partner.size": "Perkiraan jumlah Kader",
+    "partner.email": "Email Anda",
+    "partner.message": "Pesan / konteks",
+    "partner.submit": "Kirim permintaan kemitraan",
+    "partner.directEmail": "Atau email langsung:",
     "disclaimer":
-      "SahAIbat membantu triase dan panduan perawatan — bukan diagnosis.",
+      "SahAIbat membantu triase dan panduan perawatan — bukan diagnosis, bukan layanan darurat.",
   },
 
   fr: {
     "brand.name": "SahAIbat",
     "brand.tagline": "healthcare closer than ever.",
+    "nav.partner": "Partenariat",
+
     "hero.title": "Healthcare closer than ever.",
     "hero.subtitle":
-      "SahAIbat aide les agents communautaires et les cliniciens à soutenir les familles plus rapidement.",
+      "SahAIbat est conçu pour les communautés réelles — aider les agents communautaires, infirmier·e·s et médecins à soutenir les familles plus vite, avec clarté, empathie et des prochaines étapes plus sûres.",
     "hero.pill":
       "Co-conçu avec les communautés locales. Guidé par des principes mondiaux de sécurité clinique.",
-    "cta.partner": "Devenir partenaire",
-    "story.what":
-      "SahAIbat est conçu pour les moments critiques — une aide calme pour des décisions plus sûres.",
-    "story.local":
-      "Pas conçu depuis l’Amérique du Nord. SahAIbat respecte la culture et la langue locales.",
-    "story.kader":
-      "Pour les agents communautaires, SahAIbat aide à identifier les signes de danger et à escalader.",
-    "story.doctor":
-      "Pour les infirmiers et médecins, SahAIbat transforme les notes terrain en résumés clairs.",
-    "story.partner":
-      "SahAIbat est gratuit et construit comme un partenaire — pas comme un fournisseur.",
+    "hero.ctaPrimary": "Partenariat",
+    "hero.ctaSecondary": "Voir l’histoire",
+
+    "story.whatTitle": "Qu’est-ce que SahAIbat ?",
+    "story.whatText":
+      "SahAIbat est une approche simple et humaine pour soutenir les décisions de soins quand le temps est limité. Ce n’est pas du jargon technologique — c’est une guidance calme pour des personnes réelles.",
+    "story.localTitle": "Pas conçu depuis l’Amérique du Nord — conçu avec la réalité locale",
+    "story.localText":
+      "SahAIbat est pensé pour être familier. Nous respectons la langue, la culture et la manière dont les soins communautaires fonctionnent vraiment — tout en restant ancrés dans une logique mondiale de sécurité clinique.",
+    "story.kaderTitle": "Comment cela aide les Kader (agents communautaires)",
+    "story.kaderText":
+      "Lors d’une visite en zone rurale, un·e Kader ne devrait pas deviner quoi demander. SahAIbat aide à recueillir l’essentiel, repérer plus tôt les signes de danger et savoir quand escalader — avec dignité et clarté.",
+    "story.reviewerTitle": "Comment cela aide les infirmier·e·s et les médecins",
+    "story.reviewerText":
+      "Les cliniciens reçoivent souvent des informations incomplètes. SahAIbat aide à transformer les observations terrain en transmissions plus claires, pour prioriser plus vite et décider plus prudemment.",
+    "story.partnerTitle": "Gratuit — et construit comme un partenaire, pas un fournisseur",
+    "story.partnerText":
+      "Notre objectif est de construire SahAIbat pour le monde. Nous travaillons avec les ONG comme partenaires, en adaptant les parcours à chaque communauté — pas en vendant une solution unique.",
+
     "impact.title": "Quel impact possible ?",
-    "impact.one": "Triage plus cohérent",
-    "impact.two": "Escalade plus précoce",
-    "impact.three": "Meilleure coordination",
-    "partner.title": "Partenariat avec SahAIbat",
-    "partner.subtitle":
-      "Parlez-nous de votre organisation. Explorons un pilote ensemble.",
-    "partner.submit": "Envoyer",
+    "impact.item1": "Un triage plus cohérent sur le terrain",
+    "impact.item2": "Une escalade plus précoce en cas de signes de danger",
+    "impact.item3": "De meilleures transmissions entre Kader et cliniciens",
+
+    "partner.pageTitle": "Partenariat avec SahAIbat",
+    "partner.pageSubtitle":
+      "Parlez-nous de votre ONG ou programme. Nous répondrons avec des étapes simples pour explorer un pilote ensemble.",
+    "partner.formTitle": "Formulaire de partenariat",
+    "partner.org": "Nom de l’organisation",
+    "partner.country": "Pays",
+    "partner.region": "Région / District",
+    "partner.focus": "Objectif du programme (ex : TB, maternel, santé enfant)",
+    "partner.size": "Taille du groupe CHW/Kader (approx.)",
+    "partner.email": "Votre email",
+    "partner.message": "Message / contexte",
+    "partner.submit": "Envoyer la demande",
+    "partner.directEmail": "Ou écrivez-nous :",
     "disclaimer":
-      "SahAIbat fournit une aide au triage — pas un diagnostic.",
+      "SahAIbat fournit une aide au triage et une guidance — pas un diagnostic, ni des services d’urgence.",
   },
 };
