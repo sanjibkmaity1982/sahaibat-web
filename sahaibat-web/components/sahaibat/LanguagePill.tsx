@@ -1,27 +1,31 @@
 "use client";
 
-import { LANG_LABEL, Lang } from "@/lib/sahaibat/i18n";
-import { useI18n } from "./LanguageProvider";
+import type { Lang } from "@/lib/sahaibat/i18n";
+import { LANG_LABEL } from "@/lib/sahaibat/i18n";
+import { useI18n } from "@/components/sahaibat/LanguageProvider";
+
+const options: Lang[] = ["id", "en", "fr"];
 
 export function LanguagePill() {
   const { lang, setLang } = useI18n();
 
   return (
-    <div className="flex gap-1 rounded-full border p-1">
-      {Object.keys(LANG_LABEL).map((l) => (
-        <button
-          key={l}
-          onClick={() => {
-            setLang(l);
-            localStorage.setItem("lang", l);
-          }}
-          className={`px-3 py-1 text-xs rounded-full ${
-            lang === l ? "bg-black text-white" : "text-slate-600"
-          }`}
-        >
-          {LANG_LABEL[l as Lang]}
-        </button>
-      ))}
+    <div className="flex items-center gap-1 rounded-full border bg-white p-1 shadow-sm">
+      {options.map((l) => {
+        const active = l === lang;
+        return (
+          <button
+            key={l}
+            onClick={() => setLang(l)}
+            className={[
+              "rounded-full px-3 py-1.5 text-xs font-semibold transition",
+              active ? "bg-slate-900 text-white" : "text-slate-700 hover:bg-slate-50",
+            ].join(" ")}
+          >
+            {LANG_LABEL[l]}
+          </button>
+        );
+      })}
     </div>
   );
 }
