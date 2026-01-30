@@ -21,6 +21,7 @@ export function LanguagePill() {
               "rounded-full px-3 py-1.5 text-xs font-semibold transition",
               active ? "bg-slate-900 text-white" : "text-slate-700 hover:bg-slate-50",
             ].join(" ")}
+            aria-pressed={active}
           >
             {LANG_LABEL[l]}
           </button>
