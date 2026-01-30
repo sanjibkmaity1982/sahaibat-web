@@ -71,7 +71,75 @@ export default function HomePage() {
         </div>
 
         <Card title={t("story.partnerTitle")} text={t("story.partnerText")} />
+        {/* Embedded storyline: why different + early triage */}
+<SectionCard title="Why SahAIbat is different">
+  <p>
+    Most digital triage tools are designed for hospitals, apps, or
+    high-connectivity settings.
+  </p>
+  <p>
+    SahAIbat is designed for <span className="font-semibold text-slate-900">community-based care</span>,
+    where decisions are made in villages, in small clinics, and often over WhatsApp — not dashboards.
+  </p>
+  <p className="font-semibold text-slate-900">Instead of trying to diagnose, SahAIbat focuses on safer decision timing:</p>
+  <BulletList
+    items={[
+      "what should be checked now",
+      "which signals should not be missed",
+      "and when care should be escalated",
+    ]}
+  />
+  <p>
+    This makes SahAIbat easier to trust, easier to adopt, and safer to scale.
+  </p>
+</SectionCard>
+
+<SectionCard title="Supporting early triage — for communities and patients">
+  <p>
+    SahAIbat supports <span className="font-semibold text-slate-900">early triage</span>, not diagnosis.
+  </p>
+  <p>
+    Community health workers can use it to guide structured intake during visits.
+  </p>
+  <p>
+    Patients and families can also use SahAIbat to describe symptoms clearly and receive calm,
+    non-diagnostic guidance — helping them decide when to seek care.
+  </p>
+  <p>
+    Every step is designed to <span className="font-semibold text-slate-900">support human judgment</span>, not replace it.
+  </p>
+</SectionCard>
+
       </section>
+
+      function SectionCard({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="rounded-3xl border bg-white p-6">
+      <div className="text-lg font-semibold">{title}</div>
+      <div className="mt-3 space-y-3 text-slate-600">{children}</div>
+    </div>
+  );
+}
+
+function BulletList({ items }: { items: string[] }) {
+  return (
+    <ul className="mt-2 space-y-2">
+      {items.map((x) => (
+        <li key={x} className="flex gap-2 text-slate-700">
+          <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-slate-900" />
+          <span className="leading-relaxed">{x}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
 
       {/* IMPACT */}
       <section className="rounded-3xl border bg-slate-900 p-7 text-white">
@@ -85,6 +153,58 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Embedded storyline: reporting + scope + strategic focus */}
+<section className="space-y-4">
+  <SectionCard title="Clear reporting, ready to integrate">
+    <p>
+      SahAIbat captures structured, anonymized insights that help programs understand what’s happening on the ground.
+    </p>
+    <BulletList
+      items={[
+        "program monitoring and learning",
+        "reporting needs for partners and funders",
+        "future integration with partner or regulatory systems when required",
+      ]}
+    />
+    <p>
+      The goal is not complexity — it’s <span className="font-semibold text-slate-900">clarity</span>.
+    </p>
+  </SectionCard>
+
+  <SectionCard title="Designed for high-impact community health programs">
+    <p>SahAIbat is well suited for programs that rely on structured symptom assessment, including:</p>
+    <BulletList
+      items={[
+        "maternal & child health screening",
+        "fever, dengue, and infectious disease follow-up",
+        "TB and respiratory symptom screening",
+        "chronic condition awareness (NCDs)",
+        "general community health triage and referral support",
+      ]}
+    />
+    <p>
+      The system can be adapted over time to align with local guidelines and program needs.
+    </p>
+  </SectionCard>
+
+  <SectionCard title="Built for programs working closest to the community">
+    <p>SahAIbat is especially valuable for organizations that:</p>
+    <BulletList
+      items={[
+        "support maternal & child health through community-based programs",
+        "operate rural clinics transitioning from paper-based workflows",
+        "coordinate community health worker networks already using WhatsApp",
+        "run TB, dengue, malaria, or chronic disease screening initiatives",
+      ]}
+    />
+    <p>
+      These programs often carry the highest responsibility — and the least digital support.
+      <span className="font-semibold text-slate-900"> SahAIbat exists to bridge that gap.</span>
+    </p>
+  </SectionCard>
+</section>
+
+      
       {/* CLOSING */}
       <section className="rounded-3xl border bg-white p-7">
         <div className="text-lg font-semibold">{t("brand.name")}</div>
