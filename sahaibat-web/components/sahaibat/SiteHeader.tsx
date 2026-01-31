@@ -13,7 +13,7 @@ export function SiteHeader() {
       <div className="mx-auto flex w-full max-w-5xl items-center justify-between gap-3 px-4 py-3">
         <Link href="/" className="flex items-center gap-2">
            <Image
-  src="/images/logo-horizontal@2x.png"
+  src="/images/logo-horizontal@2x.svg"
   alt="SahAIbat"
   width={200}
   height={80}
