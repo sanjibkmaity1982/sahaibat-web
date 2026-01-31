@@ -25,7 +25,32 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-6 text-xs text-slate-400">© {new Date().getFullYear()} SahAIbat</div>
+        <div className="mt-6 space-y-1 text-xs text-slate-400">
+  <div>© {new Date().getFullYear()} SahAIbat</div>
+  <div>
+    SahAIbat is developed by{" "}
+    <span className="font-medium text-slate-500">
+      Viantra Health (1167910 Canada Inc.)
+    </span>
+  </div>
+  <div>
+    Visit{" "}
+    <a
+      href="https://www.viantra.co"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="underline hover:text-slate-500"
+    >
+      www.viantra.co
+    </a>{" "}
+    for more details.
+  </div>
+  <div className="flex items-center gap-1">
+    <span>🇨🇦</span>
+    <span>Made proudly in Canada.</span>
+  </div>
+</div>
+
       </div>
     </footer>
   );
