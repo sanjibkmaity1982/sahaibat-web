@@ -25,14 +25,16 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-6 space-y-1 text-xs text-slate-400">
+<div className="mt-6 space-y-2 text-xs text-slate-400">
   <div>© {new Date().getFullYear()} SahAIbat</div>
+
   <div>
     SahAIbat is developed by{" "}
     <span className="font-medium text-slate-500">
-      Viantra Health (11679210 Canada Inc.)
+      Viantra Health (1167910 Canada Inc.)
     </span>
   </div>
+
   <div>
     Visit{" "}
     <a
@@ -45,14 +47,36 @@ export function SiteFooter() {
     </a>{" "}
     for more details.
   </div>
+
   <div className="flex items-center gap-1">
     <span>🇨🇦</span>
-    <span>Proudly Canadian 🇨🇦
-</span>
+    <span>Made proudly in Canada.</span>
+  </div>
+
+  {/* Social media links */}
+  <div className="pt-2 flex flex-wrap items-center gap-4 text-slate-400">
+    <a
+      href="https://www.facebook.com/sahaibat"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center gap-1 hover:text-slate-500"
+    >
+      <span>📘</span>
+      <span>Facebook</span>
+    </a>
+
+    <a
+      href="https://www.instagram.com/sahaibat-health"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex items-center gap-1 hover:text-slate-500"
+    >
+      <span>📷</span>
+      <span>Instagram</span>
+    </a>
   </div>
 </div>
 
-      </div>
     </footer>
   );
 }
