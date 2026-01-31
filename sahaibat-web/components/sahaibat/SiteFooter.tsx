@@ -30,7 +30,7 @@ export function SiteFooter() {
   <div>
     SahAIbat is developed by{" "}
     <span className="font-medium text-slate-500">
-      Viantra Health (1167910 Canada Inc.)
+      Viantra Health (11679210 Canada Inc.)
     </span>
   </div>
   <div>
@@ -47,7 +47,8 @@ export function SiteFooter() {
   </div>
   <div className="flex items-center gap-1">
     <span>🇨🇦</span>
-    <span>Made proudly in Canada.</span>
+    <span>Proudly Canadian 🇨🇦
+</span>
   </div>
 </div>
 
