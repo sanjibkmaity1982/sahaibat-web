@@ -6,7 +6,11 @@ import { SiteFooter } from "@/components/sahaibat/SiteFooter";
 export const metadata = {
   title: "SahAIbat — healthcare closer than ever.",
   description:
-    "SahAIbat is built with local communities, guided by global clinical safety principles — helping Kader, nurses, and doctors support families faster.",
+    "SahAIbat is built with local communities, guided by global clinical safety principles — helping CHW, nurses, and doctors support families faster.",
+  icons: {
+    icon: "/icon.png",
+    apple: "/apple-icon.png",
+    },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
