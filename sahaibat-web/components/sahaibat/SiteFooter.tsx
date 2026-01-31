@@ -76,7 +76,6 @@ export function SiteFooter() {
     </a>
   </div>
 </div>
-
-    </footer>
+      </div>    </footer>
   );
 }
