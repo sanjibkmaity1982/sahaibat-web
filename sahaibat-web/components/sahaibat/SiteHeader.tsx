@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { LanguagePill } from "@/components/sahaibat/LanguagePill";
 import { useI18n } from "@/components/sahaibat/LanguageProvider";
+import Image from "next/image";
 
 export function SiteHeader() {
   const { t } = useI18n();
@@ -11,7 +12,13 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b bg-white/85 backdrop-blur">
       <div className="mx-auto flex w-full max-w-5xl items-center justify-between gap-3 px-4 py-4">
         <Link href="/" className="flex items-center gap-2">
-          {/* Replace this square with your logo when ready */}
+          <Image
+  src="/logo/logo-horizontal@2x.png"
+  alt="SahAIbat"
+  width={160}
+  height={64}
+  className="h-7 w-auto md:h-8"
+/>
           <div className="h-9 w-9 rounded-xl bg-slate-900" aria-hidden />
           <div className="leading-tight">
             <div className="text-sm font-semibold">{t("brand.name")}</div>
