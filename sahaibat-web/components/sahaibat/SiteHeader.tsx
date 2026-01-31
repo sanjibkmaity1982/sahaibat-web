@@ -16,7 +16,7 @@ export function SiteHeader() {
   src="/images/logo-horizontal@2x.svg"
   alt="SahAIbat"
   width={200}
-  height={80}
+  height={800}
   className="h-9 w-auto md:h-11"
 />
 
