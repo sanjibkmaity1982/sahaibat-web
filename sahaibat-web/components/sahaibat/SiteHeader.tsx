@@ -12,18 +12,14 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b bg-white/85 backdrop-blur">
       <div className="mx-auto flex w-full max-w-5xl items-center justify-between gap-3 px-4 py-4">
         <Link href="/" className="flex items-center gap-2">
-          <Image
-  src="/logo/logo-horizontal@2x.png"
+             <Image
+  src="/images/logo-horizontal@2x.png"
   alt="SahAIbat"
   width={160}
   height={64}
   className="h-7 w-auto md:h-8"
 />
-          <div className="h-9 w-9 rounded-xl bg-slate-900" aria-hidden />
-          <div className="leading-tight">
-            <div className="text-sm font-semibold">{t("brand.name")}</div>
-            <div className="text-xs text-slate-500">{t("brand.tagline")}</div>
-          </div>
+
         </Link>
 
         <div className="flex items-center gap-3">
