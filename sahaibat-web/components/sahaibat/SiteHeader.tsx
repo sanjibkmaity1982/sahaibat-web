@@ -12,13 +12,14 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 border-b bg-white/85 backdrop-blur">
       <div className="mx-auto flex w-full max-w-5xl items-center justify-between gap-3 px-4 py-4">
         <Link href="/" className="flex items-center gap-2">
-             <Image
+           <Image
   src="/images/logo-horizontal@2x.png"
   alt="SahAIbat"
-  width={160}
-  height={64}
-  className="h-7 w-auto md:h-8"
+  width={200}
+  height={80}
+  className="h-9 w-auto md:h-11"
 />
+
 
         </Link>
 
