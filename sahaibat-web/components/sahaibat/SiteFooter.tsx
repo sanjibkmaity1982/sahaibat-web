@@ -18,14 +18,14 @@ export function SiteFooter() {
           {/* Top footer nav */}
           <div className="flex flex-wrap gap-4 text-sm">
             <Link className="text-slate-600 hover:text-slate-900" href="/">
-              {t("nav.home") ?? "Home"}
+              Home
             </Link>
 
             <Link className="text-slate-600 hover:text-slate-900" href="/partner">
               {t("nav.partner")}
             </Link>
 
-            {/* ✅ New legal links */}
+            {/* Legal links */}
             <Link className="text-slate-600 hover:text-slate-900" href="/privacy">
               {t("legal.privacy")}
             </Link>
