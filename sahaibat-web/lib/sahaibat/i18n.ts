@@ -47,6 +47,31 @@ export type I18nKey =
   | "partner.submit"
   | "partner.directEmail"
   | "disclaimer";
+| "legal.privacy"
+| "legal.terms"
+| "legal.contact"
+| "legal.websiteNoticeTitle"
+| "legal.websiteNoticeText"
+| "legal.appPolicyTitle"
+| "legal.appPolicyText"
+| "legal.appPolicyLinkLabel"
+| "legal.operatorTitle"
+| "legal.operatorText"
+| "legal.privacy.title"
+| "legal.privacy.updated"
+| "legal.privacy.p1"
+| "legal.privacy.p2"
+| "legal.privacy.p3"
+| "legal.terms.title"
+| "legal.terms.updated"
+| "legal.terms.p1"
+| "legal.terms.p2"
+| "legal.contact.title"
+| "legal.contact.p1"
+| "legal.contact.emailLabel"
+| "legal.contact.emailValue"
+| "legal.contact.indonesiaNote"
+
 
 export const DICT: Record<Lang, Record<I18nKey, string>> = {
   en: {
@@ -104,6 +129,47 @@ export const DICT: Record<Lang, Record<I18nKey, string>> = {
     "partner.directEmail": "Or email us directly:",
     "disclaimer":
       "SahAIbat provides triage support and care guidance — not diagnosis, not emergency services.",
+    // ✅ Add inside translations.en
+"legal.privacy": "Privacy",
+"legal.terms": "Terms",
+"legal.contact": "Contact",
+
+"legal.websiteNoticeTitle": "Notice (This website)",
+"legal.websiteNoticeText":
+  "sahaibat.com is an informational/marketing website. It does not collect health data and does not store triage data. Triage services and health data (if any) are handled only within the SahAIbat app at app.sahaibat.com.",
+
+"legal.appPolicyTitle": "App Privacy (Indonesia)",
+"legal.appPolicyText":
+  "The privacy policy covering triage services, Jakarta data hosting, and the Indonesia contact representative applies to the SahAIbat app at app.sahaibat.com.",
+"legal.appPolicyLinkLabel": "Open App Privacy Policy",
+
+"legal.operatorTitle": "Operator",
+"legal.operatorText":
+  "11679210 Canada Inc. (federally registered in Canada).",
+
+"legal.privacy.title": "Privacy Policy (sahaibat.com website)",
+"legal.privacy.updated": "Last updated: 02 Jan 2026",
+"legal.privacy.p1":
+  "This policy applies to sahaibat.com (an informational/marketing website). This website does not provide triage services and does not store health data.",
+"legal.privacy.p2":
+  "Data processed on this website may be limited to technical logs and, if you submit a contact/partner form, the information you provide (e.g., name, email, organization, message).",
+"legal.privacy.p3":
+  "For the Indonesia triage/health-data privacy policy, please refer to the SahAIbat app privacy policy at app.sahaibat.com.",
+
+"legal.terms.title": "Terms & Conditions (sahaibat.com website)",
+"legal.terms.updated": "Last updated: 02 Jan 2026",
+"legal.terms.p1":
+  "sahaibat.com is provided for informational purposes only. Content is general and not medical advice.",
+"legal.terms.p2":
+  "Use of triage services (if available) is governed by the terms and policies within the SahAIbat app at app.sahaibat.com.",
+
+"legal.contact.title": "Contact",
+"legal.contact.p1":
+  "For questions, partnerships, or more information, please contact:",
+"legal.contact.emailLabel": "Email",
+"legal.contact.emailValue": "privacy@sahaibat.com",
+"legal.contact.indonesiaNote":
+  "Note: Indonesia representative details and Jakarta hosting apply to the SahAIbat app (app.sahaibat.com), not this marketing website.",
   },
 
   id: {
@@ -161,6 +227,48 @@ export const DICT: Record<Lang, Record<I18nKey, string>> = {
     "partner.directEmail": "Atau email langsung:",
     "disclaimer":
       "SahAIbat membantu triase dan panduan perawatan — bukan diagnosis, bukan layanan darurat.",
+    // ✅ Add inside translations.id
+"legal.privacy": "Privasi",
+"legal.terms": "Ketentuan",
+"legal.contact": "Kontak",
+
+"legal.websiteNoticeTitle": "Catatan (Situs ini)",
+"legal.websiteNoticeText":
+  "Situs sahaibat.com adalah situs informasi/marketing. Situs ini tidak mengumpulkan data kesehatan dan tidak menyimpan data triase. Layanan triase dan data kesehatan (jika ada) hanya ada di aplikasi SahAIbat di app.sahaibat.com.",
+
+"legal.appPolicyTitle": "Privasi untuk Aplikasi (Indonesia)",
+"legal.appPolicyText":
+  "Kebijakan privasi untuk layanan triase, penyimpanan data di Jakarta, serta perwakilan kontak Indonesia berlaku untuk aplikasi SahAIbat di app.sahaibat.com.",
+"legal.appPolicyLinkLabel": "Buka Kebijakan Privasi Aplikasi",
+
+"legal.operatorTitle": "Operator",
+"legal.operatorText":
+  "11679210 Canada Inc. (terdaftar secara federal di Kanada).",
+
+"legal.privacy.title": "Kebijakan Privasi (Situs sahaibat.com)",
+"legal.privacy.updated": "Terakhir diperbarui: 02 Januari 2026",
+"legal.privacy.p1":
+  "Kebijakan ini berlaku untuk situs sahaibat.com (situs informasi/marketing). Situs ini tidak menyediakan layanan triase dan tidak menyimpan data kesehatan.",
+"legal.privacy.p2":
+  "Data yang mungkin diproses oleh situs ini terbatas pada data teknis seperti log akses dan, jika Anda mengirim formulir kontak/kemitraan, informasi yang Anda kirimkan (misalnya nama, email, organisasi, pesan).",
+"legal.privacy.p3":
+  "Untuk kebijakan privasi layanan triase dan data kesehatan di Indonesia, silakan lihat kebijakan privasi aplikasi SahAIbat di app.sahaibat.com.",
+
+"legal.terms.title": "Syarat & Ketentuan (Situs sahaibat.com)",
+"legal.terms.updated": "Terakhir diperbarui: 02 Januari 2026",
+"legal.terms.p1":
+  "Situs sahaibat.com disediakan untuk tujuan informasi. Konten bersifat umum dan tidak dimaksudkan sebagai nasihat medis.",
+"legal.terms.p2":
+  "Penggunaan layanan triase (jika tersedia) tunduk pada ketentuan dan kebijakan yang berlaku di aplikasi SahAIbat di app.sahaibat.com.",
+
+"legal.contact.title": "Kontak",
+"legal.contact.p1":
+  "Untuk pertanyaan, kemitraan, atau informasi lebih lanjut, silakan hubungi kami:",
+"legal.contact.emailLabel": "Email",
+"legal.contact.emailValue": "privacy@sahaibat.com",
+"legal.contact.indonesiaNote":
+  "Catatan: Kontak perwakilan Indonesia dan detail hosting Jakarta berlaku untuk aplikasi SahAIbat (app.sahaibat.com), bukan untuk situs marketing ini.",
+
   },
 
   fr: {
@@ -218,5 +326,47 @@ export const DICT: Record<Lang, Record<I18nKey, string>> = {
     "partner.directEmail": "Ou écrivez-nous :",
     "disclaimer":
       "SahAIbat fournit une aide au triage et une guidance — pas un diagnostic, ni des services d’urgence.",
+    // ✅ Add inside translations.fr
+"legal.privacy": "Confidentialité",
+"legal.terms": "Conditions",
+"legal.contact": "Contact",
+
+"legal.websiteNoticeTitle": "Avis (Ce site)",
+"legal.websiteNoticeText":
+  "sahaibat.com est un site d’information/marketing. Il ne collecte pas de données de santé et ne stocke pas de données de triage. Le triage et les données de santé (le cas échéant) sont gérés uniquement via l’application SahAIbat sur app.sahaibat.com.",
+
+"legal.appPolicyTitle": "Confidentialité de l’application (Indonésie)",
+"legal.appPolicyText":
+  "La politique couvrant le triage, l’hébergement des données à Jakarta et le contact indonésien s’applique à l’application SahAIbat sur app.sahaibat.com.",
+"legal.appPolicyLinkLabel": "Ouvrir la politique de l’application",
+
+"legal.operatorTitle": "Opérateur",
+"legal.operatorText":
+  "11679210 Canada Inc. (enregistrée au niveau fédéral au Canada).",
+
+"legal.privacy.title": "Politique de confidentialité (site sahaibat.com)",
+"legal.privacy.updated": "Dernière mise à jour : 02 janv. 2026",
+"legal.privacy.p1":
+  "Cette politique s’applique à sahaibat.com (site d’information/marketing). Ce site ne fournit pas de triage et ne stocke pas de données de santé.",
+"legal.privacy.p2":
+  "Les données traitées sur ce site peuvent se limiter à des journaux techniques et, si vous envoyez un formulaire, aux informations fournies (nom, email, organisation, message).",
+"legal.privacy.p3":
+  "Pour la politique de confidentialité du triage/données de santé en Indonésie, veuillez consulter la politique de l’application sur app.sahaibat.com.",
+
+"legal.terms.title": "Conditions d’utilisation (site sahaibat.com)",
+"legal.terms.updated": "Dernière mise à jour : 02 janv. 2026",
+"legal.terms.p1":
+  "sahaibat.com est fourni à titre informatif. Le contenu est général et ne constitue pas un avis médical.",
+"legal.terms.p2":
+  "L’utilisation du triage (si disponible) est régie par les conditions et politiques de l’application SahAIbat sur app.sahaibat.com.",
+
+"legal.contact.title": "Contact",
+"legal.contact.p1":
+  "Pour toute question, partenariat ou information, contactez-nous :",
+"legal.contact.emailLabel": "Email",
+"legal.contact.emailValue": "privacy@sahaibat.com",
+"legal.contact.indonesiaNote":
+  "Remarque : les détails du contact indonésien et l’hébergement à Jakarta s’appliquent à l’application (app.sahaibat.com), pas à ce site.",
+
   },
 };
