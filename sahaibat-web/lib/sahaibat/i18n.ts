@@ -46,7 +46,7 @@ export type I18nKey =
   | "partner.message"
   | "partner.submit"
   | "partner.directEmail"
-  | "disclaimer";
+  | "disclaimer"
 | "legal.privacy"
 | "legal.terms"
 | "legal.contact"
