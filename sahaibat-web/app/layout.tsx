@@ -1,7 +1,14 @@
+// app/layout.tsx
+// NOTE: This file cannot use usePathname directly (it's a Server Component).
+// The SiteHeader and SiteFooter handle their own pathname checks client-side.
+// The <main> wrapper uses a client wrapper component to conditionally apply
+// the max-width constraint only on non-home pages.
+
 import "./globals.css";
 import { LanguageProvider } from "@/components/sahaibat/LanguageProvider";
 import { SiteHeader } from "@/components/sahaibat/SiteHeader";
 import { SiteFooter } from "@/components/sahaibat/SiteFooter";
+import { MainWrapper } from "@/components/sahaibat/MainWrapper";
 
 export const metadata = {
   title: "SahAIbat — healthcare closer than ever",
@@ -16,7 +23,7 @@ export const metadata = {
     "NGO health programs",
     "WhatsApp health triage",
   ],
-  authors: [{ name: "Viantra Health (1167910 Canada Inc.)" }],
+  authors: [{ name: "Vinatra (11679210 Canada Inc.)" }],
   openGraph: {
     title: "SahAIbat — healthcare closer than ever",
     description:
@@ -43,14 +50,13 @@ export const metadata = {
   },
 };
 
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className="min-h-screen bg-white text-slate-900">
         <LanguageProvider>
           <SiteHeader />
-          <main className="mx-auto w-full max-w-5xl px-4 py-10">{children}</main>
+          <MainWrapper>{children}</MainWrapper>
           <SiteFooter />
         </LanguageProvider>
       </body>
