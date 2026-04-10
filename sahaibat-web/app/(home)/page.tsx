@@ -18,11 +18,11 @@ const C = {
   pink:    "#E91E8C",
 };
 
-// ── Community photo URLs (Unsplash free-use — rural & community health) ───────
+// ── Community photo URLs — using existing images from public/images ───────────
 const PHOTOS = {
-  kaderField:  "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=800&q=80",
-  motherChild: "https://images.unsplash.com/photo-1531983412531-1f49a365ffed?w=800&q=80",
-  posyandu:    "https://images.unsplash.com/photo-1584515933487-779824d29309?w=800&q=80",
+  kaderField:  "/images/hero-kader-family.png",
+  motherChild: "/images/__motherchild.png",
+  posyandu:    "/images/doctor-nurse.png",
 };
 
 // ── Bilingual strings ──────────────────────────────────────────────────────────
@@ -848,7 +848,7 @@ function TeamSection({ lang }: { lang:"en"|"id" }) {
       name: "Sanjib Maity",
       role: lang==="en" ? "Founder · SahAIbat Foundation / Vinatra" : "Pendiri · SahAIbat Foundation / Vinatra",
       loc: lang==="en" ? "Canada 🇨🇦" : "Kanada 🇨🇦",
-      emoji: "👨‍💻",
+      photo: "/images/sanjib.jpeg",
       color: C.teal,
       bg: C.dark,
       tc: C.white,
@@ -858,36 +858,36 @@ function TeamSection({ lang }: { lang:"en"|"id" }) {
       tags: ["AI Systems","Health Equity","Founder","Canada → Indonesia"],
     },
     {
-      name: "Dr. Ratih Rakhmawati, MD",
-      role: lang==="en" ? "Clinical Lead · Maternal & Child Health Specialist" : "Pemimpin Klinis · Spesialis Kesehatan Ibu & Anak",
+      name: "Dr. Ratih Rakhmawati, M.Biomed",
+      role: lang==="en" ? "Clinical & Digital Health Lead" : "Pemimpin Klinis & Kesehatan Digital",
       loc: "Indonesia 🇮🇩",
-      emoji: "👩‍⚕️",
+      photo: "/images/____Rathi.jpg",
       color: C.pink,
       bg: C.white,
       tc: C.dark,
       passion: lang==="en"
-        ? "Dr. Ratih has spent 20 years on the front lines of maternal and child health across Indonesia — from post-conflict Aceh to remote Papua. She has seen what it costs when a danger sign is missed. At SahAIbat, she makes sure it never is — validating every clinical module against the standards she has spent her career defending."
-        : "Dr. Ratih telah menghabiskan 20 tahun di garis depan kesehatan ibu dan anak di seluruh Indonesia — dari Aceh pasca konflik hingga Papua terpencil. Ia telah menyaksikan apa yang terjadi ketika sebuah tanda bahaya terlewat. Di SahAIbat, ia memastikan hal itu tidak pernah terjadi.",
-      tags: ["20 Years MCH","Jhpiego · USAID","WHO Standards","Clinical Safety"],
+        ? "Dr. Ratih has spent over 20 years strengthening health systems across Indonesia — leading digital training programmes that reached thousands of cadres and providers across multiple provinces. She believes the future of community health is built on people who are well-equipped, not just well-meaning. At SahAIbat, she ensures every clinical module is grounded in national standards and designed to actually work in the hands of the people using it."
+        : "Dr. Ratih telah menghabiskan lebih dari 20 tahun memperkuat sistem kesehatan di seluruh Indonesia — memimpin program pelatihan digital yang menjangkau ribuan kader dan tenaga kesehatan di berbagai provinsi. Ia percaya masa depan kesehatan komunitas dibangun di atas orang-orang yang benar-benar dibekali, bukan sekadar berniat baik. Di SahAIbat, ia memastikan setiap modul klinis berakar pada standar nasional dan dirancang untuk benar-benar bekerja di tangan penggunanya.",
+      tags: ["20+ Years Health Systems","Digital Training","LMS · Blended Learning","WHO Standards"],
     },
     {
       name: "Stefanus Bere",
       role: lang==="en" ? "Programme Director · Health Systems & Community" : "Direktur Program · Sistem Kesehatan & Komunitas",
       loc: "East Nusa Tenggara 🇮🇩",
-      emoji: "🏥",
+      photo: "/images/__Stefan.png",
       color: C.gold,
       bg: C.white,
       tc: C.dark,
       passion: lang==="en"
-        ? "Stefanus grew up knowing what it means when a community has no system to catch the sick. He has spent over two decades building those systems — across NTT, Papua, and Jakarta, with USAID, ADB, and the UN. At SahAIbat, he is the bridge between technology and the ground truth that no dataset can replace."
-        : "Stefanus tumbuh dengan memahami apa artinya ketika sebuah komunitas tidak memiliki sistem untuk mendeteksi orang sakit. Ia telah menghabiskan lebih dari dua dekade membangun sistem-sistem itu — di NTT, Papua, dan Jakarta, bersama USAID, ADB, dan PBB. Di SahAIbat, ia adalah jembatan antara teknologi dan realitas lapangan.",
-      tags: ["USAID · ADB · UNODC","NTT Expert","Health Systems","20+ Years Field"],
+        ? "Stefanus has spent nearly 20 years working where the need is greatest — building health systems in NTT and Timor-Leste that are equitable, accountable, and community-driven. He led district-level reforms under the DFAT-funded Australia-Indonesia maternal health partnership, and has worked with USAID, the UN, IOM, and CARE International. A University of Queensland alumnus, he brings the rare combination of policy depth and field fluency that SahAIbat needs to reach communities that systems often miss."
+        : "Stefanus telah menghabiskan hampir 20 tahun bekerja di tempat yang paling membutuhkan — membangun sistem kesehatan di NTT dan Timor-Leste yang setara, akuntabel, dan berbasis komunitas. Ia memimpin reformasi tingkat kabupaten di bawah kemitraan kesehatan ibu Australia-Indonesia yang didanai DFAT, dan telah bekerja bersama USAID, PBB, IOM, dan CARE International. Alumni Universitas Queensland, ia membawa kombinasi langka antara kedalaman kebijakan dan kelancaran lapangan yang dibutuhkan SahAIbat untuk menjangkau komunitas yang sering terlewatkan.",
+      tags: ["USAID · DFAT · UN","NTT & Timor-Leste","Health Systems","UQ Alumni"],
     },
     {
       name: "Risti Riana",
       role: lang==="en" ? "Community & Growth Lead · SahAIbat Foundation" : "Pemimpin Komunitas & Pertumbuhan · SahAIbat Foundation",
       loc: "West Java, Indonesia 🇮🇩",
-      emoji: "🌺",
+      photo: null,
       color: C.teal,
       bg: C.white,
       tc: C.dark,
@@ -897,6 +897,13 @@ function TeamSection({ lang }: { lang:"en"|"id" }) {
       tags: ["Community Building","Growth & Marketing","Partnerships","Brand Strategy"],
     },
   ];
+
+  // Reusable avatar — shows photo if available, otherwise teal initial circle
+  const Avatar = ({ m, size=72 }: { m: typeof members[0]; size?: number }) => (
+    m.photo
+      ? <img src={m.photo} alt={m.name} style={{ width:size,height:size,borderRadius:16,objectFit:"cover",flexShrink:0,border:`2px solid ${m.color}30` }}/>
+      : <div style={{ width:size,height:size,borderRadius:16,background:`${m.color}15`,border:`1px solid ${m.color}40`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:28,flexShrink:0,fontWeight:800,color:m.color }}>{m.name[0]}</div>
+  );
 
   return(
     <section id="team" style={{ background:C.cream,padding:"100px 0" }}>
@@ -913,10 +920,10 @@ function TeamSection({ lang }: { lang:"en"|"id" }) {
         <div className="two-col" style={{ marginBottom:24 }}>
           {members.slice(0,2).map(m=>(
             <FadeIn key={m.name} delay={100}>
-              <div style={{ background:m.bg,borderRadius:24,padding:36,position:"relative",overflow:"hidden",border:`1px solid ${m.color}20`, minHeight:320 }}>
+              <div style={{ background:m.bg,borderRadius:24,padding:36,position:"relative",overflow:"hidden",border:`1px solid ${m.color}20`,minHeight:320 }}>
                 <div style={{ position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${m.color},transparent)` }}/>
                 <div style={{ display:"flex",gap:20,alignItems:"flex-start",marginBottom:20 }}>
-                  <div style={{ width:72,height:72,borderRadius:16,background:`${m.color}15`,border:`1px solid ${m.color}40`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:32,flexShrink:0 }}>{m.emoji}</div>
+                  <Avatar m={m}/>
                   <div>
                     <div style={{ fontWeight:800,fontSize:20,color:m.tc,marginBottom:4 }}>{m.name}</div>
                     <div style={{ color:m.color,fontWeight:600,fontSize:13 }}>{m.role}</div>
@@ -936,10 +943,10 @@ function TeamSection({ lang }: { lang:"en"|"id" }) {
         <div className="two-col">
           {members.slice(2,4).map(m=>(
             <FadeIn key={m.name} delay={200}>
-              <div style={{ background:m.bg,borderRadius:24,padding:36,position:"relative",overflow:"hidden",border:`1px solid ${m.color}20`, minHeight:300 }}>
+              <div style={{ background:m.bg,borderRadius:24,padding:36,position:"relative",overflow:"hidden",border:`1px solid ${m.color}20`,minHeight:300 }}>
                 <div style={{ position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${m.color},transparent)` }}/>
                 <div style={{ display:"flex",gap:20,alignItems:"flex-start",marginBottom:20 }}>
-                  <div style={{ width:72,height:72,borderRadius:16,background:`${m.color}12`,border:`1px solid ${m.color}30`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:32,flexShrink:0 }}>{m.emoji}</div>
+                  <Avatar m={m}/>
                   <div>
                     <div style={{ fontWeight:800,fontSize:20,color:C.dark,marginBottom:4 }}>{m.name}</div>
                     <div style={{ color:m.color,fontWeight:600,fontSize:13 }}>{m.role}</div>
