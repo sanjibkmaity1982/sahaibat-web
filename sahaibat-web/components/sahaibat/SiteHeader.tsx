@@ -1,28 +1,30 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { LanguagePill } from "@/components/sahaibat/LanguagePill";
 import { useI18n } from "@/components/sahaibat/LanguageProvider";
 import Image from "next/image";
 
 export function SiteHeader() {
   const { t } = useI18n();
+  const pathname = usePathname();
+
+  // Hide on homepage — the homepage has its own self-contained Nav
+  if (pathname === "/") return null;
 
   return (
     <header className="sticky top-0 z-40 border-b bg-white/85 backdrop-blur">
       <div className="mx-auto flex w-full max-w-5xl items-center justify-between gap-3 px-4 py-3">
         <Link href="/" className="flex items-center gap-2">
-           <Image
-  src="/images/logo-horizontal@2x.png"
-  alt="SahAIbat"
-  width={200}
-  height={800}
-  className="h-9 w-auto md:h-11"
-/>
-
-
+          <Image
+            src="/images/logo-horizontal@2x.png"
+            alt="SahAIbat"
+            width={200}
+            height={800}
+            className="h-9 w-auto md:h-11"
+          />
         </Link>
-
         <div className="flex items-center gap-3">
           <Link
             href="/partner"
