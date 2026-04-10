@@ -18,13 +18,11 @@ const C = {
   pink:    "#E91E8C",
 };
 
-// ── Community photo URLs (Unsplash free-use) ──────────────────────────────────
+// ── Community photo URLs (Unsplash free-use — rural & community health) ───────
 const PHOTOS = {
-  kaderField:   "https://images.unsplash.com/photo-1609220136736-443140cfeaa0?w=800&q=80",
-  motherChild:  "https://images.unsplash.com/photo-1602052577122-f73b9710adba?w=800&q=80",
-  posyandu:     "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&q=80",
-  village:      "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80",
-  phone:        "https://images.unsplash.com/photo-1523966211575-eb4a01e7dd51?w=800&q=80",
+  kaderField:  "https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?w=800&q=80",
+  motherChild: "https://images.unsplash.com/photo-1531983412531-1f49a365ffed?w=800&q=80",
+  posyandu:    "https://images.unsplash.com/photo-1584515933487-779824d29309?w=800&q=80",
 };
 
 // ── Bilingual strings ──────────────────────────────────────────────────────────
@@ -32,12 +30,12 @@ const T = {
   en: {
     badge: "BUILT IN CANADA. FOR INDONESIA.",
     heroH1a: "When a mother's", heroH1b: "life depends on", heroH1c: "one message.",
-    heroBody: "SahAIbat gives Indonesia's 1.4 million community health workers the tool they need — a WhatsApp-first AI triage system that works without internet, without training, and without cost to the communities they serve.",
+    heroBody: "SahAIbat gives Indonesia's 1.4 million community health workers the tool they deserve — a WhatsApp-first AI triage system that works without internet, without extra cost, and without disrupting the way Kaders already work.",
     cta1: "Read Our Story", cta2: "Fuel the Mission",
     storyLabel: "OUR STORY",
     storyH2: "A Kader. A phone. A life that shouldn't have been lost.",
     storyP1: "In the villages of East Nusa Tenggara, a community health worker called a Kader visits families on foot. She carries a KMS book, a pen, and a weighing scale. She knows the families. But when a pregnant mother shows signs of preeclampsia, she has no way to know what to do — and no doctor within hours.",
-    storyP2: "Indonesia has 1.4 million Kaders. They are the backbone of community healthcare. But they've been working with 1970s tools in a 2025 world.",
+    storyP2: "Indonesia's 1.4 million Kaders are one of the most remarkable public health forces in the world. They show up — every day, in every village, in every condition — driven entirely by care for their community. SahAIbat exists to give that dedication the tools it deserves.",
     storyP3: "SahAIbat was built for her.",
     companionQ: "\"SahAIbat\" means", companionW: "companion", companionR: "in Bahasa Indonesia.",
     companionBody: "Not a diagnostic engine. Not a replacement for doctors. A companion — something that walks alongside the Kader, giving her confidence when she needs it most.",
@@ -68,12 +66,12 @@ const T = {
   id: {
     badge: "DIBANGUN DI KANADA. UNTUK INDONESIA.",
     heroH1a: "Saat nyawa seorang", heroH1b: "ibu bergantung pada", heroH1c: "satu pesan.",
-    heroBody: "SahAIbat memberi 1,4 juta kader kesehatan Indonesia alat yang mereka butuhkan — sistem triase AI berbasis WhatsApp yang bekerja tanpa internet, tanpa pelatihan, dan tanpa biaya bagi komunitas yang dilayani.",
+    heroBody: "SahAIbat memberi 1,4 juta kader kesehatan Indonesia alat yang layak mereka dapatkan — sistem triase AI berbasis WhatsApp yang bekerja tanpa internet, tanpa biaya tambahan, dan tanpa mengubah cara Kader bekerja.",
     cta1: "Baca Cerita Kami", cta2: "Dukung Misi Kami",
     storyLabel: "CERITA KAMI",
     storyH2: "Seorang Kader. Sebuah ponsel. Sebuah nyawa yang tak seharusnya hilang.",
     storyP1: "Di desa-desa Nusa Tenggara Timur, seorang Kader mengunjungi keluarga dengan berjalan kaki. Ia membawa buku KMS, pena, dan timbangan. Ia mengenal keluarga-keluarga itu. Namun saat seorang ibu hamil menunjukkan tanda preeklampsia, ia tidak tahu harus berbuat apa — dan tidak ada dokter dalam jangkauan berjam-jam.",
-    storyP2: "Indonesia memiliki 1,4 juta Kader. Mereka adalah tulang punggung layanan kesehatan komunitas. Namun mereka bekerja dengan alat-alat tahun 1970-an di dunia 2025.",
+    storyP2: "1,4 juta Kader Indonesia adalah salah satu kekuatan kesehatan masyarakat paling luar biasa di dunia. Mereka hadir — setiap hari, di setiap desa, dalam segala kondisi — didorong sepenuhnya oleh kepedulian terhadap komunitas mereka. SahAIbat hadir untuk memberi dedikasi itu alat yang layak.",
     storyP3: "SahAIbat dibangun untuk mereka.",
     companionQ: "\"SahAIbat\" berarti", companionW: "teman setia", companionR: "dalam Bahasa Indonesia.",
     companionBody: "Bukan mesin diagnostik. Bukan pengganti dokter. Sebuah teman — yang berjalan bersama Kader, memberikan keyakinan saat paling dibutuhkan.",
@@ -152,12 +150,12 @@ function Nav({ lang, setLang }: { lang:"en"|"id"; setLang:(l:"en"|"id")=>void })
   return(
     <nav style={{ position:"fixed",top:0,left:0,right:0,zIndex:100, background:scrolled?"rgba(15,31,28,0.96)":"transparent", backdropFilter:scrolled?"blur(14px)":"none", borderBottom:scrolled?"1px solid rgba(2,195,154,0.15)":"none", transition:"all 0.3s",padding:"0 24px" }}>
       <div style={{ maxWidth:1200,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:64 }}>
-        <div style={{ display:"flex",alignItems:"center",gap:10 }}>
-          <div style={{ width:32,height:32,borderRadius:8,background:"linear-gradient(135deg,#02C39A,#017367)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:16 }}>🌿</div>
-          <div>
-            <span style={{ color:C.white,fontWeight:800,fontSize:17 }}>SahAIbat</span>
-            <span style={{ color:"rgba(255,255,255,0.3)",fontSize:10,marginLeft:6,fontWeight:500 }}>Foundation</span>
-          </div>
+        <div style={{ display:"flex",alignItems:"center" }}>
+          <img
+            src="/images/logo-horizontal@2x.png"
+            alt="SahAIbat Foundation"
+            style={{ height:36,width:"auto",filter:"brightness(0) invert(1)" }}
+          />
         </div>
         <div className="nav-desktop" style={{ display:"flex",gap:22,alignItems:"center" }}>
           {links.map(([href,label])=>(
@@ -277,7 +275,7 @@ export default function HomePage() {
           <div className="four-col" style={{ marginTop:64,paddingTop:40,borderTop:"1px solid rgba(255,255,255,0.08)" }}>
             {[
               {n:61000,s:"+",label:lang==="en"?"Community Health Workers":"Kader Kesehatan",sub:lang==="en"?"in our target network":"dalam jaringan target kami"},
-              {n:4,s:" modules",label:lang==="en"?"Clinical Modules":"Modul Klinis",sub:"maternal · child · neonatal · posyandu"},
+              {n:8,s:"+ modules",label:lang==="en"?"Clinical Modules":"Modul Klinis",sub:lang==="en"?"maternal · child · TB · dengue · HIV · malaria":"maternal · anak · TB · dengue · HIV · malaria"},
               {n:0,s:"",label:lang==="en"?"Cost to Communities":"Biaya ke Komunitas",sub:lang==="en"?"always free":"selalu gratis"},
               {n:100,s:"%",label:lang==="en"?"Data Stays in Indonesia":"Data di Indonesia",sub:"AWS Jakarta · AES-256"},
             ].map(({n,s,label,sub})=>(
@@ -392,6 +390,9 @@ export default function HomePage() {
               {icon:"🤱",color:C.pink,title:lang==="en"?"Maternal Health":"Kesehatan Ibu",stat:"4 danger signs",desc:lang==="en"?"preeclampsia, hemorrhage, fetal distress, infection — in under 3 minutes":"preeklampsia, perdarahan, gawat janin, infeksi — dalam 3 menit",detail:lang==="en"?"Maternal mortality in NTT is 3× the national average. SahAIbat detects the top 4 killers of pregnant women before it's too late.":"Kematian ibu di NTT 3× rata-rata nasional. SahAIbat mendeteksi 4 penyebab kematian ibu hamil teratas sebelum terlambat."},
               {icon:"👶",color:C.teal,title:lang==="en"?"Child Stunting":"Stunting Anak",stat:"WHO 2006",desc:lang==="en"?"WAZ · LAZ · WFH — all 4 indicators in every Posyandu visit":"WAZ · LAZ · WFH — semua 4 indikator di setiap kunjungan Posyandu",detail:lang==="en"?"1 in 5 Indonesian children is stunted. SahAIbat calculates WHO growth indicators automatically.":"1 dari 5 anak Indonesia stunting. SahAIbat menghitung indikator pertumbuhan WHO secara otomatis."},
               {icon:"🍼",color:C.gold,title:lang==="en"?"Neonatal Care":"Perawatan Neonatal",stat:"0–28 days",desc:lang==="en"?"danger sign detection for newborns — the most critical window":"deteksi tanda bahaya bayi baru lahir — jendela paling kritis",detail:lang==="en"?"Most neonatal deaths happen in the first 7 days. SahAIbat screens every newborn for 9 KMS danger signs.":"Sebagian besar kematian neonatal terjadi dalam 7 hari pertama. SahAIbat memeriksa 9 tanda bahaya KMS."},
+              {icon:"🫁",color:"#E8A838",title:lang==="en"?"Tuberculosis (TB)":"Tuberkulosis (TB)",stat:lang==="en"?"Early detection":"Deteksi Dini",desc:lang==="en"?"symptom screening · contact tracing · treatment adherence support":"skrining gejala · pelacakan kontak · dukungan kepatuhan pengobatan",detail:lang==="en"?"Indonesia has the second highest TB burden in the world. SahAIbat helps Kaders screen household contacts and support treatment compliance in the community.":"Indonesia memiliki beban TB tertinggi kedua di dunia. SahAIbat membantu Kader memeriksa kontak rumah tangga dan mendukung kepatuhan pengobatan di komunitas."},
+              {icon:"🦟",color:"#F97316",title:lang==="en"?"Dengue Fever":"Demam Berdarah",stat:lang==="en"?"Warning signs":"Tanda Peringatan",desc:lang==="en"?"early danger sign detection · referral guidance · household surveillance":"deteksi tanda bahaya dini · panduan rujukan · surveilans rumah tangga",detail:lang==="en"?"Dengue is endemic across Indonesia. SahAIbat guides Kaders through structured dengue screening and alerts them to warning signs requiring urgent referral.":"Dengue endemik di seluruh Indonesia. SahAIbat membimbing Kader melalui skrining dengue terstruktur dan memberi peringatan tanda bahaya yang memerlukan rujukan segera."},
+              {icon:"🔴",color:"#EF4444",title:lang==="en"?"HIV & Malaria":"HIV & Malaria",stat:lang==="en"?"Community screening":"Skrining Komunitas",desc:lang==="en"?"risk assessment · referral pathways · follow-up support for rural communities":"penilaian risiko · jalur rujukan · dukungan tindak lanjut untuk komunitas pedesaan",detail:lang==="en"?"From Papua to NTT, HIV and malaria remain high-burden in remote communities. SahAIbat supports Kaders with structured risk screening and clear referral protocols.":"Dari Papua hingga NTT, HIV dan malaria tetap menjadi beban tinggi di komunitas terpencil. SahAIbat mendukung Kader dengan skrining risiko terstruktur dan protokol rujukan yang jelas."},
             ].map(({icon,color,title,stat,desc,detail})=>(
               <FadeIn key={title} delay={100}>
                 <div style={{ background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.08)",borderRadius:20,padding:28,height:"100%",transition:"border-color 0.2s" }}
@@ -500,7 +501,7 @@ export default function HomePage() {
           <div className="three-col" style={{ marginBottom:48 }}>
             {[
               {icon:"☕",title:lang==="en"?"Buy the team a coffee":"Traktir tim kopi",amount:"$5",desc:lang==="en"?"Keeps the server running for a day. Covers one Kader's WhatsApp session costs for a week.":"Menjaga server berjalan sehari.",cta:lang==="en"?"Support on Ko-fi":"Dukung di Ko-fi",href:"https://ko-fi.com/sahaibat",color:C.teal,featured:false},
-              {icon:"🌱",title:lang==="en"?"Sponsor a Posyandu session":"Sponsori sesi Posyandu",amount:"$25",desc:lang==="en"?"Funds AI triage support for an entire Posyandu session — 20+ children, mothers, and newborns screened.":"Mendanai dukungan triase AI untuk seluruh sesi Posyandu.",cta:lang==="en"?"Sponsor a Session":"Sponsori Sesi",href:"mailto:admin@sahaibat.com?subject=Sponsor a Posyandu Session",color:C.gold,featured:true},
+              {icon:"🌱",title:lang==="en"?"Sponsor a Posyandu session":"Sponsori sesi Posyandu",amount:"$25",desc:lang==="en"?"Funds AI triage support for an entire Posyandu session — 20+ children, mothers, and newborns screened.":"Mendanai dukungan triase AI untuk seluruh sesi Posyandu.",cta:lang==="en"?"Sponsor a Session":"Sponsori Sesi",href:"https://ko-fi.com/sahaibat",color:C.gold,featured:true},
               {icon:"🤝",title:lang==="en"?"Partner with us":"Bermitra dengan kami",amount:lang==="en"?"Let's talk":"Mari bicara",desc:lang==="en"?"NGO, researcher, funder, or government partner — every partnership expands our reach.":"NGO, peneliti, donatur, atau mitra pemerintah.",cta:lang==="en"?"Get in Touch":"Hubungi Kami",href:"mailto:admin@sahaibat.com?subject=Partnership Inquiry",color:C.pink,featured:false},
             ].map(({icon,title,amount,desc,cta,href,color,featured})=>(
               <FadeIn key={title} delay={100}>
@@ -538,12 +539,12 @@ export default function HomePage() {
           <div className="footer-grid" style={{ marginBottom:48 }}>
             {/* Brand */}
             <div>
-              <div style={{ display:"flex",alignItems:"center",gap:10,marginBottom:8 }}>
-                <div style={{ width:32,height:32,borderRadius:8,background:"linear-gradient(135deg,#02C39A,#017367)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:16 }}>🌿</div>
-                <div>
-                  <span style={{ color:C.white,fontWeight:800,fontSize:17 }}>SahAIbat</span>
-                  <span style={{ color:"rgba(255,255,255,0.3)",fontSize:10,marginLeft:6 }}>Foundation</span>
-                </div>
+              <div style={{ marginBottom:16 }}>
+                <img
+                  src="/images/logo-horizontal@2x.png"
+                  alt="SahAIbat Foundation"
+                  style={{ height:32,width:"auto",filter:"brightness(0) invert(1)",opacity:0.85 }}
+                />
               </div>
               <p style={{ color:"rgba(255,255,255,0.4)",fontSize:13,lineHeight:1.7,maxWidth:280,marginBottom:16 }}>
                 {lang==="en"?"WhatsApp-first AI clinical triage for Community Health Workers in Indonesia. Free for communities. Always.":"Triase klinis AI berbasis WhatsApp untuk Kader Kesehatan Indonesia. Gratis untuk komunitas. Selamanya."}
