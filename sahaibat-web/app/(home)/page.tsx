@@ -1,977 +1,871 @@
 "use client";
-
 import { useState, useEffect, useRef } from "react";
 
-// ── Design tokens ──────────────────────────────────────────────────────────────
 const C = {
-  teal:    "#02C39A",
-  tealDk:  "#017367",
-  tealXdk: "#024D42",
-  cream:   "#F9F5EE",
-  warm:    "#EDE8DF",
-  dark:    "#0F1F1C",
-  charcoal:"#1E2D2A",
-  text:    "#2D3B38",
-  muted:   "#6B8078",
-  white:   "#FFFFFF",
-  gold:    "#D4A843",
-  pink:    "#E91E8C",
+  teal:"#02C39A",tealDk:"#017367",tealXdk:"#024D42",
+  cream:"#F9F5EE",warm:"#EDE8DF",dark:"#0F1F1C",charcoal:"#1E2D2A",
+  text:"#2D3B38",muted:"#6B8078",white:"#FFFFFF",gold:"#D4A843",
+  pink:"#E91E8C",blue:"#3B82F6",purple:"#8B5CF6",orange:"#F97316",
 };
 
-// ── Community photo URLs — using existing images from public/images ───────────
 const PHOTOS = {
-  kaderField:  "/images/hero-kader-family.png",
-  motherChild: "/images/__motherchild.png",
-  posyandu:    "/images/doctor-nurse.png",
-};
-
-// ── Bilingual strings ──────────────────────────────────────────────────────────
-const T = {
-  en: {
-    badge: "BUILT IN CANADA. FOR INDONESIA.",
-    heroH1a: "When a mother's", heroH1b: "life depends on", heroH1c: "one message.",
-    heroBody: "SahAIbat gives Indonesia's 1.4 million community health workers the tool they deserve — a WhatsApp-first AI triage system that works without internet, without extra cost, and without disrupting the way Kaders already work.",
-    cta1: "Read Our Story", cta2: "Fuel the Mission",
-    storyLabel: "OUR STORY",
-    storyH2: "A Kader. A phone. A life that shouldn't have been lost.",
-    storyP1: "In the villages of East Nusa Tenggara, a community health worker called a Kader visits families on foot. She carries a KMS book, a pen, and a weighing scale. She knows the families. But when a pregnant mother shows signs of preeclampsia, she has no way to know what to do — and no doctor within hours.",
-    storyP2: "Indonesia's 1.4 million Kaders are one of the most remarkable public health forces in the world. They show up — every day, in every village, in every condition — driven entirely by care for their community. SahAIbat exists to give that dedication the tools it deserves.",
-    storyP3: "SahAIbat was built for her.",
-    companionQ: "\"SahAIbat\" means", companionW: "companion", companionR: "in Bahasa Indonesia.",
-    companionBody: "Not a diagnostic engine. Not a replacement for doctors. A companion — something that walks alongside the Kader, giving her confidence when she needs it most.",
-    whyFree: "Why is SahAIbat free?",
-    whyBody: "Because the communities who need it most can least afford to pay. SahAIbat is free to every Kader, every NGO, every rural health program. Our mission is impact — not revenue.",
-    productsLabel: "OUR PRODUCTS", productsH2: "Three tools. One mission.",
-    productsBody: "SahAIbat meets every user where they are — the worried parent at midnight, the Kader in the field, the village where the internet never came.",
-    impactLabel: "IMPACT ON THE GROUND", impactH2: "The numbers tell part of the story.",
-    impactBody: "The rest is told by the Kaders, the mothers, and the children in villages across Indonesia.",
-    pilotsLabel: "PILOTS IN PROGRESS", pilotsH2: "We are on the ground.",
-    pilotsBody: "SahAIbat is actively running pilots across Indonesia. Details will be shared here as partnerships are formalised.",
-    ngoLabel: "FOR NGOS & PARTNERS", ngoH2: "Partner with SahAIbat.",
-    ngoBody: "We work with NGOs, government programmes, and community organisations as partners — not vendors. SahAIbat is free for every community it serves.",
-    fieldLabel: "FIELD PARTNERS", fieldH2: "Our ground network.",
-    fieldBody: "SahAIbat works through trusted local organisations who know the communities, the Kaders, and the terrain.",
-    fieldComingSoon: "We're building our field partner network.",
-    fieldComingSoonBody: "Partner organisations will be listed here as partnerships are formalised. Each partner brings deep local knowledge and trusted relationships with Kader communities.",
-    fieldCTA: "Become a Field Partner →",
-    teamLabel: "THE TEAM", teamH2: "People who refused to accept the status quo.",
-    teamBody: "A small team — clinicians, field workers, and technologists — united by one belief: that the communities with the highest burden deserve the best tools.",
-    platformLabel: "OUR APPROACH TO AI", platformH2: "AI with guardrails.\nNot AI instead of humans.",
-    platformBody: "We are an AI-powered company. But we don't let AI make clinical decisions.",
-    supportLabel: "FUEL THE MISSION", supportH2a: "We don't ask for donations.", supportH2b: "We ask for belief.",
-    supportBody: "SahAIbat is free for every community it serves. The only way to keep it that way is through people who believe healthcare equity is worth fighting for.",
-    transparencyTitle: "Full transparency. Always.",
-    transparencyBody: "Every dollar of support received will be publicly recorded — server costs, team stipends, field visits, clinical validation. You'll always know where your support goes.",
-  },
-  id: {
-    badge: "DIBANGUN DI KANADA. UNTUK INDONESIA.",
-    heroH1a: "Saat nyawa seorang", heroH1b: "ibu bergantung pada", heroH1c: "satu pesan.",
-    heroBody: "SahAIbat memberi 1,4 juta kader kesehatan Indonesia alat yang layak mereka dapatkan — sistem triase AI berbasis WhatsApp yang bekerja tanpa internet, tanpa biaya tambahan, dan tanpa mengubah cara Kader bekerja.",
-    cta1: "Baca Cerita Kami", cta2: "Dukung Misi Kami",
-    storyLabel: "CERITA KAMI",
-    storyH2: "Seorang Kader. Sebuah ponsel. Sebuah nyawa yang tak seharusnya hilang.",
-    storyP1: "Di desa-desa Nusa Tenggara Timur, seorang Kader mengunjungi keluarga dengan berjalan kaki. Ia membawa buku KMS, pena, dan timbangan. Ia mengenal keluarga-keluarga itu. Namun saat seorang ibu hamil menunjukkan tanda preeklampsia, ia tidak tahu harus berbuat apa — dan tidak ada dokter dalam jangkauan berjam-jam.",
-    storyP2: "1,4 juta Kader Indonesia adalah salah satu kekuatan kesehatan masyarakat paling luar biasa di dunia. Mereka hadir — setiap hari, di setiap desa, dalam segala kondisi — didorong sepenuhnya oleh kepedulian terhadap komunitas mereka. SahAIbat hadir untuk memberi dedikasi itu alat yang layak.",
-    storyP3: "SahAIbat dibangun untuk mereka.",
-    companionQ: "\"SahAIbat\" berarti", companionW: "teman setia", companionR: "dalam Bahasa Indonesia.",
-    companionBody: "Bukan mesin diagnostik. Bukan pengganti dokter. Sebuah teman — yang berjalan bersama Kader, memberikan keyakinan saat paling dibutuhkan.",
-    whyFree: "Mengapa SahAIbat gratis?",
-    whyBody: "Karena komunitas yang paling membutuhkannya adalah yang paling tidak mampu membayar. SahAIbat gratis untuk setiap Kader, setiap NGO, setiap program kesehatan pedesaan. Misi kami adalah dampak — bukan pendapatan.",
-    productsLabel: "PRODUK KAMI", productsH2: "Tiga alat. Satu misi.",
-    productsBody: "SahAIbat hadir untuk setiap pengguna — orang tua yang khawatir tengah malam, Kader di lapangan, desa tanpa sinyal internet.",
-    impactLabel: "DAMPAK DI LAPANGAN", impactH2: "Angka-angka ini baru sebagian ceritanya.",
-    impactBody: "Sisanya diceritakan oleh para Kader, ibu-ibu, dan anak-anak di desa-desa Indonesia.",
-    pilotsLabel: "PILOT SEDANG BERJALAN", pilotsH2: "Kami sudah di lapangan.",
-    pilotsBody: "SahAIbat sedang menjalankan pilot bersama mitra di seluruh Indonesia. Detail akan dibagikan di sini setelah kemitraan resmi ditandatangani.",
-    ngoLabel: "UNTUK NGO & MITRA", ngoH2: "Bermitra dengan SahAIbat.",
-    ngoBody: "Kami bekerja bersama NGO, program pemerintah, dan organisasi komunitas sebagai mitra — bukan vendor. SahAIbat gratis untuk setiap komunitas yang dilayani.",
-    fieldLabel: "MITRA LAPANGAN", fieldH2: "Jaringan lapangan kami.",
-    fieldBody: "SahAIbat bekerja melalui organisasi lokal terpercaya yang mengenal komunitas, Kader, dan wilayahnya.",
-    fieldComingSoon: "Kami sedang membangun jaringan mitra lapangan kami.",
-    fieldComingSoonBody: "Organisasi mitra akan terdaftar di sini setelah kemitraan resmi ditandatangani. Setiap mitra membawa pengetahuan lokal yang mendalam dan hubungan tepercaya dengan komunitas Kader.",
-    fieldCTA: "Jadilah Mitra Lapangan →",
-    teamLabel: "TIM KAMI", teamH2: "Orang-orang yang menolak menerima status quo.",
-    teamBody: "Tim kecil — dokter, pekerja lapangan, dan teknolog — yang bersatu dalam satu keyakinan: komunitas dengan beban penyakit tertinggi berhak mendapatkan alat terbaik.",
-    platformLabel: "PENDEKATAN KAMI TERHADAP AI", platformH2: "AI dengan batasan.\nBukan AI menggantikan manusia.",
-    platformBody: "Kami adalah perusahaan berbasis AI. Namun kami tidak membiarkan AI membuat keputusan klinis.",
-    supportLabel: "DUKUNG MISI KAMI", supportH2a: "Kami tidak meminta donasi.", supportH2b: "Kami meminta kepercayaan.",
-    supportBody: "SahAIbat gratis untuk setiap komunitas yang dilayani. Satu-satunya cara mempertahankan ini adalah melalui orang-orang yang percaya bahwa kesetaraan layanan kesehatan layak diperjuangkan.",
-    transparencyTitle: "Transparansi penuh. Selalu.",
-    transparencyBody: "Setiap dukungan yang diterima akan dicatat secara publik — biaya server, tunjangan tim, kunjungan lapangan, validasi klinis. Anda selalu tahu ke mana dukungan Anda pergi.",
-  },
+  kaderField:"/images/hero-kader-family.png",
+  motherChild:"/images/__motherchild.png",
+  posyandu:"/images/doctor-nurse.png",
 };
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
-function Counter({ end, suffix="", prefix="" }: { end:number; suffix?:string; prefix?:string }) {
-  const [count,setCount]=useState(0);
-  const ref=useRef<HTMLSpanElement>(null);
-  const started=useRef(false);
-  useEffect(()=>{
-    const obs=new IntersectionObserver(([e])=>{
-      if(e.isIntersecting&&!started.current){
-        started.current=true;
-        const inc=end/60; let cur=0;
-        const t=setInterval(()=>{ cur+=inc; if(cur>=end){setCount(end);clearInterval(t);}else setCount(Math.floor(cur)); },33);
-      }
-    },{threshold:0.5});
-    if(ref.current)obs.observe(ref.current);
-    return()=>obs.disconnect();
-  },[end]);
+function Counter({end,suffix="",prefix=""}:{end:number;suffix?:string;prefix?:string}){
+  const [count,setCount]=useState(0);const ref=useRef<HTMLSpanElement>(null);const started=useRef(false);
+  useEffect(()=>{const obs=new IntersectionObserver(([e])=>{if(e.isIntersecting&&!started.current){started.current=true;const inc=end/60;let cur=0;const t=setInterval(()=>{cur+=inc;if(cur>=end){setCount(end);clearInterval(t);}else setCount(Math.floor(cur));},33);}},{threshold:0.5});if(ref.current)obs.observe(ref.current);return()=>obs.disconnect();},[end]);
   return <span ref={ref}>{prefix}{count.toLocaleString()}{suffix}</span>;
 }
-
-function FadeIn({ children, delay=0, className="" }: { children:React.ReactNode; delay?:number; className?:string }) {
-  const ref=useRef<HTMLDivElement>(null);
-  const [vis,setVis]=useState(false);
-  useEffect(()=>{
-    const obs=new IntersectionObserver(([e])=>{ if(e.isIntersecting){setVis(true);obs.disconnect();} },{threshold:0.08});
-    if(ref.current)obs.observe(ref.current);
-    return()=>obs.disconnect();
-  },[]);
-  return(
-    <div ref={ref} className={className} style={{ opacity:vis?1:0, transform:vis?"translateY(0)":"translateY(28px)", transition:`opacity 0.7s ease ${delay}ms,transform 0.7s ease ${delay}ms` }}>
-      {children}
-    </div>
-  );
+function FadeIn({children,delay=0,className=""}:{children:React.ReactNode;delay?:number;className?:string}){
+  const ref=useRef<HTMLDivElement>(null);const [vis,setVis]=useState(false);
+  useEffect(()=>{const obs=new IntersectionObserver(([e])=>{if(e.isIntersecting){setVis(true);obs.disconnect();}},{threshold:0.08});if(ref.current)obs.observe(ref.current);return()=>obs.disconnect();},[]);
+  return <div ref={ref} className={className} style={{opacity:vis?1:0,transform:vis?"translateY(0)":"translateY(28px)",transition:`opacity 0.7s ease ${delay}ms,transform 0.7s ease ${delay}ms`}}>{children}</div>;
 }
-
-function Tag({ label, color }: { label:string; color:string }) {
-  return <span style={{ background:`${color}12`,border:`1px solid ${color}30`,color,fontSize:11,padding:"4px 10px",borderRadius:20,fontWeight:600 }}>{label}</span>;
+function Tag({label,color}:{label:string;color:string}){
+  return <span style={{background:`${color}12`,border:`1px solid ${color}30`,color,fontSize:11,padding:"4px 10px",borderRadius:20,fontWeight:600}}>{label}</span>;
 }
 
 // ── Nav ────────────────────────────────────────────────────────────────────────
-function Nav({ lang, setLang }: { lang:"en"|"id"; setLang:(l:"en"|"id")=>void }) {
-  const [scrolled,setScrolled]=useState(false);
-  const [open,setOpen]=useState(false);
-  useEffect(()=>{ const fn=()=>setScrolled(window.scrollY>40); window.addEventListener("scroll",fn); return()=>window.removeEventListener("scroll",fn); },[]);
-  const links:[string,string][] = lang==="en"
-    ?[["#story","Our Story"],["#products","Products"],["#impact","Impact"],["#ngo","For NGOs"],["#team","Team"],["#support","Support"]]
-    :[["#story","Cerita"],["#products","Produk"],["#impact","Dampak"],["#ngo","Untuk NGO"],["#team","Tim"],["#support","Dukung"]];
+function Nav({lang,setLang}:{lang:"en"|"id";setLang:(l:"en"|"id")=>void}){
+  const [scrolled,setScrolled]=useState(false);const [open,setOpen]=useState(false);
+  useEffect(()=>{const fn=()=>setScrolled(window.scrollY>40);window.addEventListener("scroll",fn);return()=>window.removeEventListener("scroll",fn);},[]);
+  const links:[string,string][]=lang==="en"
+    ?[["#story","Our Story"],["#products","Products"],["#impact","Impact"],["#partners","Partners"],["#team","Team"],["#support","Support"]]
+    :[["#story","Cerita"],["#products","Produk"],["#impact","Dampak"],["#partners","Mitra"],["#team","Tim"],["#support","Dukung"]];
   return(
-    <nav style={{ position:"fixed",top:0,left:0,right:0,zIndex:100, background:scrolled?"rgba(15,31,28,0.96)":"transparent", backdropFilter:scrolled?"blur(14px)":"none", borderBottom:scrolled?"1px solid rgba(2,195,154,0.15)":"none", transition:"all 0.3s",padding:"0 24px" }}>
-      <div style={{ maxWidth:1200,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:64 }}>
-        <div style={{ display:"flex",alignItems:"center" }}>
-          <img
-            src="/images/logo-horizontal@2x.png"
-            alt="SahAIbat Foundation"
-            style={{ height:36,width:"auto",filter:"brightness(0) invert(1)" }}
-          />
-        </div>
-        <div className="nav-desktop" style={{ display:"flex",gap:22,alignItems:"center" }}>
-          {links.map(([href,label])=>(
-            <a key={href} href={href} style={{ color:"rgba(255,255,255,0.7)",fontSize:13,fontWeight:500,textDecoration:"none",transition:"color 0.2s" }}
-              onMouseEnter={e=>(e.target as HTMLElement).style.color=C.teal}
-              onMouseLeave={e=>(e.target as HTMLElement).style.color="rgba(255,255,255,0.7)"}>{label}</a>
-          ))}
-          <div style={{ display:"flex",gap:3,background:"rgba(255,255,255,0.08)",borderRadius:20,padding:3 }}>
-            {(["en","id"] as const).map(l=>(
-              <button key={l} onClick={()=>setLang(l)} style={{ background:lang===l?C.teal:"transparent",color:lang===l?C.dark:"rgba(255,255,255,0.6)",border:"none",borderRadius:16,padding:"4px 12px",fontSize:12,fontWeight:700,cursor:"pointer",transition:"all 0.2s" }}>{l==="en"?"EN":"ID"}</button>
-            ))}
+    <nav style={{position:"fixed",top:0,left:0,right:0,zIndex:100,background:scrolled?"rgba(15,31,28,0.96)":"transparent",backdropFilter:scrolled?"blur(14px)":"none",borderBottom:scrolled?"1px solid rgba(2,195,154,0.15)":"none",transition:"all 0.3s",padding:"0 24px"}}>
+      <div style={{maxWidth:1200,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:64}}>
+        <img src="/images/logo-horizontal@2x.png" alt="SahAIbat" style={{height:36,width:"auto",filter:"brightness(0) invert(1)"}}/>
+        <div className="nav-desktop" style={{display:"flex",gap:22,alignItems:"center"}}>
+          {links.map(([href,label])=>(<a key={href} href={href} style={{color:"rgba(255,255,255,0.7)",fontSize:13,fontWeight:500,textDecoration:"none",transition:"color 0.2s"}} onMouseEnter={e=>(e.target as HTMLElement).style.color=C.teal} onMouseLeave={e=>(e.target as HTMLElement).style.color="rgba(255,255,255,0.7)"}>{label}</a>))}
+          <div style={{display:"flex",gap:3,background:"rgba(255,255,255,0.08)",borderRadius:20,padding:3}}>
+            {(["en","id"] as const).map(l=>(<button key={l} onClick={()=>setLang(l)} style={{background:lang===l?C.teal:"transparent",color:lang===l?C.dark:"rgba(255,255,255,0.6)",border:"none",borderRadius:16,padding:"4px 12px",fontSize:12,fontWeight:700,cursor:"pointer",transition:"all 0.2s"}}>{l==="en"?"EN":"ID"}</button>))}
           </div>
-          <a href="#support" style={{ background:C.teal,color:C.dark,padding:"8px 20px",borderRadius:20,fontSize:13,fontWeight:700,textDecoration:"none" }}>{lang==="en"?"Fuel the Mission":"Dukung Kami"}</a>
+          <a href="#support" style={{background:C.teal,color:C.dark,padding:"8px 20px",borderRadius:20,fontSize:13,fontWeight:700,textDecoration:"none"}}>{lang==="en"?"Fuel the Mission":"Dukung Kami"}</a>
         </div>
-        <button onClick={()=>setOpen(!open)} className="nav-mobile-btn" style={{ background:"none",border:"none",color:C.white,fontSize:24,cursor:"pointer" }}>{open?"✕":"☰"}</button>
+        <button onClick={()=>setOpen(!open)} className="nav-mobile-btn" style={{background:"none",border:"none",color:C.white,fontSize:24,cursor:"pointer"}}>{open?"✕":"☰"}</button>
       </div>
-      {open&&(
-        <div style={{ background:C.dark,padding:"20px 24px",borderTop:"1px solid rgba(2,195,154,0.15)" }}>
-          {links.map(([href,label])=>(<a key={href} href={href} onClick={()=>setOpen(false)} style={{ display:"block",color:"rgba(255,255,255,0.8)",fontSize:16,fontWeight:500,textDecoration:"none",padding:"12px 0",borderBottom:"1px solid rgba(255,255,255,0.05)" }}>{label}</a>))}
-          <div style={{ marginTop:16,display:"flex",gap:8 }}>
-            {(["en","id"] as const).map(l=>(<button key={l} onClick={()=>setLang(l)} style={{ background:lang===l?C.teal:"rgba(255,255,255,0.08)",color:lang===l?C.dark:"rgba(255,255,255,0.6)",border:"none",borderRadius:16,padding:"6px 16px",fontSize:13,fontWeight:700,cursor:"pointer" }}>{l==="en"?"English":"Bahasa"}</button>))}
-          </div>
+      {open&&(<div style={{background:C.dark,padding:"20px 24px",borderTop:"1px solid rgba(2,195,154,0.15)"}}>
+        {links.map(([href,label])=>(<a key={href} href={href} onClick={()=>setOpen(false)} style={{display:"block",color:"rgba(255,255,255,0.8)",fontSize:16,fontWeight:500,textDecoration:"none",padding:"12px 0",borderBottom:"1px solid rgba(255,255,255,0.05)"}}>{label}</a>))}
+        <div style={{marginTop:16,display:"flex",gap:8}}>
+          {(["en","id"] as const).map(l=>(<button key={l} onClick={()=>setLang(l)} style={{background:lang===l?C.teal:"rgba(255,255,255,0.08)",color:lang===l?C.dark:"rgba(255,255,255,0.6)",border:"none",borderRadius:16,padding:"6px 16px",fontSize:13,fontWeight:700,cursor:"pointer"}}>{l==="en"?"English":"Bahasa"}</button>))}
         </div>
-      )}
+      </div>)}
     </nav>
   );
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
-export default function HomePage() {
+export default function HomePage(){
   const [lang,setLang]=useState<"en"|"id">("en");
-  const t=T[lang];
 
-  return(
-    <>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-        html{scroll-behavior:smooth}
-        body{background:${C.dark};font-family:'Plus Jakarta Sans',sans-serif;color:${C.text};overflow-x:hidden}
-        ::selection{background:${C.teal};color:${C.dark}}
-        .section-max{max-width:1200px;margin:0 auto;padding:0 24px}
-        .display-font{font-family:'Playfair Display',serif}
-        .grain-overlay{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")}
-        .teal-glow{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;opacity:0.12}
-        .nav-desktop{display:flex!important}.nav-mobile-btn{display:none!important}
-        .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-        .two-col{display:grid;grid-template-columns:1fr 1fr;gap:48px}
-        .three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-        .four-col{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
-        .photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-        @media(max-width:960px){
-          .nav-desktop{display:none!important}.nav-mobile-btn{display:block!important}
-          .hero-grid,.two-col{grid-template-columns:1fr!important;gap:32px!important}
-          .three-col{grid-template-columns:1fr!important;gap:20px!important}
-          .four-col{grid-template-columns:repeat(2,1fr)!important}
-          .footer-grid{grid-template-columns:1fr 1fr!important;gap:32px!important}
-          .photo-grid{grid-template-columns:1fr 1fr!important}
-        }
-        @media(max-width:480px){.four-col{grid-template-columns:1fr!important}.section-max{padding:0 16px}.footer-grid{grid-template-columns:1fr!important}}
-        @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-        .photo-img{width:100%;height:200px;object-fit:cover;border-radius:16px;filter:brightness(0.85)saturate(1.1)}
-        .social-link{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.5);text-decoration:none;font-size:13px;transition:color 0.2s;padding:6px 0}
-        .social-link:hover{color:${C.teal}}
-      `}</style>
+  return(<>
+    <style>{`
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+      *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+      html{scroll-behavior:smooth}
+      body{background:${C.dark};font-family:'Plus Jakarta Sans',sans-serif;color:${C.text};overflow-x:hidden}
+      ::selection{background:${C.teal};color:${C.dark}}
+      .section-max{max-width:1200px;margin:0 auto;padding:0 24px}
+      .display-font{font-family:'Playfair Display',serif}
+      .teal-glow{position:absolute;border-radius:50%;filter:blur(100px);pointer-events:none;opacity:0.12}
+      .nav-desktop{display:flex!important}.nav-mobile-btn{display:none!important}
+      .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+      .two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+      .three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+      .four-col{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+      .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
+      .photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+      .social-link{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.5);text-decoration:none;font-size:13px;transition:color 0.2s;padding:6px 0}
+      .social-link:hover{color:${C.teal}}
+      @media(max-width:960px){
+        .nav-desktop{display:none!important}.nav-mobile-btn{display:block!important}
+        .hero-grid,.two-col{grid-template-columns:1fr!important;gap:32px!important}
+        .three-col{grid-template-columns:1fr!important;gap:20px!important}
+        .four-col{grid-template-columns:repeat(2,1fr)!important}
+        .footer-grid{grid-template-columns:1fr 1fr!important;gap:32px!important}
+        .photo-grid{grid-template-columns:1fr 1fr!important}
+      }
+      @media(max-width:480px){.four-col{grid-template-columns:1fr!important}.section-max{padding:0 16px}.footer-grid{grid-template-columns:1fr!important}}
+      @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+    `}</style>
 
-      <div className="grain-overlay"/>
-      <Nav lang={lang} setLang={setLang}/>
+    <Nav lang={lang} setLang={setLang}/>
 
-      {/* ══ HERO ══════════════════════════════════════════════════════════════ */}
-      <section style={{ minHeight:"100vh",position:"relative",display:"flex",alignItems:"center",overflow:"hidden",background:`linear-gradient(160deg,${C.dark} 0%,${C.charcoal} 100%)` }}>
-        <div className="teal-glow" style={{ width:600,height:600,background:C.teal,top:-200,right:-100 }}/>
-        <div className="teal-glow" style={{ width:400,height:400,background:"#017367",bottom:-100,left:-100 }}/>
-        <div style={{ position:"absolute",inset:0,backgroundImage:"linear-gradient(rgba(2,195,154,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(2,195,154,0.05) 1px,transparent 1px)",backgroundSize:"60px 60px",pointerEvents:"none" }}/>
-        <div className="section-max" style={{ position:"relative",zIndex:1,paddingTop:120,paddingBottom:80,width:"100%" }}>
-          <div className="hero-grid">
-            <div>
-              <div style={{ display:"inline-flex",alignItems:"center",gap:8,background:"rgba(2,195,154,0.1)",border:"1px solid rgba(2,195,154,0.3)",borderRadius:20,padding:"6px 16px",marginBottom:24 }}>
-                <span style={{ width:6,height:6,borderRadius:"50%",background:C.teal,display:"inline-block",flexShrink:0 }}/>
-                <span style={{ color:C.teal,fontSize:12,fontWeight:600,letterSpacing:1 }}>{t.badge}</span>
-              </div>
-              <h1 className="display-font" style={{ fontSize:"clamp(40px,5vw,68px)",color:C.white,lineHeight:1.1,marginBottom:24 }}>
-                {t.heroH1a}<br/>{t.heroH1b}<br/><span style={{ color:C.teal }}>{t.heroH1c}</span>
-              </h1>
-              <p style={{ fontSize:18,color:"rgba(255,255,255,0.65)",lineHeight:1.8,marginBottom:32,maxWidth:480 }}>{t.heroBody}</p>
-              <div style={{ display:"flex",gap:16,flexWrap:"wrap" }}>
-                <a href="#story" style={{ background:C.teal,color:C.dark,padding:"14px 28px",borderRadius:12,fontSize:15,fontWeight:700,textDecoration:"none",display:"inline-flex",alignItems:"center",gap:8 }}>{t.cta1} ↓</a>
-                <a href="#support" style={{ border:"1.5px solid rgba(2,195,154,0.4)",color:C.white,padding:"14px 28px",borderRadius:12,fontSize:15,fontWeight:600,textDecoration:"none" }}>{t.cta2}</a>
-              </div>
+    {/* ══ HERO ═══════════════════════════════════════════════════════════════ */}
+    <section style={{minHeight:"100vh",position:"relative",display:"flex",alignItems:"center",overflow:"hidden",background:`linear-gradient(160deg,${C.dark} 0%,${C.charcoal} 100%)`}}>
+      <div className="teal-glow" style={{width:600,height:600,background:C.teal,top:-200,right:-100}}/>
+      <div className="teal-glow" style={{width:400,height:400,background:"#017367",bottom:-100,left:-100}}/>
+      <div style={{position:"absolute",inset:0,backgroundImage:"linear-gradient(rgba(2,195,154,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(2,195,154,0.05) 1px,transparent 1px)",backgroundSize:"60px 60px",pointerEvents:"none"}}/>
+      <div className="section-max" style={{position:"relative",zIndex:1,paddingTop:120,paddingBottom:80,width:"100%"}}>
+        <div className="hero-grid">
+          <div>
+            <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(2,195,154,0.1)",border:"1px solid rgba(2,195,154,0.3)",borderRadius:20,padding:"6px 16px",marginBottom:24}}>
+              <span style={{width:6,height:6,borderRadius:"50%",background:C.teal,display:"inline-block",flexShrink:0}}/>
+              <span style={{color:C.teal,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"BUILT IN CANADA. FOR INDONESIA.":"DIBANGUN DI KANADA. UNTUK INDONESIA."}</span>
             </div>
-            <div>
-              <div style={{ background:"rgba(2,195,154,0.06)",border:"1px solid rgba(2,195,154,0.2)",borderRadius:24,padding:32,position:"relative",overflow:"hidden" }}>
-                <div style={{ position:"absolute",top:0,left:0,right:0,height:3,background:"linear-gradient(90deg,transparent,#02C39A,transparent)" }}/>
-                <div style={{ fontFamily:"monospace",fontSize:13 }}>
-                  <div style={{ color:C.muted,fontSize:11,textAlign:"center",marginBottom:16 }}>💬 SahAIbat WhatsApp Triage</div>
-                  {[
-                    {msg:"Sari, 28, P, hamil",u:true,urg:false},
-                    {msg:"🤰 Modul Ibu Hamil\n\nUsia kehamilan berapa minggu?",u:false,urg:false},
-                    {msg:"32",u:true,urg:false},
-                    {msg:"Apakah ada sakit kepala berat?\n1=Ya  2=Tidak",u:false,urg:false},
-                    {msg:"1",u:true,urg:false},
-                    {msg:"🔴 DARURAT — Rujuk ke Puskesmas SEGERA\n\nTanda preeklampsia terdeteksi.\nDampingi ibu sekarang.",u:false,urg:true},
-                  ].map((m,i)=>(
-                    <div key={i} style={{ display:"flex",justifyContent:m.u?"flex-end":"flex-start",marginBottom:10 }}>
-                      <div style={{ background:m.urg?"rgba(232,72,85,0.15)":m.u?"rgba(2,195,154,0.15)":"rgba(255,255,255,0.06)", border:m.urg?"1px solid rgba(232,72,85,0.3)":m.u?"1px solid rgba(2,195,154,0.3)":"1px solid rgba(255,255,255,0.08)", borderRadius:12,padding:"8px 12px",maxWidth:"80%", color:m.urg?"#FF6B6B":m.u?C.teal:"rgba(255,255,255,0.8)", fontSize:12,lineHeight:1.5,whiteSpace:"pre-line" }}>{m.msg}</div>
-                    </div>
-                  ))}
-                </div>
-                <div style={{ marginTop:16,paddingTop:16,borderTop:"1px solid rgba(255,255,255,0.06)",display:"flex",justifyContent:"space-between",flexWrap:"wrap",gap:8 }}>
-                  <span style={{ color:C.muted,fontSize:11 }}>✓ {lang==="en"?"Saved locally · Syncs when signal returns":"Tersimpan lokal · Tersinkron saat sinyal kembali"}</span>
-                  <span style={{ color:C.teal,fontSize:11 }}>📵 {lang==="en"?"Works offline":"Bekerja offline"}</span>
-                </div>
-              </div>
+            <h1 className="display-font" style={{fontSize:"clamp(40px,5vw,68px)",color:C.white,lineHeight:1.1,marginBottom:24}}>
+              {lang==="en"?"When a mother's life depends on":""}{lang==="id"?"Saat nyawa seorang ibu bergantung pada":""}<br/>
+              <span style={{color:C.teal}}>{lang==="en"?"one message.":"satu pesan."}</span>
+            </h1>
+            <p style={{fontSize:18,color:"rgba(255,255,255,0.65)",lineHeight:1.8,marginBottom:32,maxWidth:480}}>
+              {lang==="en"
+                ?"SahAIbat gives Indonesia's 1.4 million community health workers the tool they deserve — a WhatsApp-first AI triage system that works without internet, without extra cost, and without disrupting the way Kaders already work."
+                :"SahAIbat memberi 1,4 juta kader kesehatan Indonesia alat yang layak mereka dapatkan — sistem triase AI berbasis WhatsApp yang bekerja tanpa internet, tanpa biaya tambahan, dan tanpa mengubah cara Kader bekerja."}
+            </p>
+            <div style={{display:"flex",gap:16,flexWrap:"wrap"}}>
+              <a href="#story" style={{background:C.teal,color:C.dark,padding:"14px 28px",borderRadius:12,fontSize:15,fontWeight:700,textDecoration:"none"}}>{lang==="en"?"Read Our Story ↓":"Baca Cerita Kami ↓"}</a>
+              <a href="#support" style={{border:"1.5px solid rgba(2,195,154,0.4)",color:C.white,padding:"14px 28px",borderRadius:12,fontSize:15,fontWeight:600,textDecoration:"none"}}>{lang==="en"?"Fuel the Mission":"Dukung Misi Kami"}</a>
             </div>
           </div>
-          <div className="four-col" style={{ marginTop:64,paddingTop:40,borderTop:"1px solid rgba(255,255,255,0.08)" }}>
-            {[
-              {n:61000,s:"+",label:lang==="en"?"Community Health Workers":"Kader Kesehatan",sub:lang==="en"?"in our target network":"dalam jaringan target kami"},
-              {n:8,s:"+ modules",label:lang==="en"?"Clinical Modules":"Modul Klinis",sub:lang==="en"?"maternal · child · TB · dengue · HIV · malaria":"maternal · anak · TB · dengue · HIV · malaria"},
-              {n:0,s:"",label:lang==="en"?"Cost to Communities":"Biaya ke Komunitas",sub:lang==="en"?"always free":"selalu gratis"},
-              {n:100,s:"%",label:lang==="en"?"Data Stays in Indonesia":"Data di Indonesia",sub:"AWS Jakarta · AES-256"},
-            ].map(({n,s,label,sub})=>(
-              <div key={label} style={{ textAlign:"center" }}>
-                <div className="display-font" style={{ fontSize:36,color:C.teal,fontWeight:900,lineHeight:1 }}>{n===0?"Rp 0":<Counter end={n} suffix={s}/>}</div>
-                <div style={{ color:C.white,fontSize:13,fontWeight:600,marginTop:8 }}>{label}</div>
-                <div style={{ color:C.muted,fontSize:11,marginTop:4 }}>{sub}</div>
+          <div>
+            <div style={{background:"rgba(2,195,154,0.06)",border:"1px solid rgba(2,195,154,0.2)",borderRadius:24,padding:32,position:"relative",overflow:"hidden"}}>
+              <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:"linear-gradient(90deg,transparent,#02C39A,transparent)"}}/>
+              <div style={{fontFamily:"monospace",fontSize:13}}>
+                <div style={{color:C.muted,fontSize:11,textAlign:"center",marginBottom:16}}>💬 SahAIbat · Kasih Module</div>
+                {[
+                  {msg:"Anak saya 3 thn, demam 39.8 sudah 5 jam",u:true,urg:false},
+                  {msg:"❤️‍🩹 Kasih — Panduan Keluarga\n\nApakah masih mau minum?\n1 = Ya  2 = Tidak",u:false,urg:false},
+                  {msg:"1, sedikit-sedikit",u:true,urg:false},
+                  {msg:"Bagus. Itu tanda yang baik. 💙\n\nApakah ada kejang atau kaku leher?\n1 = Ya  2 = Tidak",u:false,urg:false},
+                  {msg:"2",u:true,urg:false},
+                  {msg:"🟡 PANTAU KETAT\n\nDemam tinggi tapi aman untuk dipantau di rumah.\n• Kompres hangat\n• Minum sedikit tapi sering\n• Pantau tiap 30 menit\n\nJika >40°C atau kejang → segera ke IGD.",u:false,urg:false},
+                  {msg:"Terima kasih... saya lebih tenang 🙏",u:true,urg:false},
+                ].map((m,i)=>(<div key={i} style={{display:"flex",justifyContent:m.u?"flex-end":"flex-start",marginBottom:8}}>
+                  <div style={{background:m.urg?"rgba(232,72,85,0.15)":m.u?"rgba(2,195,154,0.15)":"rgba(255,255,255,0.06)",border:m.urg?"1px solid rgba(232,72,85,0.3)":m.u?"1px solid rgba(2,195,154,0.3)":"1px solid rgba(255,255,255,0.08)",borderRadius:12,padding:"8px 12px",maxWidth:"80%",color:m.urg?"#FF6B6B":m.u?C.teal:"rgba(255,255,255,0.8)",fontSize:12,lineHeight:1.5,whiteSpace:"pre-line"}}>{m.msg}</div>
+                </div>))}
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ══ STORY ═════════════════════════════════════════════════════════════ */}
-      <section id="story" style={{ background:C.cream,padding:"100px 0" }}>
-        <div className="section-max">
-          <FadeIn>
-            <div style={{ display:"inline-flex",alignItems:"center",gap:8,background:`${C.tealDk}20`,border:`1px solid ${C.tealDk}40`,borderRadius:20,padding:"6px 16px",marginBottom:16 }}>
-              <span style={{ color:C.tealDk,fontSize:12,fontWeight:600,letterSpacing:1 }}>{t.storyLabel}</span>
-            </div>
-            <h2 className="display-font" style={{ fontSize:"clamp(32px,4vw,52px)",color:C.dark,lineHeight:1.2,marginBottom:24,maxWidth:700 }}>{t.storyH2}</h2>
-          </FadeIn>
-
-          {/* Community photo strip */}
-          <FadeIn delay={100}>
-            <div className="photo-grid" style={{ marginBottom:48 }}>
-              <div style={{ position:"relative",overflow:"hidden",borderRadius:16 }}>
-                <img src={PHOTOS.kaderField} alt="Community health worker in the field" className="photo-img"/>
-                <div style={{ position:"absolute",bottom:0,left:0,right:0,background:"linear-gradient(transparent,rgba(15,31,28,0.7))",padding:"12px 14px",borderRadius:"0 0 16px 16px" }}>
-                  <span style={{ color:C.white,fontSize:11,fontWeight:600 }}>🌿 {lang==="en"?"Kader in the field":"Kader di lapangan"}</span>
-                </div>
-              </div>
-              <div style={{ position:"relative",overflow:"hidden",borderRadius:16 }}>
-                <img src={PHOTOS.motherChild} alt="Mother and child at health check" className="photo-img"/>
-                <div style={{ position:"absolute",bottom:0,left:0,right:0,background:"linear-gradient(transparent,rgba(15,31,28,0.7))",padding:"12px 14px",borderRadius:"0 0 16px 16px" }}>
-                  <span style={{ color:C.white,fontSize:11,fontWeight:600 }}>🤱 {lang==="en"?"Mother & child care":"Ibu dan anak"}</span>
-                </div>
-              </div>
-              <div style={{ position:"relative",overflow:"hidden",borderRadius:16 }}>
-                <img src={PHOTOS.posyandu} alt="Posyandu health session" className="photo-img"/>
-                <div style={{ position:"absolute",bottom:0,left:0,right:0,background:"linear-gradient(transparent,rgba(15,31,28,0.7))",padding:"12px 14px",borderRadius:"0 0 16px 16px" }}>
-                  <span style={{ color:C.white,fontSize:11,fontWeight:600 }}>🏥 {lang==="en"?"Posyandu session":"Sesi Posyandu"}</span>
-                </div>
-              </div>
-            </div>
-          </FadeIn>
-
-          <div className="two-col">
-            <FadeIn delay={100}>
-              <div style={{ fontSize:16,color:C.text,lineHeight:1.9 }}>
-                <p style={{ marginBottom:20 }}>{t.storyP1}</p>
-                <p style={{ marginBottom:20 }}>{t.storyP2}</p>
-                <p style={{ fontWeight:700,fontSize:18,color:C.dark }}>{t.storyP3}</p>
-              </div>
-            </FadeIn>
-            <FadeIn delay={200}>
-              <div style={{ background:C.dark,borderRadius:20,padding:32,color:C.white }}>
-                <div style={{ fontSize:48,marginBottom:16 }}>🌿</div>
-                <div style={{ fontFamily:"'Playfair Display',serif",fontSize:22,lineHeight:1.4,marginBottom:16 }}>
-                  {t.companionQ} <em style={{ color:C.teal }}>{t.companionW}</em> {t.companionR}
-                </div>
-                <p style={{ color:"rgba(255,255,255,0.6)",fontSize:15,lineHeight:1.7 }}>{t.companionBody}</p>
-                <div style={{ marginTop:24,paddingTop:24,borderTop:"1px solid rgba(255,255,255,0.1)",display:"flex",gap:20,flexWrap:"wrap" }}>
-                  {[{l:"WhatsApp-first",s:lang==="en"?"no app download":"tidak perlu unduh"},{l:lang==="en"?"Offline-capable":"Bisa Offline",s:lang==="en"?"no signal needed":"tanpa sinyal"},{l:lang==="en"?"Free forever":"Gratis Selamanya",s:lang==="en"?"for communities":"untuk komunitas"}].map(({l,s})=>(
-                    <div key={l}><div style={{ color:C.teal,fontWeight:700,fontSize:15 }}>{l}</div><div style={{ color:"rgba(255,255,255,0.5)",fontSize:11 }}>{s}</div></div>
-                  ))}
-                </div>
-              </div>
-            </FadeIn>
-          </div>
-
-          <FadeIn delay={200}>
-            <div style={{ marginTop:64,background:`linear-gradient(135deg,${C.tealXdk},${C.tealDk})`,borderRadius:24,padding:48,position:"relative",overflow:"hidden" }}>
-              <div style={{ position:"absolute",top:-40,right:-40,width:200,height:200,borderRadius:"50%",background:"rgba(255,255,255,0.04)",pointerEvents:"none" }}/>
-              <div className="two-col" style={{ position:"relative",zIndex:1,alignItems:"center" }}>
-                <div>
-                  <h3 className="display-font" style={{ fontSize:32,color:C.white,marginBottom:16 }}>{t.whyFree}</h3>
-                  <p style={{ color:"rgba(255,255,255,0.7)",lineHeight:1.8,fontSize:15 }}>{t.whyBody}</p>
-                </div>
-                <div style={{ display:"grid",gridTemplateColumns:"1fr 1fr",gap:16 }}>
-                  {[{i:"🏥",tl:lang==="en"?"Puskesmas-aligned":"Sesuai Puskesmas",d:lang==="en"?"Follows MoH standards":"Standar Kemenkes"},{i:"📱",tl:lang==="en"?"No smartphone needed":"Tanpa smartphone",d:lang==="en"?"Any WhatsApp phone":"Semua HP WhatsApp"},{i:"🔒",tl:lang==="en"?"Data in Indonesia":"Data di Indonesia",d:"Jakarta · AES-256"},{i:"🤝",tl:lang==="en"?"NGO-owned data":"Data milik NGO",d:lang==="en"?"Your data, your control":"Kendali Anda"}].map(({i,tl,d})=>(
-                    <div key={tl} style={{ background:"rgba(255,255,255,0.07)",borderRadius:12,padding:16 }}>
-                      <div style={{ fontSize:22,marginBottom:8 }}>{i}</div>
-                      <div style={{ color:C.white,fontWeight:600,fontSize:13,marginBottom:4 }}>{tl}</div>
-                      <div style={{ color:"rgba(255,255,255,0.5)",fontSize:12,lineHeight:1.5 }}>{d}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ══ PRODUCTS ══════════════════════════════════════════════════════════ */}
-      <ProductsSection lang={lang}/>
-
-      {/* ══ IMPACT ════════════════════════════════════════════════════════════ */}
-      <section id="impact" style={{ background:C.dark,padding:"100px 0",position:"relative",overflow:"hidden" }}>
-        <div className="teal-glow" style={{ width:500,height:500,background:C.teal,top:"20%",left:"-10%" }}/>
-        <div className="section-max" style={{ position:"relative",zIndex:1 }}>
-          <FadeIn>
-            <div style={{ display:"inline-flex",alignItems:"center",gap:8,background:"rgba(2,195,154,0.1)",border:"1px solid rgba(2,195,154,0.3)",borderRadius:20,padding:"6px 16px",marginBottom:16 }}>
-              <span style={{ color:C.teal,fontSize:12,fontWeight:600,letterSpacing:1 }}>{t.impactLabel}</span>
-            </div>
-            <h2 className="display-font" style={{ fontSize:"clamp(32px,4vw,52px)",color:C.white,lineHeight:1.2,marginBottom:16,maxWidth:600 }}>{t.impactH2}</h2>
-            <p style={{ color:"rgba(255,255,255,0.5)",fontSize:16,maxWidth:500,lineHeight:1.7,marginBottom:64 }}>{t.impactBody}</p>
-          </FadeIn>
-
-          <div className="three-col" style={{ marginBottom:64 }}>
-            {[
-              {icon:"🤱",color:C.pink,title:lang==="en"?"Maternal Health":"Kesehatan Ibu",stat:"4 danger signs",desc:lang==="en"?"preeclampsia, hemorrhage, fetal distress, infection — in under 3 minutes":"preeklampsia, perdarahan, gawat janin, infeksi — dalam 3 menit",detail:lang==="en"?"Maternal mortality in NTT is 3× the national average. SahAIbat detects the top 4 killers of pregnant women before it's too late.":"Kematian ibu di NTT 3× rata-rata nasional. SahAIbat mendeteksi 4 penyebab kematian ibu hamil teratas sebelum terlambat."},
-              {icon:"👶",color:C.teal,title:lang==="en"?"Child Stunting":"Stunting Anak",stat:"WHO 2006",desc:lang==="en"?"WAZ · LAZ · WFH — all 4 indicators in every Posyandu visit":"WAZ · LAZ · WFH — semua 4 indikator di setiap kunjungan Posyandu",detail:lang==="en"?"1 in 5 Indonesian children is stunted. SahAIbat calculates WHO growth indicators automatically.":"1 dari 5 anak Indonesia stunting. SahAIbat menghitung indikator pertumbuhan WHO secara otomatis."},
-              {icon:"🍼",color:C.gold,title:lang==="en"?"Neonatal Care":"Perawatan Neonatal",stat:"0–28 days",desc:lang==="en"?"danger sign detection for newborns — the most critical window":"deteksi tanda bahaya bayi baru lahir — jendela paling kritis",detail:lang==="en"?"Most neonatal deaths happen in the first 7 days. SahAIbat screens every newborn for 9 KMS danger signs.":"Sebagian besar kematian neonatal terjadi dalam 7 hari pertama. SahAIbat memeriksa 9 tanda bahaya KMS."},
-              {icon:"🫁",color:"#E8A838",title:lang==="en"?"Tuberculosis (TB)":"Tuberkulosis (TB)",stat:lang==="en"?"Early detection":"Deteksi Dini",desc:lang==="en"?"symptom screening · contact tracing · treatment adherence support":"skrining gejala · pelacakan kontak · dukungan kepatuhan pengobatan",detail:lang==="en"?"Indonesia has the second highest TB burden in the world. SahAIbat helps Kaders screen household contacts and support treatment compliance in the community.":"Indonesia memiliki beban TB tertinggi kedua di dunia. SahAIbat membantu Kader memeriksa kontak rumah tangga dan mendukung kepatuhan pengobatan di komunitas."},
-              {icon:"🦟",color:"#F97316",title:lang==="en"?"Dengue Fever":"Demam Berdarah",stat:lang==="en"?"Warning signs":"Tanda Peringatan",desc:lang==="en"?"early danger sign detection · referral guidance · household surveillance":"deteksi tanda bahaya dini · panduan rujukan · surveilans rumah tangga",detail:lang==="en"?"Dengue is endemic across Indonesia. SahAIbat guides Kaders through structured dengue screening and alerts them to warning signs requiring urgent referral.":"Dengue endemik di seluruh Indonesia. SahAIbat membimbing Kader melalui skrining dengue terstruktur dan memberi peringatan tanda bahaya yang memerlukan rujukan segera."},
-              {icon:"🔴",color:"#EF4444",title:lang==="en"?"HIV & Malaria":"HIV & Malaria",stat:lang==="en"?"Community screening":"Skrining Komunitas",desc:lang==="en"?"risk assessment · referral pathways · follow-up support for rural communities":"penilaian risiko · jalur rujukan · dukungan tindak lanjut untuk komunitas pedesaan",detail:lang==="en"?"From Papua to NTT, HIV and malaria remain high-burden in remote communities. SahAIbat supports Kaders with structured risk screening and clear referral protocols.":"Dari Papua hingga NTT, HIV dan malaria tetap menjadi beban tinggi di komunitas terpencil. SahAIbat mendukung Kader dengan skrining risiko terstruktur dan protokol rujukan yang jelas."},
-            ].map(({icon,color,title,stat,desc,detail})=>(
-              <FadeIn key={title} delay={100}>
-                <div style={{ background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.08)",borderRadius:20,padding:28,height:"100%",transition:"border-color 0.2s" }}
-                  onMouseEnter={e=>(e.currentTarget as HTMLElement).style.borderColor=`${color}60`}
-                  onMouseLeave={e=>(e.currentTarget as HTMLElement).style.borderColor="rgba(255,255,255,0.08)"}>
-                  <div style={{ fontSize:36,marginBottom:16 }}>{icon}</div>
-                  <div style={{ color,fontWeight:700,fontSize:13,marginBottom:8 }}>{title}</div>
-                  <div className="display-font" style={{ color:C.white,fontSize:22,marginBottom:8 }}>{stat}</div>
-                  <div style={{ color:"rgba(255,255,255,0.5)",fontSize:13,lineHeight:1.6,marginBottom:16 }}>{desc}</div>
-                  <p style={{ color:"rgba(255,255,255,0.35)",fontSize:12,lineHeight:1.7,borderTop:"1px solid rgba(255,255,255,0.06)",paddingTop:16 }}>{detail}</p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-
-          {/* ── PILOTS IN PROGRESS ───────────────────────────────────────────
-              To update: tell Claude the partner name, region, focus, and any
-              key stats and ask it to populate this section.
-          ─────────────────────────────────────────────────────────────────── */}
-          <FadeIn>
-            <div style={{ background:"rgba(2,195,154,0.04)",border:"1px dashed rgba(2,195,154,0.25)",borderRadius:20,padding:40,textAlign:"center" }}>
-              <div style={{ display:"inline-flex",alignItems:"center",gap:8,background:"rgba(2,195,154,0.1)",border:"1px solid rgba(2,195,154,0.2)",borderRadius:20,padding:"5px 14px",marginBottom:20 }}>
-                <span style={{ width:8,height:8,borderRadius:"50%",background:C.teal,display:"inline-block",animation:"pulse 1.5s infinite" }}/>
-                <span style={{ color:C.teal,fontSize:12,fontWeight:700,letterSpacing:1 }}>{t.pilotsLabel}</span>
-              </div>
-              <h3 className="display-font" style={{ color:C.white,fontSize:"clamp(20px,2.5vw,30px)",marginBottom:12,lineHeight:1.3 }}>{t.pilotsH2}</h3>
-              <p style={{ color:"rgba(255,255,255,0.45)",fontSize:15,lineHeight:1.8,maxWidth:520,margin:"0 auto" }}>{t.pilotsBody}</p>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ══ FOR NGOs ══════════════════════════════════════════════════════════ */}
-      <NgoSection lang={lang}/>
-
-      {/* ══ FIELD PARTNERS ════════════════════════════════════════════════════ */}
-      <FieldPartnersSection lang={lang}/>
-
-      {/* ══ PLATFORM ══════════════════════════════════════════════════════════ */}
-      <section id="platform" style={{ background:C.warm,padding:"100px 0" }}>
-        <div className="section-max">
-          <FadeIn>
-            <div style={{ display:"inline-flex",alignItems:"center",gap:8,background:`${C.tealDk}15`,border:`1px solid ${C.tealDk}30`,borderRadius:20,padding:"6px 16px",marginBottom:16 }}>
-              <span style={{ color:C.tealDk,fontSize:12,fontWeight:600,letterSpacing:1 }}>{t.platformLabel}</span>
-            </div>
-            <h2 className="display-font" style={{ fontSize:"clamp(32px,4vw,52px)",color:C.dark,lineHeight:1.2,marginBottom:16,maxWidth:700,whiteSpace:"pre-line" }}>{t.platformH2}</h2>
-            <p style={{ color:C.muted,fontSize:16,maxWidth:560,lineHeight:1.8,marginBottom:64 }}>{t.platformBody}</p>
-          </FadeIn>
-          <div className="two-col" style={{ marginBottom:48 }}>
-            <FadeIn delay={100}>
-              <div style={{ background:C.white,borderRadius:20,padding:32,border:`1px solid rgba(2,195,154,0.15)` }}>
-                <div style={{ color:C.teal,fontWeight:700,fontSize:12,letterSpacing:1,marginBottom:16 }}>✅ {lang==="en"?"WHAT AI DOES":"APA YANG AI LAKUKAN"}</div>
-                {[[lang==="en"?"Natural language understanding":"Memahami bahasa alami",lang==="en"?"Kader types freely — AI understands informal Bahasa Indonesia":"Kader mengetik bebas — AI memahami Bahasa Indonesia informal"],[lang==="en"?"Smart routing":"Perutean cerdas",lang==="en"?"Complaint text routed to the right clinical module":"Teks keluhan diarahkan ke modul klinis yang tepat"],[lang==="en"?"Contextual guidance":"Panduan kontekstual",lang==="en"?"After rules run, AI adds warm practical guidance":"Setelah aturan dijalankan, AI menambah panduan praktis"],[lang==="en"?"Report generation":"Pembuatan laporan",lang==="en"?"Structured clinical summaries for nurse/doctor review":"Ringkasan klinis terstruktur untuk ditinjau tenaga medis"]].map(([ti,de])=>(
-                  <div key={ti} style={{ display:"flex",gap:12,marginBottom:20 }}>
-                    <div style={{ width:6,height:6,borderRadius:"50%",background:C.teal,marginTop:8,flexShrink:0 }}/>
-                    <div><div style={{ fontWeight:600,fontSize:14,color:C.dark,marginBottom:4 }}>{ti}</div><div style={{ fontSize:13,color:C.muted,lineHeight:1.6 }}>{de}</div></div>
-                  </div>
-                ))}
-              </div>
-            </FadeIn>
-            <FadeIn delay={200}>
-              <div style={{ background:C.dark,borderRadius:20,padding:32 }}>
-                <div style={{ color:"#FF6B6B",fontWeight:700,fontSize:12,letterSpacing:1,marginBottom:16 }}>🚫 {lang==="en"?"WHAT AI NEVER DOES":"APA YANG AI TIDAK PERNAH LAKUKAN"}</div>
-                {[[lang==="en"?"Diagnose":"Mendiagnosis",lang==="en"?"AI never outputs a diagnosis. The rules engine classifies risk.":"AI tidak pernah menghasilkan diagnosis."],[lang==="en"?"Prescribe":"Meresepkan",lang==="en"?"No drug names, no dosages — only triage guidance":"Tidak ada nama obat, tidak ada dosis"],[lang==="en"?"Override WHO/KMS standards":"Mengesampingkan standar WHO/KMS",lang==="en"?"Clinical thresholds come from WHO 2006 and Permenkes 2/2020":"Ambang batas dari WHO 2006 dan Permenkes 2/2020"],[lang==="en"?"Make final decisions":"Membuat keputusan akhir",lang==="en"?"Every output is guidance — the Kader or doctor decides":"Setiap output adalah panduan — Kader atau dokter yang memutuskan"]].map(([ti,de])=>(
-                  <div key={ti} style={{ display:"flex",gap:12,marginBottom:20 }}>
-                    <div style={{ width:6,height:6,borderRadius:"50%",background:"#FF6B6B",marginTop:8,flexShrink:0 }}/>
-                    <div><div style={{ fontWeight:600,fontSize:14,color:C.white,marginBottom:4 }}>{ti}</div><div style={{ fontSize:13,color:"rgba(255,255,255,0.4)",lineHeight:1.6 }}>{de}</div></div>
-                  </div>
-                ))}
-              </div>
-            </FadeIn>
-          </div>
-          <FadeIn>
-            <div style={{ background:C.dark,borderRadius:20,padding:40,display:"flex",gap:32,alignItems:"center",flexWrap:"wrap" }}>
-              <div style={{ fontSize:56 }}>⚖️</div>
-              <div style={{ flex:1,minWidth:240 }}>
-                <div style={{ color:C.teal,fontWeight:700,fontSize:12,letterSpacing:1,marginBottom:8 }}>{lang==="en"?"THE RULES ENGINE IS THE SOURCE OF TRUTH":"RULES ENGINE ADALAH SUMBER KEBENARAN"}</div>
-                <h3 style={{ color:C.white,fontSize:22,fontWeight:700,marginBottom:12 }}>{lang==="en"?"Deterministic logic. Not probabilistic guessing.":"Logika deterministik. Bukan tebakan probabilistik."}</h3>
-                <p style={{ color:"rgba(255,255,255,0.5)",lineHeight:1.7,fontSize:14 }}>
-                  {lang==="en"?"SahAIbat's triage outcomes are calculated by a deterministic rules engine — not a language model. WHO growth standards and KMS danger sign thresholds are hardcoded. AI only adds context after the rules run.":"Hasil triase SahAIbat dihitung oleh rules engine deterministik — bukan model bahasa. Standar WHO dan ambang batas KMS dikodekan secara tetap. AI hanya menambah konteks setelah aturan dijalankan."}
-                </p>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ══ TEAM ══════════════════════════════════════════════════════════════ */}
-      <TeamSection lang={lang}/>
-
-      {/* ══ SUPPORT ═══════════════════════════════════════════════════════════ */}
-      <section id="support" style={{ background:C.dark,padding:"100px 0",position:"relative",overflow:"hidden" }}>
-        <div className="teal-glow" style={{ width:600,height:600,background:C.teal,bottom:"-20%",right:"-10%" }}/>
-        <div className="section-max" style={{ position:"relative",zIndex:1 }}>
-          <FadeIn>
-            <div style={{ textAlign:"center",marginBottom:64 }}>
-              <div style={{ display:"inline-flex",alignItems:"center",gap:8,background:"rgba(2,195,154,0.1)",border:"1px solid rgba(2,195,154,0.3)",borderRadius:20,padding:"6px 16px",marginBottom:16 }}>
-                <span style={{ color:C.teal,fontSize:12,fontWeight:600,letterSpacing:1 }}>{t.supportLabel}</span>
-              </div>
-              <h2 className="display-font" style={{ fontSize:"clamp(32px,4vw,52px)",color:C.white,lineHeight:1.2,marginBottom:16 }}>
-                {t.supportH2a}<br/><span style={{ color:C.teal }}>{t.supportH2b}</span>
-              </h2>
-              <p style={{ color:"rgba(255,255,255,0.5)",fontSize:16,maxWidth:560,lineHeight:1.8,margin:"0 auto" }}>{t.supportBody}</p>
-            </div>
-          </FadeIn>
-          <div className="three-col" style={{ marginBottom:48 }}>
-            {[
-              {icon:"☕",title:lang==="en"?"Buy the team a coffee":"Traktir tim kopi",amount:"$5",desc:lang==="en"?"Keeps the server running for a day. Covers one Kader's WhatsApp session costs for a week.":"Menjaga server berjalan sehari.",cta:lang==="en"?"Support on Ko-fi":"Dukung di Ko-fi",href:"https://ko-fi.com/sahaibat",color:C.teal,featured:false},
-              {icon:"🌱",title:lang==="en"?"Sponsor a Posyandu session":"Sponsori sesi Posyandu",amount:"$25",desc:lang==="en"?"Funds AI triage support for an entire Posyandu session — 20+ children, mothers, and newborns screened.":"Mendanai dukungan triase AI untuk seluruh sesi Posyandu.",cta:lang==="en"?"Sponsor a Session":"Sponsori Sesi",href:"https://ko-fi.com/sahaibat",color:C.gold,featured:true},
-              {icon:"🤝",title:lang==="en"?"Partner with us":"Bermitra dengan kami",amount:lang==="en"?"Let's talk":"Mari bicara",desc:lang==="en"?"NGO, researcher, funder, or government partner — every partnership expands our reach.":"NGO, peneliti, donatur, atau mitra pemerintah.",cta:lang==="en"?"Get in Touch":"Hubungi Kami",href:"mailto:admin@sahaibat.com?subject=Partnership Inquiry",color:C.pink,featured:false},
-            ].map(({icon,title,amount,desc,cta,href,color,featured})=>(
-              <FadeIn key={title} delay={100}>
-                <div style={{ background:featured?`linear-gradient(135deg,${C.tealXdk},${C.tealDk})`:"rgba(255,255,255,0.03)", border:`1.5px solid ${featured?C.teal:"rgba(255,255,255,0.08)"}`, borderRadius:20,padding:32,display:"flex",flexDirection:"column",height:"100%",transform:featured?"scale(1.03)":"scale(1)" }}>
-                  {featured&&<div style={{ color:C.teal,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:12 }}>⭐ {lang==="en"?"MOST IMPACTFUL":"PALING BERDAMPAK"}</div>}
-                  <div style={{ fontSize:36,marginBottom:12 }}>{icon}</div>
-                  <div className="display-font" style={{ color,fontSize:28,fontWeight:900,marginBottom:8 }}>{amount}</div>
-                  <div style={{ color:C.white,fontWeight:700,fontSize:16,marginBottom:12 }}>{title}</div>
-                  <p style={{ color:"rgba(255,255,255,0.5)",fontSize:13,lineHeight:1.7,flex:1 }}>{desc}</p>
-                  <a href={href} style={{ display:"block",marginTop:24,textAlign:"center",padding:"12px 24px",borderRadius:12,background:featured?C.teal:"transparent",border:`1.5px solid ${featured?C.teal:"rgba(255,255,255,0.2)"}`,color:featured?C.dark:C.white,fontWeight:700,fontSize:14,textDecoration:"none" }}>{cta} →</a>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
-          <FadeIn>
-            <div style={{ background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.08)",borderRadius:16,padding:32,display:"flex",gap:24,alignItems:"flex-start",flexWrap:"wrap" }}>
-              <div style={{ fontSize:40 }}>🔍</div>
-              <div style={{ flex:1,minWidth:240 }}>
-                <div style={{ color:C.white,fontWeight:700,fontSize:18,marginBottom:8 }}>{t.transparencyTitle}</div>
-                <p style={{ color:"rgba(255,255,255,0.5)",fontSize:14,lineHeight:1.7,maxWidth:600 }}>{t.transparencyBody}</p>
-                <div style={{ marginTop:16,display:"flex",gap:12,flexWrap:"wrap" }}>
-                  {(lang==="en"?["Server infrastructure","Kader training materials","Field visits to NTT","Clinical validation","Product development"]:["Infrastruktur server","Materi pelatihan Kader","Kunjungan lapangan NTT","Validasi klinis","Pengembangan produk"]).map(item=>(
-                    <span key={item} style={{ background:"rgba(2,195,154,0.08)",border:"1px solid rgba(2,195,154,0.15)",color:C.teal,fontSize:12,padding:"4px 12px",borderRadius:20 }}>{item}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* ══ FOOTER ════════════════════════════════════════════════════════════ */}
-      <footer style={{ background:C.charcoal,borderTop:"1px solid rgba(2,195,154,0.1)",padding:"56px 0 32px" }}>
-        <div className="section-max">
-          <div className="footer-grid" style={{ marginBottom:48 }}>
-            {/* Brand */}
-            <div>
-              <div style={{ marginBottom:16 }}>
-                <img
-                  src="/images/logo-horizontal@2x.png"
-                  alt="SahAIbat Foundation"
-                  style={{ height:32,width:"auto",filter:"brightness(0) invert(1)",opacity:0.85 }}
-                />
-              </div>
-              <p style={{ color:"rgba(255,255,255,0.4)",fontSize:13,lineHeight:1.7,maxWidth:280,marginBottom:16 }}>
-                {lang==="en"?"WhatsApp-first AI clinical triage for Community Health Workers in Indonesia. Free for communities. Always.":"Triase klinis AI berbasis WhatsApp untuk Kader Kesehatan Indonesia. Gratis untuk komunitas. Selamanya."}
-              </p>
-              <p style={{ color:"rgba(255,255,255,0.18)",fontSize:11,lineHeight:1.7 }}>
-                All intellectual property owned by<br/>
-                <strong style={{ color:"rgba(255,255,255,0.3)" }}>Vinatra · 11679210 Canada Inc</strong><br/>
-                Terdaftar PSE Lingkup Privat Asing<br/>NIB: 1202260248509
-              </p>
-            </div>
-            {/* Platform links */}
-            <div>
-              <div style={{ color:C.teal,fontWeight:700,fontSize:12,letterSpacing:1,marginBottom:16 }}>PLATFORM</div>
-              {([["#story",lang==="en"?"How it works":"Cara kerja"],["#products",lang==="en"?"Our products":"Produk kami"],["#ngo",lang==="en"?"For NGOs":"Untuk NGO"],["#platform",lang==="en"?"AI approach":"Pendekatan AI"],["#support",lang==="en"?"Support us":"Dukung kami"]] as [string,string][]).map(([href,label])=>(
-                <a key={label} href={href} style={{ display:"block",color:"rgba(255,255,255,0.4)",fontSize:13,textDecoration:"none",marginBottom:9,transition:"color 0.2s" }}
-                  onMouseEnter={e=>(e.target as HTMLElement).style.color=C.teal}
-                  onMouseLeave={e=>(e.target as HTMLElement).style.color="rgba(255,255,255,0.4)"}>{label}</a>
-              ))}
-            </div>
-            {/* Social */}
-            <div>
-              <div style={{ color:C.teal,fontWeight:700,fontSize:12,letterSpacing:1,marginBottom:16 }}>CONNECT</div>
-              {([
-                ["📧","admin@sahaibat.com","mailto:admin@sahaibat.com"],
-                ["📸","sahaibat_health","https://instagram.com/sahaibat_health"],
-                ["▶️","@SahaibatHealth","https://youtube.com/@SahaibatHealth"],
-                ["🎵","@sahaibat","https://tiktok.com/@sahaibat"],
-                ["💼","LinkedIn","https://www.linkedin.com/company/110529968/"],
-                ["💬","+62 819 1866 9241","https://wa.me/6281918669241"],
-              ] as [string,string,string][]).map(([icon,label,href])=>(
-                <a key={label} href={href} target={href.startsWith("http")?"_blank":"_self"} className="social-link">
-                  <span style={{ fontSize:14,width:18,textAlign:"center" }}>{icon}</span>
-                  <span>{label}</span>
-                </a>
-              ))}
-            </div>
-            {/* Legal */}
-            <div>
-              <div style={{ color:C.teal,fontWeight:700,fontSize:12,letterSpacing:1,marginBottom:16 }}>LEGAL</div>
-              {([["Privacy Policy","/privacy"],["Terms of Use","/terms"],["Contact","/contact"]] as [string,string][]).map(([label,href])=>(
-                <a key={label} href={href} style={{ display:"block",color:"rgba(255,255,255,0.4)",fontSize:13,textDecoration:"none",marginBottom:9,transition:"color 0.2s" }}
-                  onMouseEnter={e=>(e.target as HTMLElement).style.color=C.teal}
-                  onMouseLeave={e=>(e.target as HTMLElement).style.color="rgba(255,255,255,0.4)"}>{label}</a>
-              ))}
-            </div>
-          </div>
-          <div style={{ borderTop:"1px solid rgba(255,255,255,0.06)",paddingTop:24,display:"flex",justifyContent:"space-between",flexWrap:"wrap",gap:12 }}>
-            <span style={{ color:"rgba(255,255,255,0.2)",fontSize:12 }}>© 2026 SahAIbat Foundation · IP owned by Vinatra (11679210 Canada Inc) · All rights reserved</span>
-            <span style={{ color:"rgba(255,255,255,0.2)",fontSize:12 }}>Not a diagnostic tool · Bukan pengganti dokter</span>
-          </div>
-        </div>
-      </footer>
-    </>
-  );
-}
-
-// ══════════════════════════════════════════════════════════════════════════════
-// PRODUCTS SECTION
-// ══════════════════════════════════════════════════════════════════════════════
-function ProductsSection({ lang }: { lang:"en"|"id" }) {
-  const [active,setActive]=useState(0);
-  type Msg={msg:string;user:boolean;urgent:boolean};
-  type P={id:number;icon:string;label:string;tagline:string;accent:string;headline:string;paras:string[];chatTitle:string;messages:Msg[];after:string;features:string[]};
-
-  const products:P[]=[
-    { id:0,icon:"👩‍👦",label:lang==="en"?"Parent / User Chat":"Chat Orang Tua",tagline:lang==="en"?"For worried families, any time of night.":"Untuk keluarga yang khawatir, kapan saja.",accent:C.teal,
-      headline:lang==="en"?"2:47 AM. Her son's fever won't break.":"Pukul 02:47. Demam anaknya tidak turun.",
-      paras:lang==="en"?["Ibu Dewi is alone. Her husband is working in Surabaya. Her son Rizky — three years old — has been burning with fever for five hours. 39.8°C. He won't stop crying. The nearest clinic opens at 8.","She doesn't know if this is dangerous. She doesn't want to wake anyone at this hour. She doesn't know what to do.","She opens WhatsApp — the only app she trusts at 3 in the morning — and messages SahAIbat."]:["Ibu Dewi sendirian. Suaminya sedang bekerja di Surabaya. Anaknya Rizky — tiga tahun — sudah demam tinggi selama lima jam. 39,8°C. Tidak berhenti menangis. Klinik terdekat buka jam 8.","Ia tidak tahu apakah ini berbahaya. Tidak ingin membangunkan siapa pun jam segini.","Ia membuka WhatsApp — satu-satunya aplikasi yang ia percaya dini hari — dan mengirim pesan ke SahAIbat."],
-      chatTitle:"SahAIbat · Family Health Triage",
-      messages:[{msg:"Anak saya 3 tahun, demam 39.8, sudah 5 jam, nangis terus",user:true,urgent:false},{msg:"Saya mendengar Anda, Ibu. Mari kita periksa bersama. 💙\n\nApakah Rizky masih mau minum?\n1 = Ya  2 = Tidak",user:false,urgent:false},{msg:"1, sedikit-sedikit",user:true,urgent:false},{msg:"Bagus sekali, itu tanda yang baik.\n\nApakah ada kejang atau kaku leher?\n1 = Ya  2 = Tidak",user:false,urgent:false},{msg:"2",user:true,urgent:false},{msg:"🟡 PANTAU KETAT\n\nDemam tinggi tapi tanda bahaya tidak ada.\n\n• Kompres hangat di dahi\n• Beri minum sedikit tapi sering\n• Pantau setiap 30 menit\n\nJika demam >40°C atau ada kejang → segera ke IGD.",user:false,urgent:false},{msg:"Terima kasih... saya lebih tenang sekarang 🙏",user:true,urgent:false}],
-      after:lang==="en"?"Ibu Dewi didn't go to the emergency room that night. She didn't need to. She had a plan, a checklist, and something that understood her fear and answered in her language.\n\nBy morning, Rizky's fever had broken. She had slept, a little. SahAIbat had been there.":"Ibu Dewi tidak pergi ke IGD malam itu. Ia tidak perlu. Ia punya rencana, checklist, dan sesuatu yang memahami ketakutannya.\n\nPagi harinya, demam Rizky turun. Ia sempat tidur, sedikit. SahAIbat ada di sana.",
-      features:lang==="en"?["Responds in Bahasa Indonesia or English","Structured risk levels: Monitor / Watch / Clinic / Emergency","No app download — WhatsApp only","Calm, warm tone — not a cold chatbot","Works at 3 AM with zero internet"]:["Menjawab dalam Bahasa Indonesia atau Inggris","Tingkat risiko: Pantau / Waspada / Klinik / Darurat","Tidak perlu unduh app — WhatsApp saja","Nada hangat — bukan chatbot dingin","Bekerja pukul 3 pagi tanpa internet"],
-    },
-    { id:1,icon:"👩‍⚕️",label:lang==="en"?"Kader Professional Chat":"Chat Profesional Kader",tagline:lang==="en"?"Structured clinical guidance for frontline health workers.":"Panduan klinis terstruktur untuk kader garis depan.",accent:C.pink,
-      headline:lang==="en"?"The Kader who catches what no chart could.":"Kader yang menangkap apa yang tidak bisa dilihat KMS.",
-      paras:lang==="en"?["Bidan Sari has been a Kader for eleven years in Kefamenanu, NTT. She knows the families by name, by face, by history.","Today she is with a new mother — three weeks postpartum. Something feels wrong. The mother looks pale, barely spoken. No doctor within reach.","She opens SahAIbat's Kader module."]:["Bidan Sari sudah menjadi Kader selama sebelas tahun di Kefamenanu, NTT. Ia mengenal keluarga-keluarga itu dengan nama, wajah, riwayat.","Hari ini ia bersama ibu baru — tiga minggu setelah melahirkan. Ada sesuatu yang terasa tidak beres. Ibu itu tampak pucat, hampir tidak berbicara. Tidak ada dokter dalam jangkauan.","Ia membuka modul Kader SahAIbat."],
-      chatTitle:"SahAIbat · Kader Clinical Module",
-      messages:[{msg:"Bu Ani, 24th, 3 minggu postpartum, tampak pucat, bicara pelan",user:true,urgent:false},{msg:"🩺 Modul Ibu Nifas\n\nApakah ada perdarahan lebih dari 2 pembalut per jam?\n1 = Ya  2 = Tidak",user:false,urgent:false},{msg:"1",user:true,urgent:false},{msg:"Apakah darah berbau tidak normal?\n1 = Ya  2 = Tidak",user:false,urgent:false},{msg:"1",user:true,urgent:false},{msg:"🔴 DARURAT — RUJUK SEGERA\n\nTanda perdarahan postpartum + infeksi nifas.\n\n• Jangan tinggalkan pasien\n• Hubungi Puskesmas Kefamenanu\n• Catat waktu & kondisi ibu",user:false,urgent:true}],
-      after:lang==="en"?"Sari made the call. Bu Ani was at the Puskesmas within 40 minutes. The doctor confirmed postpartum haemorrhage with early infection — treated in time.\n\nSari had always trusted her instincts. SahAIbat gave her the words — and the protocol — to act on them.":"Sari membuat panggilan itu. Bu Ani di Puskesmas dalam 40 menit. Dokter mengkonfirmasi perdarahan postpartum dengan infeksi awal — ditangani tepat waktu.\n\nSari selalu mempercayai instingnya. SahAIbat memberinya kata-kata — dan protokol — untuk bertindak.",
-      features:lang==="en"?["4 clinical modules: Maternal · Child · Neonatal · Posyandu","Follows Buku KIA (Permenkes 2/2020) exactly","RUJUK recommendations with Puskesmas name","Visit record synced to Posyandu dashboard","Works without internet"]:["4 modul klinis: Maternal · Anak · Neonatal · Posyandu","Mengikuti Buku KIA (Permenkes 2/2020) persis","Rekomendasi RUJUK dengan nama Puskesmas","Catatan kunjungan tersinkron ke dashboard Posyandu","Bekerja tanpa internet"],
-    },
-    { id:2,icon:"📵",label:lang==="en"?"Offline Triage Mode":"Mode Triase Offline",tagline:lang==="en"?"Built for places where the internet never came.":"Dibangun untuk tempat-tempat yang tak pernah terjangkau internet.",accent:C.gold,
-      headline:lang==="en"?"No signal. No WiFi. No problem.":"Tidak ada sinyal. Tidak ada WiFi. Tidak masalah.",
-      paras:lang==="en"?["In Alor, Flores, and the highlands of Timor — entire districts where 4G is a rumour and 2G drops out by noon — Kaders still make their rounds.","Standard digital health tools fail here. They require API calls, cloud sync, data — and data costs money the Kader doesn't have.","SahAIbat Offline Mode was built for these places. Zero network dependency. Full clinical logic. Runs entirely on the Kader's phone."]:["Di Alor, Flores, dan dataran tinggi Timor — seluruh kabupaten di mana 4G hanya kabar burung dan 2G hilang sebelum siang — para Kader tetap bertugas.","Alat kesehatan digital standar gagal di sini. Mereka membutuhkan API call, sinkronisasi cloud, data — dan data membutuhkan biaya yang tidak dimiliki Kader.","Mode Offline SahAIbat dibangun untuk tempat-tempat ini. Nol ketergantungan jaringan. Logika klinis penuh. Berjalan sepenuhnya di ponsel Kader."],
-      chatTitle:"SahAIbat · Offline Mode Active",
-      messages:[{msg:"📵 Tidak ada sinyal terdeteksi\nMode Offline: AKTIF\nSemua triase berjalan secara lokal",user:false,urgent:false},{msg:"Bayi 6 hari, tidak mau menyusu sejak tadi pagi",user:true,urgent:false},{msg:"🍼 Modul Neonatal (Offline)\n\nApakah bayi tampak kuning (ikterus)?\n1 = Ya  2 = Tidak",user:false,urgent:false},{msg:"1",user:true,urgent:false},{msg:"Apakah kuning sampai ke telapak tangan atau kaki?\n1 = Ya  2 = Tidak",user:false,urgent:false},{msg:"1",user:true,urgent:false},{msg:"🔴 DARURAT — Ikterus Neonatorum Berat\n\nRujuk ke Puskesmas SEGERA.\n\n📱 Catatan tersimpan lokal\n🔄 Tersinkron saat sinyal kembali",user:false,urgent:true}],
-      after:lang==="en"?"Zero API calls. Zero cloud dependency. The entire WHO growth engine, KMS danger sign rules, referral logic — running on the Kader's phone, even three mountains from the nearest cell tower.\n\nWhen signal returns, every visit syncs automatically to the Posyandu dashboard.":"Nol API call. Nol ketergantungan cloud. Seluruh engine pertumbuhan WHO, aturan KMS, logika rujukan — berjalan di ponsel Kader, bahkan di balik tiga gunung dari menara seluler terdekat.\n\nKetika sinyal kembali, setiap kunjungan otomatis tersinkron ke dashboard Posyandu.",
-      features:lang==="en"?["100% offline — zero network dependency","WHO growth calculations run locally on device","Danger sign rules hardcoded — no AI API needed offline","Auto-sync when any signal returns","Works on 2G feature phones"]:["100% offline — nol ketergantungan jaringan","Kalkulasi pertumbuhan WHO berjalan lokal","Aturan tanda bahaya dikodekan tetap","Sinkronisasi otomatis saat sinyal kembali","Bekerja di ponsel 2G"],
-    },
-  ];
-
-  const p=products[active];
-  return(
-    <section id="products" style={{ background:C.dark,padding:"100px 0",position:"relative",overflow:"hidden" }}>
-      <div className="teal-glow" style={{ width:400,height:400,background:C.teal,top:"5%",right:"-5%" }}/>
-      <div className="section-max" style={{ position:"relative",zIndex:1 }}>
-        <FadeIn>
-          <div style={{ display:"inline-flex",alignItems:"center",gap:8,background:"rgba(2,195,154,0.1)",border:"1px solid rgba(2,195,154,0.3)",borderRadius:20,padding:"6px 16px",marginBottom:16 }}>
-            <span style={{ color:C.teal,fontSize:12,fontWeight:600,letterSpacing:1 }}>{lang==="en"?"OUR PRODUCTS":"PRODUK KAMI"}</span>
-          </div>
-          <h2 className="display-font" style={{ fontSize:"clamp(32px,4vw,52px)",color:C.white,lineHeight:1.2,marginBottom:16,maxWidth:700 }}>{lang==="en"?"Three tools. One mission.":"Tiga alat. Satu misi."}</h2>
-          <p style={{ color:"rgba(255,255,255,0.5)",fontSize:16,maxWidth:560,lineHeight:1.8,marginBottom:48 }}>{lang==="en"?"SahAIbat meets every user where they are — the worried parent at midnight, the Kader in the field, the village where the internet never came.":"SahAIbat hadir untuk setiap pengguna — orang tua yang khawatir tengah malam, Kader di lapangan, desa tanpa sinyal internet."}</p>
-        </FadeIn>
-        <div style={{ display:"flex",gap:12,marginBottom:48,flexWrap:"wrap" }}>
-          {products.map(pr=>(
-            <button key={pr.id} onClick={()=>setActive(pr.id)} style={{ display:"flex",alignItems:"center",gap:10,padding:"12px 22px",borderRadius:14,fontSize:14,fontWeight:600,cursor:"pointer",transition:"all 0.25s", background:active===pr.id?pr.accent:"rgba(255,255,255,0.05)", color:active===pr.id?C.dark:"rgba(255,255,255,0.6)", border:active===pr.id?`1.5px solid ${pr.accent}`:"1.5px solid rgba(255,255,255,0.1)" }}>
-              <span style={{ fontSize:20 }}>{pr.icon}</span><span>{pr.label}</span>
-            </button>
-          ))}
-        </div>
-        <div key={active}>
-          <div className="hero-grid" style={{ alignItems:"start" }}>
-            <div>
-              <div style={{ display:"inline-flex",alignItems:"center",gap:8,background:`${p.accent}15`,border:`1px solid ${p.accent}40`,borderRadius:20,padding:"5px 14px",marginBottom:20 }}>
-                <span style={{ color:p.accent,fontSize:12,fontWeight:600 }}>{p.tagline}</span>
-              </div>
-              <h3 className="display-font" style={{ color:C.white,fontSize:"clamp(22px,2.5vw,34px)",lineHeight:1.25,marginBottom:24 }}>{p.headline}</h3>
-              {p.paras.map((para,i)=>(<p key={i} style={{ color:"rgba(255,255,255,0.6)",fontSize:15,lineHeight:1.9,marginBottom:16 }}>{para}</p>))}
-              <div style={{ marginTop:32,background:`${p.accent}08`,border:`1px solid ${p.accent}20`,borderRadius:16,padding:24 }}>
-                <div style={{ color:p.accent,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:12 }}>{lang==="en"?"KEY CAPABILITIES":"KEMAMPUAN UTAMA"}</div>
-                {p.features.map((f,i)=>(<div key={i} style={{ display:"flex",gap:12,marginBottom:10,alignItems:"flex-start" }}><div style={{ width:6,height:6,borderRadius:"50%",background:p.accent,marginTop:7,flexShrink:0 }}/><span style={{ color:"rgba(255,255,255,0.7)",fontSize:13,lineHeight:1.6 }}>{f}</span></div>))}
-              </div>
-            </div>
-            <div>
-              <div style={{ background:"rgba(15,31,28,0.8)",border:`1px solid ${p.accent}30`,borderRadius:24,padding:28,position:"relative",overflow:"hidden",marginBottom:24 }}>
-                <div style={{ position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,transparent,${p.accent},transparent)` }}/>
-                <div style={{ color:C.muted,fontSize:11,textAlign:"center",marginBottom:16,fontFamily:"monospace" }}>💬 {p.chatTitle}</div>
-                <div style={{ fontFamily:"monospace",fontSize:12 }}>
-                  {p.messages.map((m,i)=>(
-                    <div key={i} style={{ display:"flex",justifyContent:m.user?"flex-end":"flex-start",marginBottom:10 }}>
-                      <div style={{ background:m.urgent?"rgba(232,72,85,0.15)":m.user?`${p.accent}20`:"rgba(255,255,255,0.05)", border:m.urgent?"1px solid rgba(232,72,85,0.3)":m.user?`1px solid ${p.accent}40`:"1px solid rgba(255,255,255,0.08)", borderRadius:12,padding:"8px 12px",maxWidth:"85%", color:m.urgent?"#FF6B6B":m.user?p.accent:"rgba(255,255,255,0.75)", fontSize:12,lineHeight:1.55,whiteSpace:"pre-line" }}>{m.msg}</div>
-                    </div>
-                  ))}
-                </div>
-                <div style={{ marginTop:14,paddingTop:14,borderTop:"1px solid rgba(255,255,255,0.06)",display:"flex",justifyContent:"space-between",flexWrap:"wrap",gap:6 }}>
-                  <span style={{ color:C.muted,fontSize:10 }}>✓ {lang==="en"?"Saved locally · Syncs when signal returns":"Tersimpan lokal · Tersinkron saat sinyal kembali"}</span>
-                  <span style={{ color:p.accent,fontSize:10 }}>📵 {lang==="en"?"Works offline":"Bekerja offline"}</span>
-                </div>
-              </div>
-              <div style={{ background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.08)",borderRadius:16,padding:24 }}>
-                <div style={{ color:p.accent,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:12 }}>— {lang==="en"?"WHAT HAPPENED NEXT":"APA YANG TERJADI SELANJUTNYA"}</div>
-                {p.after.split("\n\n").map((para,i,arr)=>(<p key={i} style={{ color:"rgba(255,255,255,0.55)",fontSize:13,lineHeight:1.85,marginBottom:i<arr.length-1?12:0,fontStyle:i===arr.length-1?"italic":"normal" }}>{para}</p>))}
+              <div style={{marginTop:12,paddingTop:12,borderTop:"1px solid rgba(255,255,255,0.06)",display:"flex",justifyContent:"space-between",flexWrap:"wrap",gap:8}}>
+                <span style={{color:C.muted,fontSize:11}}>✓ {lang==="en"?"Saved locally · Syncs when signal returns":"Tersimpan lokal · Tersinkron saat sinyal kembali"}</span>
+                <span style={{color:C.teal,fontSize:11}}>📵 {lang==="en"?"Works offline":"Bekerja offline"}</span>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
-  );
-}
-
-// ══════════════════════════════════════════════════════════════════════════════
-// NGO SECTION
-// ══════════════════════════════════════════════════════════════════════════════
-function NgoSection({ lang }: { lang:"en"|"id" }) {
-  const t=T[lang];
-  return(
-    <section id="ngo" style={{ background:C.cream,padding:"80px 0" }}>
-      <div className="section-max">
-        <FadeIn>
-          <div style={{ display:"inline-flex",alignItems:"center",gap:8,background:`${C.tealDk}15`,border:`1px solid ${C.tealDk}30`,borderRadius:20,padding:"6px 16px",marginBottom:16 }}>
-            <span style={{ color:C.tealDk,fontSize:12,fontWeight:600,letterSpacing:1 }}>{t.ngoLabel}</span>
-          </div>
-          <h2 className="display-font" style={{ fontSize:"clamp(28px,3.5vw,44px)",color:C.dark,lineHeight:1.2,marginBottom:16,maxWidth:600 }}>{t.ngoH2}</h2>
-          <p style={{ color:C.muted,fontSize:16,maxWidth:540,lineHeight:1.8,marginBottom:48 }}>{t.ngoBody}</p>
-        </FadeIn>
-
-        <div className="three-col" style={{ marginBottom:40 }}>
+        <div className="four-col" style={{marginTop:64,paddingTop:40,borderTop:"1px solid rgba(255,255,255,0.08)"}}>
           {[
-            {icon:"🆓",title:lang==="en"?"Free for all communities":"Gratis untuk semua komunitas",desc:lang==="en"?"No licence fees, no per-Kader charges, no hidden costs. SahAIbat is free to deploy for any NGO working in community health.":"Tidak ada biaya lisensi, tidak ada biaya per-Kader, tidak ada biaya tersembunyi. SahAIbat gratis untuk semua NGO yang bekerja di bidang kesehatan komunitas."},
-            {icon:"🔧",title:lang==="en"?"Customisable to your programme":"Dapat disesuaikan dengan program Anda",desc:lang==="en"?"We work with your team to align clinical modules, referral pathways, and reporting to your existing programme structure — not the other way around.":"Kami bekerja bersama tim Anda untuk menyesuaikan modul klinis, jalur rujukan, dan pelaporan dengan struktur program yang sudah ada."},
-            {icon:"📊",title:lang==="en"?"Data stays yours":"Data tetap milik Anda",desc:lang==="en"?"All community health data collected through SahAIbat is owned by your organisation. Hosted in Jakarta. Never sold, never shared without consent.":"Semua data kesehatan komunitas yang dikumpulkan melalui SahAIbat dimiliki oleh organisasi Anda. Dihosting di Jakarta. Tidak pernah dijual atau dibagikan tanpa persetujuan."},
-          ].map(({icon,title,desc})=>(
-            <FadeIn key={title} delay={100}>
-              <div style={{ background:C.white,borderRadius:20,padding:28,border:"1px solid rgba(2,195,154,0.12)",height:"100%" }}>
-                <div style={{ fontSize:36,marginBottom:16 }}>{icon}</div>
-                <div style={{ fontWeight:700,fontSize:16,color:C.dark,marginBottom:10 }}>{title}</div>
-                <p style={{ color:C.muted,fontSize:13,lineHeight:1.7 }}>{desc}</p>
-              </div>
-            </FadeIn>
-          ))}
+            {n:61000,s:"+",label:lang==="en"?"Community Health Workers":"Kader Kesehatan",sub:lang==="en"?"in our target network":"dalam jaringan target kami"},
+            {n:8,s:"+ modules",label:lang==="en"?"Clinical Modules":"Modul Klinis",sub:"maternal · child · TB · dengue · HIV · malaria"},
+            {n:4,s:"",label:lang==="en"?"Field Partners":"Mitra Lapangan",sub:lang==="en"?"NTT · Papua · Bali":"NTT · Papua · Bali"},
+            {n:100,s:"%",label:lang==="en"?"Data Stays in Indonesia":"Data di Indonesia",sub:"AWS Jakarta · AES-256"},
+          ].map(({n,s,label,sub})=>(<div key={label} style={{textAlign:"center"}}>
+            <div className="display-font" style={{fontSize:36,color:C.teal,fontWeight:900,lineHeight:1}}><Counter end={n} suffix={s}/></div>
+            <div style={{color:C.white,fontSize:13,fontWeight:600,marginTop:8}}>{label}</div>
+            <div style={{color:C.muted,fontSize:11,marginTop:4}}>{sub}</div>
+          </div>))}
         </div>
-
-        {/* 1000 Days Fund pilot — coming soon
-            ── UPDATE THIS BLOCK when MOU is signed ──────────────────────────
-            Ask Claude: "The 1000 Days Fund MOU is signed. Update the NGO
-            pilot block with [details, region, programme info]"
-        ─────────────────────────────────────────────────────────────────── */}
-        <FadeIn>
-          <div style={{ background:C.dark,borderRadius:20,padding:36,display:"flex",gap:28,alignItems:"center",flexWrap:"wrap" }}>
-            <div style={{ fontSize:56 }}>🤝</div>
-            <div style={{ flex:1,minWidth:240 }}>
-              <div style={{ display:"inline-flex",alignItems:"center",gap:8,background:"rgba(2,195,154,0.1)",border:"1px solid rgba(2,195,154,0.2)",borderRadius:20,padding:"4px 12px",marginBottom:12 }}>
-                <span style={{ width:7,height:7,borderRadius:"50%",background:C.teal,display:"inline-block",animation:"pulse 1.5s infinite" }}/>
-                <span style={{ color:C.teal,fontSize:11,fontWeight:700,letterSpacing:1 }}>{lang==="en"?"PILOT COMING SOON":"PILOT SEGERA HADIR"}</span>
-              </div>
-              <div style={{ color:C.white,fontWeight:800,fontSize:22,marginBottom:8 }}>1000 Days Fund</div>
-              <p style={{ color:"rgba(255,255,255,0.5)",fontSize:14,lineHeight:1.7,maxWidth:520 }}>
-                {lang==="en"
-                  ?"SahAIbat is entering a formal pilot partnership with 1000 Days Fund, Indonesia's leading 1000 Hari Pertama Kehidupan programme. Full details will be published here once the partnership is live."
-                  :"SahAIbat akan memasuki kemitraan pilot resmi dengan 1000 Days Fund, program 1000 Hari Pertama Kehidupan terkemuka Indonesia. Detail lengkap akan dipublikasikan di sini setelah kemitraan berjalan."}
-              </p>
-            </div>
-            <div style={{ display:"flex",flexDirection:"column",gap:8 }}>
-              <div style={{ background:"rgba(2,195,154,0.1)",borderRadius:8,padding:"8px 16px",color:C.teal,fontSize:13,fontWeight:600 }}>61K+ CHWs in network</div>
-              <div style={{ background:"rgba(2,195,154,0.1)",borderRadius:8,padding:"8px 16px",color:C.teal,fontSize:13,fontWeight:600 }}>NTT · Bali · 22 districts</div>
-            </div>
-          </div>
-        </FadeIn>
-
-        <FadeIn delay={100}>
-          <div style={{ marginTop:32,background:`linear-gradient(135deg,${C.tealXdk},${C.tealDk})`,borderRadius:20,padding:36,display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:24 }}>
-            <div>
-              <div style={{ color:C.white,fontWeight:700,fontSize:20,marginBottom:8 }}>{lang==="en"?"Ready to explore a pilot?":"Siap menjajaki pilot?"}</div>
-              <p style={{ color:"rgba(255,255,255,0.7)",fontSize:14,maxWidth:480,lineHeight:1.7 }}>
-                {lang==="en"?"Tell us about your programme and we'll respond within 48 hours with a simple next step.":"Ceritakan tentang program Anda dan kami akan membalas dalam 48 jam dengan langkah sederhana."}
-              </p>
-            </div>
-            <div style={{ display:"flex",gap:12,flexWrap:"wrap" }}>
-              <a href="mailto:admin@sahaibat.com?subject=NGO Partnership Inquiry" style={{ background:C.teal,color:C.dark,padding:"13px 28px",borderRadius:12,fontSize:14,fontWeight:700,textDecoration:"none" }}>
-                {lang==="en"?"Email us directly →":"Email kami langsung →"}
-              </a>
-              <a href="https://wa.me/6281918669241" style={{ background:"rgba(255,255,255,0.1)",color:C.white,padding:"13px 28px",borderRadius:12,fontSize:14,fontWeight:600,textDecoration:"none" }}>
-                💬 WhatsApp
-              </a>
-            </div>
-          </div>
-        </FadeIn>
       </div>
     </section>
-  );
-}
 
-// ══════════════════════════════════════════════════════════════════════════════
-// FIELD PARTNERS
-// ── ADD PARTNERS to FIELD_PARTNERS array below when ready ────────────────────
-// Format: { name, region, country, flag, focus, tags[], contact? }
-// Ask Claude: "Add [Org Name] as a field partner — region: [x], focus: [y]"
-// ══════════════════════════════════════════════════════════════════════════════
-const FIELD_PARTNERS: { name:string;region:string;country:string;flag:string;focus:string;tags:string[];contact?:string; }[] = [];
-
-function FieldPartnersSection({ lang }: { lang:"en"|"id" }) {
-  const t=T[lang];
-  return(
-    <section style={{ background:C.dark,padding:"80px 0",borderTop:`1px solid rgba(2,195,154,0.1)` }}>
+    {/* ══ STORY ══════════════════════════════════════════════════════════════ */}
+    <section id="story" style={{background:C.cream,padding:"100px 0"}}>
       <div className="section-max">
         <FadeIn>
-          <div style={{ display:"inline-flex",alignItems:"center",gap:8,background:"rgba(2,195,154,0.1)",border:"1px solid rgba(2,195,154,0.3)",borderRadius:20,padding:"6px 16px",marginBottom:16 }}>
-            <span style={{ color:C.teal,fontSize:12,fontWeight:600,letterSpacing:1 }}>{t.fieldLabel}</span>
+          <div style={{display:"inline-flex",alignItems:"center",gap:8,background:`${C.tealDk}20`,border:`1px solid ${C.tealDk}40`,borderRadius:20,padding:"6px 16px",marginBottom:16}}>
+            <span style={{color:C.tealDk,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"OUR STORY":"CERITA KAMI"}</span>
           </div>
-          <h2 className="display-font" style={{ fontSize:"clamp(28px,3.5vw,44px)",color:C.white,lineHeight:1.2,marginBottom:16 }}>{t.fieldH2}</h2>
-          <p style={{ color:"rgba(255,255,255,0.5)",fontSize:16,maxWidth:520,lineHeight:1.8,marginBottom:48 }}>{t.fieldBody}</p>
+          <h2 className="display-font" style={{fontSize:"clamp(32px,4vw,52px)",color:C.dark,lineHeight:1.2,marginBottom:24,maxWidth:700}}>
+            {lang==="en"?"A Kader. A phone. A life that shouldn't have been lost.":"Seorang Kader. Sebuah ponsel. Sebuah nyawa yang tak seharusnya hilang."}
+          </h2>
         </FadeIn>
-        {FIELD_PARTNERS.length>0?(
-          <div className="three-col">
-            {FIELD_PARTNERS.map(fp=>(
-              <FadeIn key={fp.name} delay={100}>
-                <div style={{ background:C.charcoal,borderRadius:20,padding:28,border:"1px solid rgba(2,195,154,0.15)",height:"100%" }}>
-                  <div style={{ fontSize:32,marginBottom:12 }}>{fp.flag}</div>
-                  <div style={{ color:C.teal,fontWeight:700,fontSize:12,marginBottom:6 }}>{fp.region} · {fp.country}</div>
-                  <div style={{ fontWeight:800,fontSize:18,color:C.white,marginBottom:10 }}>{fp.name}</div>
-                  <p style={{ color:"rgba(255,255,255,0.5)",fontSize:13,lineHeight:1.7,marginBottom:16 }}>{fp.focus}</p>
-                  <div style={{ display:"flex",gap:8,flexWrap:"wrap",marginBottom:fp.contact?16:0 }}>
-                    {fp.tags.map(tag=>(<span key={tag} style={{ background:"rgba(2,195,154,0.1)",border:"1px solid rgba(2,195,154,0.2)",color:C.teal,fontSize:11,padding:"3px 10px",borderRadius:20,fontWeight:600 }}>{tag}</span>))}
-                  </div>
-                  {fp.contact&&<a href={fp.contact} style={{ color:C.teal,fontSize:13,fontWeight:600,textDecoration:"none" }}>{lang==="en"?"Get in touch →":"Hubungi →"}</a>}
-                </div>
-              </FadeIn>
-            ))}
+        <FadeIn delay={100}>
+          <div className="photo-grid" style={{marginBottom:48}}>
+            {[
+              {src:PHOTOS.kaderField,label:lang==="en"?"Kader in the field":"Kader di lapangan"},
+              {src:PHOTOS.motherChild,label:lang==="en"?"Mother & child care":"Ibu dan anak"},
+              {src:PHOTOS.posyandu,label:lang==="en"?"Posyandu session":"Sesi Posyandu"},
+            ].map(({src,label})=>(<div key={label} style={{position:"relative",overflow:"hidden",borderRadius:16}}>
+              <img src={src} alt={label} style={{width:"100%",height:200,objectFit:"cover",borderRadius:16,filter:"brightness(0.85)saturate(1.1)"}}/>
+              <div style={{position:"absolute",bottom:0,left:0,right:0,background:"linear-gradient(transparent,rgba(15,31,28,0.7))",padding:"12px 14px",borderRadius:"0 0 16px 16px"}}>
+                <span style={{color:C.white,fontSize:11,fontWeight:600}}>🌿 {label}</span>
+              </div>
+            </div>))}
           </div>
-        ):(
-          <FadeIn>
-            <div style={{ background:C.charcoal,borderRadius:24,padding:64,textAlign:"center",border:"2px dashed rgba(2,195,154,0.2)",position:"relative",overflow:"hidden" }}>
-              <div style={{ position:"absolute",inset:0,backgroundImage:"linear-gradient(rgba(2,195,154,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(2,195,154,0.02) 1px,transparent 1px)",backgroundSize:"32px 32px",pointerEvents:"none" }}/>
-              <div style={{ position:"relative",zIndex:1 }}>
-                <div style={{ fontSize:64,marginBottom:20 }}>🗺️</div>
-                <div style={{ display:"inline-flex",alignItems:"center",gap:8,background:"rgba(2,195,154,0.1)",border:"1px solid rgba(2,195,154,0.2)",borderRadius:20,padding:"6px 16px",marginBottom:20 }}>
-                  <span style={{ width:8,height:8,borderRadius:"50%",background:C.teal,display:"inline-block",animation:"pulse 1.5s infinite" }}/>
-                  <span style={{ color:C.teal,fontSize:12,fontWeight:700,letterSpacing:1 }}>{lang==="en"?"COMING SOON":"SEGERA HADIR"}</span>
-                </div>
-                <h3 className="display-font" style={{ color:C.white,fontSize:"clamp(20px,2.5vw,30px)",marginBottom:16,lineHeight:1.3 }}>{t.fieldComingSoon}</h3>
-                <p style={{ color:"rgba(255,255,255,0.4)",fontSize:15,lineHeight:1.8,maxWidth:480,margin:"0 auto 36px" }}>{t.fieldComingSoonBody}</p>
-                <a href="mailto:admin@sahaibat.com?subject=Field Partner Inquiry" style={{ background:C.teal,color:C.dark,padding:"13px 32px",borderRadius:12,fontSize:14,fontWeight:700,textDecoration:"none" }}>{t.fieldCTA}</a>
+        </FadeIn>
+        <div className="two-col">
+          <FadeIn delay={100}>
+            <div style={{fontSize:16,color:C.text,lineHeight:1.9}}>
+              <p style={{marginBottom:20}}>{lang==="en"
+                ?"In the villages of East Nusa Tenggara, a community health worker called a Kader visits families on foot. She carries a KMS book, a pen, and a weighing scale. She knows every family by name. But when a pregnant mother shows signs of preeclampsia at 2am — she has no way to know what to do next, and no doctor within hours."
+                :"Di desa-desa Nusa Tenggara Timur, seorang Kader mengunjungi keluarga dengan berjalan kaki. Ia membawa buku KMS, pena, dan timbangan. Ia mengenal setiap keluarga dengan nama. Namun saat seorang ibu hamil menunjukkan tanda preeklampsia jam 2 pagi — ia tidak tahu harus berbuat apa, dan tidak ada dokter dalam jangkauan berjam-jam."}</p>
+              <p style={{marginBottom:20}}>{lang==="en"
+                ?"Indonesia's 1.4 million Kaders are one of the most remarkable public health forces in the world. They show up — every day, in every village, in every condition — driven entirely by care for their community. SahAIbat exists to give that dedication the tools it deserves."
+                :"1,4 juta Kader Indonesia adalah salah satu kekuatan kesehatan masyarakat paling luar biasa di dunia. Mereka hadir — setiap hari, di setiap desa, dalam segala kondisi — didorong sepenuhnya oleh kepedulian terhadap komunitas mereka. SahAIbat hadir untuk memberi dedikasi itu alat yang layak."}</p>
+              <p style={{fontWeight:700,fontSize:18,color:C.dark}}>{lang==="en"?"SahAIbat was built for her.":"SahAIbat dibangun untuk mereka."}</p>
+            </div>
+          </FadeIn>
+          <FadeIn delay={200}>
+            <div style={{background:C.dark,borderRadius:20,padding:32,color:C.white}}>
+              <div style={{fontSize:48,marginBottom:16}}>🌿</div>
+              <div style={{fontFamily:"'Playfair Display',serif",fontSize:22,lineHeight:1.4,marginBottom:16}}>
+                {lang==="en"?<>&ldquo;SahAIbat&rdquo; means <em style={{color:C.teal}}>companion</em> in Bahasa Indonesia.</>:<>&ldquo;SahAIbat&rdquo; berarti <em style={{color:C.teal}}>teman setia</em> dalam Bahasa Indonesia.</>}
+              </div>
+              <p style={{color:"rgba(255,255,255,0.6)",fontSize:15,lineHeight:1.7}}>
+                {lang==="en"?"Not a diagnostic engine. Not a replacement for doctors. A companion — something that walks alongside the Kader, the midwife, the worried parent — giving confidence when it's needed most."
+                :"Bukan mesin diagnostik. Bukan pengganti dokter. Sebuah teman — yang berjalan bersama Kader, bidan, orang tua yang khawatir — memberikan keyakinan saat paling dibutuhkan."}
+              </p>
+              <div style={{marginTop:24,paddingTop:24,borderTop:"1px solid rgba(255,255,255,0.1)",display:"flex",gap:20,flexWrap:"wrap"}}>
+                {[{l:"WhatsApp-first",s:lang==="en"?"no app download":"tidak perlu unduh"},{l:lang==="en"?"Offline-capable":"Bisa Offline",s:lang==="en"?"no signal needed":"tanpa sinyal"},{l:lang==="en"?"Free forever":"Gratis Selamanya",s:lang==="en"?"for communities":"untuk komunitas"}].map(({l,s})=>(<div key={l}><div style={{color:C.teal,fontWeight:700,fontSize:15}}>{l}</div><div style={{color:"rgba(255,255,255,0.5)",fontSize:11}}>{s}</div></div>))}
               </div>
             </div>
           </FadeIn>
-        )}
+        </div>
+      </div>
+    </section>
+
+    {/* ══ PRODUCTS ═══════════════════════════════════════════════════════════ */}
+    <ProductsSection lang={lang}/>
+
+    {/* ══ IMPACT ═════════════════════════════════════════════════════════════ */}
+    <ImpactSection lang={lang}/>
+
+    {/* ══ FIELD PARTNERS ═════════════════════════════════════════════════════ */}
+    <FieldPartnersSection lang={lang}/>
+
+    {/* ══ TEAM ════════════════════════════════════════════════════════════════ */}
+    <TeamSection lang={lang}/>
+
+    {/* ══ SUPPORT ════════════════════════════════════════════════════════════ */}
+    <section id="support" style={{background:C.dark,padding:"100px 0",position:"relative",overflow:"hidden"}}>
+      <div className="teal-glow" style={{width:600,height:600,background:C.teal,bottom:"-20%",right:"-10%"}}/>
+      <div className="section-max" style={{position:"relative",zIndex:1}}>
+        <FadeIn>
+          <div style={{textAlign:"center",marginBottom:64}}>
+            <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(2,195,154,0.1)",border:"1px solid rgba(2,195,154,0.3)",borderRadius:20,padding:"6px 16px",marginBottom:16}}>
+              <span style={{color:C.teal,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"FUEL THE MISSION":"DUKUNG MISI KAMI"}</span>
+            </div>
+            <h2 className="display-font" style={{fontSize:"clamp(32px,4vw,52px)",color:C.white,lineHeight:1.2,marginBottom:16}}>
+              {lang==="en"?<>We don&apos;t ask for donations.<br/><span style={{color:C.teal}}>We ask for belief.</span></>:<>Kami tidak meminta donasi.<br/><span style={{color:C.teal}}>Kami meminta kepercayaan.</span></>}
+            </h2>
+            <p style={{color:"rgba(255,255,255,0.5)",fontSize:16,maxWidth:560,lineHeight:1.8,margin:"0 auto"}}>
+              {lang==="en"?"SahAIbat is free for every community it serves. The only way to keep it that way is through people who believe healthcare equity is worth fighting for."
+              :"SahAIbat gratis untuk setiap komunitas yang dilayani. Satu-satunya cara mempertahankan ini adalah melalui orang-orang yang percaya bahwa kesetaraan layanan kesehatan layak diperjuangkan."}
+            </p>
+          </div>
+        </FadeIn>
+        <div className="three-col" style={{marginBottom:48}}>
+          {[
+            {icon:"☕",title:lang==="en"?"Buy the team a coffee":"Traktir tim kopi",amount:"$5",desc:lang==="en"?"Keeps the server running for a day. Covers one Kader's WhatsApp session costs for a week.":"Menjaga server berjalan sehari.",cta:lang==="en"?"Support on Ko-fi":"Dukung di Ko-fi",href:"https://ko-fi.com/sahaibat",color:C.teal,featured:false},
+            {icon:"🌱",title:lang==="en"?"Sponsor a Posyandu session":"Sponsori sesi Posyandu",amount:"$25",desc:lang==="en"?"Funds AI triage support for an entire Posyandu session — 20+ children, mothers, and newborns screened.":"Mendanai dukungan triase AI untuk seluruh sesi Posyandu.",cta:lang==="en"?"Sponsor a Session":"Sponsori Sesi",href:"https://ko-fi.com/sahaibat",color:C.gold,featured:true},
+            {icon:"🤝",title:lang==="en"?"Partner with us":"Bermitra dengan kami",amount:lang==="en"?"Let's talk":"Mari bicara",desc:lang==="en"?"NGO, researcher, funder, or government partner — every partnership expands our reach.":"NGO, peneliti, donatur, atau mitra pemerintah.",cta:lang==="en"?"Get in Touch":"Hubungi Kami",href:"mailto:admin@sahaibat.com?subject=Partnership Inquiry",color:C.pink,featured:false},
+          ].map(({icon,title,amount,desc,cta,href,color,featured})=>(<FadeIn key={title} delay={100}>
+            <div style={{background:featured?`linear-gradient(135deg,${C.tealXdk},${C.tealDk})`:"rgba(255,255,255,0.03)",border:`1.5px solid ${featured?C.teal:"rgba(255,255,255,0.08)"}`,borderRadius:20,padding:32,display:"flex",flexDirection:"column",height:"100%",transform:featured?"scale(1.03)":"scale(1)"}}>
+              {featured&&<div style={{color:C.teal,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:12}}>⭐ {lang==="en"?"MOST IMPACTFUL":"PALING BERDAMPAK"}</div>}
+              <div style={{fontSize:36,marginBottom:12}}>{icon}</div>
+              <div className="display-font" style={{color,fontSize:28,fontWeight:900,marginBottom:8}}>{amount}</div>
+              <div style={{color:C.white,fontWeight:700,fontSize:16,marginBottom:12}}>{title}</div>
+              <p style={{color:"rgba(255,255,255,0.5)",fontSize:13,lineHeight:1.7,flex:1}}>{desc}</p>
+              <a href={href} style={{display:"block",marginTop:24,textAlign:"center",padding:"12px 24px",borderRadius:12,background:featured?C.teal:"transparent",border:`1.5px solid ${featured?C.teal:"rgba(255,255,255,0.2)"}`,color:featured?C.dark:C.white,fontWeight:700,fontSize:14,textDecoration:"none"}}>{cta} →</a>
+            </div>
+          </FadeIn>))}
+        </div>
+        <FadeIn>
+          <div style={{background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.08)",borderRadius:16,padding:32,display:"flex",gap:24,alignItems:"flex-start",flexWrap:"wrap"}}>
+            <div style={{fontSize:40}}>🔍</div>
+            <div style={{flex:1,minWidth:240}}>
+              <div style={{color:C.white,fontWeight:700,fontSize:18,marginBottom:8}}>{lang==="en"?"Full transparency. Always.":"Transparansi penuh. Selalu."}</div>
+              <p style={{color:"rgba(255,255,255,0.5)",fontSize:14,lineHeight:1.7,maxWidth:600}}>{lang==="en"?"Every dollar of support received will be publicly recorded — server costs, team stipends, field visits, clinical validation. You'll always know where your support goes.":"Setiap dukungan yang diterima akan dicatat secara publik — biaya server, tunjangan tim, kunjungan lapangan, validasi klinis."}</p>
+              <div style={{marginTop:16,display:"flex",gap:12,flexWrap:"wrap"}}>
+                {(lang==="en"?["Server infrastructure","Kader training","Field visits NTT","Clinical validation","Product development"]:["Infrastruktur server","Pelatihan Kader","Kunjungan lapangan NTT","Validasi klinis","Pengembangan produk"]).map(item=>(<span key={item} style={{background:"rgba(2,195,154,0.08)",border:"1px solid rgba(2,195,154,0.15)",color:C.teal,fontSize:12,padding:"4px 12px",borderRadius:20}}>{item}</span>))}
+              </div>
+            </div>
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+
+    {/* ══ FOOTER ═════════════════════════════════════════════════════════════ */}
+    <footer style={{background:C.charcoal,borderTop:"1px solid rgba(2,195,154,0.1)",padding:"56px 0 32px"}}>
+      <div className="section-max">
+        <div className="footer-grid" style={{marginBottom:48}}>
+          <div>
+            <div style={{marginBottom:16}}><img src="/images/logo-horizontal@2x.png" alt="SahAIbat" style={{height:32,width:"auto",filter:"brightness(0) invert(1)",opacity:0.85}}/></div>
+            <p style={{color:"rgba(255,255,255,0.4)",fontSize:13,lineHeight:1.7,maxWidth:280,marginBottom:16}}>{lang==="en"?"WhatsApp-first AI clinical triage for Community Health Workers in Indonesia. Free for communities. Always.":"Triase klinis AI berbasis WhatsApp untuk Kader Kesehatan Indonesia. Gratis untuk komunitas. Selamanya."}</p>
+            <p style={{color:"rgba(255,255,255,0.18)",fontSize:11,lineHeight:1.7}}>All IP owned by<br/><strong style={{color:"rgba(255,255,255,0.3)"}}>Vinatra · 11679210 Canada Inc</strong><br/>Terdaftar PSE Lingkup Privat Asing<br/>NIB: 1202260248509</p>
+          </div>
+          <div>
+            <div style={{color:C.teal,fontWeight:700,fontSize:12,letterSpacing:1,marginBottom:16}}>PLATFORM</div>
+            {([["#story",lang==="en"?"Our Story":"Cerita Kami"],["#products",lang==="en"?"Products":"Produk"],["#partners",lang==="en"?"Field Partners":"Mitra Lapangan"],["#team",lang==="en"?"Team":"Tim"],["#support",lang==="en"?"Support us":"Dukung kami"]] as [string,string][]).map(([href,label])=>(<a key={label} href={href} style={{display:"block",color:"rgba(255,255,255,0.4)",fontSize:13,textDecoration:"none",marginBottom:9,transition:"color 0.2s"}} onMouseEnter={e=>(e.target as HTMLElement).style.color=C.teal} onMouseLeave={e=>(e.target as HTMLElement).style.color="rgba(255,255,255,0.4)"}>{label}</a>))}
+          </div>
+          <div>
+            <div style={{color:C.teal,fontWeight:700,fontSize:12,letterSpacing:1,marginBottom:16}}>CONNECT</div>
+            {([["📧","admin@sahaibat.com","mailto:admin@sahaibat.com"],["📸","sahaibat_health","https://instagram.com/sahaibat_health"],["▶️","@SahaibatHealth","https://youtube.com/@SahaibatHealth"],["🎵","@sahaibat","https://tiktok.com/@sahaibat"],["💼","LinkedIn","https://www.linkedin.com/company/110529968/"],["💬","+62 819 1866 9241","https://wa.me/6281918669241"]] as [string,string,string][]).map(([icon,label,href])=>(<a key={label} href={href} target={href.startsWith("http")?"_blank":"_self"} className="social-link"><span style={{fontSize:14,width:18,textAlign:"center"}}>{icon}</span><span>{label}</span></a>))}
+          </div>
+          <div>
+            <div style={{color:C.teal,fontWeight:700,fontSize:12,letterSpacing:1,marginBottom:16}}>LEGAL</div>
+            {([["Privacy Policy","/privacy"],["Terms of Use","/terms"],["Contact","/contact"]] as [string,string][]).map(([label,href])=>(<a key={label} href={href} style={{display:"block",color:"rgba(255,255,255,0.4)",fontSize:13,textDecoration:"none",marginBottom:9}} onMouseEnter={e=>(e.target as HTMLElement).style.color=C.teal} onMouseLeave={e=>(e.target as HTMLElement).style.color="rgba(255,255,255,0.4)"}>{label}</a>))}
+          </div>
+        </div>
+        <div style={{borderTop:"1px solid rgba(255,255,255,0.06)",paddingTop:24,display:"flex",justifyContent:"space-between",flexWrap:"wrap",gap:12}}>
+          <span style={{color:"rgba(255,255,255,0.2)",fontSize:12}}>© 2026 SahAIbat Foundation · IP owned by Vinatra (11679210 Canada Inc) · All rights reserved</span>
+          <span style={{color:"rgba(255,255,255,0.2)",fontSize:12}}>Not a diagnostic tool · Bukan pengganti dokter</span>
+        </div>
+      </div>
+    </footer>
+  </>);
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// PRODUCTS — 5 tabs with story
+// ══════════════════════════════════════════════════════════════════════════════
+function ProductsSection({lang}:{lang:"en"|"id"}){
+  const [active,setActive]=useState(0);
+
+  const tabs=[
+    {
+      id:0,
+      icon:"❤️‍🩹",
+      label:"Kasih",
+      sublabel:lang==="en"?"Family Chat":"Chat Keluarga",
+      accent:C.teal,
+      headline:lang==="en"?"2:47 AM. A mother. A fever. A phone.":"Pukul 02:47. Seorang ibu. Demam. Sebuah ponsel.",
+      story:lang==="en"
+        ?"Ibu Dewi is alone. Her husband is working in Surabaya. Rizky — three years old — has had a fever of 39.8°C for five hours and won't stop crying. The nearest clinic opens at 8am.\n\nShe doesn't know if this is dangerous. She opens WhatsApp. She messages Kasih.\n\nIn 90 seconds, she has a structured risk assessment, a care plan, and something she didn't have before: clarity. Kasih told her what to watch for, what to do, and exactly when to go to the emergency room.\n\nBy morning, Rizky's fever had broken. Ibu Dewi had slept, a little. Kasih had been there."
+        :"Ibu Dewi sendirian. Suaminya sedang bekerja di Surabaya. Rizky — tiga tahun — sudah demam 39,8°C selama lima jam dan tidak berhenti menangis. Klinik terdekat buka jam 8 pagi.\n\nIa tidak tahu apakah ini berbahaya. Ia membuka WhatsApp. Ia mengirim pesan ke Kasih.\n\nDalam 90 detik, ia mendapat penilaian risiko terstruktur, rencana perawatan, dan sesuatu yang tidak ia miliki sebelumnya: kejelasan. Kasih memberinya tahu apa yang harus diperhatikan, apa yang harus dilakukan, dan kapan harus pergi ke IGD.\n\nPagi harinya, demam Rizky turun. Ibu Dewi sempat tidur, sedikit. Kasih ada di sana.",
+      features:lang==="en"
+        ?["Responds in Bahasa Indonesia — warm, not clinical","Structured risk levels: Monitor · Watch · Clinic · Emergency","No app download needed — WhatsApp only","Works at 3 AM with zero internet","Designed for parents, grandparents, caregivers"]
+        :["Menjawab dalam Bahasa Indonesia — hangat, tidak klinis","Tingkat risiko terstruktur: Pantau · Waspada · Klinik · Darurat","Tidak perlu unduh app — WhatsApp saja","Bekerja pukul 3 pagi tanpa internet","Dirancang untuk orang tua dan pengasuh"],
+      messages:[
+        {msg:"Anak saya 3 thn, demam 39.8 sudah 5 jam",u:true,urg:false},
+        {msg:"❤️‍🩹 Kasih — Panduan Keluarga\n\nSaya mendengar Anda, Ibu. Masih mau minum?\n1=Ya  2=Tidak",u:false,urg:false},
+        {msg:"1, sedikit-sedikit",u:true,urg:false},
+        {msg:"Bagus, itu tanda baik 💙\n\nAda kejang atau kaku leher?\n1=Ya  2=Tidak",u:false,urg:false},
+        {msg:"2",u:true,urg:false},
+        {msg:"🟡 PANTAU KETAT\n\nAman dipantau di rumah.\n• Kompres hangat\n• Minum sedikit tapi sering\n• Pantau tiap 30 menit\n\nJika >40°C atau kejang → IGD segera.",u:false,urg:false},
+        {msg:"Terima kasih, lebih tenang sekarang 🙏",u:true,urg:false},
+      ],
+    },
+    {
+      id:1,
+      icon:"📱",
+      label:"Kader WhatsApp",
+      sublabel:lang==="en"?"Professional Triage":"Triase Profesional",
+      accent:C.pink,
+      headline:lang==="en"?"The Kader who catches what no chart could.":"Kader yang menangkap apa yang tidak terlihat di KMS.",
+      story:lang==="en"
+        ?"Bidan Sari has been a Kader for eleven years in Kefamenanu, NTT. She knows every family by name. Today she is with a new mother — three weeks postpartum. Something feels wrong. The mother is pale, barely speaking. No doctor within reach.\n\nShe opens SahAIbat. She types. In seconds, a structured clinical module walks her through the right questions — in the right order.\n\nTwo answers in: 🔴 DARURAT. Sari makes the call. Bu Ani is at the Puskesmas within 40 minutes. Postpartum haemorrhage, early infection. Treated in time.\n\nSari always trusted her instincts. SahAIbat gave her the protocol to act on them."
+        :"Bidan Sari sudah menjadi Kader selama sebelas tahun di Kefamenanu, NTT. Ia mengenal setiap keluarga dengan nama. Hari ini ia bersama ibu baru — tiga minggu setelah melahirkan. Ada sesuatu yang terasa tidak beres. Ibu itu pucat, hampir tidak berbicara. Tidak ada dokter dalam jangkauan.\n\nIa membuka SahAIbat. Ia mengetik. Dalam hitungan detik, modul klinis terstruktur membimbingnya melalui pertanyaan yang tepat — dalam urutan yang benar.\n\nDua jawaban: 🔴 DARURAT. Sari membuat panggilan. Bu Ani di Puskesmas dalam 40 menit. Perdarahan postpartum, infeksi awal. Ditangani tepat waktu.\n\nSari selalu mempercayai instingnya. SahAIbat memberinya protokol untuk bertindak.",
+      features:lang==="en"
+        ?["4 clinical modules: Maternal · Child · Neonatal · Posyandu","Follows Buku KIA (Permenkes 2/2020) exactly","RUJUK alerts with Puskesmas name","Visit records sync to NGO dashboard","Works online and offline"]
+        :["4 modul klinis: Maternal · Anak · Neonatal · Posyandu","Mengikuti Buku KIA (Permenkes 2/2020) persis","Peringatan RUJUK dengan nama Puskesmas","Catatan kunjungan tersinkron ke dashboard NGO","Bekerja online dan offline"],
+      messages:[
+        {msg:"Bu Ani, 24th, 3mgg postpartum, pucat, bicara pelan",u:true,urg:false},
+        {msg:"🩺 Modul Ibu Nifas\n\nPerdarahan >2 pembalut/jam?\n1=Ya  2=Tidak",u:false,urg:false},
+        {msg:"1",u:true,urg:false},
+        {msg:"Darah berbau tidak normal?\n1=Ya  2=Tidak",u:false,urg:false},
+        {msg:"1",u:true,urg:false},
+        {msg:"🔴 DARURAT — RUJUK SEGERA\n\nPerdarahan postpartum + infeksi nifas.\n\n• Jangan tinggalkan pasien\n• Hubungi Puskesmas Kefamenanu\n• Catat waktu & kondisi ibu",u:false,urg:true},
+      ],
+    },
+    {
+      id:2,
+      icon:"📵",
+      label:"Kader Offline",
+      sublabel:lang==="en"?"Zero Network Mode":"Mode Tanpa Jaringan",
+      accent:C.gold,
+      headline:lang==="en"?"No signal. No WiFi. No problem.":"Tidak ada sinyal. Tidak ada WiFi. Tidak masalah.",
+      story:lang==="en"
+        ?"In Alor, Flores, and the highlands of Timor — entire districts where 4G is a rumour and 2G drops out by noon — Kaders still make their rounds. Every day. Rain or shine.\n\nStandard digital health tools fail here. They need APIs. They need cloud sync. They need data — and data costs money the Kader doesn't have.\n\nSahAIbat Offline runs the entire WHO growth engine, all KMS danger sign rules, and every referral protocol — locally, on the Kader's phone, with zero network dependency.\n\nWhen signal returns — whether it's an hour or three days later — every visit syncs automatically to the Posyandu dashboard. Nothing is lost."
+        :"Di Alor, Flores, dan dataran tinggi Timor — seluruh kabupaten di mana 4G hanya kabar burung dan 2G hilang sebelum siang — para Kader tetap bertugas. Setiap hari. Hujan atau panas.\n\nAlat kesehatan digital standar gagal di sini. Mereka butuh API. Sinkronisasi cloud. Data — dan data membutuhkan biaya yang tidak dimiliki Kader.\n\nSahAIbat Offline menjalankan seluruh engine pertumbuhan WHO, semua aturan tanda bahaya KMS, dan setiap protokol rujukan — secara lokal, di ponsel Kader, tanpa ketergantungan jaringan sama sekali.\n\nKetika sinyal kembali — satu jam atau tiga hari kemudian — setiap kunjungan tersinkron otomatis ke dashboard Posyandu. Tidak ada yang hilang.",
+      features:lang==="en"
+        ?["100% offline — zero network dependency","WHO growth calculations run locally on device","All danger sign rules hardcoded — no AI API needed","Auto-sync when any signal returns","Works on basic 2G WhatsApp phones"]
+        :["100% offline — nol ketergantungan jaringan","Kalkulasi pertumbuhan WHO berjalan lokal di perangkat","Semua aturan tanda bahaya dikodekan tetap","Sinkronisasi otomatis saat sinyal kembali","Bekerja di ponsel 2G sederhana"],
+      messages:[
+        {msg:"📵 Tidak ada sinyal\nMode Offline: AKTIF\nSemua triase berjalan secara lokal",u:false,urg:false},
+        {msg:"Bayi 6 hari, tidak mau menyusu sejak pagi",u:true,urg:false},
+        {msg:"🍼 Modul Neonatal (Offline)\n\nBayi tampak kuning (ikterus)?\n1=Ya  2=Tidak",u:false,urg:false},
+        {msg:"1",u:true,urg:false},
+        {msg:"Kuning sampai ke telapak tangan atau kaki?\n1=Ya  2=Tidak",u:false,urg:false},
+        {msg:"1",u:true,urg:false},
+        {msg:"🔴 DARURAT — Ikterus Neonatorum Berat\n\nRujuk ke Puskesmas SEGERA.\n\n📱 Catatan tersimpan lokal\n🔄 Tersinkron saat sinyal kembali",u:false,urg:true},
+      ],
+    },
+    {
+      id:3,
+      icon:"👩‍⚕️",
+      label:"Bidan",
+      sublabel:lang==="en"?"Midwife Module":"Modul Bidan",
+      accent:C.purple,
+      headline:lang==="en"?"The midwife who can't be in two villages at once.":"Bidan yang tidak bisa berada di dua desa sekaligus.",
+      story:lang==="en"
+        ?"A Bidan in rural NTT can serve 5–10 villages. She cannot be everywhere. But her knowledge can be.\n\nThe Bidan module gives community midwives a structured digital companion for antenatal visits, postnatal checks, and high-risk pregnancy monitoring. It doesn't replace her clinical judgment — it extends her reach.\n\nWhen a Kader flags a concern, the Bidan receives a structured summary: the questions asked, the answers given, and a clear risk classification. She can triage remotely — and respond where it matters most.\n\nHer knowledge. Everywhere she can't be."
+        :"Seorang Bidan di NTT pedesaan bisa melayani 5–10 desa. Ia tidak bisa hadir di mana-mana. Tapi pengetahuannya bisa.\n\nModul Bidan memberi bidan komunitas pendamping digital terstruktur untuk kunjungan antenatal, pemeriksaan pascamelahirkan, dan pemantauan kehamilan berisiko tinggi. Ini tidak menggantikan penilaian klinisnya — ini memperluas jangkauannya.\n\nKetika Kader melaporkan kekhawatiran, Bidan menerima ringkasan terstruktur: pertanyaan yang diajukan, jawaban yang diberikan, dan klasifikasi risiko yang jelas. Ia bisa melakukan triase dari jarak jauh — dan merespons di tempat yang paling penting.\n\nPengetahuannya. Di mana pun ia tidak bisa hadir.",
+      features:lang==="en"
+        ?["Antenatal visit tracking — all trimesters","Postnatal monitoring — 0 to 42 days","High-risk flag alerts sent to supervising Bidan","Remote triage review from any location","Integrated with Kader WhatsApp module"]
+        :["Pelacakan kunjungan antenatal — semua trimester","Pemantauan pascamelahirkan — 0 sampai 42 hari","Peringatan tanda bahaya dikirim ke Bidan pengawas","Tinjauan triase jarak jauh dari lokasi mana pun","Terintegrasi dengan modul Kader WhatsApp"],
+      messages:[
+        {msg:"👩‍⚕️ Bidan Dashboard\nKunjungan hari ini: 3\nTanda bahaya terdeteksi: 1",u:false,urg:false},
+        {msg:"⚠️ PERINGATAN BARU\n\nKader Sari melaporkan:\nBu Wati, 32th, hamil 36mgg\nTekanan darah tinggi terdeteksi\n\nLihat detail? 1=Ya  2=Nanti",u:false,urg:false},
+        {msg:"1",u:true,urg:false},
+        {msg:"📋 Ringkasan Kasus\n\nSakit kepala berat: Ya\nPenglihatan kabur: Ya\nProtein urin: Belum diperiksa\n\n→ Preeklampsia dicurigai\n→ RUJUK ke Puskesmas hari ini",u:false,urg:true},
+        {msg:"Siap, saya akan hubungi Puskesmas sekarang",u:true,urg:false},
+      ],
+    },
+    {
+      id:4,
+      icon:"📊",
+      label:lang==="en"?"NGO Dashboard":"Dashboard NGO",
+      sublabel:lang==="en"?"Impact at scale":"Dampak skala besar",
+      accent:C.blue,
+      headline:lang==="en"?"See everything. Miss nothing.":"Lihat segalanya. Jangan lewatkan satu pun.",
+      story:lang==="en"
+        ?"A stunting rate drops from 32% to 24% in two years. A Kader in Rote makes 47 home visits in a month — all recorded. A high-risk pregnancy is flagged in TTS on a Tuesday, and a Bidan responds that same afternoon.\n\nThe NGO Dashboard doesn't just show you data. It shows you what your programme is actually doing — in real time, at the village level, across every district you operate in.\n\nFor programme managers, donors, and government partners, the dashboard is the proof. Coverage maps, clinical outcomes, Kader activity, referral rates — all in one place, updated live, exportable in one click.\n\nThis is what accountability looks like."
+        :"Angka stunting turun dari 32% menjadi 24% dalam dua tahun. Seorang Kader di Rote membuat 47 kunjungan rumah dalam sebulan — semuanya tercatat. Kehamilan berisiko tinggi ditandai di TTS pada hari Selasa, dan Bidan merespons hari yang sama.\n\nDashboard NGO tidak sekadar menampilkan data. Ia menunjukkan apa yang sebenarnya dilakukan program Anda — secara real-time, di tingkat desa, di setiap kabupaten tempat Anda beroperasi.\n\nBagi manajer program, donor, dan mitra pemerintah, dashboard adalah buktinya. Peta cakupan, hasil klinis, aktivitas Kader, tingkat rujukan — semuanya di satu tempat, diperbarui langsung, bisa diekspor dengan satu klik.\n\nInilah tampilan akuntabilitas.",
+      features:lang==="en"
+        ?["Real-time Kader activity across all districts","Village-level coverage and outcome maps","Clinical risk trends — by module, by region","One-click export for donor and MoH reporting","Role-based access: Kader · Bidan · NGO · Funder"]
+        :["Aktivitas Kader real-time di semua kabupaten","Peta cakupan dan hasil tingkat desa","Tren risiko klinis — per modul, per wilayah","Ekspor satu klik untuk laporan donor dan Kemenkes","Akses berbasis peran: Kader · Bidan · NGO · Donor"],
+      messages:[
+        {msg:"📊 NGO Dashboard — Yayasan Pijar Timur\nNTT Province · Live",u:false,urg:false},
+        {msg:"Kader aktif bulan ini: 142 / 180\nKunjungan total: 1,847\nTanda bahaya terdeteksi: 23\nRujukan berhasil: 21",u:false,urg:false},
+        {msg:"⚠️ 2 desa belum dilaporkan minggu ini:\n• Desa Oebola\n• Desa Nunkurus\n\nKirim pengingat ke Kader? 1=Ya",u:false,urg:false},
+        {msg:"1",u:true,urg:false},
+        {msg:"✓ Pengingat terkirim ke 2 Kader\n\nLaporan bulan ini siap diekspor:\n📄 Export PDF · 📊 Export Excel",u:false,urg:false},
+      ],
+    },
+  ];
+
+  const p=tabs[active];
+
+  return(
+    <section id="products" style={{background:C.dark,padding:"100px 0",position:"relative",overflow:"hidden"}}>
+      <div className="teal-glow" style={{width:400,height:400,background:C.teal,top:"5%",right:"-5%"}}/>
+      <div className="section-max" style={{position:"relative",zIndex:1}}>
+        <FadeIn>
+          <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(2,195,154,0.1)",border:"1px solid rgba(2,195,154,0.3)",borderRadius:20,padding:"6px 16px",marginBottom:16}}>
+            <span style={{color:C.teal,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"OUR PRODUCTS":"PRODUK KAMI"}</span>
+          </div>
+          <h2 className="display-font" style={{fontSize:"clamp(32px,4vw,52px)",color:C.white,lineHeight:1.2,marginBottom:16,maxWidth:700}}>
+            {lang==="en"?"Five tools. Built for the people who show up.":"Lima alat. Dibangun untuk mereka yang selalu hadir."}
+          </h2>
+          <p style={{color:"rgba(255,255,255,0.5)",fontSize:16,maxWidth:560,lineHeight:1.8,marginBottom:48}}>
+            {lang==="en"?"From the worried parent at midnight to the midwife in a mountain village with no internet — SahAIbat meets every user exactly where they are."
+            :"Dari orang tua yang khawatir tengah malam hingga bidan di desa pegunungan tanpa internet — SahAIbat hadir untuk setiap pengguna persis di mana mereka berada."}
+          </p>
+        </FadeIn>
+
+        {/* Tab buttons */}
+        <div style={{display:"flex",gap:10,marginBottom:48,flexWrap:"wrap"}}>
+          {tabs.map(tab=>(<button key={tab.id} onClick={()=>setActive(tab.id)} style={{display:"flex",alignItems:"center",gap:8,padding:"10px 18px",borderRadius:14,fontSize:13,fontWeight:600,cursor:"pointer",transition:"all 0.25s",background:active===tab.id?tab.accent:"rgba(255,255,255,0.05)",color:active===tab.id?C.dark:"rgba(255,255,255,0.6)",border:active===tab.id?`1.5px solid ${tab.accent}`:"1.5px solid rgba(255,255,255,0.1)"}}>
+            <span style={{fontSize:18}}>{tab.icon}</span>
+            <div style={{textAlign:"left"}}>
+              <div style={{fontWeight:700,lineHeight:1}}>{tab.label}</div>
+              <div style={{fontSize:10,opacity:0.7,marginTop:2}}>{tab.sublabel}</div>
+            </div>
+          </button>))}
+        </div>
+
+        {/* Active panel */}
+        <div key={active}>
+          <div className="hero-grid" style={{alignItems:"start"}}>
+            <div>
+              <div style={{display:"inline-flex",alignItems:"center",gap:8,background:`${p.accent}15`,border:`1px solid ${p.accent}40`,borderRadius:20,padding:"5px 14px",marginBottom:20}}>
+                <span style={{color:p.accent,fontSize:12,fontWeight:600}}>{p.icon} {p.sublabel}</span>
+              </div>
+              <h3 className="display-font" style={{color:C.white,fontSize:"clamp(22px,2.5vw,34px)",lineHeight:1.25,marginBottom:24}}>{p.headline}</h3>
+              {p.story.split("\n\n").map((para,i)=>(<p key={i} style={{color:"rgba(255,255,255,0.6)",fontSize:15,lineHeight:1.9,marginBottom:16,fontStyle:i===p.story.split("\n\n").length-1?"italic":"normal"}}>{para}</p>))}
+              <div style={{marginTop:32,background:`${p.accent}08`,border:`1px solid ${p.accent}20`,borderRadius:16,padding:24}}>
+                <div style={{color:p.accent,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:12}}>{lang==="en"?"KEY CAPABILITIES":"KEMAMPUAN UTAMA"}</div>
+                {p.features.map((f,i)=>(<div key={i} style={{display:"flex",gap:12,marginBottom:10,alignItems:"flex-start"}}><div style={{width:6,height:6,borderRadius:"50%",background:p.accent,marginTop:7,flexShrink:0}}/><span style={{color:"rgba(255,255,255,0.7)",fontSize:13,lineHeight:1.6}}>{f}</span></div>))}
+              </div>
+            </div>
+            <div>
+              <div style={{background:"rgba(15,31,28,0.8)",border:`1px solid ${p.accent}30`,borderRadius:24,padding:28,position:"relative",overflow:"hidden"}}>
+                <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,transparent,${p.accent},transparent)`}}/>
+                <div style={{color:C.muted,fontSize:11,textAlign:"center",marginBottom:16,fontFamily:"monospace"}}>💬 SahAIbat · {p.label}</div>
+                <div style={{fontFamily:"monospace",fontSize:12}}>
+                  {p.messages.map((m,i)=>(<div key={i} style={{display:"flex",justifyContent:m.u?"flex-end":"flex-start",marginBottom:10}}>
+                    <div style={{background:m.urg?"rgba(232,72,85,0.15)":m.u?`${p.accent}20`:"rgba(255,255,255,0.05)",border:m.urg?"1px solid rgba(232,72,85,0.3)":m.u?`1px solid ${p.accent}40`:"1px solid rgba(255,255,255,0.08)",borderRadius:12,padding:"8px 12px",maxWidth:"85%",color:m.urg?"#FF6B6B":m.u?p.accent:"rgba(255,255,255,0.75)",fontSize:12,lineHeight:1.55,whiteSpace:"pre-line"}}>{m.msg}</div>
+                  </div>))}
+                </div>
+                <div style={{marginTop:14,paddingTop:14,borderTop:"1px solid rgba(255,255,255,0.06)",display:"flex",justifyContent:"space-between",flexWrap:"wrap",gap:6}}>
+                  <span style={{color:C.muted,fontSize:10}}>✓ {lang==="en"?"Saved locally · Syncs when signal returns":"Tersimpan lokal · Tersinkron saat sinyal kembali"}</span>
+                  <span style={{color:p.accent,fontSize:10}}>📵 {lang==="en"?"Works offline":"Bekerja offline"}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
-// TEAM SECTION — passion-driven, not CV-recitation
+// IMPACT — emotional storytelling, donor-facing
 // ══════════════════════════════════════════════════════════════════════════════
-function TeamSection({ lang }: { lang:"en"|"id" }) {
-  const t=T[lang];
+function ImpactSection({lang}:{lang:"en"|"id"}){
+  return(
+    <section id="impact" style={{background:C.cream,padding:"100px 0"}}>
+      <div className="section-max">
+        <FadeIn>
+          <div style={{display:"inline-flex",alignItems:"center",gap:8,background:`${C.tealDk}20`,border:`1px solid ${C.tealDk}40`,borderRadius:20,padding:"6px 16px",marginBottom:16}}>
+            <span style={{color:C.tealDk,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"IMPACT ON THE GROUND":"DAMPAK DI LAPANGAN"}</span>
+          </div>
+          <h2 className="display-font" style={{fontSize:"clamp(32px,4vw,52px)",color:C.dark,lineHeight:1.2,marginBottom:16,maxWidth:700}}>
+            {lang==="en"?"Behind every number is a family.":"Di balik setiap angka ada sebuah keluarga."}
+          </h2>
+          <p style={{color:C.muted,fontSize:18,maxWidth:640,lineHeight:1.8,marginBottom:64}}>
+            {lang==="en"?"Stunting. Maternal death. A newborn who didn't make it. These aren't statistics in Indonesia — they are neighbours, children, sisters. SahAIbat exists to change what happens when a Kader knocks on that door."
+            :"Stunting. Kematian ibu. Bayi baru lahir yang tidak sempat diselamatkan. Ini bukan statistik di Indonesia — mereka adalah tetangga, anak-anak, saudara perempuan. SahAIbat hadir untuk mengubah apa yang terjadi saat Kader mengetuk pintu itu."}
+          </p>
+        </FadeIn>
 
-  const members = [
+        {/* Big emotional stat row */}
+        <FadeIn delay={100}>
+          <div className="three-col" style={{marginBottom:48}}>
+            {[
+              {n:"1 in 5",label:lang==="en"?"children in Indonesia is stunted":"anak Indonesia mengalami stunting",sub:lang==="en"?"That's 6.7 million children whose futures are already being shaped by malnutrition before their second birthday.":"Itu 6,7 juta anak yang masa depannya sudah dibentuk oleh kekurangan gizi sebelum ulang tahun kedua mereka.",color:C.teal},
+              {n:"3×",label:lang==="en"?"higher maternal mortality in NTT than the national average":"lebih tinggi kematian ibu di NTT dari rata-rata nasional",sub:lang==="en"?"East Nusa Tenggara carries one of the highest maternal mortality burdens in Southeast Asia — in communities already stretched thin.":"Nusa Tenggara Timur menanggung salah satu beban kematian ibu tertinggi di Asia Tenggara.",color:C.pink},
+              {n:"90 sec",label:lang==="en"?"is all it takes for SahAIbat to triage a danger sign":"cukup untuk SahAIbat melakukan triase tanda bahaya",sub:lang==="en"?"From first message to structured risk assessment and referral guidance. No training required. No internet required.":"Dari pesan pertama hingga penilaian risiko terstruktur dan panduan rujukan. Tidak butuh pelatihan. Tidak butuh internet.",color:C.gold},
+            ].map(({n,label,sub,color})=>(<div key={n} style={{background:C.dark,borderRadius:20,padding:32,position:"relative",overflow:"hidden"}}>
+              <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${color},transparent)`}}/>
+              <div className="display-font" style={{fontSize:"clamp(36px,4vw,56px)",color,fontWeight:900,lineHeight:1,marginBottom:12}}>{n}</div>
+              <div style={{color:C.white,fontWeight:700,fontSize:15,marginBottom:12,lineHeight:1.4}}>{label}</div>
+              <p style={{color:"rgba(255,255,255,0.45)",fontSize:13,lineHeight:1.7}}>{sub}</p>
+            </div>))}
+          </div>
+        </FadeIn>
+
+        {/* What SahAIbat covers */}
+        <FadeIn delay={150}>
+          <div style={{background:C.dark,borderRadius:24,padding:48,marginBottom:48}}>
+            <div style={{color:C.teal,fontWeight:700,fontSize:12,letterSpacing:1,marginBottom:24}}>{lang==="en"?"WHAT SAHAIBAT COVERS":"APA YANG SAHAIBAT TANGANI"}</div>
+            <div className="three-col">
+              {[
+                {icon:"🤱",color:C.pink,title:lang==="en"?"Maternal Health":"Kesehatan Ibu",items:lang==="en"?["Preeclampsia detection","Postpartum haemorrhage","Fetal distress","Infection screening"]:["Deteksi preeklampsia","Perdarahan postpartum","Gawat janin","Skrining infeksi"]},
+                {icon:"👶",color:C.teal,title:lang==="en"?"Child & Neonatal":"Anak & Neonatal",items:lang==="en"?["Stunting (WAZ · LAZ · WFH)","Neonatal danger signs 0–28 days","KMS growth monitoring","Adolescent health 6–18 yrs"]:["Stunting (WAZ · LAZ · WFH)","Tanda bahaya neonatal 0–28 hari","Pemantauan tumbuh KMS","Kesehatan remaja 6–18 thn"]},
+                {icon:"🦠",color:C.gold,title:lang==="en"?"Communicable Disease":"Penyakit Menular",items:lang==="en"?["TB — symptom screening & contact tracing","Malaria — risk assessment & referral","Dengue — danger sign detection","HIV — community risk screening"]:["TB — skrining gejala & pelacakan kontak","Malaria — penilaian risiko & rujukan","Dengue — deteksi tanda bahaya","HIV — skrining risiko komunitas"]},
+              ].map(({icon,color,title,items})=>(<div key={title}>
+                <div style={{fontSize:32,marginBottom:12}}>{icon}</div>
+                <div style={{color,fontWeight:700,fontSize:14,marginBottom:16}}>{title}</div>
+                {items.map(item=>(<div key={item} style={{display:"flex",gap:10,marginBottom:10,alignItems:"flex-start"}}>
+                  <div style={{width:5,height:5,borderRadius:"50%",background:color,marginTop:7,flexShrink:0}}/>
+                  <span style={{color:"rgba(255,255,255,0.6)",fontSize:13,lineHeight:1.6}}>{item}</span>
+                </div>))}
+              </div>))}
+            </div>
+          </div>
+        </FadeIn>
+
+        {/* Clinical standards */}
+        <FadeIn delay={200}>
+          <div style={{background:`linear-gradient(135deg,${C.tealXdk},${C.tealDk})`,borderRadius:20,padding:36,display:"flex",gap:32,alignItems:"center",flexWrap:"wrap"}}>
+            <div style={{fontSize:48}}>📗</div>
+            <div style={{flex:1,minWidth:240}}>
+              <div style={{color:"rgba(255,255,255,0.6)",fontWeight:700,fontSize:12,letterSpacing:1,marginBottom:8}}>{lang==="en"?"BUILT ON INDONESIA'S OWN CLINICAL STANDARDS":"DIBANGUN DI ATAS STANDAR KLINIS INDONESIA"}</div>
+              <h3 style={{color:C.white,fontSize:22,fontWeight:700,marginBottom:12}}>{lang==="en"?"Every question comes from Buku KIA.":"Setiap pertanyaan berasal dari Buku KIA."}</h3>
+              <p style={{color:"rgba(255,255,255,0.6)",fontSize:14,lineHeight:1.7}}>{lang==="en"?"SahAIbat doesn't invent clinical standards. Every danger sign question, risk threshold, and referral recommendation maps directly to Permenkes No. 2/2020 and WHO Child Growth Standards 2006. We digitise the knowledge that already exists.":"SahAIbat tidak menemukan standar klinis. Setiap pertanyaan tanda bahaya, ambang risiko, dan rekomendasi rujukan dipetakan langsung ke Permenkes No. 2/2020 dan Standar Pertumbuhan Anak WHO 2006."}</p>
+            </div>
+            <div style={{display:"flex",flexDirection:"column",gap:8}}>
+              {["Permenkes 2/2020","WHO Growth 2006","KMS Standar Nasional","SDIDTK Milestones"].map(tag=>(<span key={tag} style={{background:"rgba(255,255,255,0.1)",color:C.white,fontSize:12,padding:"6px 14px",borderRadius:20,fontWeight:600}}>{tag}</span>))}
+            </div>
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// FIELD PARTNERS — real partners with stories
+// ══════════════════════════════════════════════════════════════════════════════
+function FieldPartnersSection({lang}:{lang:"en"|"id"}){
+  const partners=[
     {
-      name: "Sanjib Maity",
-      role: lang==="en" ? "Founder · SahAIbat Foundation / Vinatra" : "Pendiri · SahAIbat Foundation / Vinatra",
-      loc: lang==="en" ? "Canada 🇨🇦" : "Kanada 🇨🇦",
-      photo: "/images/sanjib.jpeg",
-      color: C.teal,
-      bg: C.dark,
-      tc: C.white,
-      passion: lang==="en"
-        ? "Sanjib spent a decade building enterprise automation systems — and couldn't stop asking the same question: why do the communities with the highest disease burden have the least digital support? He left a comfortable career to build the answer. SahAIbat is what happens when a technologist refuses to look away."
-        : "Sanjib menghabiskan satu dekade membangun sistem otomasi enterprise — dan tidak bisa berhenti bertanya: mengapa komunitas dengan beban penyakit tertinggi mendapat dukungan digital paling sedikit? Ia meninggalkan karier yang nyaman untuk membangun jawabannya. SahAIbat adalah hasil dari seorang teknolog yang menolak untuk berpaling.",
-      tags: ["AI Systems","Health Equity","Founder","Canada → Indonesia"],
+      name:"Yayasan Pijar Timur",
+      region:lang==="en"?"Kefamenanu, East Nusa Tenggara":"Kefamenanu, Nusa Tenggara Timur",
+      flag:"🇮🇩",
+      color:C.teal,
+      focus:lang==="en"?"Child Stunting · NTT":"Stunting Anak · NTT",
+      story:lang==="en"
+        ?"In the highland villages of North Central Timor, Yayasan Pijar Timur has been quietly doing the work that saves children's lives — community education, family support, and nutritional monitoring. They know the Kaders, they know the families, and they understand what tools actually work in the field.\n\nWith SahAIbat, their Kaders now have structured WHO-aligned growth screening in their hands — available offline, in Bahasa, and without any app to download."
+        :"Di desa-desa dataran tinggi Timor Tengah Utara, Yayasan Pijar Timur telah diam-diam melakukan pekerjaan yang menyelamatkan jiwa anak-anak — pendidikan komunitas, dukungan keluarga, dan pemantauan gizi. Mereka mengenal para Kader, mereka mengenal keluarga-keluarganya, dan mereka memahami alat apa yang benar-benar bekerja di lapangan.\n\nDengan SahAIbat, Kader mereka kini memiliki skrining pertumbuhan WHO terstruktur di tangan mereka — tersedia offline, dalam Bahasa Indonesia, tanpa perlu mengunduh aplikasi.",
+      tags:lang==="en"?["Child Stunting","NTT","Kader Training","Community Health"]:["Stunting Anak","NTT","Pelatihan Kader","Kesehatan Komunitas"],
+      modules:lang==="en"?["Child growth monitoring","Posyandu triage","Neonatal screening"]:["Pemantauan tumbuh anak","Triase Posyandu","Skrining neonatal"],
     },
     {
-      name: "Dr. Ratih Rakhmawati, M.Biomed",
-      role: lang==="en" ? "Clinical & Digital Health Lead" : "Pemimpin Klinis & Kesehatan Digital",
-      loc: "Indonesia 🇮🇩",
-      photo: "/images/____Rathi.jpg",
-      color: C.pink,
-      bg: C.white,
-      tc: C.dark,
-      passion: lang==="en"
-        ? "Dr. Ratih has spent over 20 years strengthening health systems across Indonesia — leading digital training programmes that reached thousands of cadres and providers across multiple provinces. She believes the future of community health is built on people who are well-equipped, not just well-meaning. At SahAIbat, she ensures every clinical module is grounded in national standards and designed to actually work in the hands of the people using it."
-        : "Dr. Ratih telah menghabiskan lebih dari 20 tahun memperkuat sistem kesehatan di seluruh Indonesia — memimpin program pelatihan digital yang menjangkau ribuan kader dan tenaga kesehatan di berbagai provinsi. Ia percaya masa depan kesehatan komunitas dibangun di atas orang-orang yang benar-benar dibekali, bukan sekadar berniat baik. Di SahAIbat, ia memastikan setiap modul klinis berakar pada standar nasional dan dirancang untuk benar-benar bekerja di tangan penggunanya.",
-      tags: ["20+ Years Health Systems","Digital Training","LMS · Blended Learning","WHO Standards"],
+      name:"PAPHA",
+      region:lang==="en"?"East Nusa Tenggara":"Nusa Tenggara Timur",
+      flag:"🇮🇩",
+      color:C.gold,
+      focus:lang==="en"?"Child Stunting · NTT":"Stunting Anak · NTT",
+      story:lang==="en"
+        ?"PAPHA works at the intersection of community advocacy and direct health service — supporting families most at risk of being left behind by the formal health system. In a province where stunting rates in some districts exceed 40%, their work is urgent.\n\nSahAIbat supports PAPHA's Kader network with automated WHO growth indicator calculation — removing the manual chart-reading burden and catching cases that might otherwise fall through the cracks."
+        :"PAPHA bekerja di persimpangan advokasi komunitas dan layanan kesehatan langsung — mendukung keluarga yang paling berisiko ditinggalkan oleh sistem kesehatan formal. Di provinsi di mana angka stunting di beberapa kabupaten melebihi 40%, pekerjaan mereka sangat mendesak.\n\nSahAIbat mendukung jaringan Kader PAPHA dengan kalkulasi indikator pertumbuhan WHO otomatis — menghilangkan beban pembacaan grafik manual dan menangkap kasus yang mungkin terlewat.",
+      tags:lang==="en"?["Child Stunting","NTT","WHO Growth","Community Advocacy"]:["Stunting Anak","NTT","Pertumbuhan WHO","Advokasi Komunitas"],
+      modules:lang==="en"?["WHO stunting screening","Growth monitoring","Posyandu support"]:["Skrining stunting WHO","Pemantauan pertumbuhan","Dukungan Posyandu"],
     },
     {
-      name: "Stefanus Bere",
-      role: lang==="en" ? "Programme Director · Health Systems & Community" : "Direktur Program · Sistem Kesehatan & Komunitas",
-      loc: "East Nusa Tenggara 🇮🇩",
-      photo: "/images/__Stefan.png",
-      color: C.gold,
-      bg: C.white,
-      tc: C.dark,
-      passion: lang==="en"
-        ? "Stefanus has spent nearly 20 years working where the need is greatest — building health systems in NTT and Timor-Leste that are equitable, accountable, and community-driven. He led district-level reforms under the DFAT-funded Australia-Indonesia maternal health partnership, and has worked with USAID, the UN, IOM, and CARE International. A University of Queensland alumnus, he brings the rare combination of policy depth and field fluency that SahAIbat needs to reach communities that systems often miss."
-        : "Stefanus telah menghabiskan hampir 20 tahun bekerja di tempat yang paling membutuhkan — membangun sistem kesehatan di NTT dan Timor-Leste yang setara, akuntabel, dan berbasis komunitas. Ia memimpin reformasi tingkat kabupaten di bawah kemitraan kesehatan ibu Australia-Indonesia yang didanai DFAT, dan telah bekerja bersama USAID, PBB, IOM, dan CARE International. Alumni Universitas Queensland, ia membawa kombinasi langka antara kedalaman kebijakan dan kelancaran lapangan yang dibutuhkan SahAIbat untuk menjangkau komunitas yang sering terlewatkan.",
-      tags: ["USAID · DFAT · UN","NTT & Timor-Leste","Health Systems","UQ Alumni"],
+      name:"1000 Days Fund",
+      region:lang==="en"?"Rote & TTS, East Nusa Tenggara":"Rote & TTS, Nusa Tenggara Timur",
+      flag:"🇮🇩",
+      color:C.pink,
+      focus:lang==="en"?"Child Stunting · Maternal Care · Rote & TTS":"Stunting Anak · Perawatan Ibu · Rote & TTS",
+      story:lang==="en"
+        ?"The first 1,000 days of a child's life — from conception to their second birthday — are the window where nutrition and care have the greatest impact. 1000 Days Fund has built one of Indonesia's most respected 1000 Hari Pertama Kehidupan programmes, with deep roots in Rote and South Central Timor.\n\nSahAIbat is joining their network to extend child growth monitoring and maternal triage to Kaders across their coverage area — bringing structured clinical guidance to some of the most remote communities in the country."
+        :"1.000 hari pertama kehidupan seorang anak — dari konsepsi hingga ulang tahun kedua — adalah jendela di mana nutrisi dan perawatan memiliki dampak terbesar. 1000 Days Fund telah membangun salah satu program 1000 Hari Pertama Kehidupan paling dihormati di Indonesia, dengan akar yang dalam di Rote dan Timor Tengah Selatan.\n\nSahAIbat bergabung dengan jaringan mereka untuk memperluas pemantauan pertumbuhan anak dan triase ibu ke Kader di seluruh wilayah cakupan mereka.",
+      tags:lang==="en"?["Rote · TTS","1000 HPK","Maternal & Child","Growing Network"]:["Rote · TTS","1000 HPK","Ibu & Anak","Jaringan Berkembang"],
+      modules:lang==="en"?["Child growth monitoring","Maternal triage","Kasih family module"]:["Pemantauan tumbuh anak","Triase ibu","Modul keluarga Kasih"],
     },
     {
-      name: "Risti Riana",
-      role: lang==="en" ? "Community & Growth Lead · SahAIbat Foundation" : "Pemimpin Komunitas & Pertumbuhan · SahAIbat Foundation",
-      loc: "West Java, Indonesia 🇮🇩",
-      photo: null,
-      color: C.teal,
-      bg: C.white,
-      tc: C.dark,
-      passion: lang==="en"
-        ? "Risti has spent her career doing one thing: building communities that actually move people. From growing wellness spaces to managing KOL partnerships to expanding health learning programmes — she has always believed that the right message, delivered the right way, changes behaviour. At SahAIbat, she brings that conviction to the communities who need it most. She is the reason people find us, trust us, and stay."
-        : "Risti menghabiskan kariernya melakukan satu hal: membangun komunitas yang benar-benar menggerakkan orang. Dari membangun komunitas wellness hingga mengelola kemitraan KOL dan memperluas program pembelajaran kesehatan — ia selalu percaya bahwa pesan yang tepat, disampaikan dengan cara yang tepat, mengubah perilaku. Di SahAIbat, ia membawa keyakinan itu kepada komunitas yang paling membutuhkannya. Ia adalah alasan orang menemukan kami, mempercayai kami, dan tetap bersama kami.",
-      tags: ["Community Building","Growth & Marketing","Partnerships","Brand Strategy"],
+      name:"PERDHAKI",
+      region:lang==="en"?"Indonesia-wide · Focus: Eastern Indonesia":"Seluruh Indonesia · Fokus: Indonesia Timur",
+      flag:"🇮🇩",
+      color:C.purple,
+      focus:lang==="en"?"Malaria · Maternal & Child Health":"Malaria · Kesehatan Ibu & Anak",
+      story:lang==="en"
+        ?"Since 1971, PERDHAKI — the Association of Voluntary Health Services of Indonesia — has been building healthcare systems in the communities that formal government infrastructure hasn't fully reached. Their network of Catholic health facilities and community health workers spans the country, with particular strength in Maluku, NTT, and Papua.\n\nSahAIbat is partnering with PERDHAKI to deploy the Kasih module for maternal education and child care, alongside structured malaria screening protocols — tools designed to work in the remote, low-connectivity environments where PERDHAKI's community health workers operate every day."
+        :"Sejak 1971, PERDHAKI — Persatuan Karya Dharma Kesehatan Indonesia — telah membangun sistem layanan kesehatan di komunitas yang belum sepenuhnya dijangkau infrastruktur pemerintah formal. Jaringan fasilitas kesehatan Katolik dan kader kesehatan komunitas mereka mencakup seluruh negeri, dengan kekuatan khusus di Maluku, NTT, dan Papua.\n\nSahAIbat bermitra dengan PERDHAKI untuk menyebarkan modul Kasih untuk pendidikan ibu dan perawatan anak, bersama protokol skrining malaria terstruktur.",
+      tags:lang==="en"?["Since 1971","Malaria","Maternal & Child","Eastern Indonesia"]:["Sejak 1971","Malaria","Ibu & Anak","Indonesia Timur"],
+      modules:lang==="en"?["Kasih maternal education","Child care module","Malaria screening"]:["Pendidikan ibu Kasih","Modul perawatan anak","Skrining malaria"],
     },
   ];
 
-  // Reusable avatar — shows photo if available, otherwise teal initial circle
-  const Avatar = ({ m, size=72 }: { m: typeof members[0]; size?: number }) => (
+  return(
+    <section id="partners" style={{background:C.dark,padding:"100px 0",position:"relative",overflow:"hidden"}}>
+      <div className="teal-glow" style={{width:400,height:400,background:C.teal,top:"10%",right:"-8%"}}/>
+      <div className="section-max" style={{position:"relative",zIndex:1}}>
+        <FadeIn>
+          <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(2,195,154,0.1)",border:"1px solid rgba(2,195,154,0.3)",borderRadius:20,padding:"6px 16px",marginBottom:16}}>
+            <span style={{color:C.teal,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"FIELD PARTNERS":"MITRA LAPANGAN"}</span>
+          </div>
+          <h2 className="display-font" style={{fontSize:"clamp(32px,4vw,52px)",color:C.white,lineHeight:1.2,marginBottom:16}}>
+            {lang==="en"?"On the ground. Together.":"Di lapangan. Bersama."}
+          </h2>
+          <p style={{color:"rgba(255,255,255,0.5)",fontSize:16,maxWidth:560,lineHeight:1.8,marginBottom:64}}>
+            {lang==="en"?"SahAIbat doesn't deploy technology into communities — we build it with them. Every field partner brings relationships, trust, and terrain knowledge that no platform can replace."
+            :"SahAIbat tidak sekadar menerapkan teknologi ke komunitas — kami membangunnya bersama mereka. Setiap mitra lapangan membawa hubungan, kepercayaan, dan pengetahuan wilayah yang tidak dapat digantikan oleh platform mana pun."}
+          </p>
+        </FadeIn>
+
+        <div style={{display:"grid",gap:32}}>
+          {partners.map((p,i)=>(<FadeIn key={p.name} delay={i*100}>
+            <div style={{background:"rgba(255,255,255,0.03)",border:`1px solid ${p.color}25`,borderRadius:24,padding:36,position:"relative",overflow:"hidden"}}>
+              <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${p.color},transparent)`}}/>
+              <div className="two-col" style={{alignItems:"start"}}>
+                <div>
+                  <div style={{display:"flex",alignItems:"center",gap:12,marginBottom:16}}>
+                    <span style={{fontSize:28}}>{p.flag}</span>
+                    <div>
+                      <div style={{color:p.color,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:4}}>{p.focus}</div>
+                      <h3 style={{color:C.white,fontWeight:800,fontSize:22}}>{p.name}</h3>
+                      <div style={{color:"rgba(255,255,255,0.4)",fontSize:12,marginTop:2}}>{p.region}</div>
+                    </div>
+                  </div>
+                  {p.story.split("\n\n").map((para,j)=>(<p key={j} style={{color:"rgba(255,255,255,0.55)",fontSize:14,lineHeight:1.8,marginBottom:12}}>{para}</p>))}
+                  <div style={{display:"flex",gap:8,flexWrap:"wrap",marginTop:16}}>
+                    {p.tags.map(tag=>(<Tag key={tag} label={tag} color={p.color}/>))}
+                  </div>
+                </div>
+                <div style={{background:"rgba(255,255,255,0.04)",borderRadius:16,padding:24}}>
+                  <div style={{color:p.color,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:16}}>{lang==="en"?"ACTIVE MODULES":"MODUL AKTIF"}</div>
+                  {p.modules.map(m=>(<div key={m} style={{display:"flex",gap:10,marginBottom:12,alignItems:"center"}}>
+                    <div style={{width:8,height:8,borderRadius:"50%",background:p.color,flexShrink:0}}/>
+                    <span style={{color:"rgba(255,255,255,0.7)",fontSize:13}}>{m}</span>
+                  </div>))}
+                  <div style={{marginTop:24,paddingTop:16,borderTop:"1px solid rgba(255,255,255,0.06)"}}>
+                    <a href="mailto:admin@sahaibat.com?subject=Partnership Inquiry" style={{color:p.color,fontSize:13,fontWeight:600,textDecoration:"none"}}>{lang==="en"?"Learn more about this partnership →":"Pelajari lebih lanjut →"}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FadeIn>))}
+        </div>
+
+        <FadeIn delay={400}>
+          <div style={{marginTop:48,background:`linear-gradient(135deg,${C.tealXdk},${C.tealDk})`,borderRadius:20,padding:36,display:"flex",alignItems:"center",justifyContent:"space-between",flexWrap:"wrap",gap:24}}>
+            <div>
+              <div style={{color:C.white,fontWeight:700,fontSize:20,marginBottom:8}}>{lang==="en"?"Ready to bring SahAIbat to your community?":"Siap membawa SahAIbat ke komunitas Anda?"}</div>
+              <p style={{color:"rgba(255,255,255,0.7)",fontSize:14,maxWidth:480,lineHeight:1.7}}>{lang==="en"?"Tell us about your programme and we'll respond within 48 hours.":"Ceritakan program Anda dan kami akan membalas dalam 48 jam."}</p>
+            </div>
+            <div style={{display:"flex",gap:12,flexWrap:"wrap"}}>
+              <a href="mailto:admin@sahaibat.com?subject=Field Partner Inquiry" style={{background:C.teal,color:C.dark,padding:"13px 28px",borderRadius:12,fontSize:14,fontWeight:700,textDecoration:"none"}}>{lang==="en"?"Email us →":"Email kami →"}</a>
+              <a href="https://wa.me/6281918669241" style={{background:"rgba(255,255,255,0.1)",color:C.white,padding:"13px 28px",borderRadius:12,fontSize:14,fontWeight:600,textDecoration:"none"}}>💬 WhatsApp</a>
+            </div>
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// TEAM — 6 members with photo support
+// ══════════════════════════════════════════════════════════════════════════════
+function TeamSection({lang}:{lang:"en"|"id"}){
+  const members=[
+    {
+      name:"Sanjib Maity",
+      flag:"🇨🇦",
+      role:lang==="en"?"Founder & Product Developer":"Pendiri & Pengembang Produk",
+      loc:lang==="en"?"Canada":"Kanada",
+      photo:"/images/sanjib.jpeg",
+      color:C.teal,
+      bg:C.dark,
+      passion:lang==="en"
+        ?"Sanjib has 15+ years of experience in IT infrastructure and application development — building systems that move at scale. He left a comfortable career to answer a question that kept him awake: why do the communities with the highest disease burden have the least digital support? SahAIbat is his answer."
+        :"Sanjib memiliki pengalaman 15+ tahun dalam infrastruktur IT dan pengembangan aplikasi — membangun sistem yang bergerak dalam skala besar. Ia meninggalkan karier yang nyaman untuk menjawab pertanyaan yang terus mengganggunya: mengapa komunitas dengan beban penyakit tertinggi mendapat dukungan digital paling sedikit? SahAIbat adalah jawabannya.",
+      tags:["15+ Years IT","Product Development","Health Equity","Founder"],
+    },
+    {
+      name:"Dr. Ratih Rakhmawati, M.Biomed",
+      flag:"🇮🇩",
+      role:lang==="en"?"Clinical Validation Lead":"Pemimpin Validasi Klinis",
+      loc:"Indonesia",
+      photo:"/images/____Rathi.jpg",
+      color:C.pink,
+      bg:C.white,
+      passion:lang==="en"
+        ?"Dr. Ratih has spent 20+ years strengthening health systems across Indonesia — leading large-scale digital training programmes validated against Kemenkes and WHO standards. She has trained thousands of health cadres and providers across multiple provinces. At SahAIbat, she is the reason every clinical module can be trusted."
+        :"Dr. Ratih telah menghabiskan 20+ tahun memperkuat sistem kesehatan di seluruh Indonesia — memimpin program pelatihan digital skala besar yang divalidasi terhadap standar Kemenkes dan WHO. Ia telah melatih ribuan kader dan tenaga kesehatan di berbagai provinsi. Di SahAIbat, ia adalah alasan setiap modul klinis dapat dipercaya.",
+      tags:["20+ Years MCH","Kemenkes · WHO Validation","Digital Health Training","M.Biomed"],
+    },
+    {
+      name:"Stefanus Bere",
+      flag:"🇮🇩",
+      role:lang==="en"?"Programme Manager, Rural Deployment":"Manajer Program, Penerapan Pedesaan",
+      loc:"East Nusa Tenggara",
+      photo:"/images/__Stefan.png",
+      color:C.gold,
+      bg:C.white,
+      passion:lang==="en"
+        ?"Nearly 20 years building health systems in NTT and Timor-Leste — with USAID, ADB, MoH, and the UN. Stefanus led district-level reforms under the DFAT maternal health partnership and has worked with IOM and CARE International. He brings the field fluency that no dataset can replace."
+        :"Hampir 20 tahun membangun sistem kesehatan di NTT dan Timor-Leste — bersama USAID, ADB, Kemenkes, dan PBB. Stefanus memimpin reformasi tingkat kabupaten di bawah kemitraan kesehatan ibu DFAT dan telah bekerja dengan IOM dan CARE International. Ia membawa kelancaran lapangan yang tidak dapat digantikan oleh dataset mana pun.",
+      tags:["USAID · ADB · DFAT · UN","NTT & Timor-Leste","Health Systems","UQ Alumni"],
+    },
+    {
+      name:"Risti Riana",
+      flag:"🇮🇩",
+      role:lang==="en"?"Content Creator & Community Support":"Kreator Konten & Dukungan Komunitas",
+      loc:"West Java, Indonesia",
+      photo:null,
+      color:C.teal,
+      bg:C.white,
+      passion:lang==="en"
+        ?"Risti builds communities that actually move people. From wellness spaces to KOL partnerships to health learning programmes — she has always believed the right message, delivered the right way, changes behaviour. At SahAIbat, she is the reason people find us, trust us, and stay."
+        :"Risti membangun komunitas yang benar-benar menggerakkan orang. Dari komunitas wellness hingga kemitraan KOL dan program pembelajaran kesehatan — ia selalu percaya pesan yang tepat, disampaikan dengan cara yang tepat, mengubah perilaku. Di SahAIbat, ia adalah alasan orang menemukan kami, mempercayai kami, dan tetap bersama kami.",
+      tags:["Content Creation","Community Building","KOL Partnerships","Growth"],
+    },
+    {
+      name:"Saurav Das",
+      flag:"🇮🇳",
+      role:lang==="en"?"UI Engineer":"UI Engineer",
+      loc:"India",
+      photo:null,
+      color:C.blue,
+      bg:C.white,
+      passion:lang==="en"
+        ?"Saurav has 5+ years building frontend interfaces with a specific focus most UI engineers never think about: what happens when your user has a 2G connection, an entry-level phone, and needs to make a critical health decision right now? At SahAIbat, that constraint is the design brief. He builds for it."
+        :"Saurav memiliki 5+ tahun pengalaman membangun antarmuka frontend dengan fokus khusus yang jarang dipikirkan UI engineer kebanyakan: apa yang terjadi ketika pengguna Anda memiliki koneksi 2G, ponsel kelas bawah, dan perlu membuat keputusan kesehatan kritis sekarang juga? Di SahAIbat, kendala itu adalah brief desainnya. Ia membangun untuk itu.",
+      tags:["5+ Years UI/Frontend","Accessibility","Low-end Device Optimization","React"],
+    },
+    {
+      name:"Surabhi Das",
+      flag:"🇨🇦",
+      role:lang==="en"?"Healthcare Research & Strategy":"Penelitian Kesehatan & Strategi",
+      loc:"Canada",
+      photo:null,
+      color:C.purple,
+      bg:C.white,
+      passion:lang==="en"
+        ?"B.PT, MBA, and alumni of Deloitte and Egon Zehnder — Surabhi brings the rare combination of clinical grounding and strategic rigour to SahAIbat's evidence base. She leads our research into nationwide maternal and child health data, builds the frameworks that make our outcomes measurable, and shapes the grant strategy that keeps SahAIbat funded and free."
+        :"B.PT, MBA, dan alumni Deloitte serta Egon Zehnder — Surabhi membawa kombinasi langka antara landasan klinis dan rigor strategis ke basis bukti SahAIbat. Ia memimpin penelitian kami tentang data kesehatan ibu dan anak nasional, membangun kerangka kerja yang membuat hasil kami terukur, dan membentuk strategi hibah yang membuat SahAIbat tetap didanai dan gratis.",
+      tags:["B.PT · MBA","ex-Deloitte · ex-Egon Zehnder","Health Research","Grant Strategy"],
+    },
+  ];
+
+  const Avatar=({m,size=72}:{m:typeof members[0];size?:number})=>(
     m.photo
-      ? <img src={m.photo} alt={m.name} style={{ width:size,height:size,borderRadius:16,objectFit:"cover",flexShrink:0,border:`2px solid ${m.color}30` }}/>
-      : <div style={{ width:size,height:size,borderRadius:16,background:`${m.color}15`,border:`1px solid ${m.color}40`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:28,flexShrink:0,fontWeight:800,color:m.color }}>{m.name[0]}</div>
+      ?<img src={m.photo} alt={m.name} style={{width:size,height:size,borderRadius:16,objectFit:"cover",flexShrink:0,border:`2px solid ${m.color}30`}}/>
+      :<div style={{width:size,height:size,borderRadius:16,background:`${m.color}15`,border:`1px solid ${m.color}40`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:26,flexShrink:0,fontWeight:800,color:m.color}}>{m.name[0]}</div>
   );
 
   return(
-    <section id="team" style={{ background:C.cream,padding:"100px 0" }}>
+    <section id="team" style={{background:C.cream,padding:"100px 0"}}>
       <div className="section-max">
         <FadeIn>
-          <div style={{ display:"inline-flex",alignItems:"center",gap:8,background:`${C.tealDk}15`,border:`1px solid ${C.tealDk}30`,borderRadius:20,padding:"6px 16px",marginBottom:16 }}>
-            <span style={{ color:C.tealDk,fontSize:12,fontWeight:600,letterSpacing:1 }}>{t.teamLabel}</span>
+          <div style={{display:"inline-flex",alignItems:"center",gap:8,background:`${C.tealDk}15`,border:`1px solid ${C.tealDk}30`,borderRadius:20,padding:"6px 16px",marginBottom:16}}>
+            <span style={{color:C.tealDk,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"THE TEAM":"TIM KAMI"}</span>
           </div>
-          <h2 className="display-font" style={{ fontSize:"clamp(32px,4vw,52px)",color:C.dark,lineHeight:1.2,marginBottom:16 }}>{t.teamH2}</h2>
-          <p style={{ color:C.muted,fontSize:16,maxWidth:560,lineHeight:1.8,marginBottom:64 }}>{t.teamBody}</p>
+          <h2 className="display-font" style={{fontSize:"clamp(32px,4vw,52px)",color:C.dark,lineHeight:1.2,marginBottom:16}}>
+            {lang==="en"?"People who refused to accept the status quo.":"Orang-orang yang menolak menerima status quo."}
+          </h2>
+          <p style={{color:C.muted,fontSize:16,maxWidth:560,lineHeight:1.8,marginBottom:64}}>
+            {lang==="en"?"Clinicians, field workers, technologists, and strategists — united by one belief: the communities carrying the highest health burden deserve world-class tools."
+            :"Dokter, pekerja lapangan, teknolog, dan ahli strategi — bersatu dalam satu keyakinan: komunitas dengan beban kesehatan tertinggi berhak mendapatkan alat terbaik di dunia."}
+          </p>
         </FadeIn>
 
-        {/* Top row */}
-        <div className="two-col" style={{ marginBottom:24 }}>
-          {members.slice(0,2).map(m=>(
-            <FadeIn key={m.name} delay={100}>
-              <div style={{ background:m.bg,borderRadius:24,padding:36,position:"relative",overflow:"hidden",border:`1px solid ${m.color}20`,minHeight:320 }}>
-                <div style={{ position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${m.color},transparent)` }}/>
-                <div style={{ display:"flex",gap:20,alignItems:"flex-start",marginBottom:20 }}>
-                  <Avatar m={m}/>
-                  <div>
-                    <div style={{ fontWeight:800,fontSize:20,color:m.tc,marginBottom:4 }}>{m.name}</div>
-                    <div style={{ color:m.color,fontWeight:600,fontSize:13 }}>{m.role}</div>
-                    <div style={{ color:m.bg===C.dark?"rgba(255,255,255,0.4)":C.muted,fontSize:12,marginTop:4 }}>{m.loc}</div>
-                  </div>
-                </div>
-                <p style={{ color:m.bg===C.dark?"rgba(255,255,255,0.65)":C.muted,fontSize:14,lineHeight:1.85,marginBottom:20,fontStyle:"italic" }}>&ldquo;{m.passion}&rdquo;</p>
-                <div style={{ display:"flex",gap:8,flexWrap:"wrap" }}>
-                  {m.tags.map(tag=>(<Tag key={tag} label={tag} color={m.color}/>))}
+        {/* Row 1: Sanjib + Dr. Ratih */}
+        <div className="two-col" style={{marginBottom:24}}>
+          {members.slice(0,2).map(m=>(<FadeIn key={m.name} delay={100}>
+            <div style={{background:m.bg,borderRadius:24,padding:36,position:"relative",overflow:"hidden",border:`1px solid ${m.color}20`,minHeight:320}}>
+              <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${m.color},transparent)`}}/>
+              <div style={{display:"flex",gap:20,alignItems:"flex-start",marginBottom:20}}>
+                <Avatar m={m}/>
+                <div>
+                  <div style={{fontWeight:800,fontSize:20,color:m.bg===C.dark?C.white:C.dark,marginBottom:4}}>{m.name} {m.flag}</div>
+                  <div style={{color:m.color,fontWeight:600,fontSize:13}}>{m.role}</div>
+                  <div style={{color:m.bg===C.dark?"rgba(255,255,255,0.4)":C.muted,fontSize:12,marginTop:4}}>{m.loc}</div>
                 </div>
               </div>
-            </FadeIn>
-          ))}
+              <p style={{color:m.bg===C.dark?"rgba(255,255,255,0.65)":C.muted,fontSize:14,lineHeight:1.85,marginBottom:20,fontStyle:"italic"}}>&ldquo;{m.passion}&rdquo;</p>
+              <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>{m.tags.map(tag=>(<Tag key={tag} label={tag} color={m.color}/>))}</div>
+            </div>
+          </FadeIn>))}
         </div>
 
-        {/* Bottom row */}
-        <div className="two-col">
-          {members.slice(2,4).map(m=>(
-            <FadeIn key={m.name} delay={200}>
-              <div style={{ background:m.bg,borderRadius:24,padding:36,position:"relative",overflow:"hidden",border:`1px solid ${m.color}20`,minHeight:300 }}>
-                <div style={{ position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${m.color},transparent)` }}/>
-                <div style={{ display:"flex",gap:20,alignItems:"flex-start",marginBottom:20 }}>
-                  <Avatar m={m}/>
-                  <div>
-                    <div style={{ fontWeight:800,fontSize:20,color:C.dark,marginBottom:4 }}>{m.name}</div>
-                    <div style={{ color:m.color,fontWeight:600,fontSize:13 }}>{m.role}</div>
-                    <div style={{ color:C.muted,fontSize:12,marginTop:4 }}>{m.loc}</div>
-                  </div>
-                </div>
-                <p style={{ color:C.muted,fontSize:14,lineHeight:1.85,marginBottom:20,fontStyle:"italic" }}>&ldquo;{m.passion}&rdquo;</p>
-                <div style={{ display:"flex",gap:8,flexWrap:"wrap" }}>
-                  {m.tags.map(tag=>(<Tag key={tag} label={tag} color={m.color}/>))}
+        {/* Row 2: Stefanus + Risti */}
+        <div className="two-col" style={{marginBottom:24}}>
+          {members.slice(2,4).map(m=>(<FadeIn key={m.name} delay={200}>
+            <div style={{background:m.bg,borderRadius:24,padding:36,position:"relative",overflow:"hidden",border:`1px solid ${m.color}20`,minHeight:300}}>
+              <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${m.color},transparent)`}}/>
+              <div style={{display:"flex",gap:20,alignItems:"flex-start",marginBottom:20}}>
+                <Avatar m={m}/>
+                <div>
+                  <div style={{fontWeight:800,fontSize:20,color:C.dark,marginBottom:4}}>{m.name} {m.flag}</div>
+                  <div style={{color:m.color,fontWeight:600,fontSize:13}}>{m.role}</div>
+                  <div style={{color:C.muted,fontSize:12,marginTop:4}}>{m.loc}</div>
                 </div>
               </div>
-            </FadeIn>
-          ))}
+              <p style={{color:C.muted,fontSize:14,lineHeight:1.85,marginBottom:20,fontStyle:"italic"}}>&ldquo;{m.passion}&rdquo;</p>
+              <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>{m.tags.map(tag=>(<Tag key={tag} label={tag} color={m.color}/>))}</div>
+            </div>
+          </FadeIn>))}
+        </div>
+
+        {/* Row 3: Saurav + Surabhi */}
+        <div className="two-col" style={{marginBottom:48}}>
+          {members.slice(4,6).map(m=>(<FadeIn key={m.name} delay={300}>
+            <div style={{background:m.bg,borderRadius:24,padding:36,position:"relative",overflow:"hidden",border:`1px solid ${m.color}20`,minHeight:300}}>
+              <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${m.color},transparent)`}}/>
+              <div style={{display:"flex",gap:20,alignItems:"flex-start",marginBottom:20}}>
+                <Avatar m={m}/>
+                <div>
+                  <div style={{fontWeight:800,fontSize:20,color:C.dark,marginBottom:4}}>{m.name} {m.flag}</div>
+                  <div style={{color:m.color,fontWeight:600,fontSize:13}}>{m.role}</div>
+                  <div style={{color:C.muted,fontSize:12,marginTop:4}}>{m.loc}</div>
+                </div>
+              </div>
+              <p style={{color:C.muted,fontSize:14,lineHeight:1.85,marginBottom:20,fontStyle:"italic"}}>&ldquo;{m.passion}&rdquo;</p>
+              <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>{m.tags.map(tag=>(<Tag key={tag} label={tag} color={m.color}/>))}</div>
+            </div>
+          </FadeIn>))}
         </div>
 
         {/* Foundation note */}
-        <FadeIn delay={300}>
-          <div style={{ marginTop:48,background:C.dark,borderRadius:20,padding:32,display:"flex",gap:20,alignItems:"center",flexWrap:"wrap" }}>
-            <div style={{ fontSize:36 }}>🏛️</div>
-            <div style={{ flex:1,minWidth:240 }}>
-              <div style={{ color:C.teal,fontWeight:700,fontSize:12,letterSpacing:1,marginBottom:6 }}>{lang==="en"?"ABOUT THE FOUNDATION":"TENTANG YAYASAN"}</div>
-              <p style={{ color:"rgba(255,255,255,0.55)",fontSize:14,lineHeight:1.7 }}>
-                {lang==="en"
-                  ?"SahAIbat Foundation is the community-facing identity of SahAIbat Health. All intellectual property, technology, and platform infrastructure is owned by Vinatra (11679210 Canada Inc). The Foundation exists to serve communities — not to generate profit."
-                  :"SahAIbat Foundation adalah identitas yang menghadap komunitas dari SahAIbat Health. Semua kekayaan intelektual, teknologi, dan infrastruktur platform dimiliki oleh Vinatra (11679210 Canada Inc). Foundation ini ada untuk melayani komunitas — bukan untuk menghasilkan keuntungan."}
+        <FadeIn delay={400}>
+          <div style={{background:C.dark,borderRadius:20,padding:32,display:"flex",gap:20,alignItems:"center",flexWrap:"wrap"}}>
+            <div style={{fontSize:36}}>🏛️</div>
+            <div style={{flex:1,minWidth:240}}>
+              <div style={{color:C.teal,fontWeight:700,fontSize:12,letterSpacing:1,marginBottom:6}}>{lang==="en"?"ABOUT THE FOUNDATION":"TENTANG YAYASAN"}</div>
+              <p style={{color:"rgba(255,255,255,0.55)",fontSize:14,lineHeight:1.7}}>
+                {lang==="en"?"SahAIbat Foundation is the community-facing identity of SahAIbat Health. All intellectual property, technology, and platform infrastructure is owned by Vinatra (11679210 Canada Inc). The Foundation exists to serve communities — not to generate profit."
+                :"SahAIbat Foundation adalah identitas yang menghadap komunitas dari SahAIbat Health. Semua kekayaan intelektual, teknologi, dan infrastruktur platform dimiliki oleh Vinatra (11679210 Canada Inc). Foundation ini ada untuk melayani komunitas — bukan untuk menghasilkan keuntungan."}
               </p>
             </div>
           </div>
