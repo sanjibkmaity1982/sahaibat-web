@@ -150,7 +150,7 @@ export default function HomePage(){
           {[
             {n:61000,s:"+",label:lang==="en"?"Community Health Workers":"Kader Kesehatan",sub:lang==="en"?"in our target network":"dalam jaringan target kami"},
             {n:8,s:"+ modules",label:lang==="en"?"Clinical Modules":"Modul Klinis",sub:"maternal · child · TB · dengue · HIV · malaria"},
-            {n:4,s:"",label:lang==="en"?"Field Partners":"Mitra Lapangan",sub:lang==="en"?"NTT · Papua · Bali":"NTT · Papua · Bali"},
+            {n:3,s:"",label:lang==="en"?"Field Partners":"Mitra Lapangan",sub:lang==="en"?"NTT · Papua · Eastern Indonesia":"NTT · Papua · Indonesia Timur"},
             {n:100,s:"%",label:lang==="en"?"Data Stays in Indonesia":"Data di Indonesia",sub:"AWS Jakarta · AES-256"},
           ].map(({n,s,label,sub})=>(<div key={label} style={{textAlign:"center"}}>
             <div className="display-font" style={{fontSize:36,color:C.teal,fontWeight:900,lineHeight:1}}><Counter end={n} suffix={s}/></div>
@@ -413,8 +413,8 @@ function ProductsSection({lang}:{lang:"en"|"id"}){
       accent:C.blue,
       headline:lang==="en"?"See everything. Miss nothing.":"Lihat segalanya. Jangan lewatkan satu pun.",
       story:lang==="en"
-        ?"A stunting rate drops from 32% to 24% in two years. A Kader in Rote makes 47 home visits in a month — all recorded. A high-risk pregnancy is flagged in TTS on a Tuesday, and a Bidan responds that same afternoon.\n\nThe NGO Dashboard doesn't just show you data. It shows you what your programme is actually doing — in real time, at the village level, across every district you operate in.\n\nFor programme managers, donors, and government partners, the dashboard is the proof. Coverage maps, clinical outcomes, Kader activity, referral rates — all in one place, updated live, exportable in one click.\n\nThis is what accountability looks like."
-        :"Angka stunting turun dari 32% menjadi 24% dalam dua tahun. Seorang Kader di Rote membuat 47 kunjungan rumah dalam sebulan — semuanya tercatat. Kehamilan berisiko tinggi ditandai di TTS pada hari Selasa, dan Bidan merespons hari yang sama.\n\nDashboard NGO tidak sekadar menampilkan data. Ia menunjukkan apa yang sebenarnya dilakukan program Anda — secara real-time, di tingkat desa, di setiap kabupaten tempat Anda beroperasi.\n\nBagi manajer program, donor, dan mitra pemerintah, dashboard adalah buktinya. Peta cakupan, hasil klinis, aktivitas Kader, tingkat rujukan — semuanya di satu tempat, diperbarui langsung, bisa diekspor dengan satu klik.\n\nInilah tampilan akuntabilitas.",
+        ?"A stunting rate drops from 32% to 24% in two years. A Kader in a remote NTT village makes 47 home visits in a month — all recorded. A high-risk pregnancy is flagged on a Tuesday morning, and a Bidan responds that same afternoon.\n\nThe NGO Dashboard doesn't just show you data. It shows you what your programme is actually doing — in real time, at the village level, across every district you operate in.\n\nFor programme managers, donors, and government partners, the dashboard is the proof. Coverage maps, clinical outcomes, Kader activity, referral rates — all in one place, updated live, exportable in one click.\n\nThis is what accountability looks like."
+        :"Angka stunting turun dari 32% menjadi 24% dalam dua tahun. Seorang Kader di desa terpencil NTT membuat 47 kunjungan rumah dalam sebulan — semuanya tercatat. Kehamilan berisiko tinggi ditandai pada Selasa pagi, dan Bidan merespons hari yang sama.\n\nDashboard NGO tidak sekadar menampilkan data. Ia menunjukkan apa yang sebenarnya dilakukan program Anda — secara real-time, di tingkat desa, di setiap kabupaten tempat Anda beroperasi.\n\nBagi manajer program, donor, dan mitra pemerintah, dashboard adalah buktinya. Peta cakupan, hasil klinis, aktivitas Kader, tingkat rujukan — semuanya di satu tempat, diperbarui langsung, bisa diekspor dengan satu klik.\n\nInilah tampilan akuntabilitas.",
       features:lang==="en"
         ?["Real-time Kader activity across all districts","Village-level coverage and outcome maps","Clinical risk trends — by module, by region","One-click export for donor and MoH reporting","Role-based access: Kader · Bidan · NGO · Funder"]
         :["Aktivitas Kader real-time di semua kabupaten","Peta cakupan dan hasil tingkat desa","Tren risiko klinis — per modul, per wilayah","Ekspor satu klik untuk laporan donor dan Kemenkes","Akses berbasis peran: Kader · Bidan · NGO · Donor"],
@@ -599,18 +599,7 @@ function FieldPartnersSection({lang}:{lang:"en"|"id"}){
       tags:lang==="en"?["Child Stunting","NTT","WHO Growth","Community Advocacy"]:["Stunting Anak","NTT","Pertumbuhan WHO","Advokasi Komunitas"],
       modules:lang==="en"?["WHO stunting screening","Growth monitoring","Posyandu support"]:["Skrining stunting WHO","Pemantauan pertumbuhan","Dukungan Posyandu"],
     },
-    {
-      name:"1000 Days Fund",
-      region:lang==="en"?"Rote & TTS, East Nusa Tenggara":"Rote & TTS, Nusa Tenggara Timur",
-      flag:"🇮🇩",
-      color:C.pink,
-      focus:lang==="en"?"Child Stunting · Maternal Care · Rote & TTS":"Stunting Anak · Perawatan Ibu · Rote & TTS",
-      story:lang==="en"
-        ?"The first 1,000 days of a child's life — from conception to their second birthday — are the window where nutrition and care have the greatest impact. 1000 Days Fund has built one of Indonesia's most respected 1000 Hari Pertama Kehidupan programmes, with deep roots in Rote and South Central Timor.\n\nSahAIbat is joining their network to extend child growth monitoring and maternal triage to Kaders across their coverage area — bringing structured clinical guidance to some of the most remote communities in the country."
-        :"1.000 hari pertama kehidupan seorang anak — dari konsepsi hingga ulang tahun kedua — adalah jendela di mana nutrisi dan perawatan memiliki dampak terbesar. 1000 Days Fund telah membangun salah satu program 1000 Hari Pertama Kehidupan paling dihormati di Indonesia, dengan akar yang dalam di Rote dan Timor Tengah Selatan.\n\nSahAIbat bergabung dengan jaringan mereka untuk memperluas pemantauan pertumbuhan anak dan triase ibu ke Kader di seluruh wilayah cakupan mereka.",
-      tags:lang==="en"?["Rote · TTS","1000 HPK","Maternal & Child","Growing Network"]:["Rote · TTS","1000 HPK","Ibu & Anak","Jaringan Berkembang"],
-      modules:lang==="en"?["Child growth monitoring","Maternal triage","Kasih family module"]:["Pemantauan tumbuh anak","Triase ibu","Modul keluarga Kasih"],
-    },
+
     {
       name:"PERDHAKI",
       region:lang==="en"?"Indonesia-wide · Focus: Eastern Indonesia":"Seluruh Indonesia · Fokus: Indonesia Timur",
