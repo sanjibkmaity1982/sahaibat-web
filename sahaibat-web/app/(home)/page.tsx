@@ -220,6 +220,21 @@ export default function HomePage(){
     {/* ══ PRODUCTS ═══════════════════════════════════════════════════════════ */}
     <ProductsSection lang={lang}/>
 
+    {/* ══ NATIONAL FRAMEWORK (ILP) ═══════════════════════════════════════════ */}
+    <ILPSection lang={lang}/>
+
+    {/* ══ ECOSYSTEM STACK ════════════════════════════════════════════════════ */}
+    <EcosystemSection lang={lang}/>
+
+    {/* ══ IN-DEVELOPMENT PRODUCTS (DoK + Sehat) ══════════════════════════════ */}
+    <NextProductsSection lang={lang}/>
+
+    {/* ══ FLYWHEEL ═══════════════════════════════════════════════════════════ */}
+    <FlywheelSection lang={lang}/>
+
+    {/* ══ VOICES FROM THE FIELD (video) ══════════════════════════════════════ */}
+    <FieldVoicesSection lang={lang}/>
+
     {/* ══ IMPACT ═════════════════════════════════════════════════════════════ */}
     <ImpactSection lang={lang}/>
 
@@ -322,6 +337,8 @@ function ProductsSection({lang}:{lang:"en"|"id"}){
       label:"Kasih",
       sublabel:lang==="en"?"Family Chat":"Chat Keluarga",
       accent:C.teal,
+      shots:["/images/art/kasih-chat-1.jpeg","/images/art/kasih-chat-2.jpeg","/images/art/kasih-chat-3.jpeg"],
+      shotKind:"phone" as const,
       headline:lang==="en"?"2:47 AM. A mother. A fever. A phone.":"Pukul 02:47. Seorang ibu. Demam. Sebuah ponsel.",
       story:lang==="en"
         ?"Ibu Dewi is alone. Her husband is working in Surabaya. Rizky — three years old — has had a fever of 39.8°C for five hours and won't stop crying. The nearest clinic opens at 8am.\n\nShe doesn't know if this is dangerous. She opens WhatsApp. She messages Kasih.\n\nIn 90 seconds, she has a structured risk assessment, a care plan, and something she didn't have before: clarity. Kasih told her what to watch for, what to do, and exactly when to go to the emergency room.\n\nBy morning, Rizky's fever had broken. Ibu Dewi had slept, a little. Kasih had been there."
@@ -341,52 +358,30 @@ function ProductsSection({lang}:{lang:"en"|"id"}){
     },
     {
       id:1,
-      icon:"📱",
-      label:"Kader WhatsApp",
-      sublabel:lang==="en"?"Professional Triage":"Triase Profesional",
+      icon:"🩺",
+      label:lang==="en"?"Kader App":"Aplikasi Kader",
+      sublabel:lang==="en"?"Life-cycle Triage":"Triase Siklus Hidup",
       accent:C.pink,
-      headline:lang==="en"?"The Kader who catches what no chart could.":"Kader yang menangkap apa yang tidak terlihat di KMS.",
+      shots:["/images/art/kader-menu.jpeg","/images/art/kader-tb.jpeg","/images/art/kader-growth.jpeg"],
+      shotKind:"phone" as const,
+      headline:lang==="en"?"Every life stage. Every Posyandu. In seconds, not minutes.":"Setiap tahap hidup. Setiap Posyandu. Dalam detik, bukan menit.",
       story:lang==="en"
-        ?"Bidan Sari has been a Kader for eleven years in Kefamenanu, NTT. She knows every family by name. Today she is with a new mother — three weeks postpartum. Something feels wrong. The mother is pale, barely speaking. No doctor within reach.\n\nShe opens SahAIbat. She types. In seconds, a structured clinical module walks her through the right questions — in the right order.\n\nTwo answers in: 🔴 DARURAT. Sari makes the call. Bu Ani is at the Puskesmas within 40 minutes. Postpartum haemorrhage, early infection. Treated in time.\n\nSari always trusted her instincts. SahAIbat gave her the protocol to act on them."
-        :"Bidan Sari sudah menjadi Kader selama sebelas tahun di Kefamenanu, NTT. Ia mengenal setiap keluarga dengan nama. Hari ini ia bersama ibu baru — tiga minggu setelah melahirkan. Ada sesuatu yang terasa tidak beres. Ibu itu pucat, hampir tidak berbicara. Tidak ada dokter dalam jangkauan.\n\nIa membuka SahAIbat. Ia mengetik. Dalam hitungan detik, modul klinis terstruktur membimbingnya melalui pertanyaan yang tepat — dalam urutan yang benar.\n\nDua jawaban: 🔴 DARURAT. Sari membuat panggilan. Bu Ani di Puskesmas dalam 40 menit. Perdarahan postpartum, infeksi awal. Ditangani tepat waktu.\n\nSari selalu mempercayai instingnya. SahAIbat memberinya protokol untuk bertindak.",
+        ?"One app for the whole community. The Kader App digitises the complete ILP life-cycle service package — child, maternal, adolescent, adult and elderly, plus communicable disease — so a single Kader can screen every age group from one WhatsApp-native tool, in the exact structure the national framework requires.\n\nAt the Posyandu, what used to take minutes per person — reading the KMS chart by hand, plotting growth, copying numbers onto paper — now takes seconds. The Kader enters the measurements; the WHO growth engine classifies the result instantly and flags any danger sign automatically.\n\nAnd it works where the network doesn't. The entire engine runs offline on a basic phone; every visit is saved locally and syncs to the Programme Dashboard the moment a signal returns. Nothing is lost.\n\nOne worker. Every life stage. A whole Posyandu session, captured in the time it used to take to fill one page."
+        :"Satu aplikasi untuk seluruh komunitas. Aplikasi Kader mendigitalkan paket layanan siklus hidup ILP secara lengkap — anak, ibu, remaja, dewasa dan lansia, serta penyakit menular — sehingga satu Kader dapat melakukan skrining setiap kelompok usia dari satu alat berbasis WhatsApp, dalam struktur yang dibutuhkan kerangka nasional.\n\nDi Posyandu, yang dulu memakan waktu beberapa menit per orang — membaca grafik KMS dengan tangan, memplot pertumbuhan, menyalin angka ke kertas — kini hanya butuh hitungan detik. Kader memasukkan hasil pengukuran; engine pertumbuhan WHO langsung mengklasifikasikan hasilnya dan menandai tanda bahaya secara otomatis.\n\nDan ia bekerja di tempat tanpa jaringan. Seluruh engine berjalan offline di ponsel sederhana; setiap kunjungan tersimpan lokal dan tersinkron ke Dasbor Program begitu sinyal kembali. Tidak ada yang hilang.\n\nSatu pekerja. Setiap tahap hidup. Satu sesi Posyandu penuh, tercatat dalam waktu yang dulu hanya cukup untuk mengisi satu halaman.",
       features:lang==="en"
-        ?["4 clinical modules: Maternal · Child · Neonatal · Posyandu","Follows Buku KIA (Permenkes 2/2020) exactly","RUJUK alerts with Puskesmas name","Visit records sync to NGO dashboard","Works online and offline"]
-        :["4 modul klinis: Maternal · Anak · Neonatal · Posyandu","Mengikuti Buku KIA (Permenkes 2/2020) persis","Peringatan RUJUK dengan nama Puskesmas","Catatan kunjungan tersinkron ke dashboard NGO","Bekerja online dan offline"],
+        ?["ILP-aligned life-cycle modules — child, maternal, adolescent, adult/elderly, TB & malaria","WHO growth auto-calculation — BB/U, TB/U, BB/TB plotted instantly","Seconds per record, not minutes — a full Posyandu session captured fast","Works fully offline on basic 2G phones — syncs when signal returns","Danger-sign flags with RUJUK alerts — every visit feeds the Programme Dashboard"]
+        :["Modul siklus hidup selaras ILP — anak, ibu, remaja, dewasa/lansia, TB & malaria","Kalkulasi pertumbuhan WHO otomatis — BB/U, TB/U, BB/TB langsung terplot","Hitungan detik per catatan, bukan menit — sesi Posyandu penuh tercatat cepat","Bekerja sepenuhnya offline di ponsel 2G — tersinkron saat sinyal kembali","Penanda tanda bahaya dengan peringatan RUJUK — setiap kunjungan mengisi Dasbor Program"],
       messages:[
         {msg:"Bu Ani, 24th, 3mgg postpartum, pucat, bicara pelan",u:true,urg:false},
         {msg:"🩺 Modul Ibu Nifas\n\nPerdarahan >2 pembalut/jam?\n1=Ya  2=Tidak",u:false,urg:false},
         {msg:"1",u:true,urg:false},
-        {msg:"Darah berbau tidak normal?\n1=Ya  2=Tidak",u:false,urg:false},
-        {msg:"1",u:true,urg:false},
-        {msg:"🔴 DARURAT — RUJUK SEGERA\n\nPerdarahan postpartum + infeksi nifas.\n\n• Jangan tinggalkan pasien\n• Hubungi Puskesmas Kefamenanu\n• Catat waktu & kondisi ibu",u:false,urg:true},
+        {msg:"🔴 DARURAT — RUJUK SEGERA\n\nPerdarahan postpartum + infeksi nifas.\n\n• Jangan tinggalkan pasien\n• Hubungi Puskesmas Kefamenanu",u:false,urg:true},
       ],
     },
     {
       id:2,
-      icon:"📵",
-      label:"Kader Offline",
-      sublabel:lang==="en"?"Zero Network Mode":"Mode Tanpa Jaringan",
-      accent:C.gold,
-      headline:lang==="en"?"No signal. No WiFi. No problem.":"Tidak ada sinyal. Tidak ada WiFi. Tidak masalah.",
-      story:lang==="en"
-        ?"In Alor, Flores, and the highlands of Timor — entire districts where 4G is a rumour and 2G drops out by noon — Kaders still make their rounds. Every day. Rain or shine.\n\nStandard digital health tools fail here. They need APIs. They need cloud sync. They need data — and data costs money the Kader doesn't have.\n\nSahAIbat Offline runs the entire WHO growth engine, all KMS danger sign rules, and every referral protocol — locally, on the Kader's phone, with zero network dependency.\n\nWhen signal returns — whether it's an hour or three days later — every visit syncs automatically to the Posyandu dashboard. Nothing is lost."
-        :"Di Alor, Flores, dan dataran tinggi Timor — seluruh kabupaten di mana 4G hanya kabar burung dan 2G hilang sebelum siang — para Kader tetap bertugas. Setiap hari. Hujan atau panas.\n\nAlat kesehatan digital standar gagal di sini. Mereka butuh API. Sinkronisasi cloud. Data — dan data membutuhkan biaya yang tidak dimiliki Kader.\n\nSahAIbat Offline menjalankan seluruh engine pertumbuhan WHO, semua aturan tanda bahaya KMS, dan setiap protokol rujukan — secara lokal, di ponsel Kader, tanpa ketergantungan jaringan sama sekali.\n\nKetika sinyal kembali — satu jam atau tiga hari kemudian — setiap kunjungan tersinkron otomatis ke dashboard Posyandu. Tidak ada yang hilang.",
-      features:lang==="en"
-        ?["100% offline — zero network dependency","WHO growth calculations run locally on device","All danger sign rules hardcoded — no AI API needed","Auto-sync when any signal returns","Works on basic 2G WhatsApp phones"]
-        :["100% offline — nol ketergantungan jaringan","Kalkulasi pertumbuhan WHO berjalan lokal di perangkat","Semua aturan tanda bahaya dikodekan tetap","Sinkronisasi otomatis saat sinyal kembali","Bekerja di ponsel 2G sederhana"],
-      messages:[
-        {msg:"📵 Tidak ada sinyal\nMode Offline: AKTIF\nSemua triase berjalan secara lokal",u:false,urg:false},
-        {msg:"Bayi 6 hari, tidak mau menyusu sejak pagi",u:true,urg:false},
-        {msg:"🍼 Modul Neonatal (Offline)\n\nBayi tampak kuning (ikterus)?\n1=Ya  2=Tidak",u:false,urg:false},
-        {msg:"1",u:true,urg:false},
-        {msg:"Kuning sampai ke telapak tangan atau kaki?\n1=Ya  2=Tidak",u:false,urg:false},
-        {msg:"1",u:true,urg:false},
-        {msg:"🔴 DARURAT — Ikterus Neonatorum Berat\n\nRujuk ke Puskesmas SEGERA.\n\n📱 Catatan tersimpan lokal\n🔄 Tersinkron saat sinyal kembali",u:false,urg:true},
-      ],
-    },
-    {
-      id:3,
       icon:"👩‍⚕️",
+
       label:"Bidan",
       sublabel:lang==="en"?"Midwife Module":"Modul Bidan",
       accent:C.purple,
@@ -395,8 +390,8 @@ function ProductsSection({lang}:{lang:"en"|"id"}){
         ?"A Bidan in rural NTT can serve 5–10 villages. She cannot be everywhere. But her knowledge can be.\n\nThe Bidan module gives community midwives a structured digital companion for antenatal visits, postnatal checks, and high-risk pregnancy monitoring. It doesn't replace her clinical judgment — it extends her reach.\n\nWhen a Kader flags a concern, the Bidan receives a structured summary: the questions asked, the answers given, and a clear risk classification. She can triage remotely — and respond where it matters most.\n\nHer knowledge. Everywhere she can't be."
         :"Seorang Bidan di NTT pedesaan bisa melayani 5–10 desa. Ia tidak bisa hadir di mana-mana. Tapi pengetahuannya bisa.\n\nModul Bidan memberi bidan komunitas pendamping digital terstruktur untuk kunjungan antenatal, pemeriksaan pascamelahirkan, dan pemantauan kehamilan berisiko tinggi. Ini tidak menggantikan penilaian klinisnya — ini memperluas jangkauannya.\n\nKetika Kader melaporkan kekhawatiran, Bidan menerima ringkasan terstruktur: pertanyaan yang diajukan, jawaban yang diberikan, dan klasifikasi risiko yang jelas. Ia bisa melakukan triase dari jarak jauh — dan merespons di tempat yang paling penting.\n\nPengetahuannya. Di mana pun ia tidak bisa hadir.",
       features:lang==="en"
-        ?["Antenatal visit tracking — all trimesters","Postnatal monitoring — 0 to 42 days","High-risk flag alerts sent to supervising Bidan","Remote triage review from any location","Integrated with Kader WhatsApp module"]
-        :["Pelacakan kunjungan antenatal — semua trimester","Pemantauan pascamelahirkan — 0 sampai 42 hari","Peringatan tanda bahaya dikirim ke Bidan pengawas","Tinjauan triase jarak jauh dari lokasi mana pun","Terintegrasi dengan modul Kader WhatsApp"],
+        ?["Antenatal visit tracking — all trimesters","Postnatal monitoring — 0 to 42 days","High-risk flag alerts sent to supervising Bidan","Remote triage review from any location","Integrated with the Kader App"]
+        :["Pelacakan kunjungan antenatal — semua trimester","Pemantauan pascamelahirkan — 0 sampai 42 hari","Peringatan tanda bahaya dikirim ke Bidan pengawas","Tinjauan triase jarak jauh dari lokasi mana pun","Terintegrasi dengan Aplikasi Kader"],
       messages:[
         {msg:"👩‍⚕️ Bidan Dashboard\nKunjungan hari ini: 3\nTanda bahaya terdeteksi: 1",u:false,urg:false},
         {msg:"⚠️ PERINGATAN BARU\n\nKader Sari melaporkan:\nBu Wati, 32th, hamil 36mgg\nTekanan darah tinggi terdeteksi\n\nLihat detail? 1=Ya  2=Nanti",u:false,urg:false},
@@ -406,20 +401,22 @@ function ProductsSection({lang}:{lang:"en"|"id"}){
       ],
     },
     {
-      id:4,
+      id:3,
       icon:"📊",
-      label:lang==="en"?"NGO Dashboard":"Dashboard NGO",
+      label:lang==="en"?"Programme Dashboard":"Dasbor Program",
       sublabel:lang==="en"?"Impact at scale":"Dampak skala besar",
       accent:C.blue,
+      shots:["/images/art/dash-overview.jpeg","/images/art/dash-ancquality.jpeg","/images/art/dash-anak.jpeg","/images/art/dash-ibuhamil.jpeg"],
+      shotKind:"browser" as const,
       headline:lang==="en"?"See everything. Miss nothing.":"Lihat segalanya. Jangan lewatkan satu pun.",
       story:lang==="en"
-        ?"A stunting rate drops from 32% to 24% in two years. A Kader in a remote NTT village makes 47 home visits in a month — all recorded. A high-risk pregnancy is flagged on a Tuesday morning, and a Bidan responds that same afternoon.\n\nThe NGO Dashboard doesn't just show you data. It shows you what your programme is actually doing — in real time, at the village level, across every district you operate in.\n\nFor programme managers, donors, and government partners, the dashboard is the proof. Coverage maps, clinical outcomes, Kader activity, referral rates — all in one place, updated live, exportable in one click.\n\nThis is what accountability looks like."
-        :"Angka stunting turun dari 32% menjadi 24% dalam dua tahun. Seorang Kader di desa terpencil NTT membuat 47 kunjungan rumah dalam sebulan — semuanya tercatat. Kehamilan berisiko tinggi ditandai pada Selasa pagi, dan Bidan merespons hari yang sama.\n\nDashboard NGO tidak sekadar menampilkan data. Ia menunjukkan apa yang sebenarnya dilakukan program Anda — secara real-time, di tingkat desa, di setiap kabupaten tempat Anda beroperasi.\n\nBagi manajer program, donor, dan mitra pemerintah, dashboard adalah buktinya. Peta cakupan, hasil klinis, aktivitas Kader, tingkat rujukan — semuanya di satu tempat, diperbarui langsung, bisa diekspor dengan satu klik.\n\nInilah tampilan akuntabilitas.",
+        ?"A stunting rate drops from 32% to 24% in two years. A Kader in a remote NTT village makes 47 home visits in a month — all recorded. A high-risk pregnancy is flagged on a Tuesday morning, and a Bidan responds that same afternoon.\n\nThe Programme Dashboard doesn't just show you data. It shows you what your programme is actually doing — in real time, at the village level, across every district you operate in.\n\nFor programme managers, donors, and government partners, the dashboard is the proof. Coverage maps, clinical outcomes, Kader activity, referral rates — all in one place, updated live, exportable in one click.\n\nThis is what accountability looks like."
+        :"Angka stunting turun dari 32% menjadi 24% dalam dua tahun. Seorang Kader di desa terpencil NTT membuat 47 kunjungan rumah dalam sebulan — semuanya tercatat. Kehamilan berisiko tinggi ditandai pada Selasa pagi, dan Bidan merespons hari yang sama.\n\nDasbor Program tidak sekadar menampilkan data. Ia menunjukkan apa yang sebenarnya dilakukan program Anda — secara real-time, di tingkat desa, di setiap kabupaten tempat Anda beroperasi.\n\nBagi manajer program, donor, dan mitra pemerintah, dashboard adalah buktinya. Peta cakupan, hasil klinis, aktivitas Kader, tingkat rujukan — semuanya di satu tempat, diperbarui langsung, bisa diekspor dengan satu klik.\n\nInilah tampilan akuntabilitas.",
       features:lang==="en"
         ?["Real-time Kader activity across all districts","Village-level coverage and outcome maps","Clinical risk trends — by module, by region","One-click export for donor and MoH reporting","Role-based access: Kader · Bidan · NGO · Funder"]
         :["Aktivitas Kader real-time di semua kabupaten","Peta cakupan dan hasil tingkat desa","Tren risiko klinis — per modul, per wilayah","Ekspor satu klik untuk laporan donor dan Kemenkes","Akses berbasis peran: Kader · Bidan · NGO · Donor"],
       messages:[
-        {msg:"📊 NGO Dashboard — Yayasan Pijar Timur\nNTT Province · Live",u:false,urg:false},
+        {msg:"📊 Programme Dashboard — Yayasan Pijar Timur\nNTT Province · Live",u:false,urg:false},
         {msg:"Kader aktif bulan ini: 142 / 180\nKunjungan total: 1,847\nTanda bahaya terdeteksi: 23\nRujukan berhasil: 21",u:false,urg:false},
         {msg:"⚠️ 2 desa belum dilaporkan minggu ini:\n• Desa Oebola\n• Desa Nunkurus\n\nKirim pengingat ke Kader? 1=Ya",u:false,urg:false},
         {msg:"1",u:true,urg:false},
@@ -439,7 +436,7 @@ function ProductsSection({lang}:{lang:"en"|"id"}){
             <span style={{color:C.teal,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"OUR PRODUCTS":"PRODUK KAMI"}</span>
           </div>
           <h2 className="display-font" style={{fontSize:"clamp(32px,4vw,52px)",color:C.white,lineHeight:1.2,marginBottom:16,maxWidth:700}}>
-            {lang==="en"?"Five tools. Built for the people who show up.":"Lima alat. Dibangun untuk mereka yang selalu hadir."}
+            {lang==="en"?"Four tools. Built for the people who show up.":"Empat alat. Dibangun untuk mereka yang selalu hadir."}
           </h2>
           <p style={{color:"rgba(255,255,255,0.5)",fontSize:16,maxWidth:560,lineHeight:1.8,marginBottom:48}}>
             {lang==="en"?"From the worried parent at midnight to the midwife in a mountain village with no internet — SahAIbat meets every user exactly where they are."
@@ -473,6 +470,33 @@ function ProductsSection({lang}:{lang:"en"|"id"}){
               </div>
             </div>
             <div>
+              {(p as any).shots ? (
+                (p as any).shotKind==="phone" ? (
+                  <div style={{display:"flex",flexDirection:"column",gap:18,alignItems:"center"}}>
+                    {((p as any).shots as string[]).map((src,i)=>(
+                      <div key={i} style={{maxWidth:300,width:"100%",borderRadius:28,overflow:"hidden",border:"8px solid #0a1513",boxShadow:"0 20px 50px rgba(0,0,0,0.45)",background:"#0a1513"}}>
+                        <img src={src} alt={`Kasih chat ${i+1}`} loading="lazy" style={{display:"block",width:"100%",height:"auto"}}/>
+                      </div>
+                    ))}
+                    <div style={{color:C.muted,fontSize:11,textAlign:"center",fontStyle:"italic"}}>{lang==="en"?"Real conversation with Kasih (Bahasa Indonesia)":"Percakapan nyata dengan Kasih (Bahasa Indonesia)"}</div>
+                  </div>
+                ) : (
+                  <div style={{display:"flex",flexDirection:"column",gap:20}}>
+                    {((p as any).shots as string[]).map((src,i)=>(
+                      <div key={i} style={{borderRadius:14,overflow:"hidden",border:`1px solid ${p.accent}30`,boxShadow:"0 12px 36px rgba(0,0,0,0.4)",background:"#0d1a18"}}>
+                        <div style={{display:"flex",alignItems:"center",gap:6,padding:"9px 12px",background:"rgba(255,255,255,0.04)",borderBottom:"1px solid rgba(255,255,255,0.06)"}}>
+                          <span style={{width:9,height:9,borderRadius:"50%",background:"#FF5F56",display:"inline-block"}}/>
+                          <span style={{width:9,height:9,borderRadius:"50%",background:"#FFBD2E",display:"inline-block"}}/>
+                          <span style={{width:9,height:9,borderRadius:"50%",background:"#27C93F",display:"inline-block"}}/>
+                          <span style={{marginLeft:8,color:"rgba(255,255,255,0.35)",fontSize:11,fontFamily:"monospace"}}>dashboard.sahaibat.com</span>
+                        </div>
+                        <img src={src} alt={`Programme Dashboard ${i+1}`} loading="lazy" style={{display:"block",width:"100%",height:"auto"}}/>
+                      </div>
+                    ))}
+                    <div style={{color:C.muted,fontSize:11,textAlign:"center",fontStyle:"italic"}}>{lang==="en"?"Live programme dashboard — demonstration data shown":"Dasbor program langsung — data demonstrasi ditampilkan"}</div>
+                  </div>
+                )
+              ) : (
               <div style={{background:"rgba(15,31,28,0.8)",border:`1px solid ${p.accent}30`,borderRadius:24,padding:28,position:"relative",overflow:"hidden"}}>
                 <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,transparent,${p.accent},transparent)`}}/>
                 <div style={{color:C.muted,fontSize:11,textAlign:"center",marginBottom:16,fontFamily:"monospace"}}>💬 SahAIbat · {p.label}</div>
@@ -486,6 +510,7 @@ function ProductsSection({lang}:{lang:"en"|"id"}){
                   <span style={{color:p.accent,fontSize:10}}>📵 {lang==="en"?"Works offline":"Bekerja offline"}</span>
                 </div>
               </div>
+              )}
             </div>
           </div>
         </div>
@@ -686,15 +711,15 @@ function TeamSection({lang}:{lang:"en"|"id"}){
     {
       name:"Sanjib Maity",
       flag:"🇨🇦",
-      role:lang==="en"?"Founder & Product Developer":"Pendiri & Pengembang Produk",
+      role:lang==="en"?"Founder, CEO & CTO":"Pendiri, CEO & CTO",
       loc:lang==="en"?"Canada":"Kanada",
       photo:"/images/sanjib.jpeg",
       color:C.teal,
       bg:C.dark,
       passion:lang==="en"
-        ?"Sanjib has 15+ years of experience in IT infrastructure and application development — building systems that move at scale. He left a comfortable career to answer a question that kept him awake: why do the communities with the highest disease burden have the least digital support? SahAIbat is his answer."
-        :"Sanjib memiliki pengalaman 15+ tahun dalam infrastruktur IT dan pengembangan aplikasi — membangun sistem yang bergerak dalam skala besar. Ia meninggalkan karier yang nyaman untuk menjawab pertanyaan yang terus mengganggunya: mengapa komunitas dengan beban penyakit tertinggi mendapat dukungan digital paling sedikit? SahAIbat adalah jawabannya.",
-      tags:["15+ Years IT","Product Development","Health Equity","Founder"],
+        ?"Sanjib brings over 15 years of expertise in IT infrastructure and enterprise-scale application development to his role as Founder, CEO, and CTO of SahAIbat. Driven by a critical question — why the communities facing the highest disease burden have the least digital support — he built SahAIbat to bridge that gap. As CTO he architected the platform to scale seamlessly; as CEO he leads the mission to deploy high-impact, life-saving digital infrastructure where it is needed most."
+        :"Sanjib membawa lebih dari 15 tahun keahlian dalam infrastruktur IT dan pengembangan aplikasi skala enterprise ke perannya sebagai Pendiri, CEO, dan CTO SahAIbat. Didorong oleh satu pertanyaan penting — mengapa komunitas dengan beban penyakit tertinggi justru memiliki dukungan digital paling sedikit — ia membangun SahAIbat untuk menjembatani kesenjangan itu. Sebagai CTO ia merancang platform agar dapat berkembang dengan mulus; sebagai CEO ia memimpin misi untuk menghadirkan infrastruktur digital berdampak tinggi yang menyelamatkan nyawa di tempat yang paling membutuhkannya.",
+      tags:["15+ Years IT","Enterprise Architecture","Founder · CEO · CTO","Health Equity"],
     },
     {
       name:"Dr. Ratih Rakhmawati, M.Biomed",
@@ -855,6 +880,275 @@ function TeamSection({lang}:{lang:"en"|"id"}){
             </div>
           </div>
         </FadeIn>
+      </div>
+    </section>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// ILP — NATIONAL FRAMEWORK
+// ══════════════════════════════════════════════════════════════════════════════
+function ILPSection({lang}:{lang:"en"|"id"}){
+  const clusters=[
+    {cluster:lang==="en"?"CHILD TRIAGE":"TRIASE ANAK",color:C.teal,items:lang==="en"?["Posyandu Anak — growth & development, 0–60 months","Immunisation & supplements — vaccines, Vitamin A, deworming"]:["Posyandu Anak — tumbuh kembang, 0–60 bulan","Imunisasi & suplemen — vaksin, Vitamin A, obat cacing"]},
+    {cluster:lang==="en"?"MATERNAL TRIAGE":"TRIASE IBU",color:C.pink,items:lang==="en"?["Ibu Hamil — antenatal danger-sign triage","Ibu Nifas — postpartum, 0–42 days","Bayi Baru Lahir — neonatal, 0–28 days"]:["Ibu Hamil — triase tanda bahaya antenatal","Ibu Nifas — pascamelahirkan, 0–42 hari","Bayi Baru Lahir — neonatal, 0–28 hari"]},
+    {cluster:lang==="en"?"SCHOOL AGE & ADOLESCENT":"USIA SEKOLAH & REMAJA",color:C.blue,items:lang==="en"?["Remaja — adolescent health screening, 6–18 years"]:["Remaja — skrining kesehatan, 6–18 tahun"]},
+    {cluster:lang==="en"?"ADULT & ELDERLY":"USIA DEWASA & LANSIA",color:C.gold,items:lang==="en"?["Usia Dewasa — NCD early detection, 18–59 years","Lanjut Usia — geriatric screening, 60+ years"]:["Usia Dewasa — deteksi dini PTM, 18–59 tahun","Lanjut Usia — skrining lansia, 60+ tahun"]},
+    {cluster:lang==="en"?"COMMUNICABLE DISEASE":"PENYAKIT MENULAR",color:"#FF6B6B",items:lang==="en"?["TBC — tuberculosis screening, all ages","Malaria — screening in endemic regions"]:["TBC — skrining tuberkulosis, semua usia","Malaria — skrining di daerah endemis"]},
+  ];
+  return(
+    <section style={{background:C.dark,padding:"100px 0",position:"relative",overflow:"hidden"}}>
+      <div className="teal-glow" style={{width:600,height:600,background:C.teal,top:"10%",right:"-15%"}}/>
+      <div className="section-max" style={{position:"relative",zIndex:1}}>
+        <FadeIn>
+          <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(2,195,154,0.1)",border:"1px solid rgba(2,195,154,0.3)",borderRadius:20,padding:"6px 16px",marginBottom:16}}>
+            <span style={{color:C.teal,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"BUILT ON THE NATIONAL FRAMEWORK":"DIBANGUN DI ATAS KERANGKA NASIONAL"}</span>
+          </div>
+          <h2 className="display-font" style={{fontSize:"clamp(32px,4vw,52px)",color:C.white,lineHeight:1.2,marginBottom:20,maxWidth:760}}>
+            {lang==="en"?<>Most health apps digitise one disease.<br/><span style={{color:C.teal}}>We digitise the entire life cycle.</span></>:<>Sebagian besar aplikasi kesehatan mendigitalkan satu penyakit.<br/><span style={{color:C.teal}}>Kami mendigitalkan seluruh siklus hidup.</span></>}
+          </h2>
+          <p style={{color:"rgba(255,255,255,0.55)",fontSize:16,maxWidth:680,lineHeight:1.8,marginBottom:56}}>
+            {lang==="en"?"Indonesia's Ministry of Health is rolling out Integrasi Layanan Primer (ILP) — a nationwide mandate that reorganises every Posyandu around the citizen's life cycle (siklus hidup) instead of isolated programmes. SahAIbat's interface maps to the complete ILP Posyandu service package — birth to elderly — in a single WhatsApp-native flow the Kader already knows how to use."
+            :"Kementerian Kesehatan Indonesia sedang menerapkan Integrasi Layanan Primer (ILP) — mandat nasional yang menata ulang setiap Posyandu berdasarkan siklus hidup warga, bukan program yang terpisah-pisah. Antarmuka SahAIbat memetakan paket layanan Posyandu ILP secara lengkap — dari lahir hingga lansia — dalam satu alur berbasis WhatsApp yang sudah dikenal Kader."}
+          </p>
+        </FadeIn>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",gap:20,marginBottom:48}}>
+          {clusters.map(({cluster,color,items})=>(<FadeIn key={cluster} delay={80}>
+            <div style={{background:"rgba(255,255,255,0.03)",border:`1px solid ${color}30`,borderRadius:16,padding:24,height:"100%"}}>
+              <div style={{color,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:16}}>{cluster}</div>
+              {items.map(item=>(<div key={item} style={{display:"flex",gap:10,marginBottom:12}}>
+                <div style={{width:5,height:5,borderRadius:"50%",background:color,marginTop:7,flexShrink:0}}/>
+                <div style={{color:"rgba(255,255,255,0.6)",fontSize:13,lineHeight:1.5}}>{item}</div>
+              </div>))}
+            </div>
+          </FadeIn>))}
+        </div>
+        <FadeIn>
+          <div style={{background:`linear-gradient(135deg,${C.tealXdk},${C.tealDk})`,borderRadius:20,padding:40,display:"flex",gap:28,alignItems:"center",flexWrap:"wrap"}}>
+            <div style={{fontSize:48}}>🇮🇩</div>
+            <div style={{flex:1,minWidth:280}}>
+              <h3 style={{color:C.white,fontSize:22,fontWeight:700,marginBottom:10}}>{lang==="en"?"One Kader. Every life stage. Zero new hardware.":"Satu Kader. Setiap tahap kehidupan. Tanpa perangkat baru."}</h3>
+              <p style={{color:"rgba(255,255,255,0.75)",lineHeight:1.7,fontSize:14}}>
+                {lang==="en"?"ILP asks 1.4 million Kaders to deliver life-cycle screening and report it digitally — on tools most of them don't have. SahAIbat is the missing layer: it runs on the WhatsApp already in the Kader's hand, works offline, and produces the structured data the framework requires."
+                :"ILP meminta 1,4 juta Kader untuk melakukan skrining siklus hidup dan melaporkannya secara digital — dengan alat yang sebagian besar tidak mereka miliki. SahAIbat adalah lapisan yang hilang: berjalan di WhatsApp yang sudah ada di tangan Kader, bekerja offline, dan menghasilkan data terstruktur yang dibutuhkan kerangka ini."}
+              </p>
+            </div>
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// ECOSYSTEM — one engine, six surfaces
+// ══════════════════════════════════════════════════════════════════════════════
+function EcosystemSection({lang}:{lang:"en"|"id"}){
+  const surfaces=[
+    {layer:lang==="en"?"VILLAGE":"DESA",icon:"👩🏽‍⚕️",name:lang==="en"?"Kader App":"Aplikasi Kader",who:lang==="en"?"Community health workers":"Kader kesehatan",color:C.teal,live:true},
+    {layer:lang==="en"?"MIDWIFE":"BIDAN",icon:"🩺",name:lang==="en"?"Bidan Module":"Modul Bidan",who:lang==="en"?"Midwives — ANC quality & docs":"Bidan — kualitas ANC & dokumentasi",color:C.purple,live:true},
+    {layer:lang==="en"?"RURAL CITIZEN":"WARGA PEDESAAN",icon:"❤️‍🩹",name:"Kasih",who:lang==="en"?"Families, on WhatsApp":"Keluarga, lewat WhatsApp",color:C.pink,live:true},
+    {layer:lang==="en"?"URBAN CITIZEN":"WARGA URBAN",icon:"🌟",name:"Sehat",who:lang==="en"?"Urban families & individuals":"Keluarga & individu urban",color:C.gold,live:false},
+    {layer:lang==="en"?"CLINIC":"KLINIK",icon:"🩻",name:"SahAIbat DoK",who:lang==="en"?"Doctors & small clinics":"Dokter & klinik kecil",color:"#7C5CFC",live:false},
+    {layer:lang==="en"?"OVERSIGHT":"PENGAWASAN",icon:"📊",name:lang==="en"?"Programme Dashboard":"Dasbor Program",who:lang==="en"?"Programme managers & health offices":"Manajer program & dinas kesehatan",color:C.blue,live:true},
+  ];
+  return(
+    <section style={{background:C.cream,padding:"100px 0"}}>
+      <div className="section-max">
+        <FadeIn>
+          <div style={{display:"inline-flex",alignItems:"center",gap:8,background:`${C.tealDk}15`,border:`1px solid ${C.tealDk}30`,borderRadius:20,padding:"6px 16px",marginBottom:16}}>
+            <span style={{color:C.tealDk,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"THE FULL STACK":"EKOSISTEM LENGKAP"}</span>
+          </div>
+          <h2 className="display-font" style={{fontSize:"clamp(32px,4vw,52px)",color:C.dark,lineHeight:1.2,marginBottom:20,maxWidth:780}}>
+            {lang==="en"?<>Most companies build one app for one problem.<br/><span style={{color:C.tealDk}}>We built the layer that connects the whole system.</span></>:<>Kebanyakan perusahaan membangun satu aplikasi untuk satu masalah.<br/><span style={{color:C.tealDk}}>Kami membangun lapisan yang menghubungkan seluruh sistem.</span></>}
+          </h2>
+          <p style={{color:C.muted,fontSize:16,maxWidth:720,lineHeight:1.8,marginBottom:48}}>
+            {lang==="en"?"One clinical engine and one data backbone power six surfaces — reaching every actor in Indonesian primary care, from the volunteer in the village to the doctor in the clinic to the official at the ministry. Each surface is useful on its own. Together, they're an ecosystem."
+            :"Satu engine klinis dan satu tulang punggung data menggerakkan enam antarmuka — menjangkau setiap aktor dalam layanan primer Indonesia, dari relawan di desa, dokter di klinik, hingga pejabat di kementerian. Setiap antarmuka berguna sendiri. Bersama, mereka adalah sebuah ekosistem."}
+          </p>
+        </FadeIn>
+        <FadeIn delay={80}>
+          <div style={{borderRadius:20,overflow:"hidden",border:`1px solid ${C.tealDk}20`,marginBottom:40}}>
+            <img src="/images/art/ecosystem-network.png" alt={lang==="en"?"SahAIbat connected ecosystem":"Ekosistem terhubung SahAIbat"} loading="lazy" style={{display:"block",width:"100%",height:"auto"}}/>
+          </div>
+        </FadeIn>
+        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(230px,1fr))",gap:16,marginBottom:32}}>
+          {surfaces.map(({layer,icon,name,who,color,live})=>(<FadeIn key={name} delay={60}>
+            <div style={{background:C.white,border:`1px solid ${color}30`,borderRadius:16,padding:22,height:"100%"}}>
+              <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10}}>
+                <div style={{fontSize:28}}>{icon}</div>
+                <span style={{fontSize:9,fontWeight:700,letterSpacing:0.5,padding:"3px 8px",borderRadius:20,background:live?"rgba(2,195,154,0.12)":"rgba(0,0,0,0.05)",color:live?C.tealDk:C.muted,border:`1px solid ${live?"rgba(2,195,154,0.25)":"rgba(0,0,0,0.1)"}`}}>{live?(lang==="en"?"LIVE":"AKTIF"):(lang==="en"?"IN DEVELOPMENT":"DALAM PENGEMBANGAN")}</span>
+              </div>
+              <div style={{color,fontSize:10,fontWeight:700,letterSpacing:1,marginBottom:4}}>{layer}</div>
+              <div style={{color:C.dark,fontWeight:700,fontSize:16,marginBottom:4}}>{name}</div>
+              <div style={{color:C.muted,fontSize:12.5,lineHeight:1.5}}>{who}</div>
+            </div>
+          </FadeIn>))}
+        </div>
+        <FadeIn delay={200}>
+          <div style={{background:C.dark,borderRadius:20,padding:40}}>
+            <h3 style={{color:C.white,fontSize:22,fontWeight:700,marginBottom:12}}>{lang==="en"?"Why a stack beats an app.":"Mengapa ekosistem mengungguli satu aplikasi."}</h3>
+            <p style={{color:"rgba(255,255,255,0.65)",lineHeight:1.8,fontSize:14,maxWidth:760}}>
+              {lang==="en"?"The same WHO growth engine a Kader uses at a Posyandu also charts a child's growth inside the family's Sehat app. The same danger-sign logic Kasih shares with a mother is what a doctor's notes are checked against in DoK. Build one rigorous clinical core, expose it through the interface each user already lives in, and connect them with a shared, sovereign data layer — that's how you cover an entire health system."
+              :"Engine pertumbuhan WHO yang sama yang digunakan Kader di Posyandu juga memetakan pertumbuhan anak di dalam aplikasi Sehat keluarga. Logika tanda bahaya yang sama yang dibagikan Kasih kepada seorang ibu adalah acuan pemeriksaan catatan dokter di DoK. Bangun satu inti klinis yang ketat, hadirkan melalui antarmuka yang sudah digunakan setiap pengguna, dan hubungkan dengan lapisan data yang berdaulat — begitulah cara menjangkau seluruh sistem kesehatan."}
+            </p>
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// NEXT PRODUCTS — DoK + Sehat (in development)
+// ══════════════════════════════════════════════════════════════════════════════
+function NextProductsSection({lang}:{lang:"en"|"id"}){
+  return(
+    <section style={{background:C.dark,padding:"100px 0",position:"relative",overflow:"hidden"}}>
+      <div className="teal-glow" style={{width:500,height:500,background:"#7C5CFC",bottom:"-12%",right:"-10%"}}/>
+      <div className="section-max" style={{position:"relative",zIndex:1}}>
+        <FadeIn>
+          <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(124,92,252,0.12)",border:"1px solid rgba(124,92,252,0.35)",borderRadius:20,padding:"6px 16px",marginBottom:16}}>
+            <span style={{color:"#A48BFF",fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"ON THE HORIZON":"DALAM PENGEMBANGAN"}</span>
+          </div>
+          <h2 className="display-font" style={{fontSize:"clamp(32px,4vw,52px)",color:C.white,lineHeight:1.2,marginBottom:20,maxWidth:720}}>
+            {lang==="en"?"Two more surfaces, in active development.":"Dua antarmuka lagi, sedang dikembangkan."}
+          </h2>
+          <p style={{color:"rgba(255,255,255,0.55)",fontSize:16,maxWidth:680,lineHeight:1.8,marginBottom:48}}>
+            {lang==="en"?"The same clinical engine, reaching two more parts of the system: the urban family, and the clinic. Both are being built on the foundation already serving rural communities today."
+            :"Engine klinis yang sama, menjangkau dua bagian sistem lainnya: keluarga urban, dan klinik. Keduanya dibangun di atas fondasi yang sudah melayani komunitas pedesaan hari ini."}
+          </p>
+        </FadeIn>
+        <div className="two-col">
+          {/* Sehat */}
+          <FadeIn delay={80}>
+            <div style={{background:"rgba(255,255,255,0.03)",border:`1px solid ${C.gold}30`,borderRadius:24,padding:36,height:"100%",position:"relative",overflow:"hidden"}}>
+              <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${C.gold},transparent)`}}/>
+              <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:16}}>
+                <div style={{fontSize:36}}>🌟</div>
+                <span style={{fontSize:9,fontWeight:700,letterSpacing:0.5,padding:"4px 10px",borderRadius:20,background:"rgba(212,168,67,0.12)",color:C.gold,border:`1px solid ${C.gold}40`}}>{lang==="en"?"IN DEVELOPMENT":"DALAM PENGEMBANGAN"}</span>
+              </div>
+              <h3 style={{color:C.white,fontWeight:800,fontSize:22,marginBottom:6}}>Sehat by SahAIbat</h3>
+              <div style={{color:C.gold,fontWeight:600,fontSize:13,marginBottom:16}}>{lang==="en"?"For urban families":"Untuk keluarga urban"}</div>
+              <p style={{color:"rgba(255,255,255,0.6)",fontSize:14,lineHeight:1.8,marginBottom:20}}>
+                {lang==="en"?"The internet gives every Indonesian the same generic article. Sehat gives each person a plan generated from their own age, conditions, and measurements — for the whole family, under one account. Symptom triage, pregnancy & milestone tracking, vaccines, and personalised wellness plans."
+                :"Internet memberi setiap orang Indonesia artikel umum yang sama. Sehat memberi setiap orang rencana yang dihasilkan dari usia, kondisi, dan pengukuran mereka sendiri — untuk seluruh keluarga, dalam satu akun. Triase gejala, pelacakan kehamilan & tumbuh kembang, vaksin, dan rencana wellness personal."}
+              </p>
+              <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
+                {(lang==="en"?["Symptom triage","Mom & Baby","Wellness Hub","Vaccines & clinics","One family account"]:["Triase gejala","Ibu & Bayi","Wellness Hub","Vaksin & klinik","Satu akun keluarga"]).map(t=>(<Tag key={t} label={t} color={C.gold}/>))}
+              </div>
+            </div>
+          </FadeIn>
+          {/* DoK */}
+          <FadeIn delay={160}>
+            <div style={{background:"rgba(255,255,255,0.03)",border:"1px solid rgba(124,92,252,0.3)",borderRadius:24,padding:36,height:"100%",position:"relative",overflow:"hidden"}}>
+              <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:"linear-gradient(90deg,#7C5CFC,transparent)"}}/>
+              <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:16}}>
+                <div style={{fontSize:36}}>🩻</div>
+                <span style={{fontSize:9,fontWeight:700,letterSpacing:0.5,padding:"4px 10px",borderRadius:20,background:"rgba(124,92,252,0.12)",color:"#A48BFF",border:"1px solid rgba(124,92,252,0.4)"}}>{lang==="en"?"IN DEVELOPMENT":"DALAM PENGEMBANGAN"}</span>
+              </div>
+              <h3 style={{color:C.white,fontWeight:800,fontSize:22,marginBottom:6}}>SahAIbat DoK</h3>
+              <div style={{color:"#A48BFF",fontWeight:600,fontSize:13,marginBottom:16}}>{lang==="en"?"For doctors & small clinics":"Untuk dokter & klinik kecil"}</div>
+              <p style={{color:"rgba(255,255,255,0.6)",fontSize:14,lineHeight:1.8,marginBottom:20}}>
+                {lang==="en"?"Indonesia's small clinics face a national mandate (PMK 24/2022) to feed structured records into SATUSEHAT — with no tools to comply. DoK turns a spoken consultation into a SOAP note with ICD-10 codes, checks decisions against accredited national guidelines, and bridges the result into SATUSEHAT — with the doctor in final control."
+                :"Klinik kecil Indonesia menghadapi mandat nasional (PMK 24/2022) untuk mengirim rekam medis terstruktur ke SATUSEHAT — tanpa alat untuk memenuhinya. DoK mengubah konsultasi lisan menjadi catatan SOAP dengan kode ICD-10, memeriksa keputusan terhadap pedoman nasional terakreditasi, dan menjembatani hasilnya ke SATUSEHAT — dengan dokter sebagai pengendali akhir."}
+              </p>
+              <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
+                {(lang==="en"?["Clinical voice scribe","ICD-10 coding","Accredited CDSS","SATUSEHAT-ready","Consent-based referral"]:["Scribe suara klinis","Pengkodean ICD-10","CDSS terakreditasi","Siap SATUSEHAT","Rujukan berbasis persetujuan"]).map(t=>(<Tag key={t} label={t} color="#A48BFF"/>))}
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// FLYWHEEL
+// ══════════════════════════════════════════════════════════════════════════════
+function FlywheelSection({lang}:{lang:"en"|"id"}){
+  const steps=[
+    {step:"01",title:lang==="en"?"The free products build trust":"Produk gratis membangun kepercayaan",desc:lang==="en"?"Kader, Kasih, the midwife tools and the dashboard serve the frontline at no cost — earning the confidence of health workers, mothers, and communities.":"Kader, Kasih, alat bidan, dan dasbor melayani garis depan tanpa biaya — meraih kepercayaan tenaga kesehatan, ibu, dan komunitas."},
+    {step:"02",title:lang==="en"?"Trust creates a data moat":"Kepercayaan menciptakan keunggulan data",desc:lang==="en"?"Every screening and journey becomes structured community-health data — a continuous, ground-level picture of a population's health that no competitor has.":"Setiap skrining dan perjalanan menjadi data kesehatan komunitas terstruktur — gambaran kesehatan populasi tingkat akar rumput yang berkelanjutan, yang tidak dimiliki pesaing."},
+    {step:"03",title:lang==="en"?"The clinical layer turns it into revenue":"Lapisan klinis mengubahnya menjadi pendapatan",desc:lang==="en"?"SahAIbat DoK takes that same localised, compliant AI into private clinics as a paid product — recurring subscriptions plus referral and enterprise revenue.":"SahAIbat DoK membawa AI lokal yang patuh itu ke klinik swasta sebagai produk berbayar — langganan berulang plus pendapatan rujukan dan enterprise."},
+    {step:"04",title:lang==="en"?"Revenue funds the mission":"Pendapatan mendanai misi",desc:lang==="en"?"DoK's commercial layer pays for the infrastructure that keeps the community products free — so reaching the last village doesn't depend on the next grant cycle.":"Lapisan komersial DoK membayar infrastruktur yang menjaga produk komunitas tetap gratis — agar menjangkau desa terjauh tidak bergantung pada siklus hibah berikutnya."},
+  ];
+  return(
+    <section style={{background:C.cream,padding:"100px 0"}}>
+      <div className="section-max">
+        <FadeIn>
+          <div style={{textAlign:"center",marginBottom:56}}>
+            <div style={{display:"inline-flex",alignItems:"center",gap:8,background:`${C.tealDk}15`,border:`1px solid ${C.tealDk}30`,borderRadius:20,padding:"6px 16px",marginBottom:16}}>
+              <span style={{color:C.tealDk,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"HOW IT ALL HOLDS TOGETHER":"BAGAIMANA SEMUANYA TERHUBUNG"}</span>
+            </div>
+            <h2 className="display-font" style={{fontSize:"clamp(32px,4vw,52px)",color:C.dark,lineHeight:1.2,marginBottom:16,maxWidth:720,margin:"0 auto 16px"}}>
+              {lang==="en"?"The flywheel: trust on one side, sustainability on the other.":"Roda gila: kepercayaan di satu sisi, keberlanjutan di sisi lain."}
+            </h2>
+            <p style={{color:C.muted,fontSize:16,maxWidth:620,lineHeight:1.8,margin:"0 auto"}}>
+              {lang==="en"?"The pieces aren't separate bets. They turn each other.":"Bagian-bagiannya bukan taruhan terpisah. Mereka saling memutar."}
+            </p>
+          </div>
+        </FadeIn>
+        <FadeIn delay={80}>
+          <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(240px,1fr))",gap:20,marginBottom:32}}>
+            {steps.map(({step,title,desc})=>(<div key={step} style={{background:C.white,borderRadius:16,padding:28,border:"1px solid rgba(2,195,154,0.15)"}}>
+              <div style={{color:C.teal,fontWeight:800,fontSize:22,marginBottom:10}}>{step}</div>
+              <div style={{color:C.dark,fontWeight:700,fontSize:16,marginBottom:8}}>{title}</div>
+              <p style={{color:C.muted,fontSize:13.5,lineHeight:1.7}}>{desc}</p>
+            </div>))}
+          </div>
+        </FadeIn>
+        <FadeIn delay={160}>
+          <div style={{background:C.dark,borderRadius:20,padding:40,textAlign:"center"}}>
+            <p style={{color:"rgba(255,255,255,0.8)",fontSize:18,lineHeight:1.7,maxWidth:720,margin:"0 auto",fontFamily:"'Playfair Display',serif"}}>
+              {lang==="en"?"\u201CThe free products earn the trust and build the data. The clinical product funds the infrastructure. Each turn of the wheel makes the next one stronger.\u201D":"\u201CProduk gratis meraih kepercayaan dan membangun data. Produk klinis mendanai infrastruktur. Setiap putaran roda membuat putaran berikutnya lebih kuat.\u201D"}
+            </p>
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// VOICES FROM THE FIELD — video
+// ══════════════════════════════════════════════════════════════════════════════
+function FieldVoicesSection({lang}:{lang:"en"|"id"}){
+  return(
+    <section style={{background:C.dark,padding:"100px 0",position:"relative",overflow:"hidden"}}>
+      <div className="teal-glow" style={{width:500,height:500,background:C.teal,top:"15%",right:"-12%"}}/>
+      <div className="section-max" style={{position:"relative",zIndex:1}}>
+        <FadeIn>
+          <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(2,195,154,0.1)",border:"1px solid rgba(2,195,154,0.3)",borderRadius:20,padding:"6px 16px",marginBottom:16}}>
+            <span style={{color:C.teal,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"VOICES FROM THE FIELD":"SUARA DARI LAPANGAN"}</span>
+          </div>
+          <h2 className="display-font" style={{fontSize:"clamp(32px,4vw,52px)",color:C.white,lineHeight:1.2,marginBottom:16,maxWidth:680}}>
+            {lang==="en"?"See it where it matters most.":"Lihat langsung di tempat yang paling penting."}
+          </h2>
+          <p style={{color:"rgba(255,255,255,0.55)",fontSize:16,maxWidth:640,lineHeight:1.8,marginBottom:48}}>
+            {lang==="en"?"From a quick look at what SahAIbat is, to the voices of the Kaders who use it — straight from the communities we serve."
+            :"Dari sekilas tentang apa itu SahAIbat, hingga suara para Kader yang menggunakannya — langsung dari komunitas yang kami layani."}
+          </p>
+        </FadeIn>
+        <div className="two-col" style={{alignItems:"start"}}>
+          <FadeIn delay={80}>
+            <div>
+              <div style={{position:"relative",width:"100%",paddingTop:"56.25%",borderRadius:16,overflow:"hidden",border:"1px solid rgba(2,195,154,0.2)"}}>
+                <iframe src="https://www.youtube-nocookie.com/embed/yXAWOXlAeGk" title="SahAIbat" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen style={{position:"absolute",top:0,left:0,width:"100%",height:"100%",border:0}}/>
+              </div>
+              <p style={{color:"rgba(255,255,255,0.45)",fontSize:13,marginTop:12,lineHeight:1.6}}>{lang==="en"?"A short introduction to SahAIbat (in Bahasa Indonesia).":"Perkenalan singkat tentang SahAIbat (dalam Bahasa Indonesia)."}</p>
+            </div>
+          </FadeIn>
+          <FadeIn delay={160}>
+            <div>
+              <div style={{position:"relative",width:"100%",maxWidth:300,margin:"0 auto",paddingTop:"min(177.78%,533px)",borderRadius:16,overflow:"hidden",border:"1px solid rgba(233,30,140,0.25)"}}>
+                <iframe src="https://www.youtube-nocookie.com/embed/9aEZtKVp8sQ" title="Kader feedback" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen style={{position:"absolute",top:0,left:0,width:"100%",height:"100%",border:0}}/>
+              </div>
+              <p style={{color:"rgba(255,255,255,0.45)",fontSize:13,marginTop:12,lineHeight:1.6,textAlign:"center"}}>{lang==="en"?"A Kader shares her experience using SahAIbat (in Bahasa Indonesia).":"Seorang Kader berbagi pengalamannya menggunakan SahAIbat (dalam Bahasa Indonesia)."}</p>
+            </div>
+          </FadeIn>
+        </div>
       </div>
     </section>
   );
