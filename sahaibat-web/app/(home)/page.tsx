@@ -84,7 +84,7 @@ export default function HomePage(){
       .social-link:hover{color:${C.teal}}
       @media(max-width:960px){
         .nav-desktop{display:none!important}.nav-mobile-btn{display:block!important}
-        .hero-grid,.two-col{grid-template-columns:1fr!important;gap:32px!important}
+        .hero-grid,.two-col,.invest-grid{grid-template-columns:1fr!important;gap:32px!important}
         .three-col{grid-template-columns:1fr!important;gap:20px!important}
         .four-col{grid-template-columns:repeat(2,1fr)!important}
         .footer-grid{grid-template-columns:1fr 1fr!important;gap:32px!important}
@@ -216,6 +216,9 @@ export default function HomePage(){
         </div>
       </div>
     </section>
+
+    {/* ══ INVESTOR SNAPSHOT ══════════════════════════════════════════════════ */}
+    <InvestorBand lang={lang}/>
 
     {/* ══ PRODUCTS ═══════════════════════════════════════════════════════════ */}
     <ProductsSection lang={lang}/>
@@ -366,8 +369,8 @@ function ProductsSection({lang}:{lang:"en"|"id"}){
       shotKind:"phone" as const,
       headline:lang==="en"?"Every life stage. Every Posyandu. In seconds, not minutes.":"Setiap tahap hidup. Setiap Posyandu. Dalam detik, bukan menit.",
       story:lang==="en"
-        ?"One app for the whole community. The Kader App digitises the complete ILP life-cycle service package — child, maternal, adolescent, adult and elderly, plus communicable disease — so a single Kader can screen every age group from one WhatsApp-native tool, in the exact structure the national framework requires.\n\nAt the Posyandu, what used to take minutes per person — reading the KMS chart by hand, plotting growth, copying numbers onto paper — now takes seconds. The Kader enters the measurements; the WHO growth engine classifies the result instantly and flags any danger sign automatically.\n\nAnd it works where the network doesn't. The entire engine runs offline on a basic phone; every visit is saved locally and syncs to the Programme Dashboard the moment a signal returns. Nothing is lost.\n\nOne worker. Every life stage. A whole Posyandu session, captured in the time it used to take to fill one page."
-        :"Satu aplikasi untuk seluruh komunitas. Aplikasi Kader mendigitalkan paket layanan siklus hidup ILP secara lengkap — anak, ibu, remaja, dewasa dan lansia, serta penyakit menular — sehingga satu Kader dapat melakukan skrining setiap kelompok usia dari satu alat berbasis WhatsApp, dalam struktur yang dibutuhkan kerangka nasional.\n\nDi Posyandu, yang dulu memakan waktu beberapa menit per orang — membaca grafik KMS dengan tangan, memplot pertumbuhan, menyalin angka ke kertas — kini hanya butuh hitungan detik. Kader memasukkan hasil pengukuran; engine pertumbuhan WHO langsung mengklasifikasikan hasilnya dan menandai tanda bahaya secara otomatis.\n\nDan ia bekerja di tempat tanpa jaringan. Seluruh engine berjalan offline di ponsel sederhana; setiap kunjungan tersimpan lokal dan tersinkron ke Dasbor Program begitu sinyal kembali. Tidak ada yang hilang.\n\nSatu pekerja. Setiap tahap hidup. Satu sesi Posyandu penuh, tercatat dalam waktu yang dulu hanya cukup untuk mengisi satu halaman.",
+        ?"One app for the whole community. The Kader App digitises the complete ILP life-cycle service package — child, maternal, adolescent, adult, elderly, and communicable disease — so one Kader can screen every age group from a single WhatsApp-native tool.\n\nWhat used to take minutes per person at the Posyandu — reading the KMS chart by hand, plotting growth, copying numbers onto paper — now takes seconds, fully offline, syncing to the Programme Dashboard when signal returns."
+        :"Satu aplikasi untuk seluruh komunitas. Aplikasi Kader mendigitalkan paket layanan siklus hidup ILP secara lengkap — anak, ibu, remaja, dewasa, lansia, dan penyakit menular — sehingga satu Kader dapat melakukan skrining setiap kelompok usia dari satu alat berbasis WhatsApp.\n\nYang dulu memakan menit per orang di Posyandu — membaca grafik KMS dengan tangan, memplot pertumbuhan, menyalin angka ke kertas — kini hanya butuh hitungan detik, sepenuhnya offline, tersinkron ke Dasbor Program saat sinyal kembali.",
       features:lang==="en"
         ?["ILP-aligned life-cycle modules — child, maternal, adolescent, adult/elderly, TB & malaria","WHO growth auto-calculation — BB/U, TB/U, BB/TB plotted instantly","Seconds per record, not minutes — a full Posyandu session captured fast","Works fully offline on basic 2G phones — syncs when signal returns","Danger-sign flags with RUJUK alerts — every visit feeds the Programme Dashboard"]
         :["Modul siklus hidup selaras ILP — anak, ibu, remaja, dewasa/lansia, TB & malaria","Kalkulasi pertumbuhan WHO otomatis — BB/U, TB/U, BB/TB langsung terplot","Hitungan detik per catatan, bukan menit — sesi Posyandu penuh tercatat cepat","Bekerja sepenuhnya offline di ponsel 2G — tersinkron saat sinyal kembali","Penanda tanda bahaya dengan peringatan RUJUK — setiap kunjungan mengisi Dasbor Program"],
@@ -410,8 +413,8 @@ function ProductsSection({lang}:{lang:"en"|"id"}){
       shotKind:"browser" as const,
       headline:lang==="en"?"See everything. Miss nothing.":"Lihat segalanya. Jangan lewatkan satu pun.",
       story:lang==="en"
-        ?"A stunting rate drops from 32% to 24% in two years. A Kader in a remote NTT village makes 47 home visits in a month — all recorded. A high-risk pregnancy is flagged on a Tuesday morning, and a Bidan responds that same afternoon.\n\nThe Programme Dashboard doesn't just show you data. It shows you what your programme is actually doing — in real time, at the village level, across every district you operate in.\n\nFor programme managers, donors, and government partners, the dashboard is the proof. Coverage maps, clinical outcomes, Kader activity, referral rates — all in one place, updated live, exportable in one click.\n\nThis is what accountability looks like."
-        :"Angka stunting turun dari 32% menjadi 24% dalam dua tahun. Seorang Kader di desa terpencil NTT membuat 47 kunjungan rumah dalam sebulan — semuanya tercatat. Kehamilan berisiko tinggi ditandai pada Selasa pagi, dan Bidan merespons hari yang sama.\n\nDasbor Program tidak sekadar menampilkan data. Ia menunjukkan apa yang sebenarnya dilakukan program Anda — secara real-time, di tingkat desa, di setiap kabupaten tempat Anda beroperasi.\n\nBagi manajer program, donor, dan mitra pemerintah, dashboard adalah buktinya. Peta cakupan, hasil klinis, aktivitas Kader, tingkat rujukan — semuanya di satu tempat, diperbarui langsung, bisa diekspor dengan satu klik.\n\nInilah tampilan akuntabilitas.",
+        ?"The Programme Dashboard shows what your programme is actually doing — in real time, at the village level, across every district you operate in.\n\nFor managers, donors, and government partners, it's the proof: coverage, clinical outcomes, Kader activity, and referral rates in one place, updated live and exportable in one click."
+        :"Dasbor Program menunjukkan apa yang sebenarnya dilakukan program Anda — secara real-time, di tingkat desa, di setiap kabupaten tempat Anda beroperasi.\n\nBagi manajer, donor, dan mitra pemerintah, inilah buktinya: cakupan, hasil klinis, aktivitas Kader, dan tingkat rujukan dalam satu tempat, diperbarui langsung dan bisa diekspor dengan satu klik.",
       features:lang==="en"
         ?["Real-time Kader activity across all districts","Village-level coverage and outcome maps","Clinical risk trends — by module, by region","One-click export for donor and MoH reporting","Role-based access: Kader · Bidan · NGO · Funder"]
         :["Aktivitas Kader real-time di semua kabupaten","Peta cakupan dan hasil tingkat desa","Tren risiko klinis — per modul, per wilayah","Ekspor satu klik untuk laporan donor dan Kemenkes","Akses berbasis peran: Kader · Bidan · NGO · Donor"],
@@ -472,28 +475,32 @@ function ProductsSection({lang}:{lang:"en"|"id"}){
             <div>
               {(p as any).shots ? (
                 (p as any).shotKind==="phone" ? (
-                  <div style={{display:"flex",flexDirection:"column",gap:18,alignItems:"center"}}>
-                    {((p as any).shots as string[]).map((src,i)=>(
-                      <div key={i} style={{maxWidth:300,width:"100%",borderRadius:28,overflow:"hidden",border:"8px solid #0a1513",boxShadow:"0 20px 50px rgba(0,0,0,0.45)",background:"#0a1513"}}>
-                        <img src={src} alt={`Kasih chat ${i+1}`} loading="lazy" style={{display:"block",width:"100%",height:"auto"}}/>
-                      </div>
-                    ))}
-                    <div style={{color:C.muted,fontSize:11,textAlign:"center",fontStyle:"italic"}}>{lang==="en"?"Real conversation with Kasih (Bahasa Indonesia)":"Percakapan nyata dengan Kasih (Bahasa Indonesia)"}</div>
+                  <div>
+                    <div style={{display:"flex",gap:14,justifyContent:"center",flexWrap:"wrap"}}>
+                      {((p as any).shots as string[]).map((src,i)=>(
+                        <div key={i} style={{position:"relative",width:172,height:430,borderRadius:24,overflow:"hidden",border:"7px solid #0a1513",boxShadow:"0 18px 44px rgba(0,0,0,0.45)",background:"#0a1513"}}>
+                          <img src={src} alt={`${p.label} ${i+1}`} loading="lazy" style={{display:"block",width:"100%",height:"auto"}}/>
+                          <div style={{position:"absolute",left:0,right:0,bottom:0,height:90,background:"linear-gradient(to bottom,transparent,#0a1513)",pointerEvents:"none"}}/>
+                        </div>
+                      ))}
+                    </div>
+                    <div style={{color:C.muted,fontSize:11,textAlign:"center",fontStyle:"italic",marginTop:18}}>{lang==="en"?"Real screens — Bahasa Indonesia":"Tampilan nyata — Bahasa Indonesia"}</div>
                   </div>
                 ) : (
-                  <div style={{display:"flex",flexDirection:"column",gap:20}}>
-                    {((p as any).shots as string[]).map((src,i)=>(
-                      <div key={i} style={{borderRadius:14,overflow:"hidden",border:`1px solid ${p.accent}30`,boxShadow:"0 12px 36px rgba(0,0,0,0.4)",background:"#0d1a18"}}>
-                        <div style={{display:"flex",alignItems:"center",gap:6,padding:"9px 12px",background:"rgba(255,255,255,0.04)",borderBottom:"1px solid rgba(255,255,255,0.06)"}}>
-                          <span style={{width:9,height:9,borderRadius:"50%",background:"#FF5F56",display:"inline-block"}}/>
-                          <span style={{width:9,height:9,borderRadius:"50%",background:"#FFBD2E",display:"inline-block"}}/>
-                          <span style={{width:9,height:9,borderRadius:"50%",background:"#27C93F",display:"inline-block"}}/>
-                          <span style={{marginLeft:8,color:"rgba(255,255,255,0.35)",fontSize:11,fontFamily:"monospace"}}>dashboard.sahaibat.com</span>
-                        </div>
-                        <img src={src} alt={`Programme Dashboard ${i+1}`} loading="lazy" style={{display:"block",width:"100%",height:"auto"}}/>
+                  <div>
+                    <div style={{borderRadius:14,overflow:"hidden",border:`1px solid ${p.accent}30`,boxShadow:"0 16px 44px rgba(0,0,0,0.45)",background:"#0d1a18"}}>
+                      <div style={{display:"flex",alignItems:"center",gap:6,padding:"9px 12px",background:"rgba(255,255,255,0.04)",borderBottom:"1px solid rgba(255,255,255,0.06)"}}>
+                        <span style={{width:9,height:9,borderRadius:"50%",background:"#FF5F56",display:"inline-block"}}/>
+                        <span style={{width:9,height:9,borderRadius:"50%",background:"#FFBD2E",display:"inline-block"}}/>
+                        <span style={{width:9,height:9,borderRadius:"50%",background:"#27C93F",display:"inline-block"}}/>
+                        <span style={{marginLeft:8,color:"rgba(255,255,255,0.35)",fontSize:11,fontFamily:"monospace"}}>dashboard.sahaibat.com</span>
                       </div>
-                    ))}
-                    <div style={{color:C.muted,fontSize:11,textAlign:"center",fontStyle:"italic"}}>{lang==="en"?"Live programme dashboard — demonstration data shown":"Dasbor program langsung — data demonstrasi ditampilkan"}</div>
+                      <div style={{position:"relative",height:470,overflow:"hidden"}}>
+                        <img src={((p as any).shots as string[])[0]} alt={`${p.label}`} loading="lazy" style={{display:"block",width:"100%",height:"auto"}}/>
+                        <div style={{position:"absolute",left:0,right:0,bottom:0,height:120,background:"linear-gradient(to bottom,transparent,#0d1a18)",pointerEvents:"none"}}/>
+                      </div>
+                    </div>
+                    <div style={{color:C.muted,fontSize:11,textAlign:"center",fontStyle:"italic",marginTop:14}}>{lang==="en"?"Live dashboard — demonstration data":"Dasbor langsung — data demonstrasi"}</div>
                   </div>
                 )
               ) : (
@@ -968,7 +975,7 @@ function EcosystemSection({lang}:{lang:"en"|"id"}){
           </p>
         </FadeIn>
         <FadeIn delay={80}>
-          <div style={{borderRadius:20,overflow:"hidden",border:`1px solid ${C.tealDk}20`,marginBottom:40}}>
+          <div style={{borderRadius:20,overflow:"hidden",border:`1px solid ${C.tealDk}20`,marginBottom:40,maxWidth:720,marginLeft:"auto",marginRight:"auto"}}>
             <img src="/images/art/ecosystem-network.png" alt={lang==="en"?"SahAIbat connected ecosystem":"Ekosistem terhubung SahAIbat"} loading="lazy" style={{display:"block",width:"100%",height:"auto"}}/>
           </div>
         </FadeIn>
@@ -1149,6 +1156,51 @@ function FieldVoicesSection({lang}:{lang:"en"|"id"}){
             </div>
           </FadeIn>
         </div>
+      </div>
+    </section>
+  );
+}
+
+// ══════════════════════════════════════════════════════════════════════════════
+// INVESTOR BAND — tight, one-glance thesis near the top
+// ══════════════════════════════════════════════════════════════════════════════
+function InvestorBand({lang}:{lang:"en"|"id"}){
+  const flywheel=[
+    {n:"01",t:lang==="en"?"Free frontline tools build trust":"Alat garis depan gratis membangun kepercayaan"},
+    {n:"02",t:lang==="en"?"Trust creates a unique data layer":"Kepercayaan menciptakan lapisan data unik"},
+    {n:"03",t:lang==="en"?"A clinical product turns it into revenue":"Produk klinis mengubahnya jadi pendapatan"},
+    {n:"04",t:lang==="en"?"Revenue sustains the mission":"Pendapatan menopang misi"},
+  ];
+  const stats=[
+    {v:"1.4M",l:lang==="en"?"Kaders nationwide":"Kader se-Indonesia"},
+    {v:"6",l:lang==="en"?"connected surfaces":"antarmuka terhubung"},
+    {v:"100%",l:lang==="en"?"data sovereign (AWS Jakarta)":"data berdaulat (AWS Jakarta)"},
+  ];
+  return(
+    <section style={{background:`linear-gradient(135deg,${C.tealXdk},${C.dark})`,padding:"64px 0",borderTop:"1px solid rgba(2,195,154,0.15)",borderBottom:"1px solid rgba(2,195,154,0.15)"}}>
+      <div className="section-max">
+        <FadeIn>
+          <div style={{display:"grid",gridTemplateColumns:"1.1fr 1fr",gap:48,alignItems:"center"}} className="invest-grid">
+            <div>
+              <div style={{color:C.teal,fontSize:12,fontWeight:700,letterSpacing:1,marginBottom:14}}>{lang==="en"?"THE SHORT VERSION":"RINGKASNYA"}</div>
+              <h2 className="display-font" style={{color:C.white,fontSize:"clamp(24px,2.6vw,34px)",lineHeight:1.3,marginBottom:18}}>
+                {lang==="en"?<>Free products earn the trust and build the data. A clinical product funds the infrastructure. <span style={{color:C.teal}}>Each turn of the wheel powers the next.</span></>:<>Produk gratis meraih kepercayaan dan membangun data. Produk klinis mendanai infrastruktur. <span style={{color:C.teal}}>Setiap putaran roda menggerakkan putaran berikutnya.</span></>}
+              </h2>
+              <div style={{display:"flex",gap:28,flexWrap:"wrap",marginTop:24}}>
+                {stats.map(({v,l})=>(<div key={l}>
+                  <div className="display-font" style={{color:C.teal,fontSize:30,fontWeight:900,lineHeight:1}}>{v}</div>
+                  <div style={{color:"rgba(255,255,255,0.5)",fontSize:12,marginTop:4,maxWidth:130}}>{l}</div>
+                </div>))}
+              </div>
+            </div>
+            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14}}>
+              {flywheel.map(({n,t})=>(<div key={n} style={{background:"rgba(255,255,255,0.04)",border:"1px solid rgba(2,195,154,0.18)",borderRadius:14,padding:"18px 18px"}}>
+                <div style={{color:C.teal,fontWeight:800,fontSize:18,marginBottom:6}}>{n}</div>
+                <div style={{color:"rgba(255,255,255,0.8)",fontSize:13.5,lineHeight:1.5}}>{t}</div>
+              </div>))}
+            </div>
+          </div>
+        </FadeIn>
       </div>
     </section>
   );
