@@ -78,6 +78,7 @@ export default function HomePage(){
       .two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px}
       .three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
       .four-col{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+      .ilp-card{width:300px;flex:0 0 auto}
       .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
       .photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
       .social-link{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,0.5);text-decoration:none;font-size:13px;transition:color 0.2s;padding:6px 0}
@@ -86,6 +87,7 @@ export default function HomePage(){
         .nav-desktop{display:none!important}.nav-mobile-btn{display:block!important}
         .hero-grid,.two-col,.invest-grid{grid-template-columns:1fr!important;gap:32px!important}
         .three-col{grid-template-columns:1fr!important;gap:20px!important}
+        .ilp-card{width:100%!important}
         .four-col{grid-template-columns:repeat(2,1fr)!important}
         .footer-grid{grid-template-columns:1fr 1fr!important;gap:32px!important}
         .photo-grid{grid-template-columns:1fr 1fr!important}
@@ -460,66 +462,83 @@ function ProductsSection({lang}:{lang:"en"|"id"}){
 
         {/* Active panel */}
         <div key={active}>
-          <div className="hero-grid" style={{alignItems:"start"}}>
+          {(p as any).shots ? (
+            /* ── Screenshot tabs: story on top (2-col text), screenshots full-width below ── */
             <div>
-              <div style={{display:"inline-flex",alignItems:"center",gap:8,background:`${p.accent}15`,border:`1px solid ${p.accent}40`,borderRadius:20,padding:"5px 14px",marginBottom:20}}>
-                <span style={{color:p.accent,fontSize:12,fontWeight:600}}>{p.icon} {p.sublabel}</span>
-              </div>
-              <h3 className="display-font" style={{color:C.white,fontSize:"clamp(22px,2.5vw,34px)",lineHeight:1.25,marginBottom:24}}>{p.headline}</h3>
-              {p.story.split("\n\n").map((para,i)=>(<p key={i} style={{color:"rgba(255,255,255,0.6)",fontSize:15,lineHeight:1.9,marginBottom:16,fontStyle:i===p.story.split("\n\n").length-1?"italic":"normal"}}>{para}</p>))}
-              <div style={{marginTop:32,background:`${p.accent}08`,border:`1px solid ${p.accent}20`,borderRadius:16,padding:24}}>
-                <div style={{color:p.accent,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:12}}>{lang==="en"?"KEY CAPABILITIES":"KEMAMPUAN UTAMA"}</div>
-                {p.features.map((f,i)=>(<div key={i} style={{display:"flex",gap:12,marginBottom:10,alignItems:"flex-start"}}><div style={{width:6,height:6,borderRadius:"50%",background:p.accent,marginTop:7,flexShrink:0}}/><span style={{color:"rgba(255,255,255,0.7)",fontSize:13,lineHeight:1.6}}>{f}</span></div>))}
-              </div>
-            </div>
-            <div>
-              {(p as any).shots ? (
-                (p as any).shotKind==="phone" ? (
-                  <div>
-                    <div style={{display:"flex",gap:14,justifyContent:"center",flexWrap:"wrap"}}>
-                      {((p as any).shots as string[]).map((src,i)=>(
-                        <div key={i} style={{position:"relative",width:172,height:430,borderRadius:24,overflow:"hidden",border:"7px solid #0a1513",boxShadow:"0 18px 44px rgba(0,0,0,0.45)",background:"#0a1513"}}>
-                          <img src={src} alt={`${p.label} ${i+1}`} loading="lazy" style={{display:"block",width:"100%",height:"auto"}}/>
-                          <div style={{position:"absolute",left:0,right:0,bottom:0,height:90,background:"linear-gradient(to bottom,transparent,#0a1513)",pointerEvents:"none"}}/>
-                        </div>
-                      ))}
-                    </div>
-                    <div style={{color:C.muted,fontSize:11,textAlign:"center",fontStyle:"italic",marginTop:18}}>{lang==="en"?"Real screens — Bahasa Indonesia":"Tampilan nyata — Bahasa Indonesia"}</div>
+              <div className="two-col" style={{alignItems:"start",marginBottom:48}}>
+                <div>
+                  <div style={{display:"inline-flex",alignItems:"center",gap:8,background:`${p.accent}15`,border:`1px solid ${p.accent}40`,borderRadius:20,padding:"5px 14px",marginBottom:20}}>
+                    <span style={{color:p.accent,fontSize:12,fontWeight:600}}>{p.icon} {p.sublabel}</span>
                   </div>
-                ) : (
-                  <div>
-                    <div style={{borderRadius:14,overflow:"hidden",border:`1px solid ${p.accent}30`,boxShadow:"0 16px 44px rgba(0,0,0,0.45)",background:"#0d1a18"}}>
-                      <div style={{display:"flex",alignItems:"center",gap:6,padding:"9px 12px",background:"rgba(255,255,255,0.04)",borderBottom:"1px solid rgba(255,255,255,0.06)"}}>
-                        <span style={{width:9,height:9,borderRadius:"50%",background:"#FF5F56",display:"inline-block"}}/>
-                        <span style={{width:9,height:9,borderRadius:"50%",background:"#FFBD2E",display:"inline-block"}}/>
-                        <span style={{width:9,height:9,borderRadius:"50%",background:"#27C93F",display:"inline-block"}}/>
-                        <span style={{marginLeft:8,color:"rgba(255,255,255,0.35)",fontSize:11,fontFamily:"monospace"}}>dashboard.sahaibat.com</span>
+                  <h3 className="display-font" style={{color:C.white,fontSize:"clamp(22px,2.5vw,34px)",lineHeight:1.25,marginBottom:24}}>{p.headline}</h3>
+                  {p.story.split("\n\n").map((para,i)=>(<p key={i} style={{color:"rgba(255,255,255,0.6)",fontSize:15,lineHeight:1.9,marginBottom:16,fontStyle:i===p.story.split("\n\n").length-1?"italic":"normal"}}>{para}</p>))}
+                </div>
+                <div style={{background:`${p.accent}08`,border:`1px solid ${p.accent}20`,borderRadius:16,padding:24}}>
+                  <div style={{color:p.accent,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:12}}>{lang==="en"?"KEY CAPABILITIES":"KEMAMPUAN UTAMA"}</div>
+                  {p.features.map((f,i)=>(<div key={i} style={{display:"flex",gap:12,marginBottom:10,alignItems:"flex-start"}}><div style={{width:6,height:6,borderRadius:"50%",background:p.accent,marginTop:7,flexShrink:0}}/><span style={{color:"rgba(255,255,255,0.7)",fontSize:13,lineHeight:1.6}}>{f}</span></div>))}
+                </div>
+              </div>
+              {(p as any).shotKind==="phone" ? (
+                <div>
+                  <div style={{display:"flex",gap:20,justifyContent:"center",flexWrap:"wrap"}}>
+                    {((p as any).shots as string[]).map((src,i)=>(
+                      <div key={i} style={{position:"relative",width:208,height:440,borderRadius:26,overflow:"hidden",border:"8px solid #0a1513",boxShadow:"0 18px 44px rgba(0,0,0,0.45)",background:"#0a1513"}}>
+                        <img src={src} alt={`${p.label} ${i+1}`} loading="lazy" style={{display:"block",width:"100%",height:"auto"}}/>
+                        <div style={{position:"absolute",left:0,right:0,bottom:0,height:80,background:"linear-gradient(to bottom,transparent,#0a1513)",pointerEvents:"none"}}/>
                       </div>
-                      <div style={{position:"relative",height:470,overflow:"hidden"}}>
-                        <img src={((p as any).shots as string[])[0]} alt={`${p.label}`} loading="lazy" style={{display:"block",width:"100%",height:"auto"}}/>
-                        <div style={{position:"absolute",left:0,right:0,bottom:0,height:120,background:"linear-gradient(to bottom,transparent,#0d1a18)",pointerEvents:"none"}}/>
-                      </div>
-                    </div>
-                    <div style={{color:C.muted,fontSize:11,textAlign:"center",fontStyle:"italic",marginTop:14}}>{lang==="en"?"Live dashboard — demonstration data":"Dasbor langsung — data demonstrasi"}</div>
+                    ))}
                   </div>
-                )
+                  <div style={{color:C.muted,fontSize:11,textAlign:"center",fontStyle:"italic",marginTop:18}}>{lang==="en"?"Real screens — Bahasa Indonesia":"Tampilan nyata — Bahasa Indonesia"}</div>
+                </div>
               ) : (
-              <div style={{background:"rgba(15,31,28,0.8)",border:`1px solid ${p.accent}30`,borderRadius:24,padding:28,position:"relative",overflow:"hidden"}}>
-                <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,transparent,${p.accent},transparent)`}}/>
-                <div style={{color:C.muted,fontSize:11,textAlign:"center",marginBottom:16,fontFamily:"monospace"}}>💬 SahAIbat · {p.label}</div>
-                <div style={{fontFamily:"monospace",fontSize:12}}>
-                  {p.messages.map((m,i)=>(<div key={i} style={{display:"flex",justifyContent:m.u?"flex-end":"flex-start",marginBottom:10}}>
-                    <div style={{background:m.urg?"rgba(232,72,85,0.15)":m.u?`${p.accent}20`:"rgba(255,255,255,0.05)",border:m.urg?"1px solid rgba(232,72,85,0.3)":m.u?`1px solid ${p.accent}40`:"1px solid rgba(255,255,255,0.08)",borderRadius:12,padding:"8px 12px",maxWidth:"85%",color:m.urg?"#FF6B6B":m.u?p.accent:"rgba(255,255,255,0.75)",fontSize:12,lineHeight:1.55,whiteSpace:"pre-line"}}>{m.msg}</div>
-                  </div>))}
+                <div style={{maxWidth:880,margin:"0 auto"}}>
+                  <div style={{borderRadius:14,overflow:"hidden",border:`1px solid ${p.accent}30`,boxShadow:"0 16px 44px rgba(0,0,0,0.45)",background:"#0d1a18"}}>
+                    <div style={{display:"flex",alignItems:"center",gap:6,padding:"9px 12px",background:"rgba(255,255,255,0.04)",borderBottom:"1px solid rgba(255,255,255,0.06)"}}>
+                      <span style={{width:9,height:9,borderRadius:"50%",background:"#FF5F56",display:"inline-block"}}/>
+                      <span style={{width:9,height:9,borderRadius:"50%",background:"#FFBD2E",display:"inline-block"}}/>
+                      <span style={{width:9,height:9,borderRadius:"50%",background:"#27C93F",display:"inline-block"}}/>
+                      <span style={{marginLeft:8,color:"rgba(255,255,255,0.35)",fontSize:11,fontFamily:"monospace"}}>dashboard.sahaibat.com</span>
+                    </div>
+                    <div style={{position:"relative",height:520,overflow:"hidden"}}>
+                      <img src={((p as any).shots as string[])[0]} alt={`${p.label}`} loading="lazy" style={{display:"block",width:"100%",height:"auto"}}/>
+                      <div style={{position:"absolute",left:0,right:0,bottom:0,height:120,background:"linear-gradient(to bottom,transparent,#0d1a18)",pointerEvents:"none"}}/>
+                    </div>
+                  </div>
+                  <div style={{color:C.muted,fontSize:11,textAlign:"center",fontStyle:"italic",marginTop:14}}>{lang==="en"?"Live dashboard — demonstration data":"Dasbor langsung — data demonstrasi"}</div>
                 </div>
-                <div style={{marginTop:14,paddingTop:14,borderTop:"1px solid rgba(255,255,255,0.06)",display:"flex",justifyContent:"space-between",flexWrap:"wrap",gap:6}}>
-                  <span style={{color:C.muted,fontSize:10}}>✓ {lang==="en"?"Saved locally · Syncs when signal returns":"Tersimpan lokal · Tersinkron saat sinyal kembali"}</span>
-                  <span style={{color:p.accent,fontSize:10}}>📵 {lang==="en"?"Works offline":"Bekerja offline"}</span>
-                </div>
-              </div>
               )}
             </div>
-          </div>
+          ) : (
+            /* ── Typed-mockup tabs (Bidan): text left, chat right ── */
+            <div className="hero-grid" style={{alignItems:"start"}}>
+              <div>
+                <div style={{display:"inline-flex",alignItems:"center",gap:8,background:`${p.accent}15`,border:`1px solid ${p.accent}40`,borderRadius:20,padding:"5px 14px",marginBottom:20}}>
+                  <span style={{color:p.accent,fontSize:12,fontWeight:600}}>{p.icon} {p.sublabel}</span>
+                </div>
+                <h3 className="display-font" style={{color:C.white,fontSize:"clamp(22px,2.5vw,34px)",lineHeight:1.25,marginBottom:24}}>{p.headline}</h3>
+                {p.story.split("\n\n").map((para,i)=>(<p key={i} style={{color:"rgba(255,255,255,0.6)",fontSize:15,lineHeight:1.9,marginBottom:16,fontStyle:i===p.story.split("\n\n").length-1?"italic":"normal"}}>{para}</p>))}
+                <div style={{marginTop:32,background:`${p.accent}08`,border:`1px solid ${p.accent}20`,borderRadius:16,padding:24}}>
+                  <div style={{color:p.accent,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:12}}>{lang==="en"?"KEY CAPABILITIES":"KEMAMPUAN UTAMA"}</div>
+                  {p.features.map((f,i)=>(<div key={i} style={{display:"flex",gap:12,marginBottom:10,alignItems:"flex-start"}}><div style={{width:6,height:6,borderRadius:"50%",background:p.accent,marginTop:7,flexShrink:0}}/><span style={{color:"rgba(255,255,255,0.7)",fontSize:13,lineHeight:1.6}}>{f}</span></div>))}
+                </div>
+              </div>
+              <div>
+                <div style={{background:"rgba(15,31,28,0.8)",border:`1px solid ${p.accent}30`,borderRadius:24,padding:28,position:"relative",overflow:"hidden"}}>
+                  <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,transparent,${p.accent},transparent)`}}/>
+                  <div style={{color:C.muted,fontSize:11,textAlign:"center",marginBottom:16,fontFamily:"monospace"}}>💬 SahAIbat · {p.label}</div>
+                  <div style={{fontFamily:"monospace",fontSize:12}}>
+                    {p.messages.map((m,i)=>(<div key={i} style={{display:"flex",justifyContent:m.u?"flex-end":"flex-start",marginBottom:10}}>
+                      <div style={{background:m.urg?"rgba(232,72,85,0.15)":m.u?`${p.accent}20`:"rgba(255,255,255,0.05)",border:m.urg?"1px solid rgba(232,72,85,0.3)":m.u?`1px solid ${p.accent}40`:"1px solid rgba(255,255,255,0.08)",borderRadius:12,padding:"8px 12px",maxWidth:"85%",color:m.urg?"#FF6B6B":m.u?p.accent:"rgba(255,255,255,0.75)",fontSize:12,lineHeight:1.55,whiteSpace:"pre-line"}}>{m.msg}</div>
+                    </div>))}
+                  </div>
+                  <div style={{marginTop:14,paddingTop:14,borderTop:"1px solid rgba(255,255,255,0.06)",display:"flex",justifyContent:"space-between",flexWrap:"wrap",gap:6}}>
+                    <span style={{color:C.muted,fontSize:10}}>✓ {lang==="en"?"Saved locally · Syncs when signal returns":"Tersimpan lokal · Tersinkron saat sinyal kembali"}</span>
+                    <span style={{color:p.accent,fontSize:10}}>📵 {lang==="en"?"Works offline":"Bekerja offline"}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </section>
@@ -919,8 +938,8 @@ function ILPSection({lang}:{lang:"en"|"id"}){
             :"Kementerian Kesehatan Indonesia sedang menerapkan Integrasi Layanan Primer (ILP) — mandat nasional yang menata ulang setiap Posyandu berdasarkan siklus hidup warga, bukan program yang terpisah-pisah. Antarmuka SahAIbat memetakan paket layanan Posyandu ILP secara lengkap — dari lahir hingga lansia — dalam satu alur berbasis WhatsApp yang sudah dikenal Kader."}
           </p>
         </FadeIn>
-        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",gap:20,marginBottom:48}}>
-          {clusters.map(({cluster,color,items})=>(<FadeIn key={cluster} delay={80}>
+        <div style={{display:"flex",flexWrap:"wrap",gap:20,marginBottom:48,justifyContent:"center"}}>
+          {clusters.map(({cluster,color,items})=>(<FadeIn key={cluster} delay={80} className="ilp-card">
             <div style={{background:"rgba(255,255,255,0.03)",border:`1px solid ${color}30`,borderRadius:16,padding:24,height:"100%"}}>
               <div style={{color,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:16}}>{cluster}</div>
               {items.map(item=>(<div key={item} style={{display:"flex",gap:10,marginBottom:12}}>
@@ -975,7 +994,7 @@ function EcosystemSection({lang}:{lang:"en"|"id"}){
           </p>
         </FadeIn>
         <FadeIn delay={80}>
-          <div style={{borderRadius:20,overflow:"hidden",border:`1px solid ${C.tealDk}20`,marginBottom:40,maxWidth:720,marginLeft:"auto",marginRight:"auto"}}>
+          <div style={{borderRadius:20,overflow:"hidden",border:`1px solid ${C.tealDk}20`,marginBottom:40,maxWidth:520,marginLeft:"auto",marginRight:"auto"}}>
             <img src="/images/art/ecosystem-network.png" alt={lang==="en"?"SahAIbat connected ecosystem":"Ekosistem terhubung SahAIbat"} loading="lazy" style={{display:"block",width:"100%",height:"auto"}}/>
           </div>
         </FadeIn>
@@ -993,9 +1012,9 @@ function EcosystemSection({lang}:{lang:"en"|"id"}){
           </FadeIn>))}
         </div>
         <FadeIn delay={200}>
-          <div style={{background:C.dark,borderRadius:20,padding:40}}>
+          <div style={{background:C.dark,borderRadius:20,padding:"36px 40px",maxWidth:860,margin:"0 auto"}}>
             <h3 style={{color:C.white,fontSize:22,fontWeight:700,marginBottom:12}}>{lang==="en"?"Why a stack beats an app.":"Mengapa ekosistem mengungguli satu aplikasi."}</h3>
-            <p style={{color:"rgba(255,255,255,0.65)",lineHeight:1.8,fontSize:14,maxWidth:760}}>
+            <p style={{color:"rgba(255,255,255,0.65)",lineHeight:1.8,fontSize:14}}>
               {lang==="en"?"The same WHO growth engine a Kader uses at a Posyandu also charts a child's growth inside the family's Sehat app. The same danger-sign logic Kasih shares with a mother is what a doctor's notes are checked against in DoK. Build one rigorous clinical core, expose it through the interface each user already lives in, and connect them with a shared, sovereign data layer — that's how you cover an entire health system."
               :"Engine pertumbuhan WHO yang sama yang digunakan Kader di Posyandu juga memetakan pertumbuhan anak di dalam aplikasi Sehat keluarga. Logika tanda bahaya yang sama yang dibagikan Kasih kepada seorang ibu adalah acuan pemeriksaan catatan dokter di DoK. Bangun satu inti klinis yang ketat, hadirkan melalui antarmuka yang sudah digunakan setiap pengguna, dan hubungkan dengan lapisan data yang berdaulat — begitulah cara menjangkau seluruh sistem kesehatan."}
             </p>
@@ -1138,13 +1157,13 @@ function FieldVoicesSection({lang}:{lang:"en"|"id"}){
             :"Dari sekilas tentang apa itu SahAIbat, hingga suara para Kader yang menggunakannya — langsung dari komunitas yang kami layani."}
           </p>
         </FadeIn>
-        <div className="two-col" style={{alignItems:"start"}}>
+        <div style={{maxWidth:760,margin:"0 auto"}}>
           <FadeIn delay={80}>
-            <div>
+            <div style={{marginBottom:40}}>
               <div style={{position:"relative",width:"100%",paddingTop:"56.25%",borderRadius:16,overflow:"hidden",border:"1px solid rgba(2,195,154,0.2)"}}>
                 <iframe src="https://www.youtube-nocookie.com/embed/yXAWOXlAeGk" title="SahAIbat" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen style={{position:"absolute",top:0,left:0,width:"100%",height:"100%",border:0}}/>
               </div>
-              <p style={{color:"rgba(255,255,255,0.45)",fontSize:13,marginTop:12,lineHeight:1.6}}>{lang==="en"?"A short introduction to SahAIbat (in Bahasa Indonesia).":"Perkenalan singkat tentang SahAIbat (dalam Bahasa Indonesia)."}</p>
+              <p style={{color:"rgba(255,255,255,0.45)",fontSize:13,marginTop:12,lineHeight:1.6,textAlign:"center"}}>{lang==="en"?"A short introduction to SahAIbat (in Bahasa Indonesia).":"Perkenalan singkat tentang SahAIbat (dalam Bahasa Indonesia)."}</p>
             </div>
           </FadeIn>
           <FadeIn delay={160}>
