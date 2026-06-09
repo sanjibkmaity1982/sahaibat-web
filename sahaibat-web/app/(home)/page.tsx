@@ -10,7 +10,7 @@ const C = {
 
 const PHOTOS = {
   kaderField:"/images/hero-kader-family.png",
-  motherChild:"/images/__motherchild.png",
+  motherChild:"/images/motherchild.png",
   posyandu:"/images/doctor-nurse.png",
 };
 
@@ -34,18 +34,18 @@ function Nav({lang,setLang}:{lang:"en"|"id";setLang:(l:"en"|"id")=>void}){
   const [scrolled,setScrolled]=useState(false);const [open,setOpen]=useState(false);
   useEffect(()=>{const fn=()=>setScrolled(window.scrollY>40);window.addEventListener("scroll",fn);return()=>window.removeEventListener("scroll",fn);},[]);
   const links:[string,string][]=lang==="en"
-    ?[["#story","Our Story"],["#products","Products"],["#impact","Impact"],["#partners","Partners"],["#team","Team"],["#support","Support"]]
-    :[["#story","Cerita"],["#products","Produk"],["#impact","Dampak"],["#partners","Mitra"],["#team","Tim"],["#support","Dukung"]];
+    ?[["#story","Our Story"],["#products","Products"],["#impact","Impact"],["#partners","Partners"],["#team","Team"],["#support","Partner With Us"]]
+    :[["#story","Cerita"],["#products","Produk"],["#impact","Dampak"],["#partners","Mitra"],["#team","Tim"],["#support","Bermitra"]];
   return(
     <nav style={{position:"fixed",top:0,left:0,right:0,zIndex:100,background:scrolled?"rgba(15,31,28,0.96)":"transparent",backdropFilter:scrolled?"blur(14px)":"none",borderBottom:scrolled?"1px solid rgba(2,195,154,0.15)":"none",transition:"all 0.3s",padding:"0 24px"}}>
       <div style={{maxWidth:1200,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:64}}>
-        <img src="/images/logo-horizontal@2x.png" alt="SahAIbat" style={{height:36,width:"auto",filter:"brightness(0) invert(1)"}}/>
+        <img src="/images/art/logo-horizontal-white@2x.png" alt="SahAIbat" style={{height:36,width:"auto"}}/>
         <div className="nav-desktop" style={{display:"flex",gap:22,alignItems:"center"}}>
           {links.map(([href,label])=>(<a key={href} href={href} style={{color:"rgba(255,255,255,0.7)",fontSize:13,fontWeight:500,textDecoration:"none",transition:"color 0.2s"}} onMouseEnter={e=>(e.target as HTMLElement).style.color=C.teal} onMouseLeave={e=>(e.target as HTMLElement).style.color="rgba(255,255,255,0.7)"}>{label}</a>))}
           <div style={{display:"flex",gap:3,background:"rgba(255,255,255,0.08)",borderRadius:20,padding:3}}>
             {(["en","id"] as const).map(l=>(<button key={l} onClick={()=>setLang(l)} style={{background:lang===l?C.teal:"transparent",color:lang===l?C.dark:"rgba(255,255,255,0.6)",border:"none",borderRadius:16,padding:"4px 12px",fontSize:12,fontWeight:700,cursor:"pointer",transition:"all 0.2s"}}>{l==="en"?"EN":"ID"}</button>))}
           </div>
-          <a href="#support" style={{background:C.teal,color:C.dark,padding:"8px 20px",borderRadius:20,fontSize:13,fontWeight:700,textDecoration:"none"}}>{lang==="en"?"Fuel the Mission":"Dukung Kami"}</a>
+          <a href="#support" style={{background:C.teal,color:C.dark,padding:"8px 20px",borderRadius:20,fontSize:13,fontWeight:700,textDecoration:"none"}}>{lang==="en"?"Request a Pilot":"Ajukan Pilot"}</a>
         </div>
         <button onClick={()=>setOpen(!open)} className="nav-mobile-btn" style={{background:"none",border:"none",color:C.white,fontSize:24,cursor:"pointer"}}>{open?"✕":"☰"}</button>
       </div>
@@ -119,7 +119,7 @@ export default function HomePage(){
             </p>
             <div style={{display:"flex",gap:16,flexWrap:"wrap"}}>
               <a href="#story" style={{background:C.teal,color:C.dark,padding:"14px 28px",borderRadius:12,fontSize:15,fontWeight:700,textDecoration:"none"}}>{lang==="en"?"Read Our Story ↓":"Baca Cerita Kami ↓"}</a>
-              <a href="#support" style={{border:"1.5px solid rgba(2,195,154,0.4)",color:C.white,padding:"14px 28px",borderRadius:12,fontSize:15,fontWeight:600,textDecoration:"none"}}>{lang==="en"?"Fuel the Mission":"Dukung Misi Kami"}</a>
+              <a href="#support" style={{border:"1.5px solid rgba(2,195,154,0.4)",color:C.white,padding:"14px 28px",borderRadius:12,fontSize:15,fontWeight:600,textDecoration:"none"}}>{lang==="en"?"Partner With Us":"Bermitra Dengan Kami"}</a>
             </div>
           </div>
           <div>
@@ -209,7 +209,7 @@ export default function HomePage(){
                 :"Bukan mesin diagnostik. Bukan pengganti dokter. Sebuah teman — yang berjalan bersama Kader, bidan, orang tua yang khawatir — memberikan keyakinan saat paling dibutuhkan."}
               </p>
               <div style={{marginTop:24,paddingTop:24,borderTop:"1px solid rgba(255,255,255,0.1)",display:"flex",gap:20,flexWrap:"wrap"}}>
-                {[{l:"WhatsApp-first",s:lang==="en"?"no app download":"tidak perlu unduh"},{l:lang==="en"?"Offline-capable":"Bisa Offline",s:lang==="en"?"no signal needed":"tanpa sinyal"},{l:lang==="en"?"Free forever":"Gratis Selamanya",s:lang==="en"?"for communities":"untuk komunitas"}].map(({l,s})=>(<div key={l}><div style={{color:C.teal,fontWeight:700,fontSize:15}}>{l}</div><div style={{color:"rgba(255,255,255,0.5)",fontSize:11}}>{s}</div></div>))}
+                {[{l:"WhatsApp-first",s:lang==="en"?"no app download":"tidak perlu unduh"},{l:lang==="en"?"Offline-capable":"Bisa Offline",s:lang==="en"?"no signal needed":"tanpa sinyal"},{l:lang==="en"?"Built to last":"Berkelanjutan",s:lang==="en"?"sustainable by design":"berkelanjutan sejak awal"}].map(({l,s})=>(<div key={l}><div style={{color:C.teal,fontWeight:700,fontSize:15}}>{l}</div><div style={{color:"rgba(255,255,255,0.5)",fontSize:11}}>{s}</div></div>))}
               </div>
             </div>
           </FadeIn>
@@ -229,34 +229,34 @@ export default function HomePage(){
     {/* ══ TEAM ════════════════════════════════════════════════════════════════ */}
     <TeamSection lang={lang}/>
 
-    {/* ══ SUPPORT ════════════════════════════════════════════════════════════ */}
+    {/* ══ PARTNER WITH US ════════════════════════════════════════════════════ */}
     <section id="support" style={{background:C.dark,padding:"100px 0",position:"relative",overflow:"hidden"}}>
       <div className="teal-glow" style={{width:600,height:600,background:C.teal,bottom:"-20%",right:"-10%"}}/>
       <div className="section-max" style={{position:"relative",zIndex:1}}>
         <FadeIn>
           <div style={{textAlign:"center",marginBottom:64}}>
             <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(2,195,154,0.1)",border:"1px solid rgba(2,195,154,0.3)",borderRadius:20,padding:"6px 16px",marginBottom:16}}>
-              <span style={{color:C.teal,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"FUEL THE MISSION":"DUKUNG MISI KAMI"}</span>
+              <span style={{color:C.teal,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"PARTNER WITH US":"BERMITRA DENGAN KAMI"}</span>
             </div>
             <h2 className="display-font" style={{fontSize:"clamp(32px,4vw,52px)",color:C.white,lineHeight:1.2,marginBottom:16}}>
-              {lang==="en"?<>We don&apos;t ask for donations.<br/><span style={{color:C.teal}}>We ask for belief.</span></>:<>Kami tidak meminta donasi.<br/><span style={{color:C.teal}}>Kami meminta kepercayaan.</span></>}
+              {lang==="en"?<>Bring SahAIbat to<br/><span style={{color:C.teal}}>your community.</span></>:<>Bawa SahAIbat ke<br/><span style={{color:C.teal}}>komunitas Anda.</span></>}
             </h2>
-            <p style={{color:"rgba(255,255,255,0.5)",fontSize:16,maxWidth:560,lineHeight:1.8,margin:"0 auto"}}>
-              {lang==="en"?"SahAIbat is free for every community it serves. The only way to keep it that way is through people who believe healthcare equity is worth fighting for."
-              :"SahAIbat gratis untuk setiap komunitas yang dilayani. Satu-satunya cara mempertahankan ini adalah melalui orang-orang yang percaya bahwa kesetaraan layanan kesehatan layak diperjuangkan."}
+            <p style={{color:"rgba(255,255,255,0.5)",fontSize:16,maxWidth:580,lineHeight:1.8,margin:"0 auto"}}>
+              {lang==="en"?"We work with NGOs, health programmes, researchers, and government partners to deploy SahAIbat where it's needed most. Tell us about your Kaders and your districts — we'll design a pilot around them."
+              :"Kami bekerja dengan NGO, program kesehatan, peneliti, dan mitra pemerintah untuk menerapkan SahAIbat di tempat yang paling membutuhkan. Ceritakan tentang Kader dan wilayah Anda — kami akan merancang pilot di sekitarnya."}
             </p>
           </div>
         </FadeIn>
         <div className="three-col" style={{marginBottom:48}}>
           {[
-            {icon:"☕",title:lang==="en"?"Buy the team a coffee":"Traktir tim kopi",amount:"$5",desc:lang==="en"?"Keeps the server running for a day. Covers one Kader's WhatsApp session costs for a week.":"Menjaga server berjalan sehari.",cta:lang==="en"?"Support on Ko-fi":"Dukung di Ko-fi",href:"https://ko-fi.com/sahaibat",color:C.teal,featured:false},
-            {icon:"🌱",title:lang==="en"?"Sponsor a Posyandu session":"Sponsori sesi Posyandu",amount:"$25",desc:lang==="en"?"Funds AI triage support for an entire Posyandu session — 20+ children, mothers, and newborns screened.":"Mendanai dukungan triase AI untuk seluruh sesi Posyandu.",cta:lang==="en"?"Sponsor a Session":"Sponsori Sesi",href:"https://ko-fi.com/sahaibat",color:C.gold,featured:true},
-            {icon:"🤝",title:lang==="en"?"Partner with us":"Bermitra dengan kami",amount:lang==="en"?"Let's talk":"Mari bicara",desc:lang==="en"?"NGO, researcher, funder, or government partner — every partnership expands our reach.":"NGO, peneliti, donatur, atau mitra pemerintah.",cta:lang==="en"?"Get in Touch":"Hubungi Kami",href:"mailto:admin@sahaibat.com?subject=Partnership Inquiry",color:C.pink,featured:false},
+            {icon:"🚀",title:lang==="en"?"Run a pilot":"Jalankan pilot",amount:lang==="en"?"Pilot":"Pilot",desc:lang==="en"?"Deploy SahAIbat with a cohort of your Kaders across one or more districts. We handle setup, training, and clinical alignment.":"Terapkan SahAIbat dengan sekelompok Kader Anda di satu atau beberapa wilayah. Kami menangani penyiapan, pelatihan, dan penyelarasan klinis.",cta:lang==="en"?"Request a Pilot":"Ajukan Pilot",href:"mailto:admin@sahaibat.com?subject=Pilot Request",color:C.teal,featured:true},
+            {icon:"🤝",title:lang==="en"?"Partner with us":"Bermitra",amount:lang==="en"?"Partnership":"Kemitraan",desc:lang==="en"?"NGO, health programme, researcher, or government partner — let's talk about deploying SahAIbat at scale across your network.":"NGO, program kesehatan, peneliti, atau mitra pemerintah — mari bicara tentang penerapan SahAIbat dalam skala besar di jaringan Anda.",cta:lang==="en"?"Start a Conversation":"Mulai Percakapan",href:"mailto:admin@sahaibat.com?subject=Partnership Inquiry",color:C.pink,featured:false},
+            {icon:"📊",title:lang==="en"?"Fund a deployment":"Danai penerapan",amount:lang==="en"?"Sponsor":"Sponsor",desc:lang==="en"?"Funders and CSR partners can sponsor a full district rollout — infrastructure, training, and impact reporting included.":"Donatur dan mitra CSR dapat mensponsori penerapan satu wilayah penuh — infrastruktur, pelatihan, dan pelaporan dampak termasuk.",cta:lang==="en"?"Talk to Us":"Hubungi Kami",href:"mailto:admin@sahaibat.com?subject=Deployment Sponsorship",color:C.gold,featured:false},
           ].map(({icon,title,amount,desc,cta,href,color,featured})=>(<FadeIn key={title} delay={100}>
             <div style={{background:featured?`linear-gradient(135deg,${C.tealXdk},${C.tealDk})`:"rgba(255,255,255,0.03)",border:`1.5px solid ${featured?C.teal:"rgba(255,255,255,0.08)"}`,borderRadius:20,padding:32,display:"flex",flexDirection:"column",height:"100%",transform:featured?"scale(1.03)":"scale(1)"}}>
-              {featured&&<div style={{color:C.teal,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:12}}>⭐ {lang==="en"?"MOST IMPACTFUL":"PALING BERDAMPAK"}</div>}
+              {featured&&<div style={{color:C.teal,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:12}}>⭐ {lang==="en"?"MOST COMMON":"PALING UMUM"}</div>}
               <div style={{fontSize:36,marginBottom:12}}>{icon}</div>
-              <div className="display-font" style={{color,fontSize:28,fontWeight:900,marginBottom:8}}>{amount}</div>
+              <div className="display-font" style={{color,fontSize:24,fontWeight:900,marginBottom:8}}>{amount}</div>
               <div style={{color:C.white,fontWeight:700,fontSize:16,marginBottom:12}}>{title}</div>
               <p style={{color:"rgba(255,255,255,0.5)",fontSize:13,lineHeight:1.7,flex:1}}>{desc}</p>
               <a href={href} style={{display:"block",marginTop:24,textAlign:"center",padding:"12px 24px",borderRadius:12,background:featured?C.teal:"transparent",border:`1.5px solid ${featured?C.teal:"rgba(255,255,255,0.2)"}`,color:featured?C.dark:C.white,fontWeight:700,fontSize:14,textDecoration:"none"}}>{cta} →</a>
@@ -267,10 +267,10 @@ export default function HomePage(){
           <div style={{background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.08)",borderRadius:16,padding:32,display:"flex",gap:24,alignItems:"flex-start",flexWrap:"wrap"}}>
             <div style={{fontSize:40}}>🔍</div>
             <div style={{flex:1,minWidth:240}}>
-              <div style={{color:C.white,fontWeight:700,fontSize:18,marginBottom:8}}>{lang==="en"?"Full transparency. Always.":"Transparansi penuh. Selalu."}</div>
-              <p style={{color:"rgba(255,255,255,0.5)",fontSize:14,lineHeight:1.7,maxWidth:600}}>{lang==="en"?"Every dollar of support received will be publicly recorded — server costs, team stipends, field visits, clinical validation. You'll always know where your support goes.":"Setiap dukungan yang diterima akan dicatat secara publik — biaya server, tunjangan tim, kunjungan lapangan, validasi klinis."}</p>
+              <div style={{color:C.white,fontWeight:700,fontSize:18,marginBottom:8}}>{lang==="en"?"Transparency, built in.":"Transparansi, sejak awal."}</div>
+              <p style={{color:"rgba(255,255,255,0.5)",fontSize:14,lineHeight:1.7,maxWidth:600}}>{lang==="en"?"With every partner, we report clearly on what was deployed, where, and what it delivered — infrastructure, training, field visits, and clinical validation. You always know exactly what your investment delivers on the ground.":"Dengan setiap mitra, kami melaporkan secara jelas apa yang diterapkan, di mana, dan apa hasilnya — infrastruktur, pelatihan, kunjungan lapangan, dan validasi klinis. Anda selalu tahu persis apa yang dihasilkan investasi Anda di lapangan."}</p>
               <div style={{marginTop:16,display:"flex",gap:12,flexWrap:"wrap"}}>
-                {(lang==="en"?["Server infrastructure","Kader training","Field visits NTT","Clinical validation","Product development"]:["Infrastruktur server","Pelatihan Kader","Kunjungan lapangan NTT","Validasi klinis","Pengembangan produk"]).map(item=>(<span key={item} style={{background:"rgba(2,195,154,0.08)",border:"1px solid rgba(2,195,154,0.15)",color:C.teal,fontSize:12,padding:"4px 12px",borderRadius:20}}>{item}</span>))}
+                {(lang==="en"?["Server infrastructure","Kader training","Field visits NTT","Clinical validation","Impact reporting"]:["Infrastruktur server","Pelatihan Kader","Kunjungan lapangan NTT","Validasi klinis","Pelaporan dampak"]).map(item=>(<span key={item} style={{background:"rgba(2,195,154,0.08)",border:"1px solid rgba(2,195,154,0.15)",color:C.teal,fontSize:12,padding:"4px 12px",borderRadius:20}}>{item}</span>))}
               </div>
             </div>
           </div>
@@ -283,13 +283,13 @@ export default function HomePage(){
       <div className="section-max">
         <div className="footer-grid" style={{marginBottom:48}}>
           <div>
-            <div style={{marginBottom:16}}><img src="/images/logo-horizontal@2x.png" alt="SahAIbat" style={{height:32,width:"auto",filter:"brightness(0) invert(1)",opacity:0.85}}/></div>
-            <p style={{color:"rgba(255,255,255,0.4)",fontSize:13,lineHeight:1.7,maxWidth:280,marginBottom:16}}>{lang==="en"?"WhatsApp-first AI clinical triage for Community Health Workers in Indonesia. Free for communities. Always.":"Triase klinis AI berbasis WhatsApp untuk Kader Kesehatan Indonesia. Gratis untuk komunitas. Selamanya."}</p>
+            <div style={{marginBottom:16}}><img src="/images/art/logo-horizontal-white@2x.png" alt="SahAIbat" style={{height:32,width:"auto",opacity:0.85}}/></div>
+            <p style={{color:"rgba(255,255,255,0.4)",fontSize:13,lineHeight:1.7,maxWidth:280,marginBottom:16}}>{lang==="en"?"WhatsApp-first AI clinical triage for Community Health Workers in Indonesia. Built to strengthen frontline care.":"Triase klinis AI berbasis WhatsApp untuk Kader Kesehatan Indonesia. Dibangun untuk memperkuat layanan garis depan."}</p>
             <p style={{color:"rgba(255,255,255,0.18)",fontSize:11,lineHeight:1.7}}>All IP owned by<br/><strong style={{color:"rgba(255,255,255,0.3)"}}>Vinatra · 11679210 Canada Inc</strong><br/>Terdaftar PSE Lingkup Privat Asing<br/>NIB: 1202260248509</p>
           </div>
           <div>
             <div style={{color:C.teal,fontWeight:700,fontSize:12,letterSpacing:1,marginBottom:16}}>PLATFORM</div>
-            {([["#story",lang==="en"?"Our Story":"Cerita Kami"],["#products",lang==="en"?"Products":"Produk"],["#partners",lang==="en"?"Field Partners":"Mitra Lapangan"],["#team",lang==="en"?"Team":"Tim"],["#support",lang==="en"?"Support us":"Dukung kami"]] as [string,string][]).map(([href,label])=>(<a key={label} href={href} style={{display:"block",color:"rgba(255,255,255,0.4)",fontSize:13,textDecoration:"none",marginBottom:9,transition:"color 0.2s"}} onMouseEnter={e=>(e.target as HTMLElement).style.color=C.teal} onMouseLeave={e=>(e.target as HTMLElement).style.color="rgba(255,255,255,0.4)"}>{label}</a>))}
+            {([["#story",lang==="en"?"Our Story":"Cerita Kami"],["#products",lang==="en"?"Products":"Produk"],["#partners",lang==="en"?"Field Partners":"Mitra Lapangan"],["#team",lang==="en"?"Team":"Tim"],["#support",lang==="en"?"Partner with us":"Bermitra dengan kami"]] as [string,string][]).map(([href,label])=>(<a key={label} href={href} style={{display:"block",color:"rgba(255,255,255,0.4)",fontSize:13,textDecoration:"none",marginBottom:9,transition:"color 0.2s"}} onMouseEnter={e=>(e.target as HTMLElement).style.color=C.teal} onMouseLeave={e=>(e.target as HTMLElement).style.color="rgba(255,255,255,0.4)"}>{label}</a>))}
           </div>
           <div>
             <div style={{color:C.teal,fontWeight:700,fontSize:12,letterSpacing:1,marginBottom:16}}>CONNECT</div>
@@ -301,7 +301,7 @@ export default function HomePage(){
           </div>
         </div>
         <div style={{borderTop:"1px solid rgba(255,255,255,0.06)",paddingTop:24,display:"flex",justifyContent:"space-between",flexWrap:"wrap",gap:12}}>
-          <span style={{color:"rgba(255,255,255,0.2)",fontSize:12}}>© 2026 SahAIbat Foundation · IP owned by Vinatra (11679210 Canada Inc) · All rights reserved</span>
+          <span style={{color:"rgba(255,255,255,0.2)",fontSize:12}}>© 2026 SahAIbat · IP owned by Vinatra (11679210 Canada Inc) · All rights reserved</span>
           <span style={{color:"rgba(255,255,255,0.2)",fontSize:12}}>Not a diagnostic tool · Bukan pengganti dokter</span>
         </div>
       </div>
@@ -495,7 +495,7 @@ function ProductsSection({lang}:{lang:"en"|"id"}){
 }
 
 // ══════════════════════════════════════════════════════════════════════════════
-// IMPACT — emotional storytelling, donor-facing
+// IMPACT — emotional storytelling, partner-facing
 // ══════════════════════════════════════════════════════════════════════════════
 function ImpactSection({lang}:{lang:"en"|"id"}){
   return(
@@ -514,7 +514,6 @@ function ImpactSection({lang}:{lang:"en"|"id"}){
           </p>
         </FadeIn>
 
-        {/* Big emotional stat row */}
         <FadeIn delay={100}>
           <div className="three-col" style={{marginBottom:48}}>
             {[
@@ -530,7 +529,6 @@ function ImpactSection({lang}:{lang:"en"|"id"}){
           </div>
         </FadeIn>
 
-        {/* What SahAIbat covers */}
         <FadeIn delay={150}>
           <div style={{background:C.dark,borderRadius:24,padding:48,marginBottom:48}}>
             <div style={{color:C.teal,fontWeight:700,fontSize:12,letterSpacing:1,marginBottom:24}}>{lang==="en"?"WHAT SAHAIBAT COVERS":"APA YANG SAHAIBAT TANGANI"}</div>
@@ -551,7 +549,6 @@ function ImpactSection({lang}:{lang:"en"|"id"}){
           </div>
         </FadeIn>
 
-        {/* Clinical standards */}
         <FadeIn delay={200}>
           <div style={{background:`linear-gradient(135deg,${C.tealXdk},${C.tealDk})`,borderRadius:20,padding:36,display:"flex",gap:32,alignItems:"center",flexWrap:"wrap"}}>
             <div style={{fontSize:48}}>📗</div>
@@ -599,7 +596,6 @@ function FieldPartnersSection({lang}:{lang:"en"|"id"}){
       tags:lang==="en"?["Child Stunting","NTT","WHO Growth","Community Advocacy"]:["Stunting Anak","NTT","Pertumbuhan WHO","Advokasi Komunitas"],
       modules:lang==="en"?["WHO stunting screening","Growth monitoring","Posyandu support"]:["Skrining stunting WHO","Pemantauan pertumbuhan","Dukungan Posyandu"],
     },
-
     {
       name:"PERDHAKI",
       region:lang==="en"?"Indonesia-wide · Focus: Eastern Indonesia":"Seluruh Indonesia · Fokus: Indonesia Timur",
@@ -705,7 +701,7 @@ function TeamSection({lang}:{lang:"en"|"id"}){
       flag:"🇮🇩",
       role:lang==="en"?"Clinical Validation Lead":"Pemimpin Validasi Klinis",
       loc:"Indonesia",
-      photo:"/images/____Rathi.jpg",
+      photo:"/images/Rathi.jpg",
       color:C.pink,
       bg:C.white,
       passion:lang==="en"
@@ -718,7 +714,7 @@ function TeamSection({lang}:{lang:"en"|"id"}){
       flag:"🇮🇩",
       role:lang==="en"?"Programme Manager, Rural Deployment":"Manajer Program, Penerapan Pedesaan",
       loc:"East Nusa Tenggara",
-      photo:"/images/__Stefan.png",
+      photo:"/images/Stefan.png",
       color:C.gold,
       bg:C.white,
       passion:lang==="en"
@@ -743,7 +739,7 @@ function TeamSection({lang}:{lang:"en"|"id"}){
       name:"Saurav Das",
       flag:"🇮🇳",
       role:lang==="en"?"UI Engineer":"UI Engineer",
-      loc:"India",
+      loc:lang==="en"?"India":"India",
       photo:null,
       color:C.blue,
       bg:C.white,
@@ -756,14 +752,14 @@ function TeamSection({lang}:{lang:"en"|"id"}){
       name:"Surabhi Das",
       flag:"🇨🇦",
       role:lang==="en"?"Healthcare Research & Strategy":"Penelitian Kesehatan & Strategi",
-      loc:"Canada",
+      loc:lang==="en"?"Canada":"Kanada",
       photo:null,
       color:C.purple,
       bg:C.white,
       passion:lang==="en"
-        ?"B.PT, MBA, and alumni of Deloitte and Egon Zehnder — Surabhi brings the rare combination of clinical grounding and strategic rigour to SahAIbat's evidence base. She leads our research into nationwide maternal and child health data, builds the frameworks that make our outcomes measurable, and shapes the grant strategy that keeps SahAIbat funded and free."
-        :"B.PT, MBA, dan alumni Deloitte serta Egon Zehnder — Surabhi membawa kombinasi langka antara landasan klinis dan rigor strategis ke basis bukti SahAIbat. Ia memimpin penelitian kami tentang data kesehatan ibu dan anak nasional, membangun kerangka kerja yang membuat hasil kami terukur, dan membentuk strategi hibah yang membuat SahAIbat tetap didanai dan gratis.",
-      tags:["B.PT · MBA","ex-Deloitte · ex-Egon Zehnder","Health Research","Grant Strategy"],
+        ?"B.PT, MBA, and alumni of Deloitte and Egon Zehnder — Surabhi brings the rare combination of clinical grounding and strategic rigour to SahAIbat's evidence base. She leads our research into nationwide maternal and child health data, builds the frameworks that make our outcomes measurable, and shapes the strategy that keeps SahAIbat growing sustainably."
+        :"B.PT, MBA, dan alumni Deloitte serta Egon Zehnder — Surabhi membawa kombinasi langka antara landasan klinis dan rigor strategis ke basis bukti SahAIbat. Ia memimpin penelitian kami tentang data kesehatan ibu dan anak nasional, membangun kerangka kerja yang membuat hasil kami terukur, dan membentuk strategi yang membuat SahAIbat tumbuh berkelanjutan.",
+      tags:["B.PT · MBA","ex-Deloitte · ex-Egon Zehnder","Health Research","Strategy"],
     },
   ];
 
@@ -851,10 +847,10 @@ function TeamSection({lang}:{lang:"en"|"id"}){
           <div style={{background:C.dark,borderRadius:20,padding:32,display:"flex",gap:20,alignItems:"center",flexWrap:"wrap"}}>
             <div style={{fontSize:36}}>🏛️</div>
             <div style={{flex:1,minWidth:240}}>
-              <div style={{color:C.teal,fontWeight:700,fontSize:12,letterSpacing:1,marginBottom:6}}>{lang==="en"?"ABOUT THE FOUNDATION":"TENTANG YAYASAN"}</div>
+              <div style={{color:C.teal,fontWeight:700,fontSize:12,letterSpacing:1,marginBottom:6}}>{lang==="en"?"ABOUT SAHAIBAT":"TENTANG SAHAIBAT"}</div>
               <p style={{color:"rgba(255,255,255,0.55)",fontSize:14,lineHeight:1.7}}>
-                {lang==="en"?"SahAIbat Foundation is the community-facing identity of SahAIbat Health. All intellectual property, technology, and platform infrastructure is owned by Vinatra (11679210 Canada Inc). The Foundation exists to serve communities — not to generate profit."
-                :"SahAIbat Foundation adalah identitas yang menghadap komunitas dari SahAIbat Health. Semua kekayaan intelektual, teknologi, dan infrastruktur platform dimiliki oleh Vinatra (11679210 Canada Inc). Foundation ini ada untuk melayani komunitas — bukan untuk menghasilkan keuntungan."}
+                {lang==="en"?"SahAIbat is a mission-driven venture. All intellectual property, technology, and platform infrastructure is owned by Vinatra (11679210 Canada Inc). We build sustainable, commercially-sound products so the communities who need them most are reached — and kept reached, long after any grant cycle would end."
+                :"SahAIbat adalah usaha yang digerakkan oleh misi. Semua kekayaan intelektual, teknologi, dan infrastruktur platform dimiliki oleh Vinatra (11679210 Canada Inc). Kami membangun produk yang berkelanjutan dan sehat secara komersial agar komunitas yang paling membutuhkan dapat dijangkau — dan tetap terlayani, jauh setelah siklus hibah berakhir."}
               </p>
             </div>
           </div>
