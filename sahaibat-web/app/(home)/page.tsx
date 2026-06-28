@@ -332,8 +332,9 @@ function ProductsSection({lang}:{lang:"en"|"id"}){
       id:0,icon:"👩🏽‍⚕️",label:"Kader App",sub:lang==="en"?"Community Screening":"Skrining Komunitas",accent:C.teal,status:"live",
       businessModel:lang==="en"?"Free forever — ILP-aligned, government-grade data layer":"Gratis selamanya — selaras ILP, lapisan data kelas pemerintah",
       headline:lang==="en"?"The paper KMS form. Replaced. In seconds.":"Formulir KMS kertas. Digantikan. Dalam hitungan detik.",
-      story:lang==="en"?"Every Posyandu visit, a Kader manually plots a child's weight on a paper KMS chart, estimates their growth category, copies data into registers, and hopes she didn't make a calculation error. SahAIbat Kader App digitises this entire flow — WHO growth auto-calculated, danger signs auto-flagged, programme dashboard updated automatically — from a WhatsApp-native interface on the Kader's existing phone.\n\nNo new hardware. No training burden. No internet required. The Kader App is permanently free, because we believe the communities carrying the highest health burden deserve the best tools — not a free trial.":"Setiap kunjungan Posyandu, Kader secara manual memplot berat badan anak di grafik KMS kertas, memperkirakan kategori pertumbuhan, menyalin data ke register, dan berharap tidak ada kesalahan kalkulasi. Aplikasi Kader SahAIbat mendigitalkan seluruh alur ini — pertumbuhan WHO dihitung otomatis, tanda bahaya diberi tanda otomatis, dasbor program diperbarui otomatis — dari antarmuka berbasis WhatsApp di ponsel Kader yang sudah ada.",
-      features:lang==="en"?["ILP life-cycle modules — child, maternal, TB, dengue, malaria","WHO growth auto-calculated — BB/U, TB/U, BB/TB in seconds","Fully offline on 2G phones — syncs when signal returns","Danger sign flags → RUJUK alerts → Programme Dashboard","Free forever. Funded by DoK commercial revenue."]:["Modul siklus hidup ILP — anak, ibu, TB, dengue, malaria","Pertumbuhan WHO dihitung otomatis — BB/U, TB/U, BB/TB dalam detik","Offline penuh di ponsel 2G — sinkron saat sinyal kembali","Tanda bahaya → peringatan RUJUK → Dasbor Program","Gratis selamanya. Didanai oleh pendapatan komersial DoK."],
+      story:lang==="en"?"Every Posyandu visit, a Kader manually plots a child's weight on a paper KMS chart, estimates their growth category, copies data into registers, and hopes she didn't make a calculation error. SahAIbat Kader App digitises this entire flow — WHO growth auto-calculated, danger signs auto-flagged, programme dashboard updated automatically — from a WhatsApp-native interface on the Kader's existing phone.\n\nThe Kader App covers all 5 ILP Posyandu life-cycle service packages mandated by Kemenkes: child health (0–60 months), maternal (ANC, postnatal, neonatal), adolescent (6–18 years), adult & elderly, and communicable disease (TB, malaria, dengue). One Kader. Every life stage. Zero new hardware.":"Setiap kunjungan Posyandu, Kader secara manual memplot berat badan anak di grafik KMS kertas, memperkirakan kategori pertumbuhan, menyalin data ke register, dan berharap tidak ada kesalahan kalkulasi. Aplikasi Kader SahAIbat mendigitalkan seluruh alur ini — pertumbuhan WHO dihitung otomatis, tanda bahaya diberi tanda otomatis, dasbor program diperbarui otomatis.\n\nAplikasi Kader mencakup 5 paket layanan siklus hidup ILP Posyandu yang diamanatkan Kemenkes: kesehatan anak (0–60 bulan), ibu hamil/nifas/neonatal, remaja (6–18 tahun), usia dewasa & lansia, dan penyakit menular (TB, malaria, dengue). Satu Kader. Setiap tahap kehidupan. Tanpa perangkat keras baru.",
+      features:lang==="en"?["5 ILP life-cycle packages — child, maternal, adolescent, adult/elderly, communicable disease","WHO growth auto-calculated — BB/U, TB/U, BB/TB in seconds","Fully offline on 2G phones — syncs when signal returns","Danger sign flags → RUJUK alerts → Programme Dashboard","Feeds MoH-grade Puskesmas & health post data metrics in real time","Free forever. Funded by DoK commercial revenue."]:["5 paket siklus hidup ILP — anak, ibu, remaja, dewasa/lansia, penyakit menular","Pertumbuhan WHO dihitung otomatis — BB/U, TB/U, BB/TB dalam detik","Offline penuh di ponsel 2G — sinkron saat sinyal kembali","Tanda bahaya → peringatan RUJUK → Dasbor Program","Mengisi metrik data Puskesmas & poskesdes berkualitas Kemenkes secara real-time","Gratis selamanya. Didanai oleh pendapatan komersial DoK."],
+      gif:"/images/demo/kader-demo.gif",
       photo:"/images/field/kader-result-screen.jpeg",
       photoFallback:"/images/hero-kader-family.png",
     },
@@ -429,9 +430,26 @@ function ProductsSection({lang}:{lang:"en"|"id"}){
                 </a>
               )}
             </div>
-            {/* Right: features + photo */}
+            {/* Right: GIF demo / photo / features */}
             <div>
-              {p.photo&&(
+              {/* GIF demo in browser frame (Kader tab) */}
+              {(p as any).gif&&(
+                <div style={{marginBottom:24,borderRadius:16,overflow:"hidden",border:`1px solid ${p.accent}30`,boxShadow:"0 16px 40px rgba(0,0,0,0.5)"}}>
+                  <div style={{display:"flex",alignItems:"center",gap:6,padding:"8px 12px",background:"rgba(255,255,255,0.04)",borderBottom:`1px solid ${p.accent}20`}}>
+                    {["#FF5F56","#FFBD2E","#27C93F"].map(c=>(<span key={c} style={{width:8,height:8,borderRadius:"50%",background:c,display:"inline-block"}}/>))}
+                    <span style={{marginLeft:6,color:"rgba(255,255,255,0.25)",fontSize:10,fontFamily:"monospace"}}>kader.sahaibat.com</span>
+                    <span style={{marginLeft:"auto",background:`${p.accent}20`,color:p.accent,fontSize:9,fontWeight:700,padding:"2px 8px",borderRadius:10}}>● LIVE</span>
+                  </div>
+                  <img
+                    src={(p as any).gif}
+                    alt={`${p.label} live demo`}
+                    onError={e=>{if(p.photo)(e.target as HTMLImageElement).src=p.photo;}}
+                    style={{width:"100%",display:"block",maxHeight:340,objectFit:"cover",objectPosition:"top"}}
+                  />
+                </div>
+              )}
+              {/* Static photo (non-GIF tabs) */}
+              {p.photo&&!(p as any).gif&&(
                 <div style={{marginBottom:24,borderRadius:16,overflow:"hidden",border:`1px solid ${p.accent}30`,boxShadow:"0 16px 40px rgba(0,0,0,0.4)"}}>
                   <img src={p.photo} alt={p.label} onError={e=>{if(p.photoFallback)(e.target as HTMLImageElement).src=p.photoFallback;}} style={{width:"100%",height:260,objectFit:"cover",display:"block"}}/>
                 </div>
@@ -1220,6 +1238,189 @@ function Footer({lang}:{lang:"en"|"id"}){
   );
 }
 
+// ── GROUND-LEVEL HEALTH IMPACT ────────────────────────────────────────────────
+function GroundImpactSection({lang}:{lang:"en"|"id"}){
+  const cycles=[
+    {icon:"👶",title:lang==="en"?"Child Health · 0–60 months":"Kesehatan Anak · 0–60 bulan",color:C.teal,
+      impact:lang==="en"?"WHO growth screening at every Posyandu visit. BB/U, TB/U, BB/TB auto-calculated. SAM and MAM cases flagged within seconds — catching the malnutrition that leads to stunting before it becomes irreversible.":"Skrining pertumbuhan WHO di setiap kunjungan Posyandu. BB/U, TB/U, BB/TB dihitung otomatis. Kasus SAM dan MAM terdeteksi dalam hitungan detik — menangkap malnutrisi yang menyebabkan stunting sebelum tidak dapat dipulihkan."},
+    {icon:"🤱",title:lang==="en"?"Maternal · ANC, Postnatal & Neonatal":"Ibu · ANC, Nifas & Neonatal",color:C.pink,
+      impact:lang==="en"?"Preeclampsia signs, postpartum haemorrhage, and neonatal danger signs flagged by Kaders — before they become emergencies. The Bidan receives a structured alert and can triage remotely. The referral is made with complete clinical context attached.":"Tanda preeklampsia, perdarahan postpartum, dan tanda bahaya neonatal dideteksi Kader — sebelum menjadi darurat. Bidan menerima peringatan terstruktur dan bisa melakukan triase jarak jauh."},
+    {icon:"🧒",title:lang==="en"?"Adolescent · 6–18 years":"Remaja · 6–18 tahun",color:C.blue,
+      impact:lang==="en"?"School-age and adolescent health screening often falls entirely outside formal health services in rural Indonesia. SahAIbat Kader closes that gap — nutritional status, developmental milestones, and health risk screening in the same Posyandu session.":"Skrining kesehatan remaja sering kali berada di luar layanan kesehatan formal di Indonesia pedesaan. SahAIbat Kader menutup kesenjangan itu — status gizi, tonggak perkembangan, dan skrining risiko kesehatan dalam satu sesi Posyandu."},
+    {icon:"👴",title:lang==="en"?"Adult & Elderly · NCD Detection":"Dewasa & Lansia · Deteksi PTM",color:C.gold,
+      impact:lang==="en"?"Hypertension, diabetes, and other non-communicable disease early detection at the community level — feeding directly into Puskesmas NCD registers and national health data metrics required by Kemenkes.":"Deteksi dini hipertensi, diabetes, dan penyakit tidak menular lainnya di tingkat komunitas — langsung masuk ke register PTM Puskesmas dan metrik data kesehatan nasional yang dibutuhkan Kemenkes."},
+    {icon:"🦠",title:lang==="en"?"Communicable Disease · TB, Malaria, Dengue":"Penyakit Menular · TB, Malaria, Dengue",color:"#FF6B6B",
+      impact:lang==="en"?"Symptom screening, contact tracing initiation, and epidemic surveillance in the same tool — generating an SKDR-compatible disease curve that health officials currently produce manually from quarterly reports.":"Skrining gejala, inisiasi pelacakan kontak, dan surveilans epidemi dalam satu alat — menghasilkan kurva penyakit kompatibel SKDR yang pejabat kesehatan saat ini buat secara manual dari laporan kuartalan."},
+  ];
+  return(
+    <section style={{background:C.cream,padding:"100px 0"}}>
+      <div className="section-max">
+        <FadeIn>
+          <div style={{display:"inline-flex",alignItems:"center",gap:8,background:`${C.tealDk}20`,border:`1px solid ${C.tealDk}40`,borderRadius:20,padding:"6px 16px",marginBottom:16}}>
+            <span style={{color:C.tealDk,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"HOW IT SAVES LIVES AT GROUND LEVEL":"BAGAIMANA INI MENYELAMATKAN NYAWA DI LAPANGAN"}</span>
+          </div>
+          <h2 className="display-font" style={{fontSize:"clamp(30px,4vw,50px)",color:C.dark,lineHeight:1.2,marginBottom:16,maxWidth:760}}>
+            {lang==="en"?"A Kader. A Bidan. A family on WhatsApp. Three tools that change what happens in the most critical moments.":"Seorang Kader. Seorang Bidan. Sebuah keluarga di WhatsApp. Tiga alat yang mengubah apa yang terjadi di saat-saat paling kritis."}
+          </h2>
+          <p style={{color:C.muted,fontSize:16,maxWidth:680,lineHeight:1.8,marginBottom:56}}>
+            {lang==="en"?"Indonesia's community health challenges aren't caused by a lack of caring — they're caused by a lack of tools. When a Kader has SahAIbat, a child's declining growth is caught before stunting sets in. When a Bidan has SahAIbat, a high-risk pregnancy doesn't fall through the cracks between visits. When a family has Kasih, a mother at 2am knows whether to go to the emergency room. These aren't features. These are the difference between outcomes.":"Tantangan kesehatan komunitas Indonesia bukan karena kurangnya kepedulian — melainkan kurangnya alat. Ketika Kader memiliki SahAIbat, penurunan pertumbuhan anak terdeteksi sebelum stunting terjadi. Ketika Bidan memiliki SahAIbat, kehamilan berisiko tinggi tidak terlewatkan di antara kunjungan."}
+          </p>
+        </FadeIn>
+
+        {/* 5 ILP Life Cycles */}
+        <div style={{display:"grid",gap:16,marginBottom:56}}>
+          {cycles.map(({icon,title,color,impact},i)=>(
+            <FadeIn key={title} delay={i*60}>
+              <div style={{background:C.white,border:`1px solid ${color}20`,borderRadius:16,padding:"24px 28px",display:"grid",gridTemplateColumns:"auto 1fr",gap:24,alignItems:"start",position:"relative",overflow:"hidden"}}>
+                <div style={{position:"absolute",left:0,top:0,bottom:0,width:4,background:color,borderRadius:"16px 0 0 16px"}}/>
+                <div style={{width:52,height:52,borderRadius:14,background:`${color}12`,border:`1px solid ${color}25`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:24,flexShrink:0}}>{icon}</div>
+                <div>
+                  <div style={{color,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:6}}>{lang==="en"?"ILP LIFE CYCLE":"SIKLUS HIDUP ILP"}</div>
+                  <div style={{color:C.dark,fontWeight:800,fontSize:16,marginBottom:10}}>{title}</div>
+                  <p style={{color:C.muted,fontSize:14,lineHeight:1.7}}>{impact}</p>
+                </div>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+
+        {/* How the three tools connect */}
+        <FadeIn delay={100}>
+          <div style={{background:C.dark,borderRadius:24,padding:"40px 36px"}}>
+            <div style={{color:C.teal,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:24}}>{lang==="en"?"THE CONNECTED CARE CHAIN":"RANTAI PERAWATAN TERHUBUNG"}</div>
+            <div style={{display:"grid",gridTemplateColumns:"1fr auto 1fr auto 1fr",gap:0,alignItems:"center",marginBottom:28}} className="care-chain">
+              {[
+                {icon:"👩🏽‍⚕️",name:"Kader App",color:C.teal,role:lang==="en"?"Screens. Flags. Records.":"Skrining. Deteksi. Catat."},
+                {arrow:true},
+                {icon:"🩺",name:"SahAIbat Bidan",color:C.purple,role:lang==="en"?"Supervises. Triages remotely.":"Mengawasi. Triase jarak jauh."},
+                {arrow:true},
+                {icon:"❤️‍🩹",name:"Kasih",color:C.pink,role:lang==="en"?"Supports families 24/7.":"Mendukung keluarga 24/7."},
+              ].map((item,i)=>{
+                if("arrow" in item) return <div key={i} style={{textAlign:"center",color:"rgba(255,255,255,0.2)",fontSize:24,padding:"0 8px"}}>→</div>;
+                return(
+                  <div key={i} style={{background:"rgba(255,255,255,0.04)",border:`1px solid ${item.color}25`,borderRadius:16,padding:"20px 16px",textAlign:"center"}}>
+                    <div style={{fontSize:28,marginBottom:8}}>{item.icon}</div>
+                    <div style={{color:item.color,fontWeight:700,fontSize:13,marginBottom:6}}>{item.name}</div>
+                    <div style={{color:"rgba(255,255,255,0.4)",fontSize:12,lineHeight:1.4}}>{item.role}</div>
+                  </div>
+                );
+              })}
+            </div>
+            <p style={{color:"rgba(255,255,255,0.5)",fontSize:14,lineHeight:1.8,maxWidth:700}}>
+              {lang==="en"?"When all three work together, a danger sign detected by a Kader at a Posyandu triggers a Bidan alert, generates a structured referral, and automatically follows up with the family via Kasih — closing a loop that previously existed only on paper, if at all.":"Ketika ketiganya bekerja bersama, tanda bahaya yang terdeteksi Kader di Posyandu memicu peringatan Bidan, menghasilkan rujukan terstruktur, dan secara otomatis menindaklanjuti keluarga melalui Kasih — menutup loop yang sebelumnya hanya ada di atas kertas."}
+            </p>
+          </div>
+        </FadeIn>
+      </div>
+      <style>{`.care-chain{display:grid;grid-template-columns:1fr auto 1fr auto 1fr}@media(max-width:700px){.care-chain{grid-template-columns:1fr!important;gap:12px!important}.care-chain>div[style*="fontSize:24"]{transform:rotate(90deg);padding:4px 0!important}}`}</style>
+    </section>
+  );
+}
+
+// ── ZERO-COST NGO PARTNER SECTION ─────────────────────────────────────────────
+function NGOPartnerSection({lang}:{lang:"en"|"id"}){
+  const useCases=[
+    {icon:"🌱",title:lang==="en"?"Child Stunting":"Stunting Anak",color:C.teal,
+      desc:lang==="en"?"Deploy SahAIbat Kader App across your Posyandu network. WHO growth auto-calculated at every visit. SAM/MAM cases flagged instantly. Monthly stunting trend reports — zero manual data entry.":"Terapkan Aplikasi Kader SahAIbat di jaringan Posyandu Anda. Pertumbuhan WHO dihitung otomatis di setiap kunjungan. Kasus SAM/MAM ditandai seketika. Laporan tren stunting bulanan — tanpa entri data manual.",
+      gets:lang==="en"?["Kader App — free for all Kaders","Programme Dashboard","WHO-aligned growth reports","MoH Puskesmas data metrics"]:["Aplikasi Kader — gratis untuk semua Kader","Dasbor Program","Laporan pertumbuhan selaras WHO","Metrik data Puskesmas Kemenkes"]},
+    {icon:"🤱",title:lang==="en"?"Maternal Health":"Kesehatan Ibu",color:C.pink,
+      desc:lang==="en"?"Give your Bidans a structured ANC quality tool and your Kaders a maternal danger-sign protocol. High-risk pregnancies surface automatically. Referrals are tracked from flag to facility.":"Beri Bidan Anda alat kualitas ANC terstruktur dan Kader Anda protokol tanda bahaya maternal. Kehamilan berisiko tinggi terdeteksi otomatis. Rujukan dilacak dari deteksi hingga fasilitas.",
+      gets:lang==="en"?["SahAIbat Bidan Module — free","ANC 10T quality scoring","High-risk pregnancy alerts","Postnatal monitoring 0–42 days"]:["Modul Bidan SahAIbat — gratis","Skor kualitas ANC 10T","Peringatan kehamilan berisiko tinggi","Pemantauan nifas 0–42 hari"]},
+    {icon:"🏘️",title:lang==="en"?"Rural Health Education":"Edukasi Kesehatan Pedesaan",color:C.gold,
+      desc:lang==="en"?"Kasih gives every family in your catchment area a health companion on WhatsApp — in Bahasa Indonesia, offline-capable, available at 2am. No app, no training, no cost to the community.":"Kasih memberi setiap keluarga di wilayah kerja Anda pendamping kesehatan di WhatsApp — dalam Bahasa Indonesia, bisa offline, tersedia jam 2 pagi. Tanpa aplikasi, tanpa pelatihan, tanpa biaya untuk komunitas.",
+      gets:lang==="en"?["Kasih WhatsApp bot — free for families","Symptom triage in Bahasa Indonesia","24/7 danger-sign guidance","No smartphone or app required"]:["Bot WhatsApp Kasih — gratis untuk keluarga","Triase gejala dalam Bahasa Indonesia","Panduan tanda bahaya 24/7","Tidak perlu smartphone atau aplikasi"]},
+  ];
+  return(
+    <section style={{background:C.dark,padding:"100px 0",position:"relative",overflow:"hidden"}}>
+      <div style={{position:"absolute",width:500,height:500,background:C.teal,bottom:"-15%",left:"-8%",borderRadius:"50%",filter:"blur(120px)",opacity:0.07,pointerEvents:"none"}}/>
+      <div className="section-max" style={{position:"relative",zIndex:1}}>
+        <FadeIn>
+          <div style={{textAlign:"center",marginBottom:64}}>
+            <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(2,195,154,0.1)",border:"1px solid rgba(2,195,154,0.3)",borderRadius:20,padding:"6px 16px",marginBottom:20}}>
+              <span style={{color:C.teal,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"PARTNER WITH SAHAIBAT":"BERMITRA DENGAN SAHAIBAT"}</span>
+            </div>
+            <h2 className="display-font" style={{fontSize:"clamp(32px,4vw,54px)",color:C.white,lineHeight:1.1,marginBottom:20}}>
+              {lang==="en"
+                ?<>Bring better healthcare to your community.<br/><span style={{color:C.teal}}>Cost to your organisation: Rp 0.</span></>
+                :<>Bawa layanan kesehatan lebih baik ke komunitas Anda.<br/><span style={{color:C.teal}}>Biaya untuk organisasi Anda: Rp 0.</span></>}
+            </h2>
+            <p style={{color:"rgba(255,255,255,0.5)",fontSize:17,maxWidth:640,lineHeight:1.8,margin:"0 auto"}}>
+              {lang==="en"?"SahAIbat's community tools are permanently free for NGOs, health programmes, and government health posts. We're looking for field partners who know their communities — we bring the technology.":"Alat komunitas SahAIbat gratis selamanya untuk NGO, program kesehatan, dan poskesdes pemerintah. Kami mencari mitra lapangan yang mengenal komunitas mereka — kami membawa teknologinya."}
+            </p>
+          </div>
+        </FadeIn>
+
+        {/* Three use cases */}
+        <div className="three-col" style={{marginBottom:48}}>
+          {useCases.map(({icon,title,color,desc,gets},i)=>(
+            <FadeIn key={title} delay={i*80}>
+              <div style={{background:"rgba(255,255,255,0.03)",border:`1px solid ${color}25`,borderRadius:20,padding:28,height:"100%",position:"relative",overflow:"hidden"}}>
+                <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${color},transparent)`}}/>
+                <div style={{fontSize:36,marginBottom:16}}>{icon}</div>
+                <div style={{color,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:8}}>{lang==="en"?"USE CASE":"KASUS PENGGUNAAN"}</div>
+                <h3 style={{color:C.white,fontWeight:800,fontSize:20,marginBottom:14}}>{title}</h3>
+                <p style={{color:"rgba(255,255,255,0.5)",fontSize:13,lineHeight:1.8,marginBottom:20}}>{desc}</p>
+                <div style={{borderTop:"1px solid rgba(255,255,255,0.06)",paddingTop:16}}>
+                  <div style={{color,fontWeight:700,fontSize:10,letterSpacing:1,marginBottom:10}}>{lang==="en"?"WHAT YOU GET — FREE":"YANG ANDA DAPATKAN — GRATIS"}</div>
+                  {gets.map(g=>(<div key={g} style={{display:"flex",gap:8,marginBottom:8,alignItems:"flex-start"}}>
+                    <span style={{color,fontSize:12,flexShrink:0,marginTop:1}}>✓</span>
+                    <span style={{color:"rgba(255,255,255,0.6)",fontSize:12,lineHeight:1.5}}>{g}</span>
+                  </div>))}
+                </div>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+
+        {/* MoH data metrics callout */}
+        <FadeIn delay={100}>
+          <div style={{background:`linear-gradient(135deg,${C.tealXdk},${C.charcoal})`,border:"1px solid rgba(2,195,154,0.25)",borderRadius:20,padding:"36px 40px",marginBottom:40,display:"flex",gap:32,alignItems:"center",flexWrap:"wrap"}}>
+            <div style={{fontSize:48,flexShrink:0}}>🏛️</div>
+            <div style={{flex:1,minWidth:260}}>
+              <div style={{color:C.teal,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:12}}>{lang==="en"?"SUPPORTING PUSKESMAS & MINISTRY OF HEALTH DATA REQUIREMENTS":"MENDUKUNG KEBUTUHAN DATA PUSKESMAS & KEMENTERIAN KESEHATAN"}</div>
+              <h3 style={{color:C.white,fontSize:20,fontWeight:700,marginBottom:12}}>
+                {lang==="en"?"SahAIbat generates the data your Puskesmas needs to report — automatically.":"SahAIbat menghasilkan data yang dibutuhkan Puskesmas Anda untuk pelaporan — secara otomatis."}
+              </h3>
+              <p style={{color:"rgba(255,255,255,0.55)",fontSize:14,lineHeight:1.7}}>
+                {lang==="en"?"Every Kader visit, every Bidan ANC session, and every Kasih conversation feeds into a Programme Dashboard that produces ILP-aligned reports, SKDR-compatible epidemic surveillance, and Posyandu performance metrics — exactly the data your Puskesmas, Dinas Kesehatan, and MoH need, without any additional reporting burden on your team.":"Setiap kunjungan Kader, setiap sesi ANC Bidan, dan setiap percakapan Kasih mengisi Dasbor Program yang menghasilkan laporan selaras ILP, surveilans epidemi kompatibel SKDR, dan metrik kinerja Posyandu — tepat data yang dibutuhkan Puskesmas, Dinas Kesehatan, dan Kemenkes Anda, tanpa beban pelaporan tambahan bagi tim Anda."}
+              </p>
+            </div>
+            <div style={{display:"flex",flexDirection:"column",gap:8,flexShrink:0}}>
+              {["ILP Life-cycle Reports","SKDR Surveillance","Posyandu Performance Ranking","Kader Activity Scorecard","SAM/MAM Outcome Funnel","F/III Rekap Trend"].map(t=>(
+                <span key={t} style={{background:"rgba(2,195,154,0.1)",border:"1px solid rgba(2,195,154,0.2)",color:C.teal,fontSize:11,fontWeight:600,padding:"5px 12px",borderRadius:20}}>{t}</span>
+              ))}
+            </div>
+          </div>
+        </FadeIn>
+
+        {/* CTA */}
+        <FadeIn delay={150}>
+          <div style={{background:"rgba(255,255,255,0.03)",border:"1px solid rgba(2,195,154,0.2)",borderRadius:20,padding:"40px",textAlign:"center"}}>
+            <div style={{fontSize:48,marginBottom:16}}>🤝</div>
+            <h3 className="display-font" style={{color:C.white,fontSize:"clamp(24px,3vw,36px)",marginBottom:16,lineHeight:1.2}}>
+              {lang==="en"?"Ready to partner? The process is simple.":"Siap bermitra? Prosesnya sederhana."}
+            </h3>
+            <p style={{color:"rgba(255,255,255,0.5)",fontSize:15,lineHeight:1.8,maxWidth:560,margin:"0 auto 32px"}}>
+              {lang==="en"?"Tell us about your Kaders, your districts, and what health outcomes matter most to your programme. We'll design a deployment around your community — and handle setup, training, and clinical alignment.":"Ceritakan tentang Kader Anda, kabupaten Anda, dan hasil kesehatan apa yang paling penting bagi program Anda. Kami akan merancang deployment seputar komunitas Anda — dan menangani penyiapan, pelatihan, dan penyelarasan klinis."}
+            </p>
+            <div style={{display:"flex",gap:14,justifyContent:"center",flexWrap:"wrap"}}>
+              <a href="mailto:partner@sahaibat.com?subject=Field Partnership — SahAIbat" style={{background:C.teal,color:C.dark,padding:"15px 32px",borderRadius:14,fontSize:15,fontWeight:700,textDecoration:"none"}}>
+                {lang==="en"?"Apply to Partner — Free →":"Ajukan Kemitraan — Gratis →"}
+              </a>
+              <a href="https://wa.me/6281918669241" target="_blank" rel="noopener noreferrer" style={{border:"1.5px solid rgba(2,195,154,0.4)",color:C.white,padding:"15px 32px",borderRadius:14,fontSize:15,fontWeight:600,textDecoration:"none"}}>
+                💬 WhatsApp
+              </a>
+            </div>
+            <p style={{color:"rgba(255,255,255,0.2)",fontSize:12,marginTop:20}}>
+              {lang==="en"?"partner@sahaibat.com · Response within 48 hours":"partner@sahaibat.com · Respons dalam 48 jam"}
+            </p>
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  );
+}
+
 // ── ROOT PAGE ─────────────────────────────────────────────────────────────────
 export default function HomePage(){
   const [lang,setLang]=useState<"en"|"id">("en");
@@ -1258,6 +1459,8 @@ export default function HomePage(){
       <ProblemSection lang={lang}/>
       <PlatformSection lang={lang}/>
       <ProductsSection lang={lang}/>
+      <GroundImpactSection lang={lang}/>
+      <NGOPartnerSection lang={lang}/>
       <DoKCallout lang={lang}/>
       <DashboardSection lang={lang}/>
       <DataMoatSection lang={lang}/>
