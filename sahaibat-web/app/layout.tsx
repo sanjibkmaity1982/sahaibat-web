@@ -1,65 +1,79 @@
-// app/layout.tsx
-// NOTE: This file cannot use usePathname directly (it's a Server Component).
-// The SiteHeader and SiteFooter handle their own pathname checks client-side.
-// The <main> wrapper uses a client wrapper component to conditionally apply
-// the max-width constraint only on non-home pages.
-
+import type { Metadata } from "next";
 import "./globals.css";
-import { LanguageProvider } from "@/components/sahaibat/LanguageProvider";
-import { SiteHeader } from "@/components/sahaibat/SiteHeader";
-import { SiteFooter } from "@/components/sahaibat/SiteFooter";
-import { MainWrapper } from "@/components/sahaibat/MainWrapper";
 
-export const metadata = {
-  title: "SahAIbat — healthcare closer than ever",
+export const metadata: Metadata = {
+  title: "SahAIbat — Indonesia's Connected Clinical AI Platform",
   description:
-    "SahAIbat is a community-first digital triage and care guidance platform built with local communities and guided by global clinical safety principles.",
+    "SahAIbat connects Indonesia's 1.4M community health workers, 300K doctors, and 280M patients in one sovereign clinical AI layer — from Posyandu to clinic, free to commercial, mission to LLM.",
   keywords: [
-    "community health",
-    "digital triage",
-    "primary care support",
-    "maternal and child health",
+    "Indonesia health AI",
+    "Kader app",
+    "SahAIbat",
+    "SATUSEHAT",
+    "clinical AI Indonesia",
     "community health workers",
-    "NGO health programs",
-    "WhatsApp health triage",
+    "ILP Posyandu",
+    "health tech Indonesia",
   ],
-  authors: [{ name: "Vinatra (11679210 Canada Inc.)" }],
+  authors: [{ name: "Viantra · 11679210 Canada Inc" }],
+  creator: "SahAIbat",
+  metadataBase: new URL("https://www.sahaibat.com"),
   openGraph: {
-    title: "SahAIbat — healthcare closer than ever",
+    title: "SahAIbat — Indonesia's Connected Clinical AI Platform",
     description:
-      "A community-first digital triage and care guidance platform built for real-world health programs.",
+      "From Kader to clinic. Free community tools powered by a commercial AI engine. Building Indonesia's first clinical LLM.",
     url: "https://www.sahaibat.com",
     siteName: "SahAIbat",
+    locale: "en_US",
+    type: "website",
     images: [
       {
-        url: "/images/hero-kader-family.png",
+        url: "/images/brand/wordmark-horizontal-light.png",
         width: 1200,
         height: 630,
-        alt: "Community health worker supporting a family",
+        alt: "SahAIbat — Indonesia Health AI Platform",
       },
     ],
-    locale: "en_CA",
-    type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SahAIbat — healthcare closer than ever",
+    title: "SahAIbat — Indonesia's Connected Clinical AI Platform",
     description:
-      "Community-first digital triage and care guidance for NGOs and community health workers.",
-    images: ["/images/hero-kader-family.png"],
+      "Connecting Indonesia's 1.4M Kaders, 300K doctors, and 280M patients in one sovereign clinical AI layer.",
+    images: ["/images/brand/wordmark-horizontal-light.png"],
   },
+  icons: {
+    icon: [
+      { url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/icons/icon-512.png", sizes: "512x512", type: "image/png" },
+    ],
+    apple: [
+      { url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
+    other: [
+      { rel: "manifest", url: "/manifest.json" },
+    ],
+  },
+  themeColor: "#02C39A",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-white text-slate-900">
-        <LanguageProvider>
-          <SiteHeader />
-          <MainWrapper>{children}</MainWrapper>
-          <SiteFooter />
-        </LanguageProvider>
-      </body>
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+        <meta name="theme-color" content="#02C39A" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="SahAIbat" />
+      </head>
+      <body>{children}</body>
     </html>
   );
 }
