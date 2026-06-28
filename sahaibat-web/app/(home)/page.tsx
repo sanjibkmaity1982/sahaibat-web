@@ -1101,7 +1101,6 @@ function InvestorSection({lang}:{lang:"en"|"id"}){
             <div>
               <p style={{color:"rgba(255,255,255,0.7)",fontSize:18,lineHeight:1.8,fontFamily:"'Playfair Display',serif",fontStyle:"italic",marginBottom:16}}>
                 {lang==="en"
-              {lang==="en"
                   ?'"The companies that own healthcare data infrastructure in emerging markets will be valued like the companies that own fintech infrastructure. We are in the first year of that window."'
                   :'"Perusahaan yang memiliki infrastruktur data kesehatan di pasar berkembang akan dinilai seperti perusahaan yang memiliki infrastruktur fintech. Kami berada di tahun pertama jendela itu."'}
               </p>
