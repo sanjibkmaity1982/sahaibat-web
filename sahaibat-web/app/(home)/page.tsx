@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 // ── Design Tokens ─────────────────────────────────────────────────────────────
 const C = {
@@ -77,7 +77,6 @@ function HeroSection({lang}:{lang:"en"|"id"}){
             <h1 className="display-font" style={{fontSize:"clamp(38px,5vw,64px)",color:C.white,lineHeight:1.1,marginBottom:24}}>
               {lang==="en"
                 ?<>Indonesia's 280M patients.<br/>1.4M health workers.<br/><span style={{color:C.teal}}>Zero connected AI layer.</span><br/><span style={{fontSize:"clamp(28px,3.5vw,44px)",color:"rgba(255,255,255,0.6)"}}>Until now.</span></>
-                ?<>280 juta pasien Indonesia.<br/>1,4 juta tenaga kesehatan.<br/><span style={{color:C.teal}}>Nol lapisan AI yang terhubung.</span><br/><span style={{fontSize:"clamp(28px,3.5vw,44px)",color:"rgba(255,255,255,0.6)"}}>Sampai sekarang.</span></>
                 :<>280 juta pasien Indonesia.<br/>1,4 juta tenaga kesehatan.<br/><span style={{color:C.teal}}>Nol lapisan AI yang terhubung.</span><br/><span style={{fontSize:"clamp(28px,3.5vw,44px)",color:"rgba(255,255,255,0.6)"}}>Sampai sekarang.</span></>}
             </h1>
             <p style={{fontSize:17,color:"rgba(255,255,255,0.6)",lineHeight:1.8,marginBottom:32,maxWidth:500}}>
@@ -158,7 +157,6 @@ function InvestorBand({lang}:{lang:"en"|"id"}){
               <h2 className="display-font" style={{color:C.white,fontSize:"clamp(22px,2.5vw,32px)",lineHeight:1.3,marginBottom:20}}>
                 {lang==="en"
                   ?<>Free products build the network. The network generates sovereign health data. The data trains Indonesia's clinical LLM. <span style={{color:C.teal}}>The LLM re-rates the valuation.</span></>
-                  ?<>Produk gratis membangun jaringan. Jaringan menghasilkan data kesehatan berdaulat. Data melatih LLM klinis Indonesia. <span style={{color:C.teal}}>LLM mengubah valuasi.</span></>
                   :<>Produk gratis membangun jaringan. Jaringan menghasilkan data kesehatan berdaulat. Data melatih LLM klinis Indonesia. <span style={{color:C.teal}}>LLM mengubah valuasi.</span></>}
               </h2>
               <div style={{display:"flex",gap:32,flexWrap:"wrap",marginTop:8}}>
@@ -255,7 +253,6 @@ function PlatformSection({lang}:{lang:"en"|"id"}){
           <h2 className="display-font" style={{fontSize:"clamp(30px,4vw,50px)",color:C.dark,lineHeight:1.2,marginBottom:16,maxWidth:760}}>
             {lang==="en"
               ?<>One clinical AI engine.<br/><span style={{color:C.tealDk}}>Five surfaces. Every layer of Indonesian primary care.</span></>
-              ?<>Satu engine AI klinis.<br/><span style={{color:C.tealDk}}>Lima antarmuka. Setiap lapisan layanan primer Indonesia.</span></>
               :<>Satu engine AI klinis.<br/><span style={{color:C.tealDk}}>Lima antarmuka. Setiap lapisan layanan primer Indonesia.</span></>}
           </h2>
           <p style={{color:C.muted,fontSize:16,maxWidth:680,lineHeight:1.8,marginBottom:56}}>
@@ -487,7 +484,6 @@ function DoKCallout({lang}:{lang:"en"|"id"}){
               <h2 className="display-font" style={{color:C.white,fontSize:"clamp(26px,3vw,40px)",lineHeight:1.2,marginBottom:20}}>
                 {lang==="en"
                   ?<>Every DoK subscription keeps Kader, Bidan & Kasih <span style={{color:"#A48BFF"}}>free forever.</span></>
-                  ?<>Setiap langganan DoK menjaga Kader, Bidan & Kasih <span style={{color:"#A48BFF"}}>gratis selamanya.</span></>
                   :<>Setiap langganan DoK menjaga Kader, Bidan & Kasih <span style={{color:"#A48BFF"}}>gratis selamanya.</span></>}
               </h2>
               <p style={{color:"rgba(255,255,255,0.55)",fontSize:15,lineHeight:1.8,marginBottom:28}}>
@@ -613,7 +609,6 @@ function DataMoatSection({lang}:{lang:"en"|"id"}){
           <h2 className="display-font" style={{fontSize:"clamp(30px,4vw,50px)",color:C.white,lineHeight:1.2,marginBottom:20,maxWidth:760}}>
             {lang==="en"
               ?<>We are not wrapping ChatGPT.<br/><span style={{color:"#A48BFF"}}>We are building Indonesia's clinical LLM.</span></>
-              ?<>Kami tidak membungkus ChatGPT.<br/><span style={{color:"#A48BFF"}}>Kami membangun LLM klinis Indonesia.</span></>
               :<>Kami tidak membungkus ChatGPT.<br/><span style={{color:"#A48BFF"}}>Kami membangun LLM klinis Indonesia.</span></>}
           </h2>
           <p style={{color:"rgba(255,255,255,0.5)",fontSize:16,maxWidth:680,lineHeight:1.8,marginBottom:48}}>
@@ -1016,7 +1011,7 @@ function InvestorSection({lang}:{lang:"en"|"id"}){
               <div style={{background:C.white,borderRadius:20,padding:32,marginBottom:20,border:`1px solid ${C.tealDk}15`}}>
                 <div style={{color:C.tealDk,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:16}}>{lang==="en"?"MARKET OPPORTUNITY":"PELUANG PASAR"}</div>
                 <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16}}>
-                  {[{v:"$350M",l:"TAM",sub:lang==="en"?"Indonesian digital health":"Kesehatan digital Indonesia"},{v:"$120M",l:"SAM",sub:lang==="en"?"Addressable in 3 years":"Dapat dijangkau dalam 3 tahun"},{v:"300K",l:lang==="en"?"Doctors","sub":lang==="en"?"SATUSEHAT mandate":"Mandat SATUSEHAT"},{v:"1.4M",l:lang==="en"?"Kaders":"Kader",sub:lang==="en"?"ILP digital reporting":"Pelaporan digital ILP"}].map(({v,l,sub})=>(<div key={l} style={{background:C.cream,borderRadius:12,padding:"16px"}}>
+                  {[{v:"$350M",l:"TAM",sub:lang==="en"?"Indonesian digital health":"Kesehatan digital Indonesia"},{v:"$120M",l:"SAM",sub:lang==="en"?"Addressable in 3 years":"Dapat dijangkau dalam 3 tahun"},{v:"300K",l:lang==="en"?"Doctors":"Dokter",sub:lang==="en"?"SATUSEHAT mandate":"Mandat SATUSEHAT"},{v:"1.4M",l:lang==="en"?"Kaders":"Kader",sub:lang==="en"?"ILP digital reporting":"Pelaporan digital ILP"}].map(({v,l,sub})=>(<div key={l} style={{background:C.cream,borderRadius:12,padding:"16px"}}>
                     <div className="display-font" style={{color:C.tealDk,fontSize:28,fontWeight:900,lineHeight:1,marginBottom:4}}>{v}</div>
                     <div style={{color:C.dark,fontWeight:700,fontSize:13}}>{l}</div>
                     <div style={{color:C.muted,fontSize:11,marginTop:2}}>{sub}</div>
