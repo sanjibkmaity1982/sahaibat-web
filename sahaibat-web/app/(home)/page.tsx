@@ -42,7 +42,7 @@ function Nav({lang,setLang}:{lang:"en"|"id";setLang:(l:"en"|"id")=>void}){
   return(
     <nav style={{position:"fixed",top:0,left:0,right:0,zIndex:100,background:scrolled?"rgba(15,31,28,0.97)":"transparent",backdropFilter:scrolled?"blur(14px)":"none",borderBottom:scrolled?"1px solid rgba(2,195,154,0.15)":"none",transition:"all 0.3s",padding:"0 24px"}}>
       <div style={{maxWidth:1200,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:64}}>
-        <img src="/images/art/logo-horizontal-white@2x.png" alt="SahAIbat" style={{height:36,width:"auto"}}/>
+        <img src="/images/brand/wordmark-horizontal-dark.png" alt="SahAIbat" style={{height:36,width:"auto"}}/>
         <div className="nav-desktop" style={{display:"flex",gap:18,alignItems:"center"}}>
           {links.map(([href,label])=>(<a key={href} href={href} style={{color:href==="#investors"?C.teal:"rgba(255,255,255,0.7)",fontSize:13,fontWeight:href==="#investors"?700:500,textDecoration:"none",transition:"color 0.2s"}} onMouseEnter={e=>(e.target as HTMLElement).style.color=C.teal} onMouseLeave={e=>(e.target as HTMLElement).style.color=href==="#investors"?C.teal:"rgba(255,255,255,0.7)"}>{label}</a>))}
           <div style={{display:"flex",gap:3,background:"rgba(255,255,255,0.08)",borderRadius:20,padding:3}}>
@@ -1190,7 +1190,7 @@ function Footer({lang}:{lang:"en"|"id"}){
 
         <div className="footer-grid" style={{marginBottom:40}}>
           <div>
-            <img src="/images/art/logo-horizontal-white@2x.png" alt="SahAIbat" style={{height:32,width:"auto",opacity:0.85,marginBottom:16}}/>
+            <img src="/images/brand/wordmark-horizontal-dark.png" alt="SahAIbat" style={{height:32,width:"auto",opacity:0.85,marginBottom:16}}/>
             <p style={{color:"rgba(255,255,255,0.35)",fontSize:13,lineHeight:1.7,maxWidth:280,marginBottom:12}}>
               {lang==="en"?"Indonesia's connected clinical AI platform — community to clinic, free to commercial, mission to LLM.":"Platform AI klinis terhubung Indonesia — komunitas ke klinik, gratis hingga komersial, misi ke LLM."}
             </p>
