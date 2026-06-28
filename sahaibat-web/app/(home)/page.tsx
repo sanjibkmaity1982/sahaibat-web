@@ -993,88 +993,139 @@ function TeamSection({lang}:{lang:"en"|"id"}){
 
 // ── INVESTOR SECTION ──────────────────────────────────────────────────────────
 function InvestorSection({lang}:{lang:"en"|"id"}){
+  const advantages=[
+    {
+      icon:"🗺️",
+      title:lang==="en"?"A window that won't stay open":"Jendela yang tidak akan lama terbuka",
+      color:C.teal,
+      body:lang==="en"
+        ?"Indonesia's Ministry of Health has issued two mandates in parallel: ILP requires 1.4 million Kaders to digitally report structured health data from every Posyandu. SATUSEHAT requires every clinic to push records into the national health exchange. Both mandates are unfunded. No platform at scale serves either of them.\n\nThe window for a founder to establish infrastructure-level position is open right now. It will not be open in three years, when a well-funded incumbent or a government-built system closes it."
+        :"Kementerian Kesehatan Indonesia telah mengeluarkan dua mandat secara bersamaan: ILP mengharuskan 1,4 juta Kader melaporkan data kesehatan terstruktur secara digital dari setiap Posyandu. SATUSEHAT mengharuskan setiap klinik mengirim rekam medis ke pertukaran kesehatan nasional. Kedua mandat tidak didanai. Tidak ada platform di skala yang melayani keduanya.\n\nJendela bagi pendiri untuk membangun posisi tingkat infrastruktur terbuka sekarang. Tidak akan terbuka dalam tiga tahun.",
+    },
+    {
+      icon:"🔒",
+      title:lang==="en"?"What can't be replicated":"Yang tidak dapat direplikasi",
+      color:C.purple,
+      body:lang==="en"
+        ?"A competitor starting today cannot replicate what SahAIbat has built: real anthropometric data from NTT's highest-stunting villages. Consent-compliant records from families in communities with no prior digital health footprint. ANC quality scores from midwives in districts where no EMR has ever been deployed. A clinical LLM training corpus that requires years of community trust to collect — and is already being collected.\n\nThe moat is not the software. The moat is the data that can only exist if you were there first."
+        :"Pesaing yang mulai hari ini tidak dapat mereplikasi apa yang SahAIbat bangun: data antropometrik nyata dari desa stunting tertinggi NTT. Catatan berpersetujuan dari keluarga di komunitas tanpa jejak kesehatan digital sebelumnya. Skor kualitas ANC dari bidan di kabupaten yang belum pernah memiliki EMR.\n\nKeunggulan bukan pada perangkat lunaknya. Keunggulan ada pada data yang hanya bisa ada jika Anda hadir lebih dulu.",
+    },
+    {
+      icon:"🌏",
+      title:lang==="en"?"What Indonesia looks like when this works":"Seperti apa Indonesia ketika ini berhasil",
+      color:C.gold,
+      body:lang==="en"
+        ?"Imagine 1.4 million Kaders — each carrying a structured clinical tool instead of a paper register. Every Posyandu visit generating real-time surveillance data that a Dinas Kesehatan official can read on a dashboard instead of waiting for a quarterly report. Every small clinic with a doctor who spends 8 minutes on care, not paperwork. A Clinical LLM trained entirely on Indonesian data — reasoning about BPJS constraints, regional disease patterns, and how a mother in NTT describes her child's symptoms — licensed to every healthtech company that comes after us.\n\nThis is not a vision. Pieces of it are already running in North Central Timor today."
+        :"Bayangkan 1,4 juta Kader — masing-masing membawa alat klinis terstruktur, bukan register kertas. Setiap kunjungan Posyandu menghasilkan data surveilans real-time yang bisa dibaca pejabat Dinas Kesehatan di dashboard, bukan menunggu laporan kuartalan. Setiap klinik kecil dengan dokter yang menghabiskan 8 menit untuk perawatan, bukan kertas.\n\nIni bukan visi. Sebagian sudah berjalan di Timor Tengah Utara hari ini.",
+    },
+    {
+      icon:"⚡",
+      title:lang==="en"?"Why the team can execute":"Mengapa tim ini bisa mengeksekusi",
+      color:C.pink,
+      body:lang==="en"
+        ?"SahAIbat's founder built all five products to production deployment while employed full-time — as a deliberate proof that this is a technical moat, not a venture-backed headcount exercise. The clinical validation lead has trained thousands of health cadres against Kemenkes and WHO standards. The field deployment lead spent 20 years building health systems with USAID, ADB, and the UN in the exact communities where SahAIbat now operates.\n\nThe technology is already running. The partnerships are already live. The data is already flowing. The ask is acceleration, not proof of concept."
+        :"Pendiri SahAIbat membangun semua lima produk hingga deployment produksi sambil bekerja penuh waktu — sebagai bukti bahwa ini adalah keunggulan teknis, bukan latihan headcount berbasis modal ventura. Pemimpin validasi klinis telah melatih ribuan kader kesehatan terhadap standar Kemenkes dan WHO. Pemimpin deployment lapangan menghabiskan 20 tahun membangun sistem kesehatan bersama USAID, ADB, dan PBB di komunitas yang sama.\n\nTeknologi sudah berjalan. Kemitraan sudah aktif. Data sudah mengalir.",
+    },
+  ];
+
   return(
-    <section id="investors" style={{background:C.cream,padding:"100px 0"}}>
-      <div className="section-max">
+    <section id="investors" style={{background:C.dark,padding:"100px 0",position:"relative",overflow:"hidden"}}>
+      <div style={{position:"absolute",width:500,height:500,background:C.teal,top:"-10%",right:"-8%",borderRadius:"50%",filter:"blur(130px)",opacity:0.06,pointerEvents:"none"}}/>
+      <div style={{position:"absolute",width:400,height:400,background:C.purple,bottom:"-8%",left:"-5%",borderRadius:"50%",filter:"blur(120px)",opacity:0.06,pointerEvents:"none"}}/>
+      <div className="section-max" style={{position:"relative",zIndex:1}}>
+
+        {/* Opening statement */}
         <FadeIn>
-          <div style={{display:"inline-flex",alignItems:"center",gap:8,background:`${C.tealDk}20`,border:`1px solid ${C.tealDk}40`,borderRadius:20,padding:"6px 16px",marginBottom:16}}>
-            <span style={{color:C.tealDk,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"FOR INVESTORS":"UNTUK INVESTOR"}</span>
+          <div style={{maxWidth:820,marginBottom:72}}>
+            <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(2,195,154,0.1)",border:"1px solid rgba(2,195,154,0.3)",borderRadius:20,padding:"6px 16px",marginBottom:24}}>
+              <span style={{color:C.teal,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"FOR INVESTORS":"UNTUK INVESTOR"}</span>
+            </div>
+            <h2 className="display-font" style={{fontSize:"clamp(34px,4.5vw,60px)",color:C.white,lineHeight:1.1,marginBottom:28}}>
+              {lang==="en"
+                ?<>The infrastructure layer for Indonesian clinical AI <span style={{color:C.teal}}>does not exist yet.</span></>
+                :<>Lapisan infrastruktur AI klinis Indonesia <span style={{color:C.teal}}>belum ada.</span></>}
+            </h2>
+            <p style={{color:"rgba(255,255,255,0.55)",fontSize:18,lineHeight:1.8,maxWidth:700}}>
+              {lang==="en"
+                ?"No connected platform serves 1.4M Kaders, 300K doctors, and 280M patients in the same data layer. No Indonesian clinical AI has been trained on Indonesian data. No company has the community trust, field deployment, and regulatory position to build it — except the one that's already doing it."
+                :"Tidak ada platform terhubung yang melayani 1,4 juta Kader, 300 ribu dokter, dan 280 juta pasien dalam lapisan data yang sama. Tidak ada AI klinis Indonesia yang dilatih dengan data Indonesia. Tidak ada perusahaan yang memiliki kepercayaan komunitas, deployment lapangan, dan posisi regulasi untuk membangunnya — kecuali yang sudah melakukannya."}
+            </p>
           </div>
-          <h2 className="display-font" style={{fontSize:"clamp(30px,4vw,50px)",color:C.dark,lineHeight:1.2,marginBottom:16,maxWidth:680}}>
-            {lang==="en"?"Seed round. Building Indonesia's clinical AI infrastructure.":"Seed round. Membangun infrastruktur AI klinis Indonesia."}
-          </h2>
         </FadeIn>
 
-        <div className="two-col" style={{gap:48,alignItems:"start",marginBottom:48}}>
-          <FadeIn delay={80}>
-            <div>
-              <div style={{background:C.white,borderRadius:20,padding:32,marginBottom:20,border:`1px solid ${C.tealDk}15`}}>
-                <div style={{color:C.tealDk,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:16}}>{lang==="en"?"MARKET OPPORTUNITY":"PELUANG PASAR"}</div>
-                <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16}}>
-                  {[{v:"$350M",l:"TAM",sub:lang==="en"?"Indonesian digital health":"Kesehatan digital Indonesia"},{v:"$120M",l:"SAM",sub:lang==="en"?"Addressable in 3 years":"Dapat dijangkau dalam 3 tahun"},{v:"300K",l:lang==="en"?"Doctors":"Dokter",sub:lang==="en"?"SATUSEHAT mandate":"Mandat SATUSEHAT"},{v:"1.4M",l:lang==="en"?"Kaders":"Kader",sub:lang==="en"?"ILP digital reporting":"Pelaporan digital ILP"}].map(({v,l,sub})=>(<div key={l} style={{background:C.cream,borderRadius:12,padding:"16px"}}>
-                    <div className="display-font" style={{color:C.tealDk,fontSize:28,fontWeight:900,lineHeight:1,marginBottom:4}}>{v}</div>
-                    <div style={{color:C.dark,fontWeight:700,fontSize:13}}>{l}</div>
-                    <div style={{color:C.muted,fontSize:11,marginTop:2}}>{sub}</div>
-                  </div>))}
+        {/* Four story panels */}
+        <div style={{display:"grid",gap:2,marginBottom:64}}>
+          {advantages.map(({icon,title,color,body},i)=>(
+            <FadeIn key={title} delay={i*80}>
+              <div style={{background:"rgba(255,255,255,0.02)",border:"1px solid rgba(255,255,255,0.06)",borderRadius:20,padding:"36px 40px",display:"grid",gridTemplateColumns:"auto 1fr",gap:36,alignItems:"start",marginBottom:2}}>
+                <div style={{width:56,height:56,borderRadius:16,background:`${color}12`,border:`1px solid ${color}30`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:26,flexShrink:0}}>
+                  {icon}
+                </div>
+                <div>
+                  <div style={{color,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:10}}>{String(i+1).padStart(2,"0")}</div>
+                  <h3 style={{color:C.white,fontWeight:800,fontSize:"clamp(18px,2vw,24px)",marginBottom:16,lineHeight:1.3}}>{title}</h3>
+                  {body.split("\n\n").map((para,j)=>(
+                    <p key={j} style={{color:"rgba(255,255,255,0.5)",fontSize:15,lineHeight:1.85,marginBottom:j<body.split("\n\n").length-1?16:0}}>{para}</p>
+                  ))}
                 </div>
               </div>
-              <div style={{background:C.white,borderRadius:20,padding:32,border:`1px solid ${C.tealDk}15`}}>
-                <div style={{color:C.tealDk,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:16}}>{lang==="en"?"WHY NOW":"MENGAPA SEKARANG"}</div>
-                {[
-                  lang==="en"?"Kemenkes SATUSEHAT mandate creates urgency for 300K doctors — with no tooling":"Mandat SATUSEHAT Kemenkes menciptakan urgensi untuk 300K dokter — tanpa alat",
-                  lang==="en"?"ILP rollout asks 1.4M Kaders to digitise — SahAIbat is the only ILP-aligned platform":"Peluncuran ILP meminta 1,4 juta Kader untuk digitalisasi — SahAIbat satu-satunya platform selaras ILP",
-                  lang==="en"?"No Indonesian clinical LLM exists. Training data must be collected now — consent-compliant.":"Tidak ada LLM klinis Indonesia. Data pelatihan harus dikumpulkan sekarang — patuh persetujuan.",
-                  lang==="en"?"NVIDIA Inception provides world-class GPU infrastructure at startup cost":"NVIDIA Inception menyediakan infrastruktur GPU kelas dunia dengan biaya startup",
-                ].map((item,i)=>(<div key={i} style={{display:"flex",gap:12,marginBottom:12,alignItems:"flex-start"}}>
-                  <div style={{width:6,height:6,borderRadius:"50%",background:C.tealDk,marginTop:7,flexShrink:0}}/>
-                  <span style={{color:C.text,fontSize:14,lineHeight:1.6}}>{item}</span>
-                </div>))}
-              </div>
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={120}>
-            <div style={{background:C.dark,borderRadius:20,padding:32,marginBottom:20}}>
-              <div style={{color:C.teal,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:16}}>{lang==="en"?"SEED ROUND":"SEED ROUND"}</div>
-              <div className="display-font" style={{color:C.teal,fontSize:48,fontWeight:900,lineHeight:1,marginBottom:4}}>USD 500K</div>
-              <div style={{color:"rgba(255,255,255,0.4)",fontSize:14,marginBottom:24}}>{lang==="en"?"Pre-seed · ~$3M pre-money valuation":"Pre-seed · ~$3 juta valuasi pre-money"}</div>
-              <div style={{color:"rgba(255,255,255,0.5)",fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:12}}>{lang==="en"?"USE OF FUNDS":"PENGGUNAAN DANA"}</div>
-              {[
-                {pct:"35%",label:lang==="en"?"DoK commercial launch + doctor acquisition":"Peluncuran komersial DoK + akuisisi dokter",color:C.purple},
-                {pct:"25%",label:lang==="en"?"AWS GPU infrastructure + LLM fine-tune (Phase 1)":"Infrastruktur GPU AWS + fine-tune LLM (Fase 1)",color:C.teal},
-                {pct:"20%",label:lang==="en"?"Field expansion — NTT to Java, Maluku, Papua":"Ekspansi lapangan — NTT ke Jawa, Maluku, Papua",color:C.gold},
-                {pct:"20%",label:lang==="en"?"Team: clinical, engineering, partnerships":"Tim: klinis, rekayasa, kemitraan",color:C.blue},
-              ].map(({pct,label,color})=>(<div key={pct} style={{display:"flex",gap:14,alignItems:"center",marginBottom:12}}>
-                <div style={{minWidth:44,textAlign:"right"}}><span className="display-font" style={{color,fontSize:20,fontWeight:900}}>{pct}</span></div>
-                <div style={{flex:1,background:"rgba(255,255,255,0.05)",borderRadius:8,height:6,overflow:"hidden"}}><div style={{width:pct,height:"100%",background:color,borderRadius:8}}/></div>
-                <div style={{color:"rgba(255,255,255,0.55)",fontSize:12,maxWidth:160,lineHeight:1.4}}>{label}</div>
-              </div>))}
-            </div>
-            <div style={{background:`linear-gradient(135deg,${C.tealXdk},${C.tealDk})`,borderRadius:16,padding:28}}>
-              <div style={{color:C.teal,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:12}}>{lang==="en"?"THE REFRAME":"REFRAMING"}</div>
-              <p style={{color:C.white,fontSize:15,lineHeight:1.7,fontFamily:"'Playfair Display',serif",fontStyle:"italic"}}>
-                {lang==="en"?"\"We are not building a health app. We are building the data infrastructure that makes Indonesian clinical AI possible — and owning the layer that every other Indonesian healthtech company will eventually need to license.\"":"\"Kami tidak membangun aplikasi kesehatan. Kami membangun infrastruktur data yang membuat AI klinis Indonesia menjadi mungkin — dan memiliki lapisan yang akhirnya perlu dilisensikan oleh setiap perusahaan healthtech Indonesia lainnya.\""}
-              </p>
-              <div style={{marginTop:20}}>
-                <a href="mailto:investor@sahaibat.com?subject=Investor Inquiry — SahAIbat" style={{display:"inline-flex",alignItems:"center",gap:8,background:C.teal,color:C.dark,padding:"13px 24px",borderRadius:12,fontSize:14,fontWeight:700,textDecoration:"none"}}>
-                  {lang==="en"?"Request Investor Deck →":"Minta Deck Investor →"}
-                </a>
-              </div>
-            </div>
-          </FadeIn>
+            </FadeIn>
+          ))}
         </div>
 
-        <FadeIn delay={200}>
-          <div style={{background:C.dark,borderRadius:16,padding:"28px 32px",display:"flex",gap:20,alignItems:"center",flexWrap:"wrap",border:"1px solid rgba(2,195,154,0.15)"}}>
-            <div style={{fontSize:36}}>🏦</div>
-            <div style={{flex:1}}>
-              <div style={{color:C.teal,fontWeight:700,fontSize:13,marginBottom:6}}>{lang==="en"?"Target investors: East Ventures Healthcare · Ideosource · Global Healthtech funds with SEA exposure":"Target investor: East Ventures Healthcare · Ideosource · Dana Healthtech global dengan eksposur SEA"}</div>
-              <div style={{color:"rgba(255,255,255,0.4)",fontSize:13}}>investor@sahaibat.com · admin@sahaibat.com</div>
+        {/* What's already true */}
+        <FadeIn delay={100}>
+          <div style={{background:`linear-gradient(135deg,rgba(2,195,154,0.08),rgba(2,195,154,0.03))`,border:"1px solid rgba(2,195,154,0.2)",borderRadius:20,padding:"40px 44px",marginBottom:32}}>
+            <div style={{color:C.teal,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:20}}>{lang==="en"?"WHAT IS ALREADY TRUE TODAY":"APA YANG SUDAH BENAR HARI INI"}</div>
+            <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",gap:24}}>
+              {[
+                {fact:lang==="en"?"Live field deployment":"Deployment lapangan aktif",detail:lang==="en"?"NTT · 3 NGO partners · Real production data":"NTT · 3 mitra NGO · Data produksi nyata",color:C.teal},
+                {fact:lang==="en"?"AI infrastructure secured":"Infrastruktur AI diamankan",detail:"NVIDIA Inception · NIM · Llama 3.1 8B · MedGemma",color:C.purple},
+                {fact:lang==="en"?"Regulatory position established":"Posisi regulasi ditetapkan",detail:lang==="en"?"PSE Kominfo · UU PDP · SATUSEHAT FHIR R4 · BPJS-aligned":"PSE Kominfo · UU PDP · SATUSEHAT FHIR R4",color:C.gold},
+                {fact:lang==="en"?"Consent layer active":"Lapisan persetujuan aktif",detail:lang==="en"?"Every record tagged for LLM training. Data compound daily.":"Setiap catatan ditandai untuk pelatihan LLM. Data bertambah setiap hari.",color:C.pink},
+                {fact:lang==="en"?"Commercial product built":"Produk komersial dibangun",detail:lang==="en"?"SahAIbat DoK · Live · 32-second SOAP · Revenue-ready":"SahAIbat DoK · Aktif · SOAP 32 detik · Siap pendapatan",color:"#A48BFF"},
+                {fact:lang==="en"?"Government-grade analytics":"Analitik kelas pemerintah",detail:lang==="en"?"SKDR-compatible epidemic surveillance. Live from Posyandu.":"Surveilans epidemi kompatibel SKDR. Langsung dari Posyandu.",color:C.blue},
+              ].map(({fact,detail,color})=>(
+                <div key={fact} style={{borderLeft:`3px solid ${color}`,paddingLeft:16}}>
+                  <div style={{color:C.white,fontWeight:700,fontSize:14,marginBottom:6}}>{fact}</div>
+                  <div style={{color:"rgba(255,255,255,0.4)",fontSize:12,lineHeight:1.5}}>{detail}</div>
+                </div>
+              ))}
             </div>
-            <a href="mailto:investor@sahaibat.com" style={{background:C.teal,color:C.dark,padding:"12px 22px",borderRadius:12,fontSize:14,fontWeight:700,textDecoration:"none",flexShrink:0}}>{lang==="en"?"Get in touch":"Hubungi kami"}</a>
+          </div>
+        </FadeIn>
+
+        {/* Closing + CTA */}
+        <FadeIn delay={150}>
+          <div style={{display:"grid",gridTemplateColumns:"1fr auto",gap:48,alignItems:"center",flexWrap:"wrap"}} className="invest-cta-grid">
+            <div>
+              <p style={{color:"rgba(255,255,255,0.7)",fontSize:18,lineHeight:1.8,fontFamily:"'Playfair Display',serif",fontStyle:"italic",marginBottom:16}}>
+                {lang==="en"
+              {lang==="en"
+                  ?'"The companies that own healthcare data infrastructure in emerging markets will be valued like the companies that own fintech infrastructure. We are in the first year of that window."'
+                  :'"Perusahaan yang memiliki infrastruktur data kesehatan di pasar berkembang akan dinilai seperti perusahaan yang memiliki infrastruktur fintech. Kami berada di tahun pertama jendela itu."'}
+              </p>
+              <p style={{color:"rgba(255,255,255,0.35)",fontSize:14,lineHeight:1.6}}>
+                {lang==="en"
+                  ?"If you see what we see, we'd like to talk. Details — structure, timeline, and terms — stay in the conversation, not on this page."
+                  :"Jika Anda melihat apa yang kami lihat, kami ingin berbicara. Detail — struktur, linimasa, dan persyaratan — ada dalam percakapan, bukan di halaman ini."}
+              </p>
+            </div>
+            <div style={{display:"flex",flexDirection:"column",gap:12,flexShrink:0,minWidth:200}}>
+              <a href="mailto:investor@sahaibat.com?subject=SahAIbat — Investor Conversation" style={{display:"block",textAlign:"center",background:C.teal,color:C.dark,padding:"16px 28px",borderRadius:14,fontSize:15,fontWeight:700,textDecoration:"none",letterSpacing:0.3}}>
+                {lang==="en"?"Start a Conversation →":"Mulai Percakapan →"}
+              </a>
+              <div style={{textAlign:"center",color:"rgba(255,255,255,0.25)",fontSize:12}}>investor@sahaibat.com</div>
+            </div>
           </div>
         </FadeIn>
       </div>
+
+      <style>{`
+        @media(max-width:700px){
+          .invest-cta-grid{grid-template-columns:1fr!important;gap:28px!important}
+        }
+      `}</style>
     </section>
   );
 }
