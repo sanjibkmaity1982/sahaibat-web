@@ -206,13 +206,13 @@ function ProblemSection({lang}:{lang:"en"|"id"}){
       <div className="section-max">
         <FadeIn>
           <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(232,72,85,0.1)",border:"1px solid rgba(232,72,85,0.3)",borderRadius:20,padding:"6px 16px",marginBottom:16}}>
-            <span style={{color:"#FF6B6B",fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"THE PROBLEM":"MASALAHNYA"}</span>
+            <span style={{color:"#FF6B6B",fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"THE OPPORTUNITY":"PELUANGNYA"}</span>
           </div>
           <h2 className="display-font" style={{fontSize:"clamp(30px,4vw,50px)",color:C.white,lineHeight:1.2,marginBottom:16,maxWidth:680}}>
-            {lang==="en"?"Indonesia's health system is flying blind.":"Sistem kesehatan Indonesia beroperasi tanpa data."}
+            {lang==="en"?"Indonesia's health workers are remarkable. The tools to match them don't exist yet.":"Tenaga kesehatan Indonesia luar biasa. Alat yang sepadan dengan mereka belum ada."}
           </h2>
           <p style={{color:"rgba(255,255,255,0.5)",fontSize:16,maxWidth:600,lineHeight:1.8,marginBottom:56}}>
-            {lang==="en"?"Three unsolved problems. One connected platform. The same infrastructure that serves the village also serves the clinic — and trains the model.":"Tiga masalah yang belum terpecahkan. Satu platform terhubung. Infrastruktur yang sama yang melayani desa juga melayani klinik — dan melatih model."}
+            {lang==="en"?"Three critical gaps — in the tools Kaders carry, the documentation doctors face, and the data connecting them. One platform closes all three.":"Tiga kesenjangan kritis — pada alat yang dibawa Kader, dokumentasi yang dihadapi dokter, dan data yang menghubungkan keduanya. Satu platform menutup ketiganya."}
           </p>
         </FadeIn>
         <div className="three-col">
@@ -324,7 +324,120 @@ function PlatformSection({lang}:{lang:"en"|"id"}){
   );
 }
 
-// ── PRODUCTS (5 TABS) ─────────────────────────────────────────────────────────
+// ── Animated WhatsApp Chat Demo ───────────────────────────────────────────────
+type ChatMsg={u:boolean;txt:string;delay:number;isAlert?:boolean;isCard?:boolean};
+
+const KASIH_MSGS:ChatMsg[]=[
+  {u:true,txt:"Anak saya 8 bulan sudah 3 hari gak mau makan 😢 hanya mau minum susu terus",delay:0},
+  {u:false,txt:"Ibu, saya mendengar Anda 💙 Wajar sekali jika merasa khawatir. Boleh saya bantu cek nutrisinya?\n\nApakah bayi masih mau ASI atau sufor?",delay:1200},
+  {u:true,txt:"masih mau, bahkan banyak sekali",delay:2600},
+  {u:false,txt:"Ini kabar baik, Ibu 🌟 Di usia 8 bulan ASI tetap penting sambil belajar MPASI.\n\nBeberapa tips:\n🥕 Variasi rasa — wortel, labu, pisang\n⏰ Tawarkan 2–3x sehari, porsi kecil\n🎮 Jadikan waktu makan menyenangkan\n\nJika tidak ada perubahan dalam 5 hari, kunjungi Posyandu untuk skrining pertumbuhan 💚",delay:4000},
+  {u:true,txt:"terima kasih Bu Kasih, lega sekali rasanya 🙏",delay:5800},
+  {u:false,txt:"🔔 Pengingat: Posyandu desa Anda hari Jumat ini.\nJangan lupa bawa Buku KIA ya, Bu 💙",delay:7000,isAlert:true},
+];
+
+const BIDAN_MSGS:ChatMsg[]=[
+  {u:true,txt:"Bu Bidan, ini laporan ANC Bu Sari K3",delay:0,isCard:true},
+  {u:false,txt:"⚠️ PERINGATAN KUALITAS ANC\n\nBu Sari · K3 · 28 minggu · TD: 130/85\n\n✓ T1 Berat Badan\n✓ T2 Tekanan Darah ⚡ batas pra-hipertensi\n✗ T8 Presentasi Janin — belum dilakukan\n✗ T5 Tablet Fe — data kosong\n\nSkor 10T: 7/10 — perlu ditindaklanjuti",delay:1400,isAlert:true},
+  {u:true,txt:"Terima kasih. Saya jadwalkan kunjungan rumah minggu ini untuk melengkapi T8 dan cek tablet Fe.",delay:3000},
+  {u:false,txt:"✓ Terjadwal. Jika TD mencapai ≥140/90 sebelum kunjungan, segera rujuk ke Puskesmas.\n\nSkor akhir akan otomatis terupdate di Dashboard setelah kunjungan.",delay:4400},
+  {u:true,txt:"Siap. Saya sudah koordinasi dengan Kader Sari untuk pantau harian.",delay:5800},
+  {u:false,txt:"✓ Pemantauan aktif dicatat.\n📊 Laporan lengkap tersedia di Programme Dashboard.",delay:7000},
+];
+
+function AnimatedWhatsAppChat({type,accent}:{type:"kasih"|"bidan";accent:string}){
+  const msgs=type==="kasih"?KASIH_MSGS:BIDAN_MSGS;
+  const botName=type==="kasih"?"❤️‍🩹 Kasih":"🩺 SahAIbat Bidan";
+  const [shown,setShown]=useState(0);
+  const [typing,setTyping]=useState(false);
+  const [key,setKey]=useState(0);
+  const ref=useRef<HTMLDivElement>(null);
+  const started=useRef(false);
+
+  const runSequence=React.useCallback(()=>{
+    setShown(0);setTyping(false);
+    msgs.forEach((m,i)=>{
+      setTimeout(()=>{
+        if(!m.u){setTyping(true);}
+        setTimeout(()=>{setTyping(false);setShown(i+1);},m.u?0:600);
+      },m.delay+(m.u?0:0));
+    });
+  },[msgs]);
+
+  useEffect(()=>{
+    const obs=new IntersectionObserver(([e])=>{if(e.isIntersecting&&!started.current){started.current=true;runSequence();}},{threshold:0.3});
+    if(ref.current)obs.observe(ref.current);return()=>obs.disconnect();
+  },[runSequence]);
+
+  useEffect(()=>{if(key>0)runSequence();},[key,runSequence]);
+
+  return(
+    <div ref={ref} style={{background:"#0B1A15",border:`1px solid ${accent}30`,borderRadius:20,overflow:"hidden",boxShadow:"0 16px 48px rgba(0,0,0,0.5)"}}>
+      {/* WhatsApp header */}
+      <div style={{background:"#1A2E22",padding:"12px 16px",display:"flex",alignItems:"center",gap:12,borderBottom:"1px solid rgba(255,255,255,0.06)"}}>
+        <div style={{width:36,height:36,borderRadius:"50%",background:accent,display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,flexShrink:0}}>
+          {type==="kasih"?"❤️":"🩺"}
+        </div>
+        <div style={{flex:1}}>
+          <div style={{color:"#E9EDEF",fontWeight:700,fontSize:14}}>{botName}</div>
+          <div style={{color:"#8696A0",fontSize:12}}>{type==="kasih"?"Layanan Kesehatan Keluarga":"Modul Pengawasan Bidan"}</div>
+        </div>
+        <div style={{display:"flex",gap:16}}>
+          <span style={{color:"#8696A0",fontSize:18}}>📞</span>
+          <span style={{color:"#8696A0",fontSize:18}}>⋮</span>
+        </div>
+      </div>
+      {/* Chat area */}
+      <div style={{padding:"16px 12px",minHeight:320,maxHeight:360,overflowY:"auto",background:"#0B1A15",display:"flex",flexDirection:"column",gap:6}}>
+        {/* Date pill */}
+        <div style={{textAlign:"center",marginBottom:8}}>
+          <span style={{background:"rgba(255,255,255,0.08)",color:"rgba(255,255,255,0.4)",fontSize:11,padding:"3px 12px",borderRadius:20}}>
+            {type==="kasih"?"Hari ini · 02:47":"Hari ini · 09:15"}
+          </span>
+        </div>
+        {msgs.slice(0,shown).map((m,i)=>(
+          <div key={i} style={{display:"flex",justifyContent:m.u?"flex-end":"flex-start",marginBottom:2}}>
+            <div style={{
+              maxWidth:"82%",padding:"8px 12px",borderRadius:m.u?"12px 12px 4px 12px":"12px 12px 12px 4px",
+              background:m.isAlert?"rgba(255,165,0,0.12)":m.u?"#005C4B":"#1F2C34",
+              border:m.isAlert?"1px solid rgba(255,165,0,0.35)":"none",
+              color:m.isAlert?"#FFA500":m.u?"#E9EDEF":"#E9EDEF",
+              fontSize:12.5,lineHeight:1.55,whiteSpace:"pre-line" as const,
+            }}>
+              {m.isCard&&(
+                <div style={{background:"rgba(255,255,255,0.08)",borderRadius:8,padding:"8px 10px",marginBottom:6,fontSize:11}}>
+                  <div style={{color:accent,fontWeight:700,marginBottom:4}}>📋 LAPORAN ANC · Bu Sari</div>
+                  <div style={{color:"rgba(255,255,255,0.6)"}}>K3 · 28 minggu · TD: 130/85 · BB: 65kg</div>
+                </div>
+              )}
+              {m.txt}
+              <div style={{color:"rgba(255,255,255,0.3)",fontSize:10,textAlign:"right",marginTop:4}}>
+                {m.u?"✓✓":""}
+              </div>
+            </div>
+          </div>
+        ))}
+        {typing&&(
+          <div style={{display:"flex",justifyContent:"flex-start"}}>
+            <div style={{background:"#1F2C34",borderRadius:"12px 12px 12px 4px",padding:"10px 14px",display:"flex",gap:4,alignItems:"center"}}>
+              {[0,1,2].map(i=>(<div key={i} style={{width:6,height:6,borderRadius:"50%",background:accent,animation:"pulse 1s infinite",animationDelay:`${i*0.2}s`}}/>))}
+            </div>
+          </div>
+        )}
+      </div>
+      {/* Footer */}
+      <div style={{background:"#1A2E22",padding:"10px 14px",display:"flex",alignItems:"center",gap:10,borderTop:"1px solid rgba(255,255,255,0.06)"}}>
+        <div style={{flex:1,background:"rgba(255,255,255,0.07)",borderRadius:20,padding:"8px 14px",color:"rgba(255,255,255,0.3)",fontSize:13}}>Ketik pesan...</div>
+        <div style={{width:36,height:36,borderRadius:"50%",background:accent,display:"flex",alignItems:"center",justifyContent:"center",fontSize:16,cursor:"pointer"}} onClick={()=>{started.current=false;setKey(k=>k+1);}}>🎤</div>
+      </div>
+      <div style={{textAlign:"center",paddingBottom:8}}>
+        <button onClick={()=>{started.current=false;setKey(k=>k+1);}} style={{background:"none",border:"none",color:"rgba(255,255,255,0.25)",fontSize:11,cursor:"pointer",padding:"4px 8px"}}>↺ replay</button>
+      </div>
+    </div>
+  );
+}
+
+
 function ProductsSection({lang}:{lang:"en"|"id"}){
   const [active,setActive]=useState(0);
   const tabs=[
@@ -344,8 +457,8 @@ function ProductsSection({lang}:{lang:"en"|"id"}){
       headline:lang==="en"?"Her clinical judgment. Extended to every village she can't be in.":"Penilaian klinisnya. Diperluas ke setiap desa yang tidak bisa ia kunjungi.",
       story:lang==="en"?"A Bidan in rural NTT covers 5–10 villages. She cannot be everywhere. SahAIbat Bidan gives her a structured digital companion — ANC visit tracking, postnatal monitoring, high-risk pregnancy flags, Kader performance scoring — so her knowledge reaches patients in villages she visits once a month.\n\nThe Bidan module connects directly to the Programme Dashboard, giving NGO managers and health officials a real-time view of ANC quality scores, high-risk cases, and referral completion rates across their entire network.":"Seorang Bidan di NTT pedesaan mencakup 5–10 desa. Ia tidak bisa hadir di mana-mana. SahAIbat Bidan memberinya pendamping digital terstruktur — pelacakan kunjungan ANC, pemantauan nifas, tanda bahaya kehamilan berisiko tinggi, skor kinerja Kader — sehingga pengetahuannya menjangkau pasien di desa yang ia kunjungi sebulan sekali.",
       features:lang==="en"?["ANC 10T completeness tracking — scored per Bidan","High-risk pregnancy flags (preeclampsia, severe anaemia, placenta praevia)","Postnatal monitoring 0–42 days","Kader performance scoring visible to supervising Bidan","8.7/10 average ANC quality score in live NTT deployment"]:["Pelacakan kelengkapan ANC 10T — dinilai per Bidan","Tanda bahaya kehamilan (preeklampsia, anemia berat, plasenta previa)","Pemantauan nifas 0–42 hari","Skor kinerja Kader terlihat oleh Bidan pengawas","Rata-rata skor kualitas ANC 8,7/10 dalam deployment NTT aktif"],
-      photo:"/images/field/kader-training.jpeg",
-      photoFallback:"/images/doctor-nurse.png",
+      chatType:"bidan",
+      photo:null,photoFallback:undefined,
     },
     {
       id:2,icon:"❤️‍🩹",label:"Kasih",sub:lang==="en"?"Family Health Chat":"Chat Kesehatan Keluarga",accent:C.pink,status:"live",
@@ -353,8 +466,8 @@ function ProductsSection({lang}:{lang:"en"|"id"}){
       headline:lang==="en"?"2:47 AM. A mother. A fever. One message.":"Pukul 02:47. Seorang ibu. Demam. Satu pesan.",
       story:lang==="en"?"Kasih is what happens when a worried parent can't reach a doctor at 2am and needs to know: is this an emergency? In 90 seconds, Kasih provides a structured risk assessment in warm, clear Bahasa Indonesia — no app download, no internet required, no clinical training needed.\n\nFor the data thesis, Kasih is the most strategically valuable product in the stack. Every Kasih conversation captures authentic Indonesian health behaviour data — how symptoms are described, how care decisions are made, how families respond to advice. This is the linguistic and behavioural training layer that no LLM trained on English medical literature possesses.":"Kasih adalah apa yang terjadi ketika orang tua yang khawatir tidak bisa menghubungi dokter jam 2 pagi dan perlu tahu: apakah ini darurat? Dalam 90 detik, Kasih memberikan penilaian risiko terstruktur dalam Bahasa Indonesia yang hangat dan jelas — tidak perlu unduh aplikasi, tidak perlu internet.",
       features:lang==="en"?["WhatsApp-native — no app download, no account","Structured risk triage in Bahasa Indonesia","Works fully offline on any phone","Authentic Indonesian health dialogue data for LLM training","Free forever — the patient-side trust layer"]:["Berbasis WhatsApp — tidak perlu unduh, tidak perlu akun","Triase risiko terstruktur dalam Bahasa Indonesia","Bekerja offline penuh di ponsel apa pun","Data dialog kesehatan Indonesia autentik untuk pelatihan LLM","Gratis selamanya — lapisan kepercayaan sisi pasien"],
-      photo:"/images/field/kader-smile.jpeg",
-      photoFallback:"/images/motherchild.png",
+      chatType:"kasih",
+      photo:null,photoFallback:undefined,
     },
     {
       id:3,icon:"🩻",label:"SahAIbat DoK",sub:lang==="en"?"Clinical EMR · AI Scribe":"EMR Klinis · AI Scribe",accent:"#A48BFF",status:"commercial",
@@ -363,6 +476,7 @@ function ProductsSection({lang}:{lang:"en"|"id"}){
       story:lang==="en"?"Indonesian doctors spend 2–3 hours daily on documentation they hate — writing SOAP notes, manually uploading to SATUSEHAT, cross-referencing BPJS Fornas drug lists, and hoping ICD-10 codes don't get rejected. DoK records the consultation, writes the SOAP, maps ICD-10 with BPJS confidence scores, and auto-posts to SATUSEHAT — in 32 seconds, in Bahasa Indonesia, on data that never leaves Indonesia.\n\nDoK is the commercial engine that funds the entire SahAIbat ecosystem. Every subscription directly subsidises free Kader, Bidan, and Kasih tools for community health workers who cannot pay.":"Dokter Indonesia menghabiskan 2–3 jam sehari untuk dokumentasi — menulis catatan SOAP, mengunggah manual ke SATUSEHAT, merujuk silang daftar obat Fornas BPJS, dan berharap kode ICD-10 tidak ditolak. DoK merekam konsultasi, menulis SOAP, memetakan ICD-10 dengan skor kepercayaan BPJS, dan mengirim otomatis ke SATUSEHAT — dalam 32 detik, dalam Bahasa Indonesia, pada data yang tidak pernah meninggalkan Indonesia.",
       features:lang==="en"?["AI Voice Scribe → SOAP in Bahasa Indonesia · 32 seconds","BPJS Gatekeeper — 144 non-specialist conditions flagged","SATUSEHAT HL7 FHIR R4 auto-sync after doctor approval","MedGemma CDSS + Konsensus Medis (PERKENI, PAPDI, IDAI)","Data 100% in Jakarta — UU PDP · AES-256-GCM","Mission Partner pricing for NGOs in the SahAIbat network"]:["AI Voice Scribe → SOAP dalam Bahasa Indonesia · 32 detik","BPJS Gatekeeper — 144 kondisi non-spesialis ditandai","SATUSEHAT HL7 FHIR R4 sinkron otomatis setelah persetujuan dokter","MedGemma CDSS + Konsensus Medis (PERKENI, PAPDI, IDAI)","Data 100% di Jakarta — UU PDP · AES-256-GCM","Harga Mitra Misi untuk NGO dalam jaringan SahAIbat"],
       externalLink:"https://www.sahaibatdok.com",
+      gif:"/images/demo/dok-demo.gif",
       photo:null,
     },
     {
@@ -430,47 +544,34 @@ function ProductsSection({lang}:{lang:"en"|"id"}){
                 </a>
               )}
             </div>
-            {/* Right: GIF demo / photo / features */}
+            {/* Right: GIF demo / animated chat / photo / features */}
             <div>
-              {/* GIF demo in browser frame (Kader tab) */}
-              {(p as any).gif&&(
+              {/* Animated WhatsApp chat (Kasih & Bidan) */}
+              {(p as any).chatType&&(
+                <div style={{marginBottom:24}}>
+                  <AnimatedWhatsAppChat type={(p as any).chatType} accent={p.accent}/>
+                </div>
+              )}
+              {/* GIF demo in browser frame (Kader + DoK tabs) */}
+              {(p as any).gif&&!(p as any).chatType&&(
                 <div style={{marginBottom:24,borderRadius:16,overflow:"hidden",border:`1px solid ${p.accent}30`,boxShadow:"0 16px 40px rgba(0,0,0,0.5)"}}>
                   <div style={{display:"flex",alignItems:"center",gap:6,padding:"8px 12px",background:"rgba(255,255,255,0.04)",borderBottom:`1px solid ${p.accent}20`}}>
                     {["#FF5F56","#FFBD2E","#27C93F"].map(c=>(<span key={c} style={{width:8,height:8,borderRadius:"50%",background:c,display:"inline-block"}}/>))}
-                    <span style={{marginLeft:6,color:"rgba(255,255,255,0.25)",fontSize:10,fontFamily:"monospace"}}>kader.sahaibat.com</span>
+                    <span style={{marginLeft:6,color:"rgba(255,255,255,0.25)",fontSize:10,fontFamily:"monospace"}}>{p.id===3?"dok.sahaibat.com":"kader.sahaibat.com"}</span>
                     <span style={{marginLeft:"auto",background:`${p.accent}20`,color:p.accent,fontSize:9,fontWeight:700,padding:"2px 8px",borderRadius:10}}>● LIVE</span>
                   </div>
                   <img
                     src={(p as any).gif}
                     alt={`${p.label} live demo`}
-                    onError={e=>{if(p.photo)(e.target as HTMLImageElement).src=p.photo;}}
+                    onError={e=>{if(p.photo)(e.target as HTMLImageElement).src=p.photo!;}}
                     style={{width:"100%",display:"block",maxHeight:340,objectFit:"cover",objectPosition:"top"}}
                   />
                 </div>
               )}
-              {/* Static photo (non-GIF tabs) */}
-              {p.photo&&!(p as any).gif&&(
+              {/* Static photo (non-GIF, non-chat tabs) */}
+              {p.photo&&!(p as any).gif&&!(p as any).chatType&&(
                 <div style={{marginBottom:24,borderRadius:16,overflow:"hidden",border:`1px solid ${p.accent}30`,boxShadow:"0 16px 40px rgba(0,0,0,0.4)"}}>
                   <img src={p.photo} alt={p.label} onError={e=>{if(p.photoFallback)(e.target as HTMLImageElement).src=p.photoFallback;}} style={{width:"100%",height:260,objectFit:"cover",display:"block"}}/>
-                </div>
-              )}
-              {/* DoK mock terminal for when no photo */}
-              {p.id===3&&(
-                <div style={{background:"rgba(10,16,20,0.9)",border:"1px solid rgba(164,139,255,0.25)",borderRadius:16,padding:24,marginBottom:24,fontFamily:"monospace",fontSize:13}}>
-                  <div style={{color:"rgba(255,255,255,0.3)",fontSize:11,marginBottom:12}}>⏱ SahAIbat DoK · Recording...</div>
-                  {[
-                    {label:"S",txt:lang==="en"?"Headache 2 days, nausea, no fever":"Sakit kepala 2 hari, mual, tidak demam",color:"rgba(255,255,255,0.8)"},
-                    {label:"O",txt:"BP 120/80 · N 78",color:"rgba(255,255,255,0.6)"},
-                    {label:"A",txt:lang==="en"?"Migraine without aura":"Migrain tanpa aura",color:C.teal},
-                    {label:"P",txt:lang==="en"?"Ibuprofen 400mg · follow up 7 days":"Ibuprofen 400mg · kontrol 7 hari",color:"rgba(255,255,255,0.7)"},
-                  ].map(({label,txt,color})=>(<div key={label} style={{display:"flex",gap:12,marginBottom:10}}>
-                    <span style={{color:"#A48BFF",fontWeight:700,minWidth:16}}>{label}</span>
-                    <span style={{color,lineHeight:1.5}}>{txt}</span>
-                  </div>))}
-                  <div style={{marginTop:16,paddingTop:12,borderTop:"1px solid rgba(255,255,255,0.08)",display:"flex",justifyContent:"space-between"}}>
-                    <span style={{color:"#A48BFF",fontWeight:700,fontSize:12}}>G43.9 · 88% BPJS</span>
-                    <span style={{color:C.teal,fontSize:12}}>✓ {lang==="en"?"28 sec · Jakarta":"28 dtk · Jakarta"}</span>
-                  </div>
                 </div>
               )}
               <div style={{background:"rgba(255,255,255,0.04)",border:`1px solid ${p.accent}20`,borderRadius:16,padding:22}}>
