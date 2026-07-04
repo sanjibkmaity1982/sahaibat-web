@@ -32,32 +32,6 @@ function ComplianceBadge({icon,title,sub,color=C.teal}:{icon:string;title:string
   );
 }
 
-// ── NVIDIA Badge with graceful fallback ───────────────────────────────────────
-// Tries 3 likely paths in sequence; falls back to styled text if all fail
-function NvidiaBadge({height=24,style={}}:{height?:number;style?:React.CSSProperties}){
-  const paths=[
-    "/nvidia-inception.png",
-    "/images/nvidia-inception.png",
-    "/images/nvidia-inception.jpg",
-  ];
-  const [idx,setIdx]=useState(0);
-  const [failed,setFailed]=useState(false);
-  if(failed) return(
-    <div style={{display:"inline-flex",alignItems:"center",gap:6,background:"#1a1a1a",border:"1px solid #76b900",borderRadius:6,padding:"3px 10px",...style}}>
-      <span style={{color:"#76b900",fontWeight:800,fontSize:10,fontFamily:"monospace",letterSpacing:0.5}}>nVIDIA</span>
-      <span style={{color:"rgba(255,255,255,0.7)",fontSize:10,fontWeight:600}}>Inception Program</span>
-    </div>
-  );
-  return(
-    <img
-      src={paths[idx]}
-      alt="NVIDIA Inception Program"
-      onError={()=>{if(idx<paths.length-1)setIdx(i=>i+1);else setFailed(true);}}
-      style={{height,width:"auto",objectFit:"contain",borderRadius:4,background:"white",padding:"3px 6px",...style}}
-    />
-  );
-}
-
 // ── Nav ─────────────────────────────────────────────────────────────────────
 function Nav({lang,setLang}:{lang:"en"|"id";setLang:(l:"en"|"id")=>void}){
   const [scrolled,setScrolled]=useState(false);const [open,setOpen]=useState(false);
@@ -113,7 +87,7 @@ function HeroSection({lang}:{lang:"en"|"id"}){
             {/* Compliance badges */}
             <div style={{display:"flex",gap:8,flexWrap:"wrap",marginBottom:32}}>
               <div style={{display:"flex",alignItems:"center",gap:6,background:"rgba(118,185,0,0.08)",border:"1px solid rgba(118,185,0,0.25)",borderRadius:10,padding:"6px 12px"}}>
-                <NvidiaBadge height={16}/>
+                <img src="/images/nvidia-inception.jpg" alt="NVIDIA Inception" style={{height:16,width:"auto",objectFit:"contain"}}/>
               </div>
               {[
                 {t:"PSE Kominfo",s:"NIB 1202260248509"},
@@ -502,7 +476,7 @@ function ProductsSection({lang}:{lang:"en"|"id"}){
       story:lang==="en"?"Indonesian doctors spend 2–3 hours daily on documentation they hate — writing SOAP notes, manually uploading to SATUSEHAT, cross-referencing BPJS Fornas drug lists, and hoping ICD-10 codes don't get rejected. DoK records the consultation, writes the SOAP, maps ICD-10 with BPJS confidence scores, and auto-posts to SATUSEHAT — in 32 seconds, in Bahasa Indonesia, on data that never leaves Indonesia.\n\nDoK is the commercial engine that funds the entire SahAIbat ecosystem. Every subscription directly subsidises free Kader, Bidan, and Kasih tools for community health workers who cannot pay.":"Dokter Indonesia menghabiskan 2–3 jam sehari untuk dokumentasi — menulis catatan SOAP, mengunggah manual ke SATUSEHAT, merujuk silang daftar obat Fornas BPJS, dan berharap kode ICD-10 tidak ditolak. DoK merekam konsultasi, menulis SOAP, memetakan ICD-10 dengan skor kepercayaan BPJS, dan mengirim otomatis ke SATUSEHAT — dalam 32 detik, dalam Bahasa Indonesia, pada data yang tidak pernah meninggalkan Indonesia.",
       features:lang==="en"?["AI Voice Scribe → SOAP in Bahasa Indonesia · 32 seconds","BPJS Gatekeeper — 144 non-specialist conditions flagged","SATUSEHAT HL7 FHIR R4 auto-sync after doctor approval","MedGemma CDSS + Konsensus Medis (PERKENI, PAPDI, IDAI)","Data 100% in Jakarta — UU PDP · AES-256-GCM","Mission Partner pricing for NGOs in the SahAIbat network"]:["AI Voice Scribe → SOAP dalam Bahasa Indonesia · 32 detik","BPJS Gatekeeper — 144 kondisi non-spesialis ditandai","SATUSEHAT HL7 FHIR R4 sinkron otomatis setelah persetujuan dokter","MedGemma CDSS + Konsensus Medis (PERKENI, PAPDI, IDAI)","Data 100% di Jakarta — UU PDP · AES-256-GCM","Harga Mitra Misi untuk NGO dalam jaringan SahAIbat"],
       externalLink:"https://www.sahaibatdok.com",
-      gif:"/images/demo/dok_demo.gif",
+      gif:"/images/demo/dok-demo.gif",
       photo:null,
     },
     {
@@ -654,7 +628,7 @@ function DoKCallout({lang}:{lang:"en"|"id"}){
                 <div style={{color:"rgba(255,255,255,0.5)",fontSize:12,lineHeight:1.4}}>{l}</div>
               </div>))}
               <div style={{gridColumn:"1/-1",background:"rgba(164,139,255,0.06)",border:"1px solid rgba(164,139,255,0.2)",borderRadius:12,padding:"14px 16px",display:"flex",gap:10,alignItems:"center"}}>
-                <NvidiaBadge height={24} style={{flexShrink:0}}/>
+                <img src="/images/nvidia-inception.jpg" alt="NVIDIA Inception" style={{height:24,width:"auto",objectFit:"contain",flexShrink:0,borderRadius:4}}/>
                 <span style={{color:"rgba(255,255,255,0.5)",fontSize:12}}>{lang==="en"?"NVIDIA Inception · NIM · Llama 3.1 8B · MedGemma · Triton · GPU credits":"NVIDIA Inception · NIM · Llama 3.1 8B · MedGemma · Triton · GPU credits"}</span>
               </div>
             </div>
@@ -796,7 +770,7 @@ function DataMoatSection({lang}:{lang:"en"|"id"}){
         {/* NVIDIA band */}
         <FadeIn delay={200}>
           <div style={{background:"rgba(118,185,0,0.06)",border:"1px solid rgba(118,185,0,0.2)",borderRadius:16,padding:"24px 28px",display:"flex",gap:24,alignItems:"center",flexWrap:"wrap"}}>
-            <NvidiaBadge height={40} style={{flexShrink:0}}/>
+            <img src="/images/nvidia-inception.jpg" alt="NVIDIA Inception Program" style={{height:40,width:"auto",objectFit:"contain",flexShrink:0,borderRadius:6,background:"white",padding:"4px 8px"}}/>
             <div style={{flex:1,minWidth:240}}>
               <div style={{color:"rgba(118,185,0,0.9)",fontWeight:700,fontSize:13,marginBottom:6}}>NVIDIA Inception Program Member</div>
               <p style={{color:"rgba(255,255,255,0.45)",fontSize:13,lineHeight:1.6}}>
@@ -1022,7 +996,7 @@ function StorySection({lang}:{lang:"en"|"id"}){
             <div style={{display:"grid",gap:14}}>
               <img src="/images/field/kader-training.jpeg" alt="Kader training session NTT" onError={e=>{(e.target as HTMLImageElement).src="/images/doctor-nurse.png";}} style={{width:"100%",height:200,objectFit:"cover",borderRadius:16,border:"1px solid rgba(2,195,154,0.2)"}}/>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14}}>
-                <img src="/images/field/kaders-all-phones.jpeg" alt="Kaders using SahAIbat NTT" onError={e=>{(e.target as HTMLImageElement).src="/images/hero-kader-family.png";}} style={{width:"100%",height:160,objectFit:"cover",borderRadius:12,border:"1px solid rgba(255,255,255,0.08)"}}/>
+                <img src="/images/field/kader-paperwork.jpeg" alt="Kader with paper records" onError={e=>{(e.target as HTMLImageElement).src="/images/hero-kader-family.png";}} style={{width:"100%",height:160,objectFit:"cover",borderRadius:12,border:"1px solid rgba(255,255,255,0.08)"}}/>
                 <img src="/images/field/kader-smile.jpeg" alt="Kader using SahAIbat" onError={e=>{(e.target as HTMLImageElement).src="/images/motherchild.png";}} style={{width:"100%",height:160,objectFit:"cover",borderRadius:12,border:"1px solid rgba(2,195,154,0.2)"}}/>
               </div>
               <div style={{background:"rgba(2,195,154,0.06)",border:"1px solid rgba(2,195,154,0.15)",borderRadius:12,padding:"12px 16px",textAlign:"center"}}>
@@ -1317,7 +1291,7 @@ function Footer({lang}:{lang:"en"|"id"}){
       <div className="section-max">
         {/* NVIDIA + Compliance strip */}
         <div style={{background:"rgba(255,255,255,0.03)",border:"1px solid rgba(2,195,154,0.12)",borderRadius:16,padding:"24px 28px",marginBottom:40,display:"flex",gap:20,alignItems:"center",flexWrap:"wrap"}}>
-          <NvidiaBadge height={36} style={{flexShrink:0}}/>
+          <img src="/images/nvidia-inception.jpg" alt="NVIDIA Inception Program Member" style={{height:36,width:"auto",objectFit:"contain",borderRadius:6,background:"white",padding:"4px 8px",flexShrink:0}}/>
           <div style={{width:1,height:36,background:"rgba(255,255,255,0.1)",flexShrink:0}}/>
           <span style={{color:"rgba(255,255,255,0.3)",fontSize:11,fontWeight:600}}>{lang==="en"?"Proudly part of the NVIDIA Inception Program":"Dengan bangga menjadi bagian dari NVIDIA Inception Program"}</span>
           <div style={{marginLeft:"auto",display:"flex",gap:8,flexWrap:"wrap"}}>
@@ -1549,18 +1523,8 @@ function NGOPartnerSection({lang}:{lang:"en"|"id"}){
 }
 
 // ── ROOT PAGE ─────────────────────────────────────────────────────────────────
-export default function HomePage({initialLang="id"}:{initialLang?:"en"|"id"}){
-  const [lang,setLang]=useState<"en"|"id">(initialLang);
-
-  // Keep URL + <html lang> in sync when the user toggles language.
-  // replaceState = no page reload, no scroll jump — toggle UX unchanged.
-  const changeLang=(l:"en"|"id")=>{
-    setLang(l);
-    if(typeof window!=="undefined"){
-      window.history.replaceState(null,"",l==="en"?"/en":"/");
-      document.documentElement.lang=l;
-    }
-  };
+export default function HomePage(){
+  const [lang,setLang]=useState<"en"|"id">("en");
   return(
     <>
       <style>{`
@@ -1590,7 +1554,7 @@ export default function HomePage({initialLang="id"}:{initialLang?:"en"|"id"}){
         }
       `}</style>
 
-      <Nav lang={lang} setLang={changeLang}/>
+      <Nav lang={lang} setLang={setLang}/>
       <HeroSection lang={lang}/>
       <InvestorBand lang={lang}/>
       <ProblemSection lang={lang}/>
