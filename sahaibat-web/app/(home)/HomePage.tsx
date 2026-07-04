@@ -1523,8 +1523,17 @@ function NGOPartnerSection({lang}:{lang:"en"|"id"}){
 }
 
 // ── ROOT PAGE ─────────────────────────────────────────────────────────────────
-export default function HomePage(){
-  const [lang,setLang]=useState<"en"|"id">("en");
+export default function HomePage({initialLang="id"}:{initialLang?:"en"|"id"}){
+  const [lang,setLang]=useState<"en"|"id">(initialLang);
+
+  const changeLang=(l:"en"|"id")=>{
+    setLang(l);
+    if(typeof window!=="undefined"){
+      window.history.replaceState(null,"",l==="en"?"/en":"/");
+      document.documentElement.lang=l;
+    }
+  };
+
   return(
     <>
       <style>{`
@@ -1554,7 +1563,7 @@ export default function HomePage(){
         }
       `}</style>
 
-      <Nav lang={lang} setLang={setLang}/>
+     <Nav lang={lang} setLang={changeLang}/>
       <HeroSection lang={lang}/>
       <InvestorBand lang={lang}/>
       <ProblemSection lang={lang}/>
