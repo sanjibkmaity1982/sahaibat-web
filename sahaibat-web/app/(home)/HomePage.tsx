@@ -87,7 +87,7 @@ function HeroSection({lang}:{lang:"en"|"id"}){
             {/* Compliance badges */}
             <div style={{display:"flex",gap:8,flexWrap:"wrap",marginBottom:32}}>
               <div style={{display:"flex",alignItems:"center",gap:6,background:"rgba(118,185,0,0.08)",border:"1px solid rgba(118,185,0,0.25)",borderRadius:10,padding:"6px 12px"}}>
-                <img src="/images/nvidia-inception.jpg" alt="NVIDIA Inception" style={{height:16,width:"auto",objectFit:"contain"}}/>
+                <img src="/images/nvidia-inception.png" alt="NVIDIA Inception" style={{height:16,width:"auto",objectFit:"contain"}}/>
               </div>
               {[
                 {t:"PSE Kominfo",s:"NIB 1202260248509"},
@@ -770,7 +770,7 @@ function DataMoatSection({lang}:{lang:"en"|"id"}){
         {/* NVIDIA band */}
         <FadeIn delay={200}>
           <div style={{background:"rgba(118,185,0,0.06)",border:"1px solid rgba(118,185,0,0.2)",borderRadius:16,padding:"24px 28px",display:"flex",gap:24,alignItems:"center",flexWrap:"wrap"}}>
-            <img src="/images/nvidia-inception.jpg" alt="NVIDIA Inception Program" style={{height:40,width:"auto",objectFit:"contain",flexShrink:0,borderRadius:6,background:"white",padding:"4px 8px"}}/>
+            <img src="/images/nvidia-inception.png" alt="NVIDIA Inception Program" style={{height:40,width:"auto",objectFit:"contain",flexShrink:0,borderRadius:6,background:"white",padding:"4px 8px"}}/>
             <div style={{flex:1,minWidth:240}}>
               <div style={{color:"rgba(118,185,0,0.9)",fontWeight:700,fontSize:13,marginBottom:6}}>NVIDIA Inception Program Member</div>
               <p style={{color:"rgba(255,255,255,0.45)",fontSize:13,lineHeight:1.6}}>
@@ -1291,7 +1291,7 @@ function Footer({lang}:{lang:"en"|"id"}){
       <div className="section-max">
         {/* NVIDIA + Compliance strip */}
         <div style={{background:"rgba(255,255,255,0.03)",border:"1px solid rgba(2,195,154,0.12)",borderRadius:16,padding:"24px 28px",marginBottom:40,display:"flex",gap:20,alignItems:"center",flexWrap:"wrap"}}>
-          <img src="/images/nvidia-inception.jpg" alt="NVIDIA Inception Program Member" style={{height:36,width:"auto",objectFit:"contain",borderRadius:6,background:"white",padding:"4px 8px",flexShrink:0}}/>
+          <img src="/images/nvidia-inception.png" alt="NVIDIA Inception Program Member" style={{height:36,width:"auto",objectFit:"contain",borderRadius:6,background:"white",padding:"4px 8px",flexShrink:0}}/>
           <div style={{width:1,height:36,background:"rgba(255,255,255,0.1)",flexShrink:0}}/>
           <span style={{color:"rgba(255,255,255,0.3)",fontSize:11,fontWeight:600}}>{lang==="en"?"Proudly part of the NVIDIA Inception Program":"Dengan bangga menjadi bagian dari NVIDIA Inception Program"}</span>
           <div style={{marginLeft:"auto",display:"flex",gap:8,flexWrap:"wrap"}}>
