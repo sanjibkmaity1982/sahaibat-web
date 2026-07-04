@@ -1,18 +1,14 @@
 "use client";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LanguagePill } from "@/components/sahaibat/LanguagePill";
 import { useI18n } from "@/components/sahaibat/LanguageProvider";
 import Image from "next/image";
-
 export function SiteHeader() {
   const { t } = useI18n();
   const pathname = usePathname();
-
-  // Hide on homepage — the homepage has its own self-contained Nav
-  if (pathname === "/") return null;
-
+  // Hide on homepage (both languages) — the homepage has its own self-contained Nav
+  if (pathname === "/" || pathname === "/en") return null;   // ← only changed line
   return (
     <header className="sticky top-0 z-40 border-b bg-white/85 backdrop-blur">
       <div className="mx-auto flex w-full max-w-5xl items-center justify-between gap-3 px-4 py-3">
