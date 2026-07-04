@@ -476,7 +476,7 @@ function ProductsSection({lang}:{lang:"en"|"id"}){
       story:lang==="en"?"Indonesian doctors spend 2–3 hours daily on documentation they hate — writing SOAP notes, manually uploading to SATUSEHAT, cross-referencing BPJS Fornas drug lists, and hoping ICD-10 codes don't get rejected. DoK records the consultation, writes the SOAP, maps ICD-10 with BPJS confidence scores, and auto-posts to SATUSEHAT — in 32 seconds, in Bahasa Indonesia, on data that never leaves Indonesia.\n\nDoK is the commercial engine that funds the entire SahAIbat ecosystem. Every subscription directly subsidises free Kader, Bidan, and Kasih tools for community health workers who cannot pay.":"Dokter Indonesia menghabiskan 2–3 jam sehari untuk dokumentasi — menulis catatan SOAP, mengunggah manual ke SATUSEHAT, merujuk silang daftar obat Fornas BPJS, dan berharap kode ICD-10 tidak ditolak. DoK merekam konsultasi, menulis SOAP, memetakan ICD-10 dengan skor kepercayaan BPJS, dan mengirim otomatis ke SATUSEHAT — dalam 32 detik, dalam Bahasa Indonesia, pada data yang tidak pernah meninggalkan Indonesia.",
       features:lang==="en"?["AI Voice Scribe → SOAP in Bahasa Indonesia · 32 seconds","BPJS Gatekeeper — 144 non-specialist conditions flagged","SATUSEHAT HL7 FHIR R4 auto-sync after doctor approval","MedGemma CDSS + Konsensus Medis (PERKENI, PAPDI, IDAI)","Data 100% in Jakarta — UU PDP · AES-256-GCM","Mission Partner pricing for NGOs in the SahAIbat network"]:["AI Voice Scribe → SOAP dalam Bahasa Indonesia · 32 detik","BPJS Gatekeeper — 144 kondisi non-spesialis ditandai","SATUSEHAT HL7 FHIR R4 sinkron otomatis setelah persetujuan dokter","MedGemma CDSS + Konsensus Medis (PERKENI, PAPDI, IDAI)","Data 100% di Jakarta — UU PDP · AES-256-GCM","Harga Mitra Misi untuk NGO dalam jaringan SahAIbat"],
       externalLink:"https://www.sahaibatdok.com",
-      gif:"/images/demo/dok-demo.gif",
+      gif:"/images/demo/dok_demo.gif",
       photo:null,
     },
     {
@@ -628,7 +628,7 @@ function DoKCallout({lang}:{lang:"en"|"id"}){
                 <div style={{color:"rgba(255,255,255,0.5)",fontSize:12,lineHeight:1.4}}>{l}</div>
               </div>))}
               <div style={{gridColumn:"1/-1",background:"rgba(164,139,255,0.06)",border:"1px solid rgba(164,139,255,0.2)",borderRadius:12,padding:"14px 16px",display:"flex",gap:10,alignItems:"center"}}>
-                <img src="/images/nvidia-inception.jpg" alt="NVIDIA Inception" style={{height:24,width:"auto",objectFit:"contain",flexShrink:0,borderRadius:4}}/>
+                <img src="/images/nvidia-inception.png" alt="NVIDIA Inception" style={{height:24,width:"auto",objectFit:"contain",flexShrink:0,borderRadius:4}}/>
                 <span style={{color:"rgba(255,255,255,0.5)",fontSize:12}}>{lang==="en"?"NVIDIA Inception · NIM · Llama 3.1 8B · MedGemma · Triton · GPU credits":"NVIDIA Inception · NIM · Llama 3.1 8B · MedGemma · Triton · GPU credits"}</span>
               </div>
             </div>
