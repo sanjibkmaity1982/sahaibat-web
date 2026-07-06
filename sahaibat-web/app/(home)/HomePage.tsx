@@ -52,7 +52,10 @@ function Nav({lang,setLang}:{lang:"en"|"id";setLang:(l:"en"|"id")=>void}){
         </div>
         <button onClick={()=>setOpen(!open)} className="nav-mobile-btn" style={{background:"none",border:"none",color:C.white,fontSize:24,cursor:"pointer"}}>{open?"✕":"☰"}</button>
       </div>
-      {open&&(<div style={{background:C.dark,padding:"20px 24px",borderTop:"1px solid rgba(2,195,154,0.15)"}}>
+     {open&&(<div style={{background:C.dark,padding:"20px 24px",borderTop:"1px solid rgba(2,195,154,0.15)"}}>
+        <div style={{display:"flex",gap:3,background:"rgba(255,255,255,0.08)",borderRadius:20,padding:3,width:"fit-content",marginBottom:16}}>
+          {(["en","id"] as const).map(l=>(<button key={l} onClick={()=>{setLang(l);setOpen(false);}} style={{background:lang===l?C.teal:"transparent",color:lang===l?C.dark:"rgba(255,255,255,0.6)",border:"none",borderRadius:16,padding:"6px 16px",fontSize:13,fontWeight:700,cursor:"pointer"}}>{l==="en"?"EN":"ID"}</button>))}
+        </div>
         {links.map(([href,label])=>(<a key={href} href={href} onClick={()=>setOpen(false)} style={{display:"block",color:"rgba(255,255,255,0.8)",fontSize:16,fontWeight:500,textDecoration:"none",padding:"12px 0",borderBottom:"1px solid rgba(255,255,255,0.05)"}}>{label}</a>))}
       </div>)}
     </nav>
@@ -87,7 +90,7 @@ function HeroSection({lang}:{lang:"en"|"id"}){
             {/* Compliance badges */}
             <div style={{display:"flex",gap:8,flexWrap:"wrap",marginBottom:32}}>
               <div style={{display:"flex",alignItems:"center",gap:6,background:"rgba(118,185,0,0.08)",border:"1px solid rgba(118,185,0,0.25)",borderRadius:10,padding:"6px 12px"}}>
-                <img src="/nvidia-inception.png" alt="NVIDIA Inception" style={{height:28,width:"auto",objectFit:"contain",borderRadius:4}}/>
+                <img src="/nvidia-inception.png" alt="NVIDIA Inception" style={{height:40,width:"auto",objectFit:"contain",borderRadius:4}}/>
               </div>
               {[
                 {t:"PSE Kominfo",s:"NIB 1202260248509"},
