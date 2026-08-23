@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useI18n } from "@/components/sahaibat/LanguageProvider";
 import { C } from "@/lib/sahaibat/theme";
 
@@ -27,28 +26,6 @@ const DECK_URL = "https://investor.sahaibat.com";
 
 export default function InvestorsPage() {
   const { lang } = useI18n();
-  const [passcode, setPasscode] = useState("");
-  const [state, setState] = useState<"idle" | "checking" | "granted" | "denied">("idle");
-
-  async function submit(e: React.FormEvent) {
-    e.preventDefault();
-    setState("checking");
-    try {
-      const res = await fetch("/api/investor-gate", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ passcode }),
-      });
-      if (res.ok) {
-        setState("granted");
-        window.location.href = DECK_URL;
-      } else {
-        setState("denied");
-      }
-    } catch {
-      setState("denied");
-    }
-  }
 
   const reasons = lang === "en"
     ? [
@@ -61,7 +38,7 @@ export default function InvestorsPage() {
         { icon: "🗺️", title: "Jendela yang tidak akan lama terbuka", body: "Kementerian Kesehatan Indonesia telah menerbitkan mandat digital paralel di tingkat komunitas, klinik, dan rumah sakit — tidak didanai, dan belum dilayani oleh platform terhubung mana pun saat ini." },
         { icon: "🔗", title: "Dibangun end-to-end, bukan satu lapisan", body: "Kebanyakan healthtech memilih satu lapisan — EMR klinik, atau aplikasi pasien. SahAIbat sudah beroperasi di komunitas, keluarga, klinik, dan rumah sakit sebagai satu rekam terhubung." },
         { icon: "🇮🇩", title: "AI klinis berdaulat, bukan pembungkus", body: "Setiap interaksi berpersetujuan mengisi corpus pelatihan yang tidak dimiliki model asing mana pun: bagaimana tenaga kesehatan Indonesia benar-benar melakukan skrining, dokumentasi, dan keputusan, dalam Bahasa Indonesia, di bawah regulasi Indonesia." },
-        { icon: "🌱", title: "Aktif, bukan proyeksi", body: "ini bukan deck berisi mockup. Ini berjalan di lapangan hari ini, dengan mitra nyata, klinisi nyata, dan tim teknis yang sudah merilis seluruh platform." },
+        { icon: "🌱", title: "Aktif, bukan proyeksi", body: "Ini bukan deck berisi mockup. Ini berjalan di lapangan hari ini, dengan mitra nyata, klinisi nyata, dan tim teknis yang sudah merilis seluruh platform." },
       ];
 
   return (
@@ -95,7 +72,7 @@ export default function InvestorsPage() {
         ))}
       </div>
 
-      {/* Closing line + gate */}
+      {/* Closing line + CTA */}
       <div style={{ background: C.dark, borderRadius: 24, padding: "40px 40px" }}>
         <p style={{ color: "rgba(255,255,255,0.75)", fontSize: 17, lineHeight: 1.8, fontFamily: "'Playfair Display',serif", fontStyle: "italic", marginBottom: 28, maxWidth: 700 }}>
           {lang === "en"
@@ -103,33 +80,22 @@ export default function InvestorsPage() {
             : "\"Jika Anda melihat apa yang kami lihat, kami ingin berbicara. Struktur, linimasa, dan persyaratan ada dalam percakapan — bukan di halaman ini.\""}
         </p>
 
-        <form onSubmit={submit} style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
-          <input
-            type="password"
-            value={passcode}
-            onChange={(e) => { setPasscode(e.target.value); setState("idle"); }}
-            placeholder={lang === "en" ? "Enter your access code" : "Masukkan kode akses Anda"}
-            style={{ background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 12, padding: "12px 16px", color: C.white, fontSize: 14, minWidth: 220 }}
-          />
-          <button
-            type="submit"
-            disabled={state === "checking" || !passcode}
-            style={{ background: C.teal, color: C.dark, padding: "12px 24px", borderRadius: 12, fontSize: 14, fontWeight: 700, border: "none", cursor: "pointer", opacity: state === "checking" ? 0.6 : 1 }}
+        <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
+          <a
+            href={DECK_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ background: C.teal, color: C.dark, padding: "13px 26px", borderRadius: 12, fontSize: 14, fontWeight: 700, textDecoration: "none" }}
           >
-            {state === "checking" ? (lang === "en" ? "Checking…" : "Memeriksa…") : (lang === "en" ? "Enter the deck →" : "Masuk ke deck →")}
-          </button>
-        </form>
-        {state === "denied" && (
-          <p style={{ color: "#FF8A8A", fontSize: 13, marginTop: 12 }}>
-            {lang === "en" ? "That code didn't work. If you're an approved investor, check your email for the code or request one below." : "Kode tidak cocok. Jika Anda investor yang disetujui, periksa email Anda untuk kode tersebut atau minta di bawah ini."}
-          </p>
-        )}
-        <p style={{ color: "rgba(255,255,255,0.35)", fontSize: 13, marginTop: 16 }}>
-          {lang === "en" ? "Don't have a code? " : "Belum punya kode? "}
-          <a href="mailto:investor@sahaibat.com?subject=Investor%20deck%20access" style={{ color: C.teal, textDecoration: "none" }}>
-            {lang === "en" ? "Request access →" : "Minta akses →"}
+            {lang === "en" ? "See the deck →" : "Lihat deck →"}
           </a>
-        </p>
+          <a
+            href="mailto:investor@sahaibat.com?subject=Investor%20conversation"
+            style={{ border: "1.5px solid rgba(2,195,154,0.4)", color: C.white, padding: "13px 26px", borderRadius: 12, fontSize: 14, fontWeight: 600, textDecoration: "none" }}
+          >
+            {lang === "en" ? "Talk to us" : "Hubungi kami"}
+          </a>
+        </div>
       </div>
     </div>
   );
