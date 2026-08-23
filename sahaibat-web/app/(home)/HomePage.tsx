@@ -113,6 +113,67 @@ function HeroSection({lang}:{lang:"en"|"id"}){
   );
 }
 
+// ── NORTH STAR — plain-language explainer for a first-time visitor ────────────
+function NorthStarSection({lang}:{lang:"en"|"id"}){
+  const steps=lang==="en"
+    ?[
+      {icon:"👩🏽‍⚕️",label:"A community worker screens a child at a village visit"},
+      {icon:"🩺",label:"A doctor treats a patient at a clinic, using the same record"},
+      {icon:"🏥",label:"A hospital bills correctly, because nothing was lost along the way"},
+    ]
+    :[
+      {icon:"👩🏽‍⚕️",label:"Kader melakukan skrining anak saat kunjungan desa"},
+      {icon:"🩺",label:"Dokter merawat pasien di klinik, menggunakan rekam yang sama"},
+      {icon:"🏥",label:"Rumah sakit menagih dengan benar, karena tidak ada yang hilang di jalan"},
+    ];
+  return(
+    <section style={{background:C.cream,padding:"90px 0"}}>
+      <div className="section-max">
+        <FadeIn>
+          <div style={{display:"inline-flex",alignItems:"center",gap:8,background:`${C.tealDk}20`,border:`1px solid ${C.tealDk}40`,borderRadius:20,padding:"6px 16px",marginBottom:16}}>
+            <span style={{color:C.tealDk,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"WHAT WE DO, IN PLAIN TERMS":"APA YANG KAMI LAKUKAN, SECARA SEDERHANA"}</span>
+          </div>
+          <h2 className="display-font" style={{fontSize:"clamp(28px,3.8vw,46px)",color:C.dark,lineHeight:1.25,marginBottom:20,maxWidth:820}}>
+            {lang==="en"?"One health record that follows a patient everywhere — not six systems that don't talk to each other.":"Satu rekam kesehatan yang mengikuti pasien ke mana pun — bukan enam sistem yang tidak saling terhubung."}
+          </h2>
+          <p style={{color:C.muted,fontSize:16,maxWidth:720,lineHeight:1.9,marginBottom:40}}>
+            {lang==="en"
+              ?"Today, a child's growth data at a village Posyandu, a mother's WhatsApp question about a fever, and a doctor's notes at a clinic usually live in different places — or nowhere at all. SahAIbat connects all of it into a single, secure health record, so a village health worker, a doctor in a city clinic, and a hospital's billing team are all working from the same information."
+              :"Saat ini, data pertumbuhan anak di Posyandu desa, pertanyaan seorang ibu tentang demam di WhatsApp, dan catatan dokter di klinik biasanya berada di tempat berbeda — atau tidak tercatat sama sekali. SahAIbat menghubungkan semuanya menjadi satu rekam kesehatan yang aman, sehingga Kader desa, dokter di klinik kota, dan tim penagihan rumah sakit semuanya bekerja dari informasi yang sama."}
+          </p>
+        </FadeIn>
+        <div className="three-col" style={{marginBottom:40}}>
+          {steps.map((s,i)=>(<FadeIn key={s.label} delay={i*80}>
+            <div style={{background:C.white,border:`1px solid ${C.tealDk}20`,borderRadius:16,padding:"24px 22px",height:"100%",display:"flex",gap:14,alignItems:"flex-start"}}>
+              <span style={{fontSize:26,flexShrink:0}}>{s.icon}</span>
+              <span style={{color:C.text,fontSize:14,lineHeight:1.6,fontWeight:600}}>{s.label}</span>
+            </div>
+          </FadeIn>))}
+        </div>
+        <FadeIn delay={100}>
+          <div style={{background:C.dark,borderRadius:20,padding:"32px 36px"}}>
+            <div style={{color:C.teal,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:16}}>{lang==="en"?"WHY IT MATTERS":"MENGAPA INI PENTING"}</div>
+            <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",gap:20}}>
+              {(lang==="en"
+                ?[
+                  "Indonesia is digitising its entire health system by government mandate — but most clinics and community workers have no tools to do it.",
+                  "SahAIbat is built to serve every layer of that system at once — community, family, clinic, and hospital — not just one piece of it.",
+                  "Every part of the system we connect makes the whole record more useful — for the patient, the people caring for them, and the country's health data.",
+                ]
+                :[
+                  "Indonesia sedang mendigitalkan seluruh sistem kesehatannya melalui mandat pemerintah — namun sebagian besar klinik dan Kader belum memiliki alat untuk melakukannya.",
+                  "SahAIbat dibangun untuk melayani setiap lapisan sistem itu sekaligus — komunitas, keluarga, klinik, dan rumah sakit — bukan hanya satu bagian saja.",
+                  "Setiap bagian sistem yang kami hubungkan membuat keseluruhan rekam semakin berguna — bagi pasien, bagi yang merawat mereka, dan bagi data kesehatan negara.",
+                ]
+              ).map((t,i)=>(<p key={i} style={{color:"rgba(255,255,255,0.65)",fontSize:14,lineHeight:1.8}}>{t}</p>))}
+            </div>
+          </div>
+        </FadeIn>
+      </div>
+    </section>
+  );
+}
+
 // ── THE PROBLEM ───────────────────────────────────────────────────────────────
 function ProblemSection({lang}:{lang:"en"|"id"}){
   const problems=[
@@ -1121,6 +1182,7 @@ export default function HomePage({initialLang="id"}:{initialLang?:"en"|"id"}){
   return(
     <>
       <HeroSection lang={lang}/>
+      <NorthStarSection lang={lang}/>
       <ProblemSection lang={lang}/>
       <PlatformSection lang={lang}/>
       <ProductsSection lang={lang}/>

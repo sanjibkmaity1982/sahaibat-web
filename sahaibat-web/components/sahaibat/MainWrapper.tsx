@@ -1,10 +1,11 @@
 "use client";
 import { usePathname } from "next/navigation";
 
-// Rich marketing pages own their section-by-section width (via .section-max)
-// and go full-bleed edge to edge. Plain content pages (legal, forms) get a
-// simple centered container.
-const FULL_BLEED_PATHS = new Set(["/", "/en", "/enterprise"]);
+// Only the homepage owns its section-by-section width (via .section-max) and
+// goes full-bleed edge to edge. Every other page — including rich pages like
+// /enterprise and /investors — gets the standard centered container, since
+// their content has no internal max-width of its own.
+const FULL_BLEED_PATHS = new Set(["/", "/en"]);
 
 export function MainWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
