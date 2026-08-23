@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
+import { useI18n } from "@/components/sahaibat/LanguageProvider";
 
 // ── Design Tokens ─────────────────────────────────────────────────────────────
 const C = {
@@ -32,36 +33,6 @@ function ComplianceBadge({icon,title,sub,color=C.teal}:{icon:string;title:string
   );
 }
 
-// ── Nav ─────────────────────────────────────────────────────────────────────
-function Nav({lang,setLang}:{lang:"en"|"id";setLang:(l:"en"|"id")=>void}){
-  const [scrolled,setScrolled]=useState(false);const [open,setOpen]=useState(false);
-  useEffect(()=>{const fn=()=>setScrolled(window.scrollY>40);window.addEventListener("scroll",fn);return()=>window.removeEventListener("scroll",fn);},[]);
-  const links:[string,string][]=lang==="en"
-    ?[["#platform","Platform"],["#products","Products"],["#dashboard","Live Data"],["#moat","AI & Data"],["#partners","Partners"],["#team","Team"],["#investors","Investors"]]
-    :[["#platform","Platform"],["#products","Produk"],["#dashboard","Data Langsung"],["#moat","AI & Data"],["#partners","Mitra"],["#team","Tim"],["#investors","Investor"]];
-  return(
-    <nav style={{position:"fixed",top:0,left:0,right:0,zIndex:100,background:scrolled?"rgba(15,31,28,0.97)":"transparent",backdropFilter:scrolled?"blur(14px)":"none",borderBottom:scrolled?"1px solid rgba(2,195,154,0.15)":"none",transition:"all 0.3s",padding:"0 24px"}}>
-      <div style={{maxWidth:1200,margin:"0 auto",display:"flex",alignItems:"center",justifyContent:"space-between",height:64}}>
-        <img src="/images/brand/wordmark-horizontal-dark.png" alt="SahAIbat" style={{height:36,width:"auto"}}/>
-        <div className="nav-desktop" style={{display:"flex",gap:18,alignItems:"center"}}>
-          {links.map(([href,label])=>(<a key={href} href={href} style={{color:href==="#investors"?C.teal:"rgba(255,255,255,0.7)",fontSize:13,fontWeight:href==="#investors"?700:500,textDecoration:"none",transition:"color 0.2s"}} onMouseEnter={e=>(e.target as HTMLElement).style.color=C.teal} onMouseLeave={e=>(e.target as HTMLElement).style.color=href==="#investors"?C.teal:"rgba(255,255,255,0.7)"}>{label}</a>))}
-          <div style={{display:"flex",gap:3,background:"rgba(255,255,255,0.08)",borderRadius:20,padding:3}}>
-            {(["en","id"] as const).map(l=>(<button key={l} onClick={()=>setLang(l)} style={{background:lang===l?C.teal:"transparent",color:lang===l?C.dark:"rgba(255,255,255,0.6)",border:"none",borderRadius:16,padding:"4px 12px",fontSize:12,fontWeight:700,cursor:"pointer",transition:"all 0.2s"}}>{l==="en"?"EN":"ID"}</button>))}
-          </div>
-          <a href="#investors" style={{background:C.teal,color:C.dark,padding:"8px 20px",borderRadius:20,fontSize:13,fontWeight:700,textDecoration:"none"}}>{lang==="en"?"Request Deck":"Minta Deck"}</a>
-        </div>
-        <button onClick={()=>setOpen(!open)} className="nav-mobile-btn" style={{background:"none",border:"none",color:C.white,fontSize:24,cursor:"pointer"}}>{open?"✕":"☰"}</button>
-      </div>
-     {open&&(<div style={{background:C.dark,padding:"20px 24px",borderTop:"1px solid rgba(2,195,154,0.15)"}}>
-        <div style={{display:"flex",gap:3,background:"rgba(255,255,255,0.08)",borderRadius:20,padding:3,width:"fit-content",marginBottom:16}}>
-          {(["en","id"] as const).map(l=>(<button key={l} onClick={()=>{setLang(l);setOpen(false);}} style={{background:lang===l?C.teal:"transparent",color:lang===l?C.dark:"rgba(255,255,255,0.6)",border:"none",borderRadius:16,padding:"6px 16px",fontSize:13,fontWeight:700,cursor:"pointer"}}>{l==="en"?"EN":"ID"}</button>))}
-        </div>
-        {links.map(([href,label])=>(<a key={href} href={href} onClick={()=>setOpen(false)} style={{display:"block",color:"rgba(255,255,255,0.8)",fontSize:16,fontWeight:500,textDecoration:"none",padding:"12px 0",borderBottom:"1px solid rgba(255,255,255,0.05)"}}>{label}</a>))}
-      </div>)}
-    </nav>
-  );
-}
-
 // ── HERO ─────────────────────────────────────────────────────────────────────
 function HeroSection({lang}:{lang:"en"|"id"}){
   return(
@@ -75,17 +46,17 @@ function HeroSection({lang}:{lang:"en"|"id"}){
           <div>
             <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(2,195,154,0.1)",border:"1px solid rgba(2,195,154,0.3)",borderRadius:20,padding:"6px 16px",marginBottom:24}}>
               <span style={{width:6,height:6,borderRadius:"50%",background:C.teal,display:"inline-block",animation:"pulse 2s infinite"}}/>
-              <span style={{color:C.teal,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"INDONESIA HEALTH AI PLATFORM":"PLATFORM AI KESEHATAN INDONESIA"}</span>
+              <span style={{color:C.teal,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"HEALTHCARE CLOSER THAN EVER":"KESEHATAN, KINI LEBIH DEKAT"}</span>
             </div>
-            <h1 className="display-font" style={{fontSize:"clamp(38px,5vw,64px)",color:C.white,lineHeight:1.1,marginBottom:24}}>
+            <h1 className="display-font" style={{fontSize:"clamp(34px,4.6vw,58px)",color:C.white,lineHeight:1.15,marginBottom:24}}>
               {lang==="en"
-                ?<>Indonesia's 280M patients.<br/>1.4M health workers.<br/><span style={{color:C.teal}}>Zero connected AI layer.</span><br/><span style={{fontSize:"clamp(28px,3.5vw,44px)",color:"rgba(255,255,255,0.6)"}}>Until now.</span></>
-                :<>280 juta pasien Indonesia.<br/>1,4 juta tenaga kesehatan.<br/><span style={{color:C.teal}}>Nol lapisan AI yang terhubung.</span><br/><span style={{fontSize:"clamp(28px,3.5vw,44px)",color:"rgba(255,255,255,0.6)"}}>Sampai sekarang.</span></>}
+                ?<>From the village Posyandu<br/>to the doctor's desk —<br/><span style={{color:C.teal}}>one connected line of care.</span></>
+                :<>Dari Posyandu desa<br/>hingga meja dokter —<br/><span style={{color:C.teal}}>satu jalur perawatan yang terhubung.</span></>}
             </h1>
             <p style={{fontSize:17,color:"rgba(255,255,255,0.6)",lineHeight:1.8,marginBottom:32,maxWidth:500}}>
               {lang==="en"
-                ?"SahAIbat is building Indonesia's connected clinical AI infrastructure — five products across every layer of primary care, one sovereign data layer, and a pathway to the nation's first Indonesian-trained clinical LLM."
-                :"SahAIbat membangun infrastruktur AI klinis terhubung Indonesia — lima produk di setiap lapisan layanan primer, satu lapisan data berdaulat, dan jalur menuju LLM klinis pertama yang dilatih di Indonesia."}
+                ?"SahAIbat gives community health workers, midwives, families, doctors, and hospitals the tools to catch problems earlier, document less, and never lose a patient between visits."
+                :"SahAIbat memberi Kader, bidan, keluarga, dokter, dan rumah sakit alat untuk mendeteksi masalah lebih awal, mengurangi dokumentasi, dan tidak pernah kehilangan jejak pasien antar kunjungan."}
             </p>
             {/* Compliance badges */}
             <div style={{display:"flex",gap:8,flexWrap:"wrap",marginBottom:32}}>
@@ -103,8 +74,8 @@ function HeroSection({lang}:{lang:"en"|"id"}){
               </div>))}
             </div>
             <div style={{display:"flex",gap:14,flexWrap:"wrap"}}>
-              <a href="#investors" style={{background:C.teal,color:C.dark,padding:"14px 28px",borderRadius:12,fontSize:15,fontWeight:700,textDecoration:"none"}}>{lang==="en"?"Request Investor Deck →":"Minta Deck Investor →"}</a>
-              <a href="#platform" style={{border:"1.5px solid rgba(2,195,154,0.4)",color:C.white,padding:"14px 28px",borderRadius:12,fontSize:15,fontWeight:600,textDecoration:"none"}}>{lang==="en"?"See the Platform":"Lihat Platform"}</a>
+              <a href="#platform" style={{background:C.teal,color:C.dark,padding:"14px 28px",borderRadius:12,fontSize:15,fontWeight:700,textDecoration:"none"}}>{lang==="en"?"See how it works ↓":"Lihat cara kerjanya ↓"}</a>
+              <a href="https://www.sahaibatdok.com" target="_blank" rel="noopener noreferrer" style={{border:"1.5px solid rgba(2,195,154,0.4)",color:C.white,padding:"14px 28px",borderRadius:12,fontSize:15,fontWeight:600,textDecoration:"none"}}>{lang==="en"?"Try SahAIbat DoK →":"Coba SahAIbat DoK →"}</a>
             </div>
           </div>
           {/* Right: Hero field photo */}
@@ -142,43 +113,6 @@ function HeroSection({lang}:{lang:"en"|"id"}){
   );
 }
 
-// ── INVESTOR SNAPSHOT BAND ────────────────────────────────────────────────────
-function InvestorBand({lang}:{lang:"en"|"id"}){
-  const streams=[
-    {n:"01",t:lang==="en"?"DoK SaaS — doctor subscriptions":"DoK SaaS — langganan dokter",color:C.purple},
-    {n:"02",t:lang==="en"?"Sehat B2B — corporate & insurer":"Sehat B2B — korporat & asuransi",color:C.gold},
-    {n:"03",t:lang==="en"?"Dashboard — NGO & government tier":"Dashboard — NGO & pemerintah",color:C.blue},
-    {n:"04",t:lang==="en"?"Clinical LLM licensing (18–36 mo)":"Lisensi LLM Klinis (18–36 bln)",color:C.teal},
-  ];
-  return(
-    <section style={{background:`linear-gradient(135deg,${C.tealXdk},${C.dark})`,padding:"64px 0",borderTop:"1px solid rgba(2,195,154,0.15)",borderBottom:"1px solid rgba(2,195,154,0.15)"}}>
-      <div className="section-max">
-        <FadeIn>
-          <div style={{display:"grid",gridTemplateColumns:"1.1fr 1fr",gap:48,alignItems:"center"}} className="invest-grid">
-            <div>
-              <div style={{color:C.teal,fontSize:11,fontWeight:700,letterSpacing:1,marginBottom:12}}>{lang==="en"?"THE INVESTOR THESIS":"TESIS INVESTOR"}</div>
-              <h2 className="display-font" style={{color:C.white,fontSize:"clamp(22px,2.5vw,32px)",lineHeight:1.3,marginBottom:20}}>
-                {lang==="en"
-                  ?<>Free products build the network. The network generates sovereign health data. The data trains Indonesia's clinical LLM. <span style={{color:C.teal}}>The LLM re-rates the valuation.</span></>
-                  :<>Produk gratis membangun jaringan. Jaringan menghasilkan data kesehatan berdaulat. Data melatih LLM klinis Indonesia. <span style={{color:C.teal}}>LLM mengubah valuasi.</span></>}
-              </h2>
-              <div style={{display:"flex",gap:32,flexWrap:"wrap",marginTop:8}}>
-                {[{v:"$350M",l:"TAM"},{v:"$120M",l:"SAM"},{v:"4",l:lang==="en"?"Revenue Streams":"Aliran Pendapatan"},{v:"~0",l:lang==="en"?"Blended CAC":"CAC Blended"}].map(({v,l})=>(<div key={l}><div className="display-font" style={{color:C.teal,fontSize:30,fontWeight:900,lineHeight:1}}>{v}</div><div style={{color:"rgba(255,255,255,0.45)",fontSize:12,marginTop:4}}>{l}</div></div>))}
-              </div>
-            </div>
-            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12}}>
-              {streams.map(({n,t,color})=>(<div key={n} style={{background:"rgba(255,255,255,0.04)",border:`1px solid ${color}25`,borderRadius:14,padding:"18px 16px"}}>
-                <div style={{color,fontWeight:800,fontSize:18,marginBottom:6}}>{n}</div>
-                <div style={{color:"rgba(255,255,255,0.75)",fontSize:13,lineHeight:1.5}}>{t}</div>
-              </div>))}
-            </div>
-          </div>
-        </FadeIn>
-      </div>
-    </section>
-  );
-}
-
 // ── THE PROBLEM ───────────────────────────────────────────────────────────────
 function ProblemSection({lang}:{lang:"en"|"id"}){
   const problems=[
@@ -187,7 +121,7 @@ function ProblemSection({lang}:{lang:"en"|"id"}){
       color:C.teal,
       title:lang==="en"?"Community health workers":"Kader kesehatan komunitas",
       desc:lang==="en"?"Recording every Posyandu visit on paper. WHO growth calculations done by hand. Danger signs missed because the tools don't exist.":"Mencatat setiap kunjungan Posyandu di kertas. Kalkulasi pertumbuhan WHO dilakukan manual. Tanda bahaya terlewat karena alat tidak tersedia.",
-      fix:lang==="en"?"SahAIbat Kader App — free, always.":"Aplikasi Kader SahAIbat — gratis, selamanya.",
+      fix:lang==="en"?"SahAIbat Kader — built into every Posyandu.":"SahAIbat Kader — terpasang di setiap Posyandu.",
     },
     {
       n:"300K",
@@ -243,8 +177,9 @@ function PlatformSection({lang}:{lang:"en"|"id"}){
     {icon:"👩🏽‍⚕️",label:"Kader App",who:lang==="en"?"Community health workers":"Kader kesehatan",color:C.teal,live:true,layer:lang==="en"?"COMMUNITY":"KOMUNITAS"},
     {icon:"👶",label:"Kasih",who:lang==="en"?"Families via WhatsApp":"Keluarga via WhatsApp",color:C.pink,live:true,layer:lang==="en"?"FAMILY":"KELUARGA"},
     {icon:"🩺",label:"SahAIbat Bidan",who:lang==="en"?"Midwives — ANC & postnatal":"Bidan — ANC & nifas",color:C.purple,live:true,layer:lang==="en"?"MIDWIFE":"BIDAN"},
-    {icon:"🩻",label:"SahAIbat DoK",who:lang==="en"?"Doctors & clinics — EMR + AI scribe":"Dokter & klinik — EMR + AI scribe",color:"#A48BFF",live:false,layer:lang==="en"?"CLINIC":"KLINIK",isCommercial:true},
-    {icon:"🌟",label:"SahAIbat Sehat",who:lang==="en"?"Urban families + B2B corporate":"Keluarga urban + B2B korporat",color:C.gold,live:false,layer:lang==="en"?"URBAN / ENTERPRISE":"URBAN / ENTERPRISE"},
+    {icon:"🩻",label:"SahAIbat DoK",who:lang==="en"?"Doctors & clinics — EMR + AI scribe":"Dokter & klinik — EMR + AI scribe",color:"#A48BFF",live:true,layer:lang==="en"?"CLINIC":"KLINIK",isCommercial:true},
+    {icon:"📖",label:"Konsensus",who:lang==="en"?"Doctors — guideline & formulary support":"Dokter — dukungan panduan & formularium",color:C.gold,live:true,layer:lang==="en"?"DECISION SUPPORT":"DUKUNGAN KEPUTUSAN"},
+    {icon:"🏥",label:lang==="en"?"Hospital":"Rumah Sakit",who:lang==="en"?"Coding teams — claim integrity":"Tim koder — integritas klaim",color:C.blue,live:true,layer:lang==="en"?"HOSPITAL":"RUMAH SAKIT"},
   ];
   return(
     <section id="platform" style={{background:C.cream,padding:"100px 0"}}>
@@ -255,11 +190,11 @@ function PlatformSection({lang}:{lang:"en"|"id"}){
           </div>
           <h2 className="display-font" style={{fontSize:"clamp(30px,4vw,50px)",color:C.dark,lineHeight:1.2,marginBottom:16,maxWidth:760}}>
             {lang==="en"
-              ?<>One clinical AI engine.<br/><span style={{color:C.tealDk}}>Five surfaces. Every layer of Indonesian primary care.</span></>
-              :<>Satu engine AI klinis.<br/><span style={{color:C.tealDk}}>Lima antarmuka. Setiap lapisan layanan primer Indonesia.</span></>}
+              ?<>One clinical AI engine.<br/><span style={{color:C.tealDk}}>Six nodes. Every layer of Indonesian primary care.</span></>
+              :<>Satu engine AI klinis.<br/><span style={{color:C.tealDk}}>Enam titik. Setiap lapisan layanan primer Indonesia.</span></>}
           </h2>
           <p style={{color:C.muted,fontSize:16,maxWidth:680,lineHeight:1.8,marginBottom:56}}>
-            {lang==="en"?"SahAIbat DoK is not just a product — it is the AI intelligence layer that sits across all five surfaces, processing data from every touchpoint in the patient journey and feeding a closed-loop training corpus no competitor can replicate.":"SahAIbat DoK bukan sekadar produk — ini adalah lapisan kecerdasan AI yang berada di seluruh lima antarmuka, memproses data dari setiap titik sentuh dalam perjalanan pasien dan menghasilkan corpus pelatihan closed-loop yang tidak dapat direplikasi pesaing."}
+            {lang==="en"?"SahAIbat DoK is not just a product — it is the AI intelligence layer that sits across all six nodes, processing data from every touchpoint in the patient journey to keep one record consistent from Posyandu to hospital discharge.":"SahAIbat DoK bukan sekadar produk — ini adalah lapisan kecerdasan AI yang berada di seluruh enam titik, memproses data dari setiap titik sentuh dalam perjalanan pasien untuk menjaga satu rekam tetap konsisten dari Posyandu hingga pulang rawat rumah sakit."}
           </p>
         </FadeIn>
 
@@ -268,7 +203,7 @@ function PlatformSection({lang}:{lang:"en"|"id"}){
           <div style={{background:C.dark,borderRadius:24,padding:"40px 32px",marginBottom:48,position:"relative",overflow:"hidden"}}>
             <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${C.teal},${C.purple},${C.pink},${C.teal})`}}/>
             <div style={{textAlign:"center",marginBottom:28}}>
-              <span style={{color:C.teal,fontWeight:700,fontSize:11,letterSpacing:1}}>{lang==="en"?"THE CLOSED-LOOP DATA PIPELINE":"PIPELINE DATA CLOSED-LOOP"}</span>
+              <span style={{color:C.teal,fontWeight:700,fontSize:11,letterSpacing:1}}>{lang==="en"?"ONE RECORD, SIX NODES":"SATU REKAM, ENAM TITIK"}</span>
             </div>
             {/* Pipeline flow */}
             <div style={{display:"flex",alignItems:"center",justifyContent:"center",gap:0,flexWrap:"wrap",maxWidth:900,margin:"0 auto"}}>
@@ -279,9 +214,11 @@ function PlatformSection({lang}:{lang:"en"|"id"}){
                 {arrow:"↕",color:"rgba(255,255,255,0.2)"},
                 {icon:"🩻",name:"DoK AI",sub:lang==="en"?"diagnoses":"diagnosis",color:"#A48BFF",highlight:true},
                 {arrow:"↕",color:"rgba(255,255,255,0.2)"},
+                {icon:"📖",name:"Konsensus",sub:lang==="en"?"decision support":"dukungan keputusan",color:C.gold},
+                {arrow:"↕",color:"rgba(255,255,255,0.2)"},
                 {icon:"❤️‍🩹",name:"Kasih",sub:lang==="en"?"family follow-up":"tindak lanjut keluarga",color:C.pink},
                 {arrow:"↕",color:"rgba(255,255,255,0.2)"},
-                {icon:"🌟",name:"Sehat",sub:lang==="en"?"urban + B2B":"urban + B2B",color:C.gold},
+                {icon:"🏥",name:lang==="en"?"Hospital":"RS",sub:lang==="en"?"claim integrity":"integritas klaim",color:C.blue},
               ].map((item,i)=>{
                 if ("arrow" in item) return <div key={i} style={{color:item.color,fontSize:20,padding:"0 12px",fontWeight:300}}>→</div>;
                 return(
@@ -316,7 +253,7 @@ function PlatformSection({lang}:{lang:"en"|"id"}){
               <div style={{color:C.muted,fontSize:12,lineHeight:1.5}}>{who}</div>
               {isCommercial&&(
                 <div style={{marginTop:12,display:"flex",alignItems:"center",gap:6,background:"rgba(164,139,255,0.08)",border:"1px solid rgba(164,139,255,0.2)",borderRadius:8,padding:"6px 10px"}}>
-                  <span style={{color:"#A48BFF",fontSize:10,fontWeight:700}}>💰 {lang==="en"?"REVENUE ENGINE":"MESIN PENDAPATAN"}</span>
+                  <span style={{color:"#A48BFF",fontSize:10,fontWeight:700}}>💰 {lang==="en"?"COMMERCIAL":"KOMERSIAL"}</span>
                 </div>
               )}
             </div>
@@ -445,18 +382,18 @@ function ProductsSection({lang}:{lang:"en"|"id"}){
   const [active,setActive]=useState(0);
   const tabs=[
     {
-      id:0,icon:"👩🏽‍⚕️",label:"Kader App",sub:lang==="en"?"Community Screening":"Skrining Komunitas",accent:C.teal,status:"live",
-      businessModel:lang==="en"?"Free forever — ILP-aligned, government-grade data layer":"Gratis selamanya — selaras ILP, lapisan data kelas pemerintah",
+      id:0,icon:"👩🏽‍⚕️",label:"Kader",sub:lang==="en"?"Community Node":"Titik Komunitas",accent:C.teal,status:"live",
+      businessModel:lang==="en"?"Built into every Posyandu — ILP-aligned, government-grade data layer":"Terpasang di setiap Posyandu — selaras ILP, lapisan data kelas pemerintah",
       headline:lang==="en"?"The paper KMS form. Replaced. In seconds.":"Formulir KMS kertas. Digantikan. Dalam hitungan detik.",
-      story:lang==="en"?"Every Posyandu visit, a Kader manually plots a child's weight on a paper KMS chart, estimates their growth category, copies data into registers, and hopes she didn't make a calculation error. SahAIbat Kader App digitises this entire flow — WHO growth auto-calculated, danger signs auto-flagged, programme dashboard updated automatically — from a WhatsApp-native interface on the Kader's existing phone.\n\nThe Kader App covers all 5 ILP Posyandu life-cycle service packages mandated by Kemenkes: child health (0–60 months), maternal (ANC, postnatal, neonatal), adolescent (6–18 years), adult & elderly, and communicable disease (TB, malaria, dengue). One Kader. Every life stage. Zero new hardware.":"Setiap kunjungan Posyandu, Kader secara manual memplot berat badan anak di grafik KMS kertas, memperkirakan kategori pertumbuhan, menyalin data ke register, dan berharap tidak ada kesalahan kalkulasi. Aplikasi Kader SahAIbat mendigitalkan seluruh alur ini — pertumbuhan WHO dihitung otomatis, tanda bahaya diberi tanda otomatis, dasbor program diperbarui otomatis.\n\nAplikasi Kader mencakup 5 paket layanan siklus hidup ILP Posyandu yang diamanatkan Kemenkes: kesehatan anak (0–60 bulan), ibu hamil/nifas/neonatal, remaja (6–18 tahun), usia dewasa & lansia, dan penyakit menular (TB, malaria, dengue). Satu Kader. Setiap tahap kehidupan. Tanpa perangkat keras baru.",
-      features:lang==="en"?["5 ILP life-cycle packages — child, maternal, adolescent, adult/elderly, communicable disease","WHO growth auto-calculated — BB/U, TB/U, BB/TB in seconds","Fully offline on 2G phones — syncs when signal returns","Danger sign flags → RUJUK alerts → Programme Dashboard","Feeds MoH-grade Puskesmas & health post data metrics in real time","Free forever. Funded by DoK commercial revenue."]:["5 paket siklus hidup ILP — anak, ibu, remaja, dewasa/lansia, penyakit menular","Pertumbuhan WHO dihitung otomatis — BB/U, TB/U, BB/TB dalam detik","Offline penuh di ponsel 2G — sinkron saat sinyal kembali","Tanda bahaya → peringatan RUJUK → Dasbor Program","Mengisi metrik data Puskesmas & poskesdes berkualitas Kemenkes secara real-time","Gratis selamanya. Didanai oleh pendapatan komersial DoK."],
+      story:lang==="en"?"Every Posyandu visit, a Kader manually plots a child's weight on a paper KMS chart, estimates their growth category, copies data into registers, and hopes she didn't make a calculation error. SahAIbat Kader digitises this entire flow — WHO growth auto-calculated, danger signs auto-flagged, programme dashboard updated automatically — from a WhatsApp-native interface on the Kader's existing phone.\n\nKader covers all 5 ILP Posyandu life-cycle service packages mandated by Kemenkes: child health (0–60 months), maternal (ANC, postnatal, neonatal), adolescent (6–18 years), adult & elderly, and communicable disease (TB, malaria, dengue). Every visit here becomes part of one longitudinal record — not a form that ends in a drawer.":"Setiap kunjungan Posyandu, Kader secara manual memplot berat badan anak di grafik KMS kertas, memperkirakan kategori pertumbuhan, menyalin data ke register, dan berharap tidak ada kesalahan kalkulasi. Kader SahAIbat mendigitalkan seluruh alur ini — pertumbuhan WHO dihitung otomatis, tanda bahaya diberi tanda otomatis, dasbor program diperbarui otomatis.\n\nKader mencakup 5 paket layanan siklus hidup ILP Posyandu yang diamanatkan Kemenkes: kesehatan anak (0–60 bulan), ibu hamil/nifas/neonatal, remaja (6–18 tahun), usia dewasa & lansia, dan penyakit menular (TB, malaria, dengue). Setiap kunjungan di sini menjadi bagian dari satu rekam longitudinal — bukan formulir yang berakhir di laci.",
+      features:lang==="en"?["5 ILP life-cycle packages — child, maternal, adolescent, adult/elderly, communicable disease","WHO growth auto-calculated — BB/U, TB/U, BB/TB in seconds","Fully offline on 2G phones — syncs when signal returns","Danger sign flags → RUJUK alerts → Programme Dashboard","Feeds MoH-grade Puskesmas & health post data metrics in real time","First contact in the record — screens, flags, and opens the case"]:["5 paket siklus hidup ILP — anak, ibu, remaja, dewasa/lansia, penyakit menular","Pertumbuhan WHO dihitung otomatis — BB/U, TB/U, BB/TB dalam detik","Offline penuh di ponsel 2G — sinkron saat sinyal kembali","Tanda bahaya → peringatan RUJUK → Dasbor Program","Mengisi metrik data Puskesmas & poskesdes berkualitas Kemenkes secara real-time","Kontak pertama dalam rekam — skrining, deteksi, dan buka kasus"],
       gif:"/images/demo/kader-demo.gif",
       photo:"/images/field/kader-result-screen.jpeg",
       photoFallback:"/images/hero-kader-family.png",
     },
     {
-      id:1,icon:"🩺",label:"SahAIbat Bidan",sub:lang==="en"?"Midwife Module":"Modul Bidan",accent:C.purple,status:"live",
-      businessModel:lang==="en"?"Free for midwives — supervision layer between Kader and clinic":"Gratis untuk bidan — lapisan pengawasan antara Kader dan klinik",
+      id:1,icon:"🩺",label:"SahAIbat Bidan",sub:lang==="en"?"Midwife Node":"Titik Bidan",accent:C.purple,status:"live",
+      businessModel:lang==="en"?"Supervision layer between Kader and clinic":"Lapisan pengawasan antara Kader dan klinik",
       headline:lang==="en"?"Her clinical judgment. Extended to every village she can't be in.":"Penilaian klinisnya. Diperluas ke setiap desa yang tidak bisa ia kunjungi.",
       story:lang==="en"?"A Bidan in rural NTT covers 5–10 villages. She cannot be everywhere. SahAIbat Bidan gives her a structured digital companion — ANC visit tracking, postnatal monitoring, high-risk pregnancy flags, Kader performance scoring — so her knowledge reaches patients in villages she visits once a month.\n\nThe Bidan module connects directly to the Programme Dashboard, giving NGO managers and health officials a real-time view of ANC quality scores, high-risk cases, and referral completion rates across their entire network.":"Seorang Bidan di NTT pedesaan mencakup 5–10 desa. Ia tidak bisa hadir di mana-mana. SahAIbat Bidan memberinya pendamping digital terstruktur — pelacakan kunjungan ANC, pemantauan nifas, tanda bahaya kehamilan berisiko tinggi, skor kinerja Kader — sehingga pengetahuannya menjangkau pasien di desa yang ia kunjungi sebulan sekali.",
       features:lang==="en"?["ANC 10T completeness tracking — scored per Bidan","High-risk pregnancy flags (preeclampsia, severe anaemia, placenta praevia)","Postnatal monitoring 0–42 days","Kader performance scoring visible to supervising Bidan","8.7/10 average ANC quality score in live NTT deployment"]:["Pelacakan kelengkapan ANC 10T — dinilai per Bidan","Tanda bahaya kehamilan (preeklampsia, anemia berat, plasenta previa)","Pemantauan nifas 0–42 hari","Skor kinerja Kader terlihat oleh Bidan pengawas","Rata-rata skor kualitas ANC 8,7/10 dalam deployment NTT aktif"],
@@ -464,48 +401,59 @@ function ProductsSection({lang}:{lang:"en"|"id"}){
       photo:null,photoFallback:undefined,
     },
     {
-      id:2,icon:"❤️‍🩹",label:"Kasih",sub:lang==="en"?"Family Health Chat":"Chat Kesehatan Keluarga",accent:C.pink,status:"live",
-      businessModel:lang==="en"?"Free for families — patient behaviour data layer for clinical LLM training":"Gratis untuk keluarga — lapisan data perilaku pasien untuk pelatihan LLM klinis",
+      id:2,icon:"❤️‍🩹",label:"Kasih",sub:lang==="en"?"Family Node":"Titik Keluarga",accent:C.pink,status:"live",
+      businessModel:lang==="en"?"The family's line into the same record their Kader and doctor see":"Jalur keluarga menuju rekam yang sama dengan yang dilihat Kader dan dokter mereka",
       headline:lang==="en"?"2:47 AM. A mother. A fever. One message.":"Pukul 02:47. Seorang ibu. Demam. Satu pesan.",
-      story:lang==="en"?"Kasih is what happens when a worried parent can't reach a doctor at 2am and needs to know: is this an emergency? In 90 seconds, Kasih provides a structured risk assessment in warm, clear Bahasa Indonesia — no app download, no internet required, no clinical training needed.\n\nFor the data thesis, Kasih is the most strategically valuable product in the stack. Every Kasih conversation captures authentic Indonesian health behaviour data — how symptoms are described, how care decisions are made, how families respond to advice. This is the linguistic and behavioural training layer that no LLM trained on English medical literature possesses.":"Kasih adalah apa yang terjadi ketika orang tua yang khawatir tidak bisa menghubungi dokter jam 2 pagi dan perlu tahu: apakah ini darurat? Dalam 90 detik, Kasih memberikan penilaian risiko terstruktur dalam Bahasa Indonesia yang hangat dan jelas — tidak perlu unduh aplikasi, tidak perlu internet.",
-      features:lang==="en"?["WhatsApp-native — no app download, no account","Structured risk triage in Bahasa Indonesia","Works fully offline on any phone","Authentic Indonesian health dialogue data for LLM training","Free forever — the patient-side trust layer"]:["Berbasis WhatsApp — tidak perlu unduh, tidak perlu akun","Triase risiko terstruktur dalam Bahasa Indonesia","Bekerja offline penuh di ponsel apa pun","Data dialog kesehatan Indonesia autentik untuk pelatihan LLM","Gratis selamanya — lapisan kepercayaan sisi pasien"],
+      story:lang==="en"?"Kasih is what happens when a worried parent can't reach a doctor at 2am and needs to know: is this an emergency? In 90 seconds, Kasih provides a structured risk assessment in warm, clear Bahasa Indonesia — no app download, no internet required, no clinical training needed.\n\nWhat a family tells Kasih becomes part of the same record their Kader and doctor see — nothing is asked twice.":"Kasih adalah apa yang terjadi ketika orang tua yang khawatir tidak bisa menghubungi dokter jam 2 pagi dan perlu tahu: apakah ini darurat? Dalam 90 detik, Kasih memberikan penilaian risiko terstruktur dalam Bahasa Indonesia yang hangat dan jelas — tidak perlu unduh aplikasi, tidak perlu internet.\n\nApa yang keluarga sampaikan ke Kasih menjadi bagian dari rekam yang sama dengan yang dilihat Kader dan dokter mereka — tidak ada yang ditanyakan dua kali.",
+      features:lang==="en"?["WhatsApp-native — no app download, no account","Structured risk triage in Bahasa Indonesia","Works fully offline on any phone","Captures what happens between visits, in the family's own words","The patient-side node in the same connected record"]:["Berbasis WhatsApp — tidak perlu unduh, tidak perlu akun","Triase risiko terstruktur dalam Bahasa Indonesia","Bekerja offline penuh di ponsel apa pun","Menangkap apa yang terjadi antar kunjungan, dalam kata-kata keluarga","Titik sisi pasien dalam rekam terhubung yang sama"],
       chatType:"kasih",
       photo:null,photoFallback:undefined,
     },
     {
-      id:3,icon:"🩻",label:"SahAIbat DoK",sub:lang==="en"?"Clinical EMR · AI Scribe":"EMR Klinis · AI Scribe",accent:"#A48BFF",status:"commercial",
-      businessModel:lang==="en"?"Rp 120K/month per doctor · Enterprise custom · Mission Partner pricing for NGOs":"Rp 120K/bulan per dokter · Enterprise custom · Harga Mitra Misi untuk NGO",
+      id:3,icon:"🩻",label:"SahAIbat DoK",sub:lang==="en"?"Clinical Node · AI Scribe":"Titik Klinis · AI Scribe",accent:"#A48BFF",status:"commercial",
+      businessModel:lang==="en"?"Rp 120K/month per doctor · Enterprise custom pricing":"Rp 120K/bulan per dokter · Harga Enterprise custom",
       headline:lang==="en"?"SOAP note in 32 seconds. SATUSEHAT automatic. BPJS-aligned.":"Catatan SOAP dalam 32 detik. SATUSEHAT otomatis. Selaras BPJS.",
-      story:lang==="en"?"Indonesian doctors spend 2–3 hours daily on documentation they hate — writing SOAP notes, manually uploading to SATUSEHAT, cross-referencing BPJS Fornas drug lists, and hoping ICD-10 codes don't get rejected. DoK records the consultation, writes the SOAP, maps ICD-10 with BPJS confidence scores, and auto-posts to SATUSEHAT — in 32 seconds, in Bahasa Indonesia, on data that never leaves Indonesia.\n\nDoK is the commercial engine that funds the entire SahAIbat ecosystem. Every subscription directly subsidises free Kader, Bidan, and Kasih tools for community health workers who cannot pay.":"Dokter Indonesia menghabiskan 2–3 jam sehari untuk dokumentasi — menulis catatan SOAP, mengunggah manual ke SATUSEHAT, merujuk silang daftar obat Fornas BPJS, dan berharap kode ICD-10 tidak ditolak. DoK merekam konsultasi, menulis SOAP, memetakan ICD-10 dengan skor kepercayaan BPJS, dan mengirim otomatis ke SATUSEHAT — dalam 32 detik, dalam Bahasa Indonesia, pada data yang tidak pernah meninggalkan Indonesia.",
+      story:lang==="en"?"Indonesian doctors spend 2–3 hours daily on documentation they hate — writing SOAP notes, manually uploading to SATUSEHAT, cross-referencing BPJS Fornas drug lists, and hoping ICD-10 codes don't get rejected. DoK records the consultation, writes the SOAP, maps ICD-10 with BPJS confidence scores, and auto-posts to SATUSEHAT — in 32 seconds, in Bahasa Indonesia, on data that never leaves Indonesia.\n\nDoK is the clinical node that structures the encounter and closes the loop to SATUSEHAT — the point where the record becomes formal.":"Dokter Indonesia menghabiskan 2–3 jam sehari untuk dokumentasi — menulis catatan SOAP, mengunggah manual ke SATUSEHAT, merujuk silang daftar obat Fornas BPJS, dan berharap kode ICD-10 tidak ditolak. DoK merekam konsultasi, menulis SOAP, memetakan ICD-10 dengan skor kepercayaan BPJS, dan mengirim otomatis ke SATUSEHAT — dalam 32 detik, dalam Bahasa Indonesia, pada data yang tidak pernah meninggalkan Indonesia.\n\nDoK adalah titik klinis yang menyusun konsultasi dan menutup jalur ke SATUSEHAT — titik di mana rekam menjadi resmi.",
       features:lang==="en"?["AI Voice Scribe → SOAP in Bahasa Indonesia · 32 seconds","BPJS Gatekeeper — 144 non-specialist conditions flagged","SATUSEHAT HL7 FHIR R4 auto-sync after doctor approval","MedGemma CDSS + Konsensus Medis (PERKENI, PAPDI, IDAI)","Data 100% in Jakarta — UU PDP · AES-256-GCM","Mission Partner pricing for NGOs in the SahAIbat network"]:["AI Voice Scribe → SOAP dalam Bahasa Indonesia · 32 detik","BPJS Gatekeeper — 144 kondisi non-spesialis ditandai","SATUSEHAT HL7 FHIR R4 sinkron otomatis setelah persetujuan dokter","MedGemma CDSS + Konsensus Medis (PERKENI, PAPDI, IDAI)","Data 100% di Jakarta — UU PDP · AES-256-GCM","Harga Mitra Misi untuk NGO dalam jaringan SahAIbat"],
       externalLink:"https://www.sahaibatdok.com",
+      linkLabel:lang==="en"?"See full DoK product site →":"Lihat situs produk DoK lengkap →",
       gif:"/images/demo/dok_demo.gif",
       photo:null,
     },
     {
-      id:4,icon:"🌟",label:"SahAIbat Sehat",sub:lang==="en"?"Urban Health · B2B":"Kesehatan Urban · B2B",accent:C.gold,status:"development",
-      businessModel:lang==="en"?"Free for consumers · B2B: corporate wellness, insurer risk data, medical partnerships":"Gratis untuk konsumen · B2B: wellness korporat, data risiko asuransi, kemitraan medis",
-      headline:lang==="en"?"The urban health companion — and the B2B enterprise gateway.":"Pendamping kesehatan urban — dan pintu gerbang enterprise B2B.",
-      story:lang==="en"?"Sehat extends SahAIbat's reach from rural eastern Indonesia into urban middle-class families nationwide — with features tuned for their context: AI symptom triage, pregnancy and milestone tracking, skin analysis, family health profiles, and vaccine scheduling. For consumers it is free.\n\nThe B2B layer is where Sehat generates revenue at scale. Corporations pay for employee health programmes. Insurers pay for population risk data. Medical device companies pay for skin analysis data partnerships. When an employee needs a doctor, Sehat generates a pre-consultation summary that arrives in the doctor's DoK session — a loop that no single-product competitor can offer.":"Sehat memperluas jangkauan SahAIbat dari Indonesia timur pedesaan ke keluarga kelas menengah urban di seluruh negeri — dengan fitur yang disesuaikan: triase gejala AI, pelacakan kehamilan dan tumbuh kembang, analisis kulit, profil kesehatan keluarga, dan penjadwalan vaksin.",
-      features:lang==="en"?["AI symptom triage + pregnancy tracking + skin analysis","Full family health profile — one account, every member","B2B: corporate wellness · insurer population risk data","Medical partnerships: skin analysis, device integration","Pre-consultation summary feeds directly into DoK for doctors","Urban data layer completes national coverage alongside Kader/Kasih"]:["Triase gejala AI + pelacakan kehamilan + analisis kulit","Profil kesehatan keluarga lengkap — satu akun, semua anggota","B2B: wellness korporat · data risiko populasi asuransi","Kemitraan medis: analisis kulit, integrasi perangkat","Ringkasan pra-konsultasi langsung masuk ke DoK untuk dokter","Lapisan data urban melengkapi cakupan nasional bersama Kader/Kasih"],
+      id:4,icon:"📖",label:"Konsensus",sub:lang==="en"?"Decision-Support Node":"Titik Dukungan Keputusan",accent:C.gold,status:"live",
+      businessModel:lang==="en"?"Built into the same clinical engine behind DoK":"Dibangun di atas mesin klinis yang sama dengan DoK",
+      headline:lang==="en"?"Clinical answers, the moment you need them.":"Jawaban klinis, saat Anda membutuhkannya.",
+      story:lang==="en"?"Konsensus is SahAIbat's guideline and formulary support layer — PERKENI, PAPDI, IDAI, BPJS Fornas — built into the same clinical engine behind DoK, so every doctor in the network works from the same standard of decision support at the bedside.\n\nIt keeps clinical decisions consistent across every doctor in the network, whether they're in a city clinic or a health post in NTT.":"Konsensus adalah lapisan dukungan panduan dan formularium SahAIbat — PERKENI, PAPDI, IDAI, Fornas BPJS — dibangun di atas mesin klinis yang sama dengan DoK, sehingga setiap dokter dalam jaringan bekerja dengan standar dukungan keputusan yang sama di sisi pasien.\n\nKonsensus menjaga keputusan klinis tetap konsisten di seluruh dokter dalam jaringan, baik di klinik kota maupun poskesdes di NTT.",
+      features:lang==="en"?["PERKENI, PAPDI, IDAI clinical guidelines","BPJS Fornas formulary search","Same clinical engine as DoK — one standard of care","Instant lookup at the point of consultation","Keeps decisions consistent across every doctor in the network"]:["Panduan klinis PERKENI, PAPDI, IDAI","Pencarian formularium Fornas BPJS","Mesin klinis yang sama dengan DoK — satu standar perawatan","Pencarian instan di titik konsultasi","Menjaga keputusan tetap konsisten di seluruh dokter dalam jaringan"],
+      photo:null,
+    },
+    {
+      id:5,icon:"🏥",label:"Hospital",sub:lang==="en"?"Claim-Integrity Node":"Titik Integritas Klaim",accent:"#3B82F6",status:"live",
+      businessModel:lang==="en"?"Advisory only — for hospital coding teams":"Bersifat advisory — untuk tim koder rumah sakit",
+      headline:lang==="en"?"Stop claim leakage before it reaches E-Klaim.":"Hentikan kebocoran klaim sebelum sampai ke E-Klaim.",
+      story:lang==="en"?"Documented conditions that never make it onto a diagnosis list quietly drop a claim's severity level — and the revenue with it. SahAIbat surfaces the gap while the chart is still open, so coders can act before submission.\n\nThis node protects the record's completeness through to reimbursement — advisory only, your coding team and E-Klaim's grouper always make the final call.":"Kondisi yang terdokumentasi tapi tak masuk daftar diagnosis diam-diam menurunkan tingkat keparahan klaim — dan pendapatan bersamanya. SahAIbat menandai celah itu selagi rekam medis masih terbuka.\n\nTitik ini menjaga kelengkapan rekam hingga ke penggantian biaya — bersifat advisory, keputusan akhir tetap di tangan tim koder dan grouper E-Klaim.",
+      features:lang==="en"?["Scans the chart against documented conditions","Flags gaps before submission, not after denial","Advisory only — never submits or alters a claim","iDRG stays on ICD-10-IM, E-Klaim owns grouping"]:["Memindai rekam medis terhadap kondisi terdokumentasi","Menandai celah sebelum pengajuan, bukan setelah ditolak","Bersifat advisory — tidak pernah mengirim atau mengubah klaim","iDRG tetap pada ICD-10-IM, E-Klaim memiliki grouping"],
+      externalLink:"/enterprise",
+      linkLabel:lang==="en"?"See the Hospital node →":"Lihat Titik Rumah Sakit →",
       photo:null,
     },
   ];
   const p=tabs[active];
 
   return(
-    <section id="products" style={{background:C.dark,padding:"100px 0",position:"relative",overflow:"hidden"}}>
+    <section id="network" style={{background:C.dark,padding:"100px 0",position:"relative",overflow:"hidden"}}>
       <div style={{position:"absolute",width:400,height:400,background:C.teal,top:"5%",right:"-5%",borderRadius:"50%",filter:"blur(100px)",opacity:0.08,pointerEvents:"none"}}/>
       <div className="section-max" style={{position:"relative",zIndex:1}}>
         <FadeIn>
           <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(2,195,154,0.1)",border:"1px solid rgba(2,195,154,0.3)",borderRadius:20,padding:"6px 16px",marginBottom:16}}>
-            <span style={{color:C.teal,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"PRODUCTS":"PRODUK"}</span>
+            <span style={{color:C.teal,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"THE NETWORK":"JARINGANNYA"}</span>
           </div>
           <h2 className="display-font" style={{fontSize:"clamp(30px,4vw,50px)",color:C.white,lineHeight:1.2,marginBottom:16,maxWidth:700}}>
-            {lang==="en"?"Five products. One platform. Every actor in Indonesian primary care.":"Lima produk. Satu platform. Setiap aktor dalam layanan primer Indonesia."}
+            {lang==="en"?"One record. Six nodes across the system.":"Satu rekam. Enam titik di seluruh sistem."}
           </h2>
           <p style={{color:"rgba(255,255,255,0.5)",fontSize:16,maxWidth:560,lineHeight:1.8,marginBottom:48}}>
-            {lang==="en"?"Each product is useful alone. Together they're the data infrastructure Indonesia's clinical AI needs to exist.":"Setiap produk berguna sendiri. Bersama mereka adalah infrastruktur data yang dibutuhkan AI klinis Indonesia untuk ada."}
+            {lang==="en"?"SahAIbat isn't six separate apps. It's six nodes feeding one connected record — from Posyandu to hospital discharge.":"SahAIbat bukan enam aplikasi terpisah. Ini enam titik yang mengalirkan data ke satu rekam terhubung — dari Posyandu hingga pulang rawat rumah sakit."}
           </p>
         </FadeIn>
 
@@ -540,11 +488,15 @@ function ProductsSection({lang}:{lang:"en"|"id"}){
                 <div style={{color:p.accent,fontWeight:700,fontSize:10,letterSpacing:1,marginBottom:6}}>{lang==="en"?"BUSINESS MODEL":"MODEL BISNIS"}</div>
                 <div style={{color:C.white,fontSize:14,fontWeight:600}}>{p.businessModel}</div>
               </div>
-              {/* DoK external link */}
-              {p.externalLink&&(
-                <a href={p.externalLink} target="_blank" rel="noopener noreferrer" style={{display:"inline-flex",alignItems:"center",gap:8,marginTop:20,background:"rgba(164,139,255,0.12)",border:"1px solid rgba(164,139,255,0.35)",borderRadius:12,padding:"12px 20px",textDecoration:"none",color:"#A48BFF",fontSize:14,fontWeight:700,transition:"all 0.2s"}}>
-                  🩻 {lang==="en"?"See full DoK product site →":"Lihat situs produk DoK lengkap →"}
-                </a>
+              {/* Node deep-link (external product site or internal page) */}
+              {(p as any).externalLink&&(
+                (p as any).externalLink.startsWith("http")
+                  ? <a href={(p as any).externalLink} target="_blank" rel="noopener noreferrer" style={{display:"inline-flex",alignItems:"center",gap:8,marginTop:20,background:`${p.accent}12`,border:`1px solid ${p.accent}35`,borderRadius:12,padding:"12px 20px",textDecoration:"none",color:p.accent,fontSize:14,fontWeight:700,transition:"all 0.2s"}}>
+                      {p.icon} {(p as any).linkLabel}
+                    </a>
+                  : <a href={(p as any).externalLink} style={{display:"inline-flex",alignItems:"center",gap:8,marginTop:20,background:`${p.accent}12`,border:`1px solid ${p.accent}35`,borderRadius:12,padding:"12px 20px",textDecoration:"none",color:p.accent,fontSize:14,fontWeight:700,transition:"all 0.2s"}}>
+                      {p.icon} {(p as any).linkLabel}
+                    </a>
               )}
             </div>
             {/* Right: GIF demo / animated chat / photo / features */}
@@ -601,12 +553,12 @@ function DoKCallout({lang}:{lang:"en"|"id"}){
           <div className="two-col" style={{alignItems:"center",gap:48}}>
             <div>
               <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(164,139,255,0.12)",border:"1px solid rgba(164,139,255,0.3)",borderRadius:20,padding:"6px 16px",marginBottom:20}}>
-                <span style={{color:"#A48BFF",fontSize:12,fontWeight:600,letterSpacing:1}}>🩻 {lang==="en"?"THE COMMERCIAL ENGINE":"MESIN KOMERSIAL"}</span>
+                <span style={{color:"#A48BFF",fontSize:12,fontWeight:600,letterSpacing:1}}>🩻 {lang==="en"?"THE CLINICAL NODE":"TITIK KLINIS"}</span>
               </div>
               <h2 className="display-font" style={{color:C.white,fontSize:"clamp(26px,3vw,40px)",lineHeight:1.2,marginBottom:20}}>
                 {lang==="en"
-                  ?<>Every DoK subscription keeps Kader, Bidan & Kasih <span style={{color:"#A48BFF"}}>free forever.</span></>
-                  :<>Setiap langganan DoK menjaga Kader, Bidan & Kasih <span style={{color:"#A48BFF"}}>gratis selamanya.</span></>}
+                  ?<>Where the record becomes <span style={{color:"#A48BFF"}}>formal — and reaches SATUSEHAT.</span></>
+                  :<>Di mana rekam menjadi <span style={{color:"#A48BFF"}}>resmi — dan mencapai SATUSEHAT.</span></>}
               </h2>
               <p style={{color:"rgba(255,255,255,0.55)",fontSize:15,lineHeight:1.8,marginBottom:28}}>
                 {lang==="en"?"DoK is our dedicated commercial product — an AI clinical scribe and EMR built specifically for Indonesian doctors. Rp 120K/month. SATUSEHAT auto-sync. BPJS-aligned. Data 100% in Jakarta. Mission Partner pricing available for NGOs already in the SahAIbat network.":"DoK adalah produk komersial khusus kami — AI scribe klinis dan EMR yang dibangun khusus untuk dokter Indonesia. Rp 120K/bulan. SATUSEHAT otomatis. Selaras BPJS. Data 100% di Jakarta. Harga Mitra Misi tersedia untuk NGO yang sudah ada dalam jaringan SahAIbat."}
@@ -712,84 +664,6 @@ function DashboardSection({lang}:{lang:"en"|"id"}){
   );
 }
 
-// ── DATA MOAT + LLM ───────────────────────────────────────────────────────────
-function DataMoatSection({lang}:{lang:"en"|"id"}){
-  const layers=[
-    {icon:"👩🏽‍⚕️",name:"Kader App",data:lang==="en"?"Real anthropometric trajectories. WHO growth patterns. Seasonal disease correlations in NTT — the highest-stunting province in Indonesia. Data that does not exist in any global training corpus.":"Trajektori antropometrik nyata. Pola pertumbuhan WHO. Korelasi penyakit musiman di NTT — provinsi stunting tertinggi di Indonesia.",color:C.teal},
-    {icon:"❤️‍🩹",name:"Kasih",data:lang==="en"?"Patient-reported health behaviours from Indonesian families. How symptoms are described in Bahasa by a mother in NTT vs. a professional in Jakarta. The most linguistically authentic Indonesian health communication data in existence.":"Perilaku kesehatan yang dilaporkan pasien dari keluarga Indonesia. Cara gejala dijelaskan dalam Bahasa oleh ibu di NTT vs. profesional di Jakarta.",color:C.pink},
-    {icon:"🩺",name:"SahAIbat Bidan",data:lang==="en"?"ANC quality notes, high-risk pregnancy decisions, postpartum monitoring data. Midwife clinical reasoning in Indonesian rural context — unavailable in any existing LLM training set.":"Catatan kualitas ANC, keputusan kehamilan berisiko tinggi, data pemantauan nifas. Penalaran klinis bidan dalam konteks pedesaan Indonesia.",color:C.purple},
-    {icon:"🩻",name:"SahAIbat DoK",data:lang==="en"?"Indonesian physician clinical reasoning in Bahasa. BPJS-constrained prescribing decisions. ICD-10 coding patterns for Indonesian disease presentation. How Indonesian doctors actually think — not how American doctors think.":"Penalaran klinis dokter Indonesia dalam Bahasa. Keputusan peresepan terbatas BPJS. Pola pengkodean ICD-10 untuk presentasi penyakit Indonesia.",color:"#A48BFF"},
-  ];
-  return(
-    <section id="moat" style={{background:C.dark,padding:"100px 0",position:"relative",overflow:"hidden"}}>
-      <div style={{position:"absolute",width:600,height:600,background:"#7C5CFC",bottom:"-20%",right:"-10%",borderRadius:"50%",filter:"blur(120px)",opacity:0.07,pointerEvents:"none"}}/>
-      <div className="section-max" style={{position:"relative",zIndex:1}}>
-        <FadeIn>
-          <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(124,92,252,0.12)",border:"1px solid rgba(124,92,252,0.35)",borderRadius:20,padding:"6px 16px",marginBottom:16}}>
-            <span style={{color:"#A48BFF",fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"THE DATA MOAT & LLM THESIS":"KEUNGGULAN DATA & TESIS LLM"}</span>
-          </div>
-          <h2 className="display-font" style={{fontSize:"clamp(30px,4vw,50px)",color:C.white,lineHeight:1.2,marginBottom:20,maxWidth:760}}>
-            {lang==="en"
-              ?<>We are not wrapping ChatGPT.<br/><span style={{color:"#A48BFF"}}>We are building Indonesia's clinical LLM.</span></>
-              :<>Kami tidak membungkus ChatGPT.<br/><span style={{color:"#A48BFF"}}>Kami membangun LLM klinis Indonesia.</span></>}
-          </h2>
-          <p style={{color:"rgba(255,255,255,0.5)",fontSize:16,maxWidth:680,lineHeight:1.8,marginBottom:48}}>
-            {lang==="en"?"GPT-4 was trained on English medical literature. It doesn't know what a Kader is. It doesn't know BPJS Fornas constraints. It can't reason about stunting in Flores. SahAIbat Clinical LLM will — because it's trained on data that can't be purchased, scraped, or replicated.":"GPT-4 dilatih dengan literatur medis bahasa Inggris. Ia tidak tahu apa itu Kader. Tidak mengenal batasan Fornas BPJS. Tidak bisa menalar stunting di Flores. SahAIbat Clinical LLM akan bisa — karena dilatih dengan data yang tidak dapat dibeli, di-scrape, atau direplikasi."}
-          </p>
-        </FadeIn>
-
-        {/* Data layers */}
-        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(240px,1fr))",gap:20,marginBottom:48}}>
-          {layers.map(({icon,name,data,color},i)=>(<FadeIn key={name} delay={i*80}>
-            <div style={{background:"rgba(255,255,255,0.03)",border:`1px solid ${color}25`,borderRadius:16,padding:24}}>
-              <div style={{fontSize:28,marginBottom:12}}>{icon}</div>
-              <div style={{color,fontWeight:700,fontSize:14,marginBottom:10}}>{name}</div>
-              <p style={{color:"rgba(255,255,255,0.5)",fontSize:13,lineHeight:1.7}}>{data}</p>
-            </div>
-          </FadeIn>))}
-        </div>
-
-        {/* LLM timeline */}
-        <FadeIn delay={150}>
-          <div style={{background:`linear-gradient(135deg,rgba(124,92,252,0.12),rgba(164,139,255,0.06))`,border:"1px solid rgba(164,139,255,0.25)",borderRadius:24,padding:"40px 36px",marginBottom:32}}>
-            <div style={{color:"#A48BFF",fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:20}}>{lang==="en"?"SAHAIBAT CLINICAL LLM — ROADMAP":"SAHAIBAT CLINICAL LLM — PETA JALAN"}</div>
-            <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))",gap:20}}>
-              {[
-                {phase:lang==="en"?"Now":"Sekarang",title:lang==="en"?"Consent layer active":"Lapisan persetujuan aktif",desc:lang==="en"?"consent_for_training flag on every Kader, Kasih & DoK record. UU PDP compliant. Every record collected is a training asset.":"Tanda consent_for_training di setiap catatan Kader, Kasih & DoK. Patuh UU PDP.",color:C.teal,done:true},
-                {phase:"12 mo",title:lang==="en"?"Fine-tune Llama 3.1 8B":"Fine-tune Llama 3.1 8B",desc:lang==="en"?"First Indonesian clinical fine-tune via NVIDIA NIM infrastructure. Internal deployment in DoK. Replaces Vertex AI as primary model.":"Fine-tune klinis Indonesia pertama via infrastruktur NVIDIA NIM. Deployment internal di DoK.",color:"#A48BFF",done:false},
-                {phase:"24 mo",title:lang==="en"?"SahAIbat Clinical LLM":"SahAIbat Clinical LLM",desc:lang==="en"?"API licensing to Indonesian healthtech companies, hospitals, and Kemenkes. Valuation re-rating: SaaS (3–5× revenue) → AI data infrastructure (10–20× revenue).":"Lisensi API ke perusahaan healthtech Indonesia, rumah sakit, dan Kemenkes. Re-rating valuasi: SaaS (3–5× pendapatan) → infrastruktur data AI (10–20×).",color:C.gold,done:false},
-              ].map(({phase,title,desc,color,done})=>(<div key={phase} style={{borderLeft:`3px solid ${color}`,paddingLeft:16}}>
-                <div style={{display:"flex",gap:8,alignItems:"center",marginBottom:8}}>
-                  <span style={{background:`${color}15`,color,fontSize:11,fontWeight:700,padding:"2px 10px",borderRadius:20}}>{phase}</span>
-                  {done&&<span style={{color:C.teal,fontSize:11}}>✓ {lang==="en"?"Active":"Aktif"}</span>}
-                </div>
-                <div style={{color:C.white,fontWeight:700,fontSize:14,marginBottom:8}}>{title}</div>
-                <p style={{color:"rgba(255,255,255,0.45)",fontSize:12,lineHeight:1.6}}>{desc}</p>
-              </div>))}
-            </div>
-          </div>
-        </FadeIn>
-
-        {/* NVIDIA band */}
-        <FadeIn delay={200}>
-          <div style={{background:"rgba(118,185,0,0.06)",border:"1px solid rgba(118,185,0,0.2)",borderRadius:16,padding:"24px 28px",display:"flex",gap:24,alignItems:"center",flexWrap:"wrap"}}>
-            <img src="/nvidia-inception.png" alt="NVIDIA Inception Program" style={{height:56,width:"auto",objectFit:"contain",flexShrink:0,borderRadius:6}}/>
-            <div style={{flex:1,minWidth:240}}>
-              <div style={{color:"rgba(118,185,0,0.9)",fontWeight:700,fontSize:13,marginBottom:6}}>NVIDIA Inception Program Member</div>
-              <p style={{color:"rgba(255,255,255,0.45)",fontSize:13,lineHeight:1.6}}>
-                {lang==="en"?"Access to NVIDIA NIM (Llama 3.1 8B), Triton Inference Server, GPU credits, and MedGemma for clinical AI. The same infrastructure tier used by enterprise health AI companies — available to SahAIbat as an Inception member.":"Akses ke NVIDIA NIM (Llama 3.1 8B), Triton Inference Server, kredit GPU, dan MedGemma untuk AI klinis."}
-              </p>
-            </div>
-            <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
-              {["NIM","Llama 3.1 8B","MedGemma","Triton","GPU Credits"].map(t=>(<span key={t} style={{background:"rgba(118,185,0,0.1)",color:"rgba(118,185,0,0.85)",fontSize:11,fontWeight:700,padding:"4px 10px",borderRadius:20,border:"1px solid rgba(118,185,0,0.2)"}}>{t}</span>))}
-            </div>
-          </div>
-        </FadeIn>
-      </div>
-    </section>
-  );
-}
-
 // ── TRACTION ──────────────────────────────────────────────────────────────────
 function TractionSection({lang}:{lang:"en"|"id"}){
   const metrics=[
@@ -811,13 +685,13 @@ function TractionSection({lang}:{lang:"en"|"id"}){
       <div className="section-max">
         <FadeIn>
           <div style={{display:"inline-flex",alignItems:"center",gap:8,background:`${C.tealDk}20`,border:`1px solid ${C.tealDk}40`,borderRadius:20,padding:"6px 16px",marginBottom:16}}>
-            <span style={{color:C.tealDk,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"TRACTION":"TRAKSI"}</span>
+            <span style={{color:C.tealDk,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"IN THE FIELD NOW":"DI LAPANGAN SEKARANG"}</span>
           </div>
           <h2 className="display-font" style={{fontSize:"clamp(30px,4vw,48px)",color:C.dark,lineHeight:1.2,marginBottom:16,maxWidth:600}}>
             {lang==="en"?"Live in the field. Real data. Today.":"Aktif di lapangan. Data nyata. Hari ini."}
           </h2>
           <p style={{color:C.muted,fontSize:16,maxWidth:540,lineHeight:1.8,marginBottom:48}}>
-            {lang==="en"?"Most seed-stage health tech companies show mockups and projected impact. We show production dashboards with real names, real children, and real clinical decisions made in North Central Timor.":"Sebagian besar perusahaan health tech tahap seed menunjukkan mockup dan dampak proyeksi. Kami menampilkan dasbor produksi dengan nama nyata, anak-anak nyata, dan keputusan klinis nyata yang dibuat di Timor Tengah Utara."}
+            {lang==="en"?"These aren't mockups or projected impact. These are production dashboards with real names, real children, and real clinical decisions made in North Central Timor.":"Ini bukan mockup atau dampak proyeksi. Ini adalah dasbor produksi dengan nama nyata, anak-anak nyata, dan keputusan klinis nyata yang dibuat di Timor Tengah Utara."}
           </p>
         </FadeIn>
 
@@ -848,103 +722,6 @@ function TractionSection({lang}:{lang:"en"|"id"}){
   );
 }
 
-// ── REVENUE MODEL ─────────────────────────────────────────────────────────────
-function RevenueSection({lang}:{lang:"en"|"id"}){
-  const streams=[
-    {
-      n:"01",icon:"🩻",title:"SahAIbat DoK",color:"#A48BFF",
-      model:lang==="en"?"B2B SaaS — doctors & clinics":"B2B SaaS — dokter & klinik",
-      price:lang==="en"?"Rp 120K/month per doctor · Clinic enterprise custom":"Rp 120K/bulan per dokter · Klinik enterprise custom",
-      why:lang==="en"?"SATUSEHAT mandate creates regulatory urgency. Organic acquisition via IDI networks, NGO referrals, BPJS content SEO. CAC ≈ Rp 0 in bootstrap phase.":"Mandat SATUSEHAT menciptakan urgensi regulasi. Akuisisi organik via jaringan IDI, rujukan NGO, SEO konten BPJS. CAC ≈ Rp 0 di fase bootstrap.",
-      ltv:lang==="en"?"Rp 1.44M / year per doctor":"Rp 1,44 juta / tahun per dokter",
-    },
-    {
-      n:"02",icon:"🌟",title:"SahAIbat Sehat B2B",color:C.gold,
-      model:lang==="en"?"Corporate wellness · Insurer risk data · Medical partnerships":"Wellness korporat · Data risiko asuransi · Kemitraan medis",
-      price:lang==="en"?"Per-employee annual contracts · Population risk data licensing · Skin analysis API":"Kontrak tahunan per karyawan · Lisensi data risiko populasi · API analisis kulit",
-      why:lang==="en"?"Consumer app free — enterprise pays for population health insights. When an employee needs a doctor, their Sehat summary auto-loads in DoK. No competitor runs this loop.":"Aplikasi konsumen gratis — enterprise membayar untuk wawasan kesehatan populasi. Ketika karyawan butuh dokter, ringkasan Sehat dimuat otomatis di DoK.",
-      ltv:lang==="en"?"High-margin enterprise contracts":"Kontrak enterprise margin tinggi",
-    },
-    {
-      n:"03",icon:"📊",title:lang==="en"?"Dashboard · NGO & Government":"Dashboard · NGO & Pemerintah",color:C.blue,
-      model:lang==="en"?"Programme analytics as a service":"Analitik program sebagai layanan",
-      price:lang==="en"?"Per-district or per-programme tiered pricing · Kemenkes data licensing pathway":"Harga bertingkat per kabupaten atau per program · Jalur lisensi data Kemenkes",
-      why:lang==="en"?"NGOs and Dinas Kesehatan currently produce impact reports manually on Excel. SahAIbat gives them live dashboards, Kader scorecards, and epidemic surveillance — real-time, exportable, SKDR-compatible.":"NGO dan Dinas Kesehatan saat ini membuat laporan dampak manual di Excel. SahAIbat memberi mereka dasbor langsung, kartu skor Kader, dan surveilans epidemi.",
-      ltv:lang==="en"?"Recurring programme contracts":"Kontrak program berulang",
-    },
-    {
-      n:"04",icon:"🧠",title:lang==="en"?"Clinical LLM Licensing":"Lisensi LLM Klinis",color:C.teal,
-      model:lang==="en"?"API licensing — 18–36 months":"Lisensi API — 18–36 bulan",
-      price:lang==="en"?"Per-API-call pricing to hospitals, healthtech, Kemenkes":"Harga per-panggilan-API ke rumah sakit, healthtech, Kemenkes",
-      why:lang==="en"?"This stream re-rates the valuation from SaaS multiples (3–5×) to AI data infrastructure multiples (10–20×). The model can't be replicated because the training corpus can't be replicated.":"Aliran ini menilai ulang valuasi dari kelipatan SaaS (3–5×) ke kelipatan infrastruktur data AI (10–20×). Model tidak dapat direplikasi karena corpus pelatihan tidak dapat direplikasi.",
-      ltv:lang==="en"?"Valuation re-rating event":"Peristiwa penilaian ulang valuasi",
-    },
-  ];
-  return(
-    <section style={{background:C.dark,padding:"100px 0",position:"relative",overflow:"hidden"}}>
-      <div className="section-max" style={{position:"relative",zIndex:1}}>
-        <FadeIn>
-          <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(2,195,154,0.1)",border:"1px solid rgba(2,195,154,0.3)",borderRadius:20,padding:"6px 16px",marginBottom:16}}>
-            <span style={{color:C.teal,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"REVENUE MODEL":"MODEL PENDAPATAN"}</span>
-          </div>
-          <h2 className="display-font" style={{fontSize:"clamp(30px,4vw,48px)",color:C.white,lineHeight:1.2,marginBottom:16,maxWidth:680}}>
-            {lang==="en"?"Four revenue streams from one data infrastructure.":"Empat aliran pendapatan dari satu infrastruktur data."}
-          </h2>
-          <p style={{color:"rgba(255,255,255,0.5)",fontSize:16,maxWidth:580,lineHeight:1.8,marginBottom:56}}>
-            {lang==="en"?"The free products earn trust and build data. The commercial products fund the infrastructure. The LLM re-rates the valuation. Each layer makes the next one stronger.":"Produk gratis meraih kepercayaan dan membangun data. Produk komersial mendanai infrastruktur. LLM menilai ulang valuasi. Setiap lapisan membuat lapisan berikutnya lebih kuat."}
-          </p>
-        </FadeIn>
-        <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(260px,1fr))",gap:20,marginBottom:48}}>
-          {streams.map(({n,icon,title,color,model,price,why,ltv},i)=>(<FadeIn key={n} delay={i*80}>
-            <div style={{background:"rgba(255,255,255,0.03)",border:`1px solid ${color}25`,borderRadius:20,padding:28,height:"100%",position:"relative",overflow:"hidden"}}>
-              <div style={{position:"absolute",top:0,left:0,right:0,height:3,background:`linear-gradient(90deg,${color},transparent)`}}/>
-              <div style={{display:"flex",gap:10,alignItems:"center",marginBottom:16}}>
-                <span style={{fontSize:28}}>{icon}</span>
-                <div><div style={{color,fontWeight:800,fontSize:18,lineHeight:1}}>{n}</div></div>
-              </div>
-              <div style={{color:C.white,fontWeight:700,fontSize:17,marginBottom:6}}>{title}</div>
-              <div style={{color,fontWeight:600,fontSize:12,marginBottom:16}}>{model}</div>
-              <div style={{color:"rgba(255,255,255,0.5)",fontSize:13,lineHeight:1.6,marginBottom:16}}>{why}</div>
-              <div style={{background:`${color}08`,border:`1px solid ${color}20`,borderRadius:10,padding:"10px 14px"}}>
-                <div style={{color,fontWeight:700,fontSize:10,letterSpacing:1,marginBottom:4}}>{lang==="en"?"PRICING":"HARGA"}</div>
-                <div style={{color:"rgba(255,255,255,0.7)",fontSize:12}}>{price}</div>
-              </div>
-              <div style={{marginTop:12,display:"flex",alignItems:"center",gap:6}}>
-                <span style={{color:C.teal,fontSize:11}}>📈</span>
-                <span style={{color:"rgba(255,255,255,0.35)",fontSize:11}}>{ltv}</span>
-              </div>
-            </div>
-          </FadeIn>))}
-        </div>
-
-        {/* CAC story */}
-        <FadeIn delay={200}>
-          <div style={{background:`linear-gradient(135deg,${C.tealXdk},${C.charcoal})`,borderRadius:20,padding:"36px 40px",border:"1px solid rgba(2,195,154,0.2)"}}>
-            <div style={{color:C.teal,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:16}}>{lang==="en"?"THE CAC STORY — WHY THIS IS STRUCTURALLY DIFFERENT":"KISAH CAC — MENGAPA INI SECARA STRUKTURAL BERBEDA"}</div>
-            <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(200px,1fr))",gap:20,marginBottom:20}}>
-              {[
-                {channel:lang==="en"?"Regulatory tailwind (SATUSEHAT)":"Tailwind regulasi (SATUSEHAT)",cac:"≈ Rp 0",ltv:"Rp 1.44M/yr"},
-                {channel:lang==="en"?"NGO network referrals":"Rujukan jaringan NGO",cac:"≈ Rp 0",ltv:"Rp 1.44M/yr"},
-                {channel:lang==="en"?"Referral program (trial extension)":"Program rujukan (perpanjangan trial)",cac:"≈ Rp 26K",ltv:"Rp 1.44M/yr"},
-                {channel:lang==="en"?"Content / SEO":"Konten / SEO",cac:"≈ Rp 15K",ltv:"Rp 1.44M/yr"},
-              ].map(({channel,cac,ltv})=>(<div key={channel} style={{background:"rgba(255,255,255,0.06)",borderRadius:12,padding:"16px"}}>
-                <div style={{color:"rgba(255,255,255,0.5)",fontSize:11,marginBottom:8}}>{channel}</div>
-                <div style={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-                  <div><div style={{color:"#FF6B6B",fontWeight:700,fontSize:14}}>CAC {cac}</div></div>
-                  <div style={{textAlign:"right"}}><div style={{color:C.teal,fontWeight:700,fontSize:14}}>{ltv}</div></div>
-                </div>
-              </div>))}
-            </div>
-            <p style={{color:"rgba(255,255,255,0.6)",fontSize:14,lineHeight:1.7,fontStyle:"italic"}}>
-              {lang==="en"?"\"Compare this to field-sales EMR competitors where a single sales rep costs Rp 5–8M/month and closes 10–15 accounts. Implied CAC: Rp 400–800K minimum. Our model is structurally 10–30× more efficient — because we acquire doctors through regulatory tailwinds and peer trust, not sales pressure.\"":"\"Bandingkan dengan kompetitor EMR field-sales di mana satu sales rep biaya Rp 5–8 juta/bulan dan menutup 10–15 akun. CAC tersirat: minimal Rp 400–800 ribu. Model kami secara struktural 10–30× lebih efisien.\""}
-            </p>
-          </div>
-        </FadeIn>
-      </div>
-    </section>
-  );
-}
-
 // ── ILP / GOVERNMENT SIGNAL ───────────────────────────────────────────────────
 function ILPSection({lang}:{lang:"en"|"id"}){
   return(
@@ -956,13 +733,13 @@ function ILPSection({lang}:{lang:"en"|"id"}){
             <div style={{flex:1,minWidth:280}}>
               <div style={{color:C.teal,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:12}}>{lang==="en"?"BUILT ON INDONESIA'S NATIONAL FRAMEWORK · ILP-ALIGNED":"DIBANGUN DI ATAS KERANGKA NASIONAL INDONESIA · SELARAS ILP"}</div>
               <h3 style={{color:C.white,fontSize:"clamp(20px,2.5vw,30px)",fontWeight:700,marginBottom:16,lineHeight:1.3}}>
-                {lang==="en"?"The Kader App is permanently free for Posyandu. Always.":"Aplikasi Kader gratis selamanya untuk Posyandu. Selalu."}
+                {lang==="en"?"Kader is built into every Posyandu, from day one.":"Kader terpasang di setiap Posyandu, sejak hari pertama."}
               </h3>
               <p style={{color:"rgba(255,255,255,0.55)",fontSize:15,lineHeight:1.8,marginBottom:20}}>
-                {lang==="en"?"Indonesia's ILP mandate asks 1.4 million Kaders to deliver life-cycle health screening and report it digitally — on tools they don't have. SahAIbat is built to be that tool. ILP-aligned modules. SKDR-compatible surveillance. WHO growth standards. Zero additional hardware.\n\nThe Kader App will always be free because our commercial products fund it — and because the communities carrying the highest health burden should never have to wait for the next grant cycle.":"Mandat ILP Indonesia meminta 1,4 juta Kader untuk melakukan skrining kesehatan siklus hidup dan melaporkannya secara digital — dengan alat yang tidak mereka miliki. SahAIbat dibangun untuk menjadi alat itu. Modul selaras ILP. Surveilans kompatibel SKDR. Standar pertumbuhan WHO. Nol perangkat keras tambahan."}
+                {lang==="en"?"Indonesia's ILP mandate asks 1.4 million Kaders to deliver life-cycle health screening and report it digitally — on tools they don't have. SahAIbat is built to be that tool. ILP-aligned modules. SKDR-compatible surveillance. WHO growth standards. Zero additional hardware.\n\nEvery visit a Kader records here becomes part of one longitudinal record — not a form that ends in a drawer.":"Mandat ILP Indonesia meminta 1,4 juta Kader untuk melakukan skrining kesehatan siklus hidup dan melaporkannya secara digital — dengan alat yang tidak mereka miliki. SahAIbat dibangun untuk menjadi alat itu. Modul selaras ILP. Surveilans kompatibel SKDR. Standar pertumbuhan WHO. Nol perangkat keras tambahan.\n\nSetiap kunjungan yang dicatat Kader di sini menjadi bagian dari satu rekam longitudinal — bukan formulir yang berakhir di laci."}
               </p>
               <div style={{display:"flex",gap:10,flexWrap:"wrap"}}>
-                {["ILP Life-cycle Modules","SKDR Surveillance","WHO Growth 2006","Permenkes 2/2020","Free for Posyandu · Always"].map(t=>(<span key={t} style={{background:"rgba(2,195,154,0.1)",border:"1px solid rgba(2,195,154,0.25)",color:C.teal,fontSize:11,fontWeight:600,padding:"5px 12px",borderRadius:20}}>{t}</span>))}
+                {["ILP Life-cycle Modules","SKDR Surveillance","WHO Growth 2006","Permenkes 2/2020"].map(t=>(<span key={t} style={{background:"rgba(2,195,154,0.1)",border:"1px solid rgba(2,195,154,0.25)",color:C.teal,fontSize:11,fontWeight:600,padding:"5px 12px",borderRadius:20}}>{t}</span>))}
               </div>
             </div>
           </div>
@@ -1068,10 +845,10 @@ function FieldPartnersSection({lang}:{lang:"en"|"id"}){
 // ── TEAM ───────────────────────────────────────────────────────────────────────
 function TeamSection({lang}:{lang:"en"|"id"}){
   const members=[
-    {name:"Sanjib Maity",flag:"🇨🇦",role:lang==="en"?"Founder, CEO & CTO":"Pendiri, CEO & CTO",loc:lang==="en"?"Canada":"Kanada",photo:"/images/sanjib.jpeg",color:C.teal,dark:true,passion:lang==="en"?"15+ years enterprise IT and application development. Built all five SahAIbat products while employed full-time — as proof that this is a technical moat, not a funding dependency. Drove the company from concept to live field deployment in NTT in under 18 months.":"15+ tahun IT enterprise dan pengembangan aplikasi. Membangun semua lima produk SahAIbat sambil bekerja penuh waktu — sebagai bukti bahwa ini adalah keunggulan teknis, bukan ketergantungan pendanaan.",tags:["15+ Yrs Enterprise IT","Solo Technical Founder","NTT Field Deployment","NVIDIA Inception"]},
-    {name:"Dr. Ratih Rakhmawati, M.Biomed",flag:"🇮🇩",role:lang==="en"?"Clinical Validation Lead":"Pemimpin Validasi Klinis",loc:"Indonesia",photo:"/images/Rathi.jpg",color:C.pink,dark:false,passion:lang==="en"?"20+ years strengthening health systems across Indonesia — leading digital training programmes validated against Kemenkes and WHO standards. The reason every clinical module can be trusted. Her network is the clinical credibility that no foreign tech company can parachute in.":"20+ tahun memperkuat sistem kesehatan di seluruh Indonesia. Alasan setiap modul klinis dapat dipercaya.",tags:["20+ Yrs MCH","Kemenkes · WHO","Digital Health","M.Biomed"]},
+    {name:"Sanjib Maity",flag:"🇨🇦",role:lang==="en"?"Founder, CEO & CTO":"Pendiri, CEO & CTO",loc:lang==="en"?"Canada":"Kanada",photo:"/images/sanjib.jpeg",color:C.teal,dark:true,passion:lang==="en"?"15+ years in enterprise IT and application development. Designed and built the full SahAIbat platform — architecture, clinical engine, and every node — and led the company from concept to live field deployment in NTT in under 18 months.":"15+ tahun di bidang IT enterprise dan pengembangan aplikasi. Merancang dan membangun seluruh platform SahAIbat — arsitektur, mesin klinis, dan setiap titik — serta memimpin perusahaan dari konsep hingga deployment lapangan aktif di NTT dalam waktu kurang dari 18 bulan.",tags:["15+ Yrs Enterprise IT","Technical Founder","NTT Field Deployment","NVIDIA Inception"]},
+    {name:"Dr. Ratih Rakhmawati, M.Biomed",flag:"🇮🇩",role:lang==="en"?"Clinical Validation Lead":"Pemimpin Validasi Klinis",loc:"Indonesia",photo:"/images/Rathi.jpg",color:C.pink,dark:false,passion:lang==="en"?"20+ years strengthening health systems across Indonesia — leading digital training programmes validated against Kemenkes and WHO standards. Leads clinical validation for every module before it reaches the field.":"20+ tahun memperkuat sistem kesehatan di seluruh Indonesia — memimpin program pelatihan digital yang tervalidasi sesuai standar Kemenkes dan WHO. Memimpin validasi klinis untuk setiap modul sebelum digunakan di lapangan.",tags:["20+ Yrs MCH","Kemenkes · WHO","Digital Health","M.Biomed"]},
     {name:"Stefanus Bere",flag:"🇮🇩",role:lang==="en"?"Programme Manager, Rural Deployment":"Manajer Program, Penerapan Pedesaan",loc:"East Nusa Tenggara",photo:"/images/Stefan.png",color:C.gold,dark:false,passion:lang==="en"?"Nearly 20 years building health systems in NTT and Timor-Leste with USAID, ADB, MoH, and the UN. The field fluency that no dataset replaces. His relationships in NTT are the reason Pijar Timur and PAPHA trusted us enough to put SahAIbat in Kaders' hands.":"Hampir 20 tahun membangun sistem kesehatan di NTT dan Timor-Leste bersama USAID, ADB, Kemenkes, dan PBB.",tags:["USAID · ADB · UN","NTT & Timor-Leste","Health Systems","UQ Alumni"]},
-    {name:"Surabhi Das",flag:"🇨🇦",role:lang==="en"?"Healthcare Research & Strategy":"Penelitian Kesehatan & Strategi",loc:lang==="en"?"Canada":"Kanada",photo:null,color:C.purple,dark:false,passion:lang==="en"?"B.PT, MBA, alumni of Deloitte and Egon Zehnder. Clinical grounding plus strategic rigour — the rare combination that makes our evidence base credible to international funders and government health offices.":"B.PT, MBA, alumni Deloitte dan Egon Zehnder. Landasan klinis plus ketelitian strategis.",tags:["B.PT · MBA","ex-Deloitte","ex-Egon Zehnder","Health Research"]},
+    {name:"Surabhi Das",flag:"🇨🇦",role:lang==="en"?"Healthcare Research & Strategy":"Penelitian Kesehatan & Strategi",loc:lang==="en"?"Canada":"Kanada",photo:null,color:C.purple,dark:false,passion:lang==="en"?"B.PT, MBA, alumni of Deloitte and Egon Zehnder. Combines clinical grounding with strategic rigour across programme research and evidence design.":"B.PT, MBA, alumni Deloitte dan Egon Zehnder. Memadukan landasan klinis dengan ketelitian strategis dalam riset program dan desain bukti.",tags:["B.PT · MBA","ex-Deloitte","ex-Egon Zehnder","Health Research"]},
     {name:"Risti Riana",flag:"🇮🇩",role:lang==="en"?"Content & Community":"Konten & Komunitas",loc:"West Java, Indonesia",photo:null,color:C.teal,dark:false,passion:lang==="en"?"Builds communities that move people — wellness spaces, KOL partnerships, health education programmes. The reason people find SahAIbat, trust it, and stay.":"Membangun komunitas yang menggerakkan orang. Alasan orang menemukan SahAIbat, mempercayainya, dan tetap bersamanya.",tags:["Content Creation","Community Building","KOL Partnerships","Growth"]},
     {name:"Saurav Das",flag:"🇮🇳",role:lang==="en"?"UI Engineer":"UI Engineer",loc:"India",photo:null,color:C.blue,dark:false,passion:lang==="en"?"5+ years building frontend interfaces designed for 2G connections and entry-level phones. The constraint that most UI engineers never think about is SahAIbat's core design brief.":"5+ tahun membangun antarmuka frontend untuk koneksi 2G dan ponsel kelas bawah.",tags:["5+ Yrs Frontend","Low-end Optimisation","React","Accessibility"]},
   ];
@@ -1113,144 +890,6 @@ function TeamSection({lang}:{lang:"en"|"id"}){
   );
 }
 
-// ── INVESTOR SECTION ──────────────────────────────────────────────────────────
-function InvestorSection({lang}:{lang:"en"|"id"}){
-  const advantages=[
-    {
-      icon:"🗺️",
-      title:lang==="en"?"A window that won't stay open":"Jendela yang tidak akan lama terbuka",
-      color:C.teal,
-      body:lang==="en"
-        ?"Indonesia's Ministry of Health has issued two mandates in parallel: ILP requires 1.4 million Kaders to digitally report structured health data from every Posyandu. SATUSEHAT requires every clinic to push records into the national health exchange. Both mandates are unfunded. No platform at scale serves either of them.\n\nThe window for a founder to establish infrastructure-level position is open right now. It will not be open in three years, when a well-funded incumbent or a government-built system closes it."
-        :"Kementerian Kesehatan Indonesia telah mengeluarkan dua mandat secara bersamaan: ILP mengharuskan 1,4 juta Kader melaporkan data kesehatan terstruktur secara digital dari setiap Posyandu. SATUSEHAT mengharuskan setiap klinik mengirim rekam medis ke pertukaran kesehatan nasional. Kedua mandat tidak didanai. Tidak ada platform di skala yang melayani keduanya.\n\nJendela bagi pendiri untuk membangun posisi tingkat infrastruktur terbuka sekarang. Tidak akan terbuka dalam tiga tahun.",
-    },
-    {
-      icon:"🔒",
-      title:lang==="en"?"What can't be replicated":"Yang tidak dapat direplikasi",
-      color:C.purple,
-      body:lang==="en"
-        ?"A competitor starting today cannot replicate what SahAIbat has built: real anthropometric data from NTT's highest-stunting villages. Consent-compliant records from families in communities with no prior digital health footprint. ANC quality scores from midwives in districts where no EMR has ever been deployed. A clinical LLM training corpus that requires years of community trust to collect — and is already being collected.\n\nThe moat is not the software. The moat is the data that can only exist if you were there first."
-        :"Pesaing yang mulai hari ini tidak dapat mereplikasi apa yang SahAIbat bangun: data antropometrik nyata dari desa stunting tertinggi NTT. Catatan berpersetujuan dari keluarga di komunitas tanpa jejak kesehatan digital sebelumnya. Skor kualitas ANC dari bidan di kabupaten yang belum pernah memiliki EMR.\n\nKeunggulan bukan pada perangkat lunaknya. Keunggulan ada pada data yang hanya bisa ada jika Anda hadir lebih dulu.",
-    },
-    {
-      icon:"🌏",
-      title:lang==="en"?"What Indonesia looks like when this works":"Seperti apa Indonesia ketika ini berhasil",
-      color:C.gold,
-      body:lang==="en"
-        ?"Imagine 1.4 million Kaders — each carrying a structured clinical tool instead of a paper register. Every Posyandu visit generating real-time surveillance data that a Dinas Kesehatan official can read on a dashboard instead of waiting for a quarterly report. Every small clinic with a doctor who spends 8 minutes on care, not paperwork. A Clinical LLM trained entirely on Indonesian data — reasoning about BPJS constraints, regional disease patterns, and how a mother in NTT describes her child's symptoms — licensed to every healthtech company that comes after us.\n\nThis is not a vision. Pieces of it are already running in North Central Timor today."
-        :"Bayangkan 1,4 juta Kader — masing-masing membawa alat klinis terstruktur, bukan register kertas. Setiap kunjungan Posyandu menghasilkan data surveilans real-time yang bisa dibaca pejabat Dinas Kesehatan di dashboard, bukan menunggu laporan kuartalan. Setiap klinik kecil dengan dokter yang menghabiskan 8 menit untuk perawatan, bukan kertas.\n\nIni bukan visi. Sebagian sudah berjalan di Timor Tengah Utara hari ini.",
-    },
-    {
-      icon:"⚡",
-      title:lang==="en"?"Why the team can execute":"Mengapa tim ini bisa mengeksekusi",
-      color:C.pink,
-      body:lang==="en"
-        ?"SahAIbat's founder built all five products to production deployment while employed full-time — as a deliberate proof that this is a technical moat, not a venture-backed headcount exercise. The clinical validation lead has trained thousands of health cadres against Kemenkes and WHO standards. The field deployment lead spent 20 years building health systems with USAID, ADB, and the UN in the exact communities where SahAIbat now operates.\n\nThe technology is already running. The partnerships are already live. The data is already flowing. The ask is acceleration, not proof of concept."
-        :"Pendiri SahAIbat membangun semua lima produk hingga deployment produksi sambil bekerja penuh waktu — sebagai bukti bahwa ini adalah keunggulan teknis, bukan latihan headcount berbasis modal ventura. Pemimpin validasi klinis telah melatih ribuan kader kesehatan terhadap standar Kemenkes dan WHO. Pemimpin deployment lapangan menghabiskan 20 tahun membangun sistem kesehatan bersama USAID, ADB, dan PBB di komunitas yang sama.\n\nTeknologi sudah berjalan. Kemitraan sudah aktif. Data sudah mengalir.",
-    },
-  ];
-
-  return(
-    <section id="investors" style={{background:C.dark,padding:"100px 0",position:"relative",overflow:"hidden"}}>
-      <div style={{position:"absolute",width:500,height:500,background:C.teal,top:"-10%",right:"-8%",borderRadius:"50%",filter:"blur(130px)",opacity:0.06,pointerEvents:"none"}}/>
-      <div style={{position:"absolute",width:400,height:400,background:C.purple,bottom:"-8%",left:"-5%",borderRadius:"50%",filter:"blur(120px)",opacity:0.06,pointerEvents:"none"}}/>
-      <div className="section-max" style={{position:"relative",zIndex:1}}>
-
-        {/* Opening statement */}
-        <FadeIn>
-          <div style={{maxWidth:820,marginBottom:72}}>
-            <div style={{display:"inline-flex",alignItems:"center",gap:8,background:"rgba(2,195,154,0.1)",border:"1px solid rgba(2,195,154,0.3)",borderRadius:20,padding:"6px 16px",marginBottom:24}}>
-              <span style={{color:C.teal,fontSize:12,fontWeight:600,letterSpacing:1}}>{lang==="en"?"FOR INVESTORS":"UNTUK INVESTOR"}</span>
-            </div>
-            <h2 className="display-font" style={{fontSize:"clamp(34px,4.5vw,60px)",color:C.white,lineHeight:1.1,marginBottom:28}}>
-              {lang==="en"
-                ?<>The infrastructure layer for Indonesian clinical AI <span style={{color:C.teal}}>does not exist yet.</span></>
-                :<>Lapisan infrastruktur AI klinis Indonesia <span style={{color:C.teal}}>belum ada.</span></>}
-            </h2>
-            <p style={{color:"rgba(255,255,255,0.55)",fontSize:18,lineHeight:1.8,maxWidth:700}}>
-              {lang==="en"
-                ?"No connected platform serves 1.4M Kaders, 300K doctors, and 280M patients in the same data layer. No Indonesian clinical AI has been trained on Indonesian data. No company has the community trust, field deployment, and regulatory position to build it — except the one that's already doing it."
-                :"Tidak ada platform terhubung yang melayani 1,4 juta Kader, 300 ribu dokter, dan 280 juta pasien dalam lapisan data yang sama. Tidak ada AI klinis Indonesia yang dilatih dengan data Indonesia. Tidak ada perusahaan yang memiliki kepercayaan komunitas, deployment lapangan, dan posisi regulasi untuk membangunnya — kecuali yang sudah melakukannya."}
-            </p>
-          </div>
-        </FadeIn>
-
-        {/* Four story panels */}
-        <div style={{display:"grid",gap:2,marginBottom:64}}>
-          {advantages.map(({icon,title,color,body},i)=>(
-            <FadeIn key={title} delay={i*80}>
-              <div style={{background:"rgba(255,255,255,0.02)",border:"1px solid rgba(255,255,255,0.06)",borderRadius:20,padding:"36px 40px",display:"grid",gridTemplateColumns:"auto 1fr",gap:36,alignItems:"start",marginBottom:2}}>
-                <div style={{width:56,height:56,borderRadius:16,background:`${color}12`,border:`1px solid ${color}30`,display:"flex",alignItems:"center",justifyContent:"center",fontSize:26,flexShrink:0}}>
-                  {icon}
-                </div>
-                <div>
-                  <div style={{color,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:10}}>{String(i+1).padStart(2,"0")}</div>
-                  <h3 style={{color:C.white,fontWeight:800,fontSize:"clamp(18px,2vw,24px)",marginBottom:16,lineHeight:1.3}}>{title}</h3>
-                  {body.split("\n\n").map((para,j)=>(
-                    <p key={j} style={{color:"rgba(255,255,255,0.5)",fontSize:15,lineHeight:1.85,marginBottom:j<body.split("\n\n").length-1?16:0}}>{para}</p>
-                  ))}
-                </div>
-              </div>
-            </FadeIn>
-          ))}
-        </div>
-
-        {/* What's already true */}
-        <FadeIn delay={100}>
-          <div style={{background:`linear-gradient(135deg,rgba(2,195,154,0.08),rgba(2,195,154,0.03))`,border:"1px solid rgba(2,195,154,0.2)",borderRadius:20,padding:"40px 44px",marginBottom:32}}>
-            <div style={{color:C.teal,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:20}}>{lang==="en"?"WHAT IS ALREADY TRUE TODAY":"APA YANG SUDAH BENAR HARI INI"}</div>
-            <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(220px,1fr))",gap:24}}>
-              {[
-                {fact:lang==="en"?"Live field deployment":"Deployment lapangan aktif",detail:lang==="en"?"NTT · 3 NGO partners · Real production data":"NTT · 3 mitra NGO · Data produksi nyata",color:C.teal},
-                {fact:lang==="en"?"AI infrastructure secured":"Infrastruktur AI diamankan",detail:"NVIDIA Inception · NIM · Llama 3.1 8B · MedGemma",color:C.purple},
-                {fact:lang==="en"?"Regulatory position established":"Posisi regulasi ditetapkan",detail:lang==="en"?"PSE Kominfo · UU PDP · SATUSEHAT FHIR R4 · BPJS-aligned":"PSE Kominfo · UU PDP · SATUSEHAT FHIR R4",color:C.gold},
-                {fact:lang==="en"?"Consent layer active":"Lapisan persetujuan aktif",detail:lang==="en"?"Every record tagged for LLM training. Data compound daily.":"Setiap catatan ditandai untuk pelatihan LLM. Data bertambah setiap hari.",color:C.pink},
-                {fact:lang==="en"?"Commercial product built":"Produk komersial dibangun",detail:lang==="en"?"SahAIbat DoK · Live · 32-second SOAP · Revenue-ready":"SahAIbat DoK · Aktif · SOAP 32 detik · Siap pendapatan",color:"#A48BFF"},
-                {fact:lang==="en"?"Government-grade analytics":"Analitik kelas pemerintah",detail:lang==="en"?"SKDR-compatible epidemic surveillance. Live from Posyandu.":"Surveilans epidemi kompatibel SKDR. Langsung dari Posyandu.",color:C.blue},
-              ].map(({fact,detail,color})=>(
-                <div key={fact} style={{borderLeft:`3px solid ${color}`,paddingLeft:16}}>
-                  <div style={{color:C.white,fontWeight:700,fontSize:14,marginBottom:6}}>{fact}</div>
-                  <div style={{color:"rgba(255,255,255,0.4)",fontSize:12,lineHeight:1.5}}>{detail}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </FadeIn>
-
-        {/* Closing + CTA */}
-        <FadeIn delay={150}>
-          <div style={{display:"grid",gridTemplateColumns:"1fr auto",gap:48,alignItems:"center",flexWrap:"wrap"}} className="invest-cta-grid">
-            <div>
-              <p style={{color:"rgba(255,255,255,0.7)",fontSize:18,lineHeight:1.8,fontFamily:"'Playfair Display',serif",fontStyle:"italic",marginBottom:16}}>
-                {lang==="en"
-                  ?'"The companies that own healthcare data infrastructure in emerging markets will be valued like the companies that own fintech infrastructure. We are in the first year of that window."'
-                  :'"Perusahaan yang memiliki infrastruktur data kesehatan di pasar berkembang akan dinilai seperti perusahaan yang memiliki infrastruktur fintech. Kami berada di tahun pertama jendela itu."'}
-              </p>
-              <p style={{color:"rgba(255,255,255,0.35)",fontSize:14,lineHeight:1.6}}>
-                {lang==="en"
-                  ?"If you see what we see, we'd like to talk. Details — structure, timeline, and terms — stay in the conversation, not on this page."
-                  :"Jika Anda melihat apa yang kami lihat, kami ingin berbicara. Detail — struktur, linimasa, dan persyaratan — ada dalam percakapan, bukan di halaman ini."}
-              </p>
-            </div>
-            <div style={{display:"flex",flexDirection:"column",gap:12,flexShrink:0,minWidth:200}}>
-              <a href="mailto:investor@sahaibat.com?subject=SahAIbat — Investor Conversation" style={{display:"block",textAlign:"center",background:C.teal,color:C.dark,padding:"16px 28px",borderRadius:14,fontSize:15,fontWeight:700,textDecoration:"none",letterSpacing:0.3}}>
-                {lang==="en"?"Start a Conversation →":"Mulai Percakapan →"}
-              </a>
-              <div style={{textAlign:"center",color:"rgba(255,255,255,0.25)",fontSize:12}}>investor@sahaibat.com</div>
-            </div>
-          </div>
-        </FadeIn>
-      </div>
-
-      <style>{`
-        @media(max-width:700px){
-          .invest-cta-grid{grid-template-columns:1fr!important;gap:28px!important}
-        }
-      `}</style>
-    </section>
-  );
-}
-
 // ── PARTNER WITH US ───────────────────────────────────────────────────────────
 function PartnerSection({lang}:{lang:"en"|"id"}){
   return(
@@ -1270,8 +909,8 @@ function PartnerSection({lang}:{lang:"en"|"id"}){
         <div className="three-col" style={{marginBottom:40}}>
           {[
             {icon:"🚀",title:lang==="en"?"Run a Pilot":"Jalankan Pilot",sub:lang==="en"?"NGO / Health Programme":"NGO / Program Kesehatan",desc:lang==="en"?"Deploy SahAIbat Kader App and Bidan Module with your community health workers across one or more districts. We handle setup, training, and clinical alignment.":"Terapkan Aplikasi Kader dan Modul Bidan SahAIbat dengan petugas kesehatan komunitas Anda di satu atau lebih kabupaten.",href:"mailto:admin@sahaibat.com?subject=Pilot Request",cta:lang==="en"?"Request a Pilot":"Ajukan Pilot",color:C.teal,featured:true},
-            {icon:"🩻",title:lang==="en"?"DoK for Your Clinic":"DoK untuk Klinik Anda",sub:lang==="en"?"Doctors & Clinic Owners":"Dokter & Pemilik Klinik",desc:lang==="en"?"90-day free trial of SahAIbat DoK — AI clinical scribe, SATUSEHAT auto-sync, BPJS-aligned. Mission Partner pricing for NGO-affiliated clinics.":"Uji coba gratis 90 hari SahAIbat DoK. Harga Mitra Misi untuk klinik NGO.",href:"https://www.sahaibatdok.com",cta:lang==="en"?"Start Free 90 Days →":"Mulai Gratis 90 Hari →",color:"#A48BFF",featured:false,external:true},
-            {icon:"🤝",title:lang==="en"?"Invest or Partner":"Investasi atau Bermitra",sub:lang==="en"?"Investors · Corporate · Government":"Investor · Korporat · Pemerintah",desc:lang==="en"?"Seed round open. Corporate wellness and insurer partnerships available. Government Dinas Kesehatan programme deployments. Talk to us.":"Seed round terbuka. Kemitraan wellness korporat dan asuransi tersedia. Deployment program Dinas Kesehatan.",href:"mailto:investor@sahaibat.com",cta:lang==="en"?"Talk to Us":"Hubungi Kami",color:C.gold,featured:false},
+            {icon:"🩻",title:lang==="en"?"DoK for Your Clinic":"DoK untuk Klinik Anda",sub:lang==="en"?"Doctors & Clinic Owners":"Dokter & Pemilik Klinik",desc:lang==="en"?"90-day trial of SahAIbat DoK — AI clinical scribe, SATUSEHAT auto-sync, BPJS-aligned. Mission Partner pricing for NGO-affiliated clinics.":"Uji coba 90 hari SahAIbat DoK. Harga Mitra Misi untuk klinik NGO.",href:"https://www.sahaibatdok.com",cta:lang==="en"?"Start 90-Day Trial":"Mulai Uji Coba 90 Hari",color:"#A48BFF",featured:false,external:true},
+            {icon:"🏛️",title:lang==="en"?"Government & NGO Programmes":"Program Pemerintah & NGO",sub:lang==="en"?"Dinas Kesehatan · NGOs":"Dinas Kesehatan · NGO",desc:lang==="en"?"Deploy the Programme Dashboard across your districts — SKDR-compatible surveillance, SAM/MAM outcome tracking, Kader and Bidan performance scoring. Talk to us about your programme.":"Terapkan Dasbor Program di seluruh kabupaten Anda — surveilans kompatibel SKDR, pelacakan hasil SAM/MAM, skor kinerja Kader dan Bidan.",href:"mailto:admin@sahaibat.com?subject=Government%20%2F%20NGO%20Programme",cta:lang==="en"?"Talk to Us":"Hubungi Kami",color:C.gold,featured:false},
           ].map(({icon,title,sub,desc,href,cta,color,featured,external})=>(<FadeIn key={title} delay={100}>
             <div style={{background:featured?`linear-gradient(135deg,${C.tealXdk},${C.tealDk})`:"rgba(255,255,255,0.03)",border:`1.5px solid ${featured?C.teal:"rgba(255,255,255,0.08)"}`,borderRadius:20,padding:28,display:"flex",flexDirection:"column",height:"100%",transform:featured?"scale(1.02)":"none"}}>
               <div style={{fontSize:32,marginBottom:12}}>{icon}</div>
@@ -1284,61 +923,6 @@ function PartnerSection({lang}:{lang:"en"|"id"}){
         </div>
       </div>
     </section>
-  );
-}
-
-// ── FOOTER ────────────────────────────────────────────────────────────────────
-function Footer({lang}:{lang:"en"|"id"}){
-  return(
-    <footer style={{background:C.charcoal,borderTop:"1px solid rgba(2,195,154,0.1)",padding:"56px 0 32px"}}>
-      <div className="section-max">
-        {/* NVIDIA + Compliance strip */}
-        <div style={{background:"rgba(255,255,255,0.03)",border:"1px solid rgba(2,195,154,0.12)",borderRadius:16,padding:"24px 28px",marginBottom:40,display:"flex",gap:20,alignItems:"center",flexWrap:"wrap"}}>
-          <img src="/nvidia-inception.png" alt="NVIDIA Inception Program Member" style={{height:48,width:"auto",objectFit:"contain",borderRadius:6,flexShrink:0}}/>
-          <div style={{width:1,height:36,background:"rgba(255,255,255,0.1)",flexShrink:0}}/>
-          <span style={{color:"rgba(255,255,255,0.3)",fontSize:11,fontWeight:600}}>{lang==="en"?"Proudly part of the NVIDIA Inception Program":"Dengan bangga menjadi bagian dari NVIDIA Inception Program"}</span>
-          <div style={{marginLeft:"auto",display:"flex",gap:8,flexWrap:"wrap"}}>
-            {[
-              {t:"PSE Kominfo",s:"NIB 1202260248509"},
-              {t:"UU PDP",s:"AES-256-GCM"},
-              {t:"SATUSEHAT",s:"HL7 FHIR R4"},
-              {t:"AWS Jakarta",s:"ap-southeast-3"},
-            ].map(({t,s})=>(<div key={t} style={{background:"rgba(2,195,154,0.06)",border:"1px solid rgba(2,195,154,0.15)",borderRadius:8,padding:"6px 12px",textAlign:"center"}}>
-              <div style={{color:C.teal,fontWeight:700,fontSize:10}}>{t}</div>
-              <div style={{color:"rgba(255,255,255,0.3)",fontSize:9}}>{s}</div>
-            </div>))}
-          </div>
-        </div>
-
-        <div className="footer-grid" style={{marginBottom:40}}>
-          <div>
-            <img src="/images/brand/wordmark-horizontal-dark.png" alt="SahAIbat" style={{height:32,width:"auto",opacity:0.85,marginBottom:16}}/>
-            <p style={{color:"rgba(255,255,255,0.35)",fontSize:13,lineHeight:1.7,maxWidth:280,marginBottom:12}}>
-              {lang==="en"?"Indonesia's connected clinical AI platform — community to clinic, free to commercial, mission to LLM.":"Platform AI klinis terhubung Indonesia — komunitas ke klinik, gratis hingga komersial, misi ke LLM."}
-            </p>
-            <p style={{color:"rgba(255,255,255,0.15)",fontSize:11,lineHeight:1.7}}>
-              All IP owned by<br/><strong style={{color:"rgba(255,255,255,0.25)"}}>Viantra · 11679210 Canada Inc</strong><br/>PSE Lingkup Privat Asing<br/>NIB: 1202260248509
-            </p>
-          </div>
-          <div>
-            <div style={{color:C.teal,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:14}}>PLATFORM</div>
-            {([["#platform",lang==="en"?"Platform Overview":"Gambaran Platform"],["#products",lang==="en"?"Products":"Produk"],["#dashboard",lang==="en"?"Live Data":"Data Langsung"],["#moat",lang==="en"?"AI & Data Moat":"Keunggulan AI & Data"],["#partners",lang==="en"?"Field Partners":"Mitra Lapangan"],["#team",lang==="en"?"Team":"Tim"]] as [string,string][]).map(([href,label])=>(<a key={label} href={href} style={{display:"block",color:"rgba(255,255,255,0.35)",fontSize:13,textDecoration:"none",marginBottom:8,transition:"color 0.2s"}} onMouseEnter={e=>(e.target as HTMLElement).style.color=C.teal} onMouseLeave={e=>(e.target as HTMLElement).style.color="rgba(255,255,255,0.35)"}>{label}</a>))}
-          </div>
-          <div>
-            <div style={{color:C.teal,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:14}}>{lang==="en"?"PRODUCTS":"PRODUK"}</div>
-            {([["https://www.sahaibatdok.com","SahAIbat DoK ↗",true],["#products","Kader App"],["#products","SahAIbat Bidan"],["#products","Kasih"],["#products","SahAIbat Sehat"]] as [string,string,boolean?][]).map(([href,label,ext])=>(<a key={label} href={href} target={ext?"_blank":"_self"} rel={ext?"noopener noreferrer":undefined} style={{display:"block",color:ext?"#A48BFF":"rgba(255,255,255,0.35)",fontSize:13,textDecoration:"none",marginBottom:8,fontWeight:ext?600:400}} onMouseEnter={e=>(e.target as HTMLElement).style.color=ext?"#A48BFF":C.teal} onMouseLeave={e=>(e.target as HTMLElement).style.color=ext?"#A48BFF":"rgba(255,255,255,0.35)"}>{label}</a>))}
-          </div>
-          <div>
-            <div style={{color:C.teal,fontWeight:700,fontSize:11,letterSpacing:1,marginBottom:14}}>CONNECT</div>
-            {([["📧","admin@sahaibat.com","mailto:admin@sahaibat.com"],["💼","investor@sahaibat.com","mailto:investor@sahaibat.com"],["📸","@sahaibat_health","https://instagram.com/sahaibat_health"],["▶️","@SahaibatHealth","https://youtube.com/@SahaibatHealth"],["💬","+62 819 1866 9241","https://wa.me/6281918669241"]] as [string,string,string][]).map(([icon,label,href])=>(<a key={label} href={href} target={href.startsWith("http")?"_blank":"_self"} style={{display:"flex",alignItems:"center",gap:8,color:"rgba(255,255,255,0.35)",fontSize:13,textDecoration:"none",marginBottom:9,transition:"color 0.2s"}} onMouseEnter={e=>(e.target as HTMLElement).style.color=C.teal} onMouseLeave={e=>(e.target as HTMLElement).style.color="rgba(255,255,255,0.35)"}><span style={{fontSize:14,width:18,textAlign:"center"}}>{icon}</span><span>{label}</span></a>))}
-          </div>
-        </div>
-        <div style={{borderTop:"1px solid rgba(255,255,255,0.06)",paddingTop:24,display:"flex",justifyContent:"space-between",flexWrap:"wrap",gap:12}}>
-          <span style={{color:"rgba(255,255,255,0.18)",fontSize:12}}>© 2026 SahAIbat · IP owned by Viantra (11679210 Canada Inc) · All rights reserved</span>
-          <span style={{color:"rgba(255,255,255,0.18)",fontSize:12}}>Not a diagnostic tool · Bukan pengganti dokter · <a href="https://www.sahaibatdok.com" target="_blank" rel="noopener noreferrer" style={{color:"rgba(164,139,255,0.5)",textDecoration:"none"}}>sahaibatdok.com</a></span>
-        </div>
-      </div>
-    </footer>
   );
 }
 
@@ -1421,18 +1005,18 @@ function GroundImpactSection({lang}:{lang:"en"|"id"}){
   );
 }
 
-// ── ZERO-COST NGO PARTNER SECTION ─────────────────────────────────────────────
+// ── NGO PARTNER SECTION ────────────────────────────────────────────────────────
 function NGOPartnerSection({lang}:{lang:"en"|"id"}){
   const useCases=[
     {icon:"🌱",title:lang==="en"?"Child Stunting":"Stunting Anak",color:C.teal,
-      desc:lang==="en"?"Deploy SahAIbat Kader App across your Posyandu network. WHO growth auto-calculated at every visit. SAM/MAM cases flagged instantly. Monthly stunting trend reports — zero manual data entry.":"Terapkan Aplikasi Kader SahAIbat di jaringan Posyandu Anda. Pertumbuhan WHO dihitung otomatis di setiap kunjungan. Kasus SAM/MAM ditandai seketika. Laporan tren stunting bulanan — tanpa entri data manual.",
-      gets:lang==="en"?["Kader App — free for all Kaders","Programme Dashboard","WHO-aligned growth reports","MoH Puskesmas data metrics"]:["Aplikasi Kader — gratis untuk semua Kader","Dasbor Program","Laporan pertumbuhan selaras WHO","Metrik data Puskesmas Kemenkes"]},
+      desc:lang==="en"?"Deploy SahAIbat Kader across your Posyandu network. WHO growth auto-calculated at every visit. SAM/MAM cases flagged instantly. Monthly stunting trend reports — zero manual data entry.":"Terapkan SahAIbat Kader di jaringan Posyandu Anda. Pertumbuhan WHO dihitung otomatis di setiap kunjungan. Kasus SAM/MAM ditandai seketika. Laporan tren stunting bulanan — tanpa entri data manual.",
+      gets:lang==="en"?["Kader — community screening node","Programme Dashboard","WHO-aligned growth reports","MoH Puskesmas data metrics"]:["Kader — titik skrining komunitas","Dasbor Program","Laporan pertumbuhan selaras WHO","Metrik data Puskesmas Kemenkes"]},
     {icon:"🤱",title:lang==="en"?"Maternal Health":"Kesehatan Ibu",color:C.pink,
       desc:lang==="en"?"Give your Bidans a structured ANC quality tool and your Kaders a maternal danger-sign protocol. High-risk pregnancies surface automatically. Referrals are tracked from flag to facility.":"Beri Bidan Anda alat kualitas ANC terstruktur dan Kader Anda protokol tanda bahaya maternal. Kehamilan berisiko tinggi terdeteksi otomatis. Rujukan dilacak dari deteksi hingga fasilitas.",
-      gets:lang==="en"?["SahAIbat Bidan Module — free","ANC 10T quality scoring","High-risk pregnancy alerts","Postnatal monitoring 0–42 days"]:["Modul Bidan SahAIbat — gratis","Skor kualitas ANC 10T","Peringatan kehamilan berisiko tinggi","Pemantauan nifas 0–42 hari"]},
+      gets:lang==="en"?["SahAIbat Bidan — midwife node","ANC 10T quality scoring","High-risk pregnancy alerts","Postnatal monitoring 0–42 days"]:["SahAIbat Bidan — titik bidan","Skor kualitas ANC 10T","Peringatan kehamilan berisiko tinggi","Pemantauan nifas 0–42 hari"]},
     {icon:"🏘️",title:lang==="en"?"Rural Health Education":"Edukasi Kesehatan Pedesaan",color:C.gold,
-      desc:lang==="en"?"Kasih gives every family in your catchment area a health companion on WhatsApp — in Bahasa Indonesia, offline-capable, available at 2am. No app, no training, no cost to the community.":"Kasih memberi setiap keluarga di wilayah kerja Anda pendamping kesehatan di WhatsApp — dalam Bahasa Indonesia, bisa offline, tersedia jam 2 pagi. Tanpa aplikasi, tanpa pelatihan, tanpa biaya untuk komunitas.",
-      gets:lang==="en"?["Kasih WhatsApp bot — free for families","Symptom triage in Bahasa Indonesia","24/7 danger-sign guidance","No smartphone or app required"]:["Bot WhatsApp Kasih — gratis untuk keluarga","Triase gejala dalam Bahasa Indonesia","Panduan tanda bahaya 24/7","Tidak perlu smartphone atau aplikasi"]},
+      desc:lang==="en"?"Kasih gives every family in your catchment area a health companion on WhatsApp — in Bahasa Indonesia, offline-capable, available at 2am.":"Kasih memberi setiap keluarga di wilayah kerja Anda pendamping kesehatan di WhatsApp — dalam Bahasa Indonesia, bisa offline, tersedia jam 2 pagi.",
+      gets:lang==="en"?["Kasih — family node on WhatsApp","Symptom triage in Bahasa Indonesia","24/7 danger-sign guidance","No smartphone or app required"]:["Kasih — titik keluarga di WhatsApp","Triase gejala dalam Bahasa Indonesia","Panduan tanda bahaya 24/7","Tidak perlu smartphone atau aplikasi"]},
   ];
   return(
     <section style={{background:C.dark,padding:"100px 0",position:"relative",overflow:"hidden"}}>
@@ -1445,11 +1029,11 @@ function NGOPartnerSection({lang}:{lang:"en"|"id"}){
             </div>
             <h2 className="display-font" style={{fontSize:"clamp(32px,4vw,54px)",color:C.white,lineHeight:1.1,marginBottom:20}}>
               {lang==="en"
-                ?<>Bring better healthcare to your community.<br/><span style={{color:C.teal}}>Cost to your organisation: Rp 0.</span></>
-                :<>Bawa layanan kesehatan lebih baik ke komunitas Anda.<br/><span style={{color:C.teal}}>Biaya untuk organisasi Anda: Rp 0.</span></>}
+                ?<>Bring better healthcare to your community.<br/><span style={{color:C.teal}}>We bring the technology.</span></>
+                :<>Bawa layanan kesehatan lebih baik ke komunitas Anda.<br/><span style={{color:C.teal}}>Kami membawa teknologinya.</span></>}
             </h2>
             <p style={{color:"rgba(255,255,255,0.5)",fontSize:17,maxWidth:640,lineHeight:1.8,margin:"0 auto"}}>
-              {lang==="en"?"SahAIbat's community tools are permanently free for NGOs, health programmes, and government health posts. We're looking for field partners who know their communities — we bring the technology.":"Alat komunitas SahAIbat gratis selamanya untuk NGO, program kesehatan, dan poskesdes pemerintah. Kami mencari mitra lapangan yang mengenal komunitas mereka — kami membawa teknologinya."}
+              {lang==="en"?"SahAIbat's community nodes are built into NGO, health programme, and government health post workflows. We're looking for field partners who know their communities.":"Titik komunitas SahAIbat terpasang di alur kerja NGO, program kesehatan, dan poskesdes pemerintah. Kami mencari mitra lapangan yang mengenal komunitas mereka."}
             </p>
           </div>
         </FadeIn>
@@ -1465,7 +1049,7 @@ function NGOPartnerSection({lang}:{lang:"en"|"id"}){
                 <h3 style={{color:C.white,fontWeight:800,fontSize:20,marginBottom:14}}>{title}</h3>
                 <p style={{color:"rgba(255,255,255,0.5)",fontSize:13,lineHeight:1.8,marginBottom:20}}>{desc}</p>
                 <div style={{borderTop:"1px solid rgba(255,255,255,0.06)",paddingTop:16}}>
-                  <div style={{color,fontWeight:700,fontSize:10,letterSpacing:1,marginBottom:10}}>{lang==="en"?"WHAT YOU GET — FREE":"YANG ANDA DAPATKAN — GRATIS"}</div>
+                  <div style={{color,fontWeight:700,fontSize:10,letterSpacing:1,marginBottom:10}}>{lang==="en"?"WHAT'S INCLUDED":"YANG TERMASUK"}</div>
                   {gets.map(g=>(<div key={g} style={{display:"flex",gap:8,marginBottom:8,alignItems:"flex-start"}}>
                     <span style={{color,fontSize:12,flexShrink:0,marginTop:1}}>✓</span>
                     <span style={{color:"rgba(255,255,255,0.6)",fontSize:12,lineHeight:1.5}}>{g}</span>
@@ -1509,7 +1093,7 @@ function NGOPartnerSection({lang}:{lang:"en"|"id"}){
             </p>
             <div style={{display:"flex",gap:14,justifyContent:"center",flexWrap:"wrap"}}>
               <a href="mailto:partner@sahaibat.com?subject=Field Partnership — SahAIbat" style={{background:C.teal,color:C.dark,padding:"15px 32px",borderRadius:14,fontSize:15,fontWeight:700,textDecoration:"none"}}>
-                {lang==="en"?"Apply to Partner — Free →":"Ajukan Kemitraan — Gratis →"}
+                {lang==="en"?"Apply to Partner →":"Ajukan Kemitraan →"}
               </a>
               <a href="https://wa.me/6281918669241" target="_blank" rel="noopener noreferrer" style={{border:"1.5px solid rgba(2,195,154,0.4)",color:C.white,padding:"15px 32px",borderRadius:14,fontSize:15,fontWeight:600,textDecoration:"none"}}>
                 💬 WhatsApp
@@ -1527,65 +1111,29 @@ function NGOPartnerSection({lang}:{lang:"en"|"id"}){
 
 // ── ROOT PAGE ─────────────────────────────────────────────────────────────────
 export default function HomePage({initialLang="id"}:{initialLang?:"en"|"id"}){
-  const [lang,setLang]=useState<"en"|"id">(initialLang);
-
-  const changeLang=(l:"en"|"id")=>{
-    setLang(l);
-    if(typeof window!=="undefined"){
-      window.history.replaceState(null,"",l==="en"?"/en":"/");
-      document.documentElement.lang=l;
-    }
-  };
+  const lang = initialLang;
+  // Keep the shared LanguageProvider context (used by SiteNav/SiteFooter) in
+  // sync with this route's language — / and /en are real, separately
+  // server-rendered pages, not client-toggled, so this only mirrors state.
+  const { setLang } = useI18n();
+  useEffect(()=>{ setLang(initialLang); }, [initialLang, setLang]);
 
   return(
     <>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-        html{scroll-behavior:smooth}
-        body{background:${C.dark};font-family:'Plus Jakarta Sans',sans-serif;color:${C.text};overflow-x:hidden}
-        ::selection{background:${C.teal};color:${C.dark}}
-        .section-max{max-width:1200px;margin:0 auto;padding:0 24px}
-        .display-font{font-family:'Playfair Display',serif}
-        .hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
-        .two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px}
-        .three-col{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-        .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px}
-        .invest-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center}
-        .nav-desktop{display:flex!important}.nav-mobile-btn{display:none!important}
-        @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-        @media(max-width:960px){
-          .nav-desktop{display:none!important}.nav-mobile-btn{display:block!important}
-          .hero-grid,.two-col,.invest-grid{grid-template-columns:1fr!important;gap:32px!important}
-          .three-col{grid-template-columns:1fr!important;gap:20px!important}
-          .footer-grid{grid-template-columns:1fr 1fr!important;gap:28px!important}
-        }
-        @media(max-width:480px){
-          .section-max{padding:0 16px}
-          .footer-grid{grid-template-columns:1fr!important}
-        }
-      `}</style>
-
-     <Nav lang={lang} setLang={changeLang}/>
       <HeroSection lang={lang}/>
-      <InvestorBand lang={lang}/>
       <ProblemSection lang={lang}/>
       <PlatformSection lang={lang}/>
       <ProductsSection lang={lang}/>
-      <GroundImpactSection lang={lang}/>
-      <NGOPartnerSection lang={lang}/>
       <DoKCallout lang={lang}/>
       <DashboardSection lang={lang}/>
-      <DataMoatSection lang={lang}/>
       <TractionSection lang={lang}/>
-      <RevenueSection lang={lang}/>
+      <GroundImpactSection lang={lang}/>
       <ILPSection lang={lang}/>
       <StorySection lang={lang}/>
       <FieldPartnersSection lang={lang}/>
       <TeamSection lang={lang}/>
-      <InvestorSection lang={lang}/>
+      <NGOPartnerSection lang={lang}/>
       <PartnerSection lang={lang}/>
-      <Footer lang={lang}/>
     </>
   );
 }

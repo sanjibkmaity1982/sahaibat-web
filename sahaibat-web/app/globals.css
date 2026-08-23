@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -19,8 +20,39 @@
   }
 }
 
+/* ── SahAIbat shared design system ──────────────────────────────────────────
+   Single source of truth for the site's visual language (colors live in
+   lib/sahaibat/theme.ts). Every page — home and sub-pages alike — shares
+   this typography and layout grid via SiteNav/SiteFooter + these classes. */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Plus Jakarta Sans', Arial, Helvetica, sans-serif;
+}
+::selection { background: #02C39A; color: #0F1F1C; }
+
+.section-max { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.display-font { font-family: 'Playfair Display', serif; }
+.hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+.invest-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 48px; align-items: center; }
+.nav-desktop { display: flex !important; }
+.nav-mobile-btn { display: none !important; }
+
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+@media (max-width: 960px) {
+  .nav-desktop { display: none !important; }
+  .nav-mobile-btn { display: block !important; }
+  .hero-grid, .two-col, .invest-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .three-col { grid-template-columns: 1fr !important; gap: 20px !important; }
+  .footer-grid { grid-template-columns: 1fr 1fr !important; gap: 28px !important; }
+}
+@media (max-width: 480px) {
+  .section-max { padding: 0 16px; }
+  .footer-grid { grid-template-columns: 1fr !important; }
 }

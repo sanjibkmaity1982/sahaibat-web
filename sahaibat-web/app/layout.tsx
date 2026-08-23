@@ -1,12 +1,11 @@
 // app/layout.tsx
-// NOTE: This file cannot use usePathname directly (it's a Server Component).
-// The SiteHeader and SiteFooter handle their own pathname checks client-side.
-// The <main> wrapper uses a client wrapper component to conditionally apply
-// the max-width constraint only on non-home pages.
+// SiteNav and SiteFooter render on every page — one shared design system,
+// no more per-page chrome. MainWrapper decides per-route width (full-bleed
+// for rich marketing pages vs. constrained for plain content pages).
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { LanguageProvider } from "@/components/sahaibat/LanguageProvider";
-import { SiteHeader } from "@/components/sahaibat/SiteHeader";
+import { SiteNav } from "@/components/sahaibat/SiteNav";
 import { SiteFooter } from "@/components/sahaibat/SiteFooter";
 import { MainWrapper } from "@/components/sahaibat/MainWrapper";
 
@@ -84,7 +83,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="min-h-screen bg-white text-slate-900">
         <LanguageProvider>
-          <SiteHeader />
+          <SiteNav />
           <MainWrapper>{children}</MainWrapper>
           <SiteFooter />
         </LanguageProvider>
