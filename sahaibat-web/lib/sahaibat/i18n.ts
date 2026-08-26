@@ -99,7 +99,7 @@ export const DICT: Record<Lang, Record<I18nKey, string>> = {
     "story.reviewerTitle": "How it helps nurses and doctors",
     "story.reviewerText":
       "Reviewers often receive incomplete stories. SahAIbat helps turn field observations into clearer handoffs, so nurses and doctors can prioritize faster and support safer decisions.",
-    "story.partnerTitle": "Free — and built as a partner, not a vendor",
+    "story.partnerTitle": "A commercial platform, deployed as a partner",
     "story.partnerText":
       "Our goal is to build SahAIbat for the world. We work with NGOs as partners, adapting workflows to each community — not selling a one-size-fits-all product.",
 
@@ -197,7 +197,7 @@ export const DICT: Record<Lang, Record<I18nKey, string>> = {
     "story.reviewerTitle": "Bagaimana membantu perawat dan dokter",
     "story.reviewerText":
       "SahAIbat membantu merapikan temuan lapangan agar handoff lebih jelas sehingga prioritas lebih cepat dan keputusan lebih aman.",
-    "story.partnerTitle": "Gratis — dan kami adalah mitra, bukan vendor",
+    "story.partnerTitle": "Platform komersial, hadir sebagai mitra",
     "story.partnerText":
       "Kami bekerja bersama NGO sebagai mitra, menyesuaikan alur kerja dengan setiap komunitas.",
 

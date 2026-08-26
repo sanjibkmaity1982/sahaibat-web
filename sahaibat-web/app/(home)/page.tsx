@@ -11,22 +11,22 @@ const BASE = "https://www.sahaibat.com";
 export const metadata: Metadata = {
   metadataBase: new URL(BASE),
   title:
-    "SahAIbat — Platform AI Kesehatan Indonesia | Aplikasi Kader, Bidan & Klinik",
+    "SahAIbat — Indonesia's Connected Clinical AI Infrastructure",
   description:
-    "Platform AI klinis terhubung Indonesia: aplikasi Kader Posyandu gratis selaras ILP, modul Bidan untuk ANC 10T, chat kesehatan keluarga Kasih di WhatsApp, dan SahAIbat DoK — AI scribe dokter dengan integrasi SATUSEHAT. Aktif di NTT.",
+    "SahAIbat operates across community health, midwifery, primary care and hospitals as one connected patient record — and trains Indonesia's own clinical language model on the consented data it produces. SATUSEHAT and BPJS connected, PSE registered, live in NTT.",
   keywords: [
-    "aplikasi kader posyandu",
-    "AI kesehatan Indonesia",
-    "aplikasi bidan ANC",
-    "stunting NTT",
-    "SATUSEHAT integrasi",
-    "kesehatan ibu dan anak digital",
+    "Indonesia clinical AI",
+    "healthtech Indonesia",
+    "SATUSEHAT integration",
+    "BPJS claim integrity",
+    "sovereign medical LLM",
+    "Indonesian EMR platform",
     "SahAIbat",
   ],
   alternates: {
     canonical: BASE,
     languages: {
-      "id-ID": BASE,
+      "id-ID": `${BASE}/id`,
       en: `${BASE}/en`,
       "x-default": BASE,
     },
@@ -37,9 +37,9 @@ export const metadata: Metadata = {
     siteName: "SahAIbat",
     locale: "id_ID",
     alternateLocale: "en_US",
-    title: "SahAIbat — Platform AI Kesehatan Indonesia",
+    title: "SahAIbat — Indonesia's Connected Clinical AI Infrastructure",
     description:
-      "Aplikasi Kader Posyandu gratis, modul Bidan, chat keluarga Kasih, dan AI scribe DoK dengan SATUSEHAT. Aktif di NTT.",
+      "One connected patient record from Posyandu to hospital claim, and the sovereign Indonesian clinical model trained on it. Live in NTT.",
     images: [
       {
         url: "/images/og-cover.png", // pastikan file ini ada di /public/images
@@ -51,9 +51,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "SahAIbat — Platform AI Kesehatan Indonesia",
+    title: "SahAIbat — Indonesia's Connected Clinical AI Infrastructure",
     description:
-      "Aplikasi Kader Posyandu gratis, modul Bidan, Kasih, dan AI scribe DoK dengan SATUSEHAT.",
+      "One connected patient record from Posyandu to hospital claim, and the sovereign Indonesian clinical model trained on it. Live in NTT.",
   },
   robots: {
     index: true,
@@ -115,7 +115,7 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
       />
-      <HomePage initialLang="id" />
+      <HomePage initialLang="en" />
     </>
   );
 }

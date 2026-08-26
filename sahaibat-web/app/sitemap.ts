@@ -9,29 +9,65 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   return [
+    // "/" is English, "/id" is Bahasa, "/en" is a legacy alias for "/".
+    // The previous version labelled BASE as the Bahasa default and mapped
+    // id → BASE, which pointed Google's Indonesian alternate at English copy.
     {
-      url: BASE, // Bahasa Indonesia (default)
+      url: BASE, // English (default)
       lastModified: now,
       changeFrequency: "weekly",
       priority: 1,
       alternates: {
         languages: {
-          id: BASE,
-          en: `${BASE}/en`,
+          en: BASE,
+          id: `${BASE}/id`,
+          "x-default": BASE,
         },
       },
     },
     {
-      url: `${BASE}/en`, // English
+      url: `${BASE}/id`, // Bahasa Indonesia
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
       alternates: {
         languages: {
-          id: BASE,
-          en: `${BASE}/en`,
+          en: BASE,
+          id: `${BASE}/id`,
+          "x-default": BASE,
         },
       },
+    },
+    {
+      url: `${BASE}/en`, // alias of "/", kept so indexed links do not break
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.5,
+      alternates: {
+        languages: {
+          en: BASE,
+          id: `${BASE}/id`,
+          "x-default": BASE,
+        },
+      },
+    },
+    {
+      url: `${BASE}/technology`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${BASE}/enterprise`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${BASE}/investors`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
     },
     {
       url: `${BASE}/partner`,

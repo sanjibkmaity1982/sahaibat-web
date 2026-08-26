@@ -2,6 +2,7 @@
 
 import { useI18n } from "@/components/sahaibat/LanguageProvider";
 import { C } from "@/lib/sahaibat/theme";
+import { RequestForm, type Field } from "@/components/sahaibat/RequestForm";
 
 function Pill({ children, color = C.teal }: { children: React.ReactNode; color?: string }) {
   return (
@@ -22,7 +23,21 @@ function Pill({ children, color = C.teal }: { children: React.ReactNode; color?:
   );
 }
 
-const DECK_URL = "https://investor.sahaibat.com";
+// The deck used to sit behind a public URL. A link you cannot attribute is a
+// document you have no record of having sent — so it is now requested, and
+// every copy that goes out is attached to a name and an organisation.
+const DECK_FIELDS = (en: boolean): Field[] => [
+  { k: "name", label: en ? "Name" : "Nama", required: true, half: true },
+  { k: "email", label: "Email", type: "email", required: true, half: true },
+  { k: "org", label: en ? "Firm or organisation" : "Perusahaan atau organisasi", required: true, half: true },
+  { k: "role", label: en ? "You are" : "Anda adalah", type: "select", required: true, half: true,
+    options: en
+      ? ["Venture fund", "Angel investor", "Strategic / corporate", "Family office", "Development finance", "Other"]
+      : ["Dana ventura", "Investor angel", "Strategis / korporasi", "Family office", "Lembaga pembiayaan pembangunan", "Lainnya"] },
+  { k: "note", label: en ? "Anything you want us to know (optional)" : "Hal yang ingin Anda sampaikan (opsional)",
+    type: "textarea",
+    placeholder: en ? "Stage focus, cheque size, what prompted the look…" : "Fokus tahapan, ukuran investasi, apa yang membuat Anda tertarik…" },
+];
 
 export default function InvestorsPage() {
   const { lang } = useI18n();
@@ -72,29 +87,35 @@ export default function InvestorsPage() {
         ))}
       </div>
 
-      {/* Closing line + CTA */}
-      <div style={{ background: C.dark, borderRadius: 24, padding: "40px 40px" }}>
-        <p style={{ color: "rgba(255,255,255,0.75)", fontSize: 17, lineHeight: 1.8, fontFamily: "'Playfair Display',serif", fontStyle: "italic", marginBottom: 28, maxWidth: 700 }}>
+      {/* Closing line + gated deck request */}
+      <div id="deck" style={{ background: C.dark, borderRadius: 24, padding: "40px 40px" }}>
+        <p style={{ color: "rgba(255,255,255,0.75)", fontSize: 17, lineHeight: 1.8, fontStyle: "italic", marginBottom: 30, maxWidth: 700 }}>
           {lang === "en"
             ? "\"If you see what we see, we'd like to talk. Structure, timeline, and terms stay in the conversation — not on this page.\""
             : "\"Jika Anda melihat apa yang kami lihat, kami ingin berbicara. Struktur, linimasa, dan persyaratan ada dalam percakapan — bukan di halaman ini.\""}
         </p>
 
-        <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-          <a
-            href={DECK_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ background: C.teal, color: C.dark, padding: "13px 26px", borderRadius: 12, fontSize: 14, fontWeight: 700, textDecoration: "none" }}
-          >
-            {lang === "en" ? "See the deck →" : "Lihat deck →"}
-          </a>
-          <a
-            href="mailto:investor@sahaibat.com?subject=Investor%20conversation"
-            style={{ border: "1.5px solid rgba(2,195,154,0.4)", color: C.white, padding: "13px 26px", borderRadius: 12, fontSize: 14, fontWeight: 600, textDecoration: "none" }}
-          >
-            {lang === "en" ? "Talk to us" : "Hubungi kami"}
-          </a>
+        <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: 30 }}>
+          <Pill>{lang === "en" ? "REQUEST THE DECK" : "MINTA DECK"}</Pill>
+          <h2 style={{ color: C.white, fontSize: 26, fontWeight: 800, lineHeight: 1.25, marginBottom: 10 }}>
+            {lang === "en" ? "We will send it to you directly." : "Kami akan mengirimkannya langsung kepada Anda."}
+          </h2>
+          <p style={{ color: "rgba(255,255,255,0.55)", fontSize: 15, lineHeight: 1.8, marginBottom: 26, maxWidth: 620 }}>
+            {lang === "en"
+              ? "The deck carries live metrics, cohort data and commercial detail, so it is not published on the open web. Tell us who you are and we will send the current version, usually the same day."
+              : "Deck ini memuat metrik terkini, data kohort, dan detail komersial, sehingga tidak dipublikasikan secara terbuka. Beri tahu kami siapa Anda dan kami kirimkan versi terkini, biasanya pada hari yang sama."}
+          </p>
+
+          <RequestForm
+            fields={DECK_FIELDS(lang === "en")}
+            to="investor@sahaibat.com"
+            subject={(v) => `Deck request — ${v.org || v.name || "SahAIbat"}`}
+            submitLabel={lang === "en" ? "Request the deck" : "Minta deck"}
+            note={lang === "en" ? "Usually answered the same day." : "Biasanya dijawab pada hari yang sama."}
+            done={lang === "en"
+              ? "We treat every request as confidential and do not add anyone to a mailing list."
+              : "Setiap permintaan kami perlakukan sebagai rahasia dan tidak ditambahkan ke milis mana pun."}
+          />
         </div>
       </div>
     </div>

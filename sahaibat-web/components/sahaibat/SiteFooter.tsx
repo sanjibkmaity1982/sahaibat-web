@@ -40,7 +40,7 @@ export function SiteFooter() {
               { t: "PSE Kominfo", s: "NIB 1202260248509" },
               { t: "UU PDP", s: "AES-256-GCM" },
               { t: "SATUSEHAT", s: "HL7 FHIR R4" },
-              { t: "AWS Jakarta", s: "ap-southeast-3" },
+              { t: "🇮🇩 AWS Jakarta", s: "ap-southeast-3" },
             ].map(({ t: title, s }) => (
               <div key={title} style={{ background: "rgba(2,195,154,0.06)", border: "1px solid rgba(2,195,154,0.15)", borderRadius: 8, padding: "6px 12px", textAlign: "center" }}>
                 <div style={{ color: C.teal, fontWeight: 700, fontSize: 10 }}>{title}</div>

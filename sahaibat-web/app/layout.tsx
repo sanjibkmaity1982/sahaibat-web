@@ -6,6 +6,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { LanguageProvider } from "@/components/sahaibat/LanguageProvider";
 import { SiteNav } from "@/components/sahaibat/SiteNav";
+import { PromoRibbon } from "@/components/sahaibat/PromoRibbon";
 import { SiteFooter } from "@/components/sahaibat/SiteFooter";
 import { MainWrapper } from "@/components/sahaibat/MainWrapper";
 
@@ -18,7 +19,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "SahAIbat — Indonesia's Connected Clinical AI Platform",
   description:
-    "SahAIbat connects Indonesia's 1.4M community health workers, 300K doctors, and 280M patients in one sovereign clinical AI layer — from Posyandu to clinic, free to commercial, mission to LLM.",
+    "SahAIbat connects Indonesia's 1.4M community health workers, 300K doctors and 280M patients in one clinical record — from the village Posyandu to the hospital claim — and trains the country's own sovereign clinical language model on the consented data it produces.",
   keywords: [
     "Indonesia health AI",
     "Kader app",
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "SahAIbat — Indonesia's Connected Clinical AI Platform",
     description:
-      "From Kader to clinic. Free community tools powered by a commercial AI engine. Building Indonesia's first clinical LLM.",
+      "One connected patient record across community, clinic and hospital. Indonesia's sovereign clinical AI, built on it.",
     url: "https://www.sahaibat.com",
     siteName: "SahAIbat",
     locale: "en_US",
@@ -83,6 +84,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="min-h-screen bg-white text-slate-900">
         <LanguageProvider>
+          <PromoRibbon />
           <SiteNav />
           <MainWrapper>{children}</MainWrapper>
           <SiteFooter />

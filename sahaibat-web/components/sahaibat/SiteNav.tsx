@@ -7,6 +7,7 @@ import { C } from "@/lib/sahaibat/theme";
 
 const LINKS: Array<{ href: string; en: string; id: string }> = [
   { href: "/#network", en: "How it works", id: "Cara kerja" },
+  { href: "/technology", en: "Technology", id: "Teknologi" },
   { href: "/enterprise", en: "Enterprise", id: "Enterprise" },
   { href: "/partner", en: "Partner", id: "Mitra" },
 ];
@@ -14,9 +15,13 @@ const LINKS: Array<{ href: string; en: string; id: string }> = [
 // Pages that have real, separately-server-rendered EN/ID routes (better for
 // SEO than client-side text swapping) — the language pill navigates instead
 // of just flipping context state on these.
+// English is the default at "/" — the primary reader of sahaibat.com is an
+// investor or an enterprise buyer. Bahasa is a full peer site at "/id".
+// "/en" is kept as an alias so existing links and indexed URLs do not break.
 const ROUTE_PAIR: Record<string, { en: string; id: string }> = {
-  "/": { en: "/en", id: "/" },
-  "/en": { en: "/en", id: "/" },
+  "/": { en: "/", id: "/id" },
+  "/id": { en: "/", id: "/id" },
+  "/en": { en: "/", id: "/id" },
 };
 
 export function SiteNav() {
@@ -32,7 +37,7 @@ export function SiteNav() {
   }, []);
 
   const routedPair = ROUTE_PAIR[pathname];
-  const activeLang: "en" | "id" = routedPair ? (pathname === "/en" ? "en" : "id") : (lang === "en" ? "en" : "id");
+  const activeLang: "en" | "id" = routedPair ? (pathname === "/id" ? "id" : "en") : (lang === "en" ? "en" : "id");
 
   const LangButtons = ({ onPick }: { onPick?: () => void }) => (
     <>

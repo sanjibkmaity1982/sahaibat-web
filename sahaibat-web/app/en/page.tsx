@@ -12,11 +12,11 @@ export const metadata: Metadata = {
   title:
     "SahAIbat — Indonesia's Connected Clinical AI Platform | Kader, Midwife & Clinic Tools",
   description:
-    "Indonesia's connected clinical AI platform: free ILP-aligned Kader app for Posyandu, midwife ANC module, Kasih family health chat on WhatsApp, and SahAIbat DoK — an AI clinical scribe with SATUSEHAT integration. Live in NTT.",
+    "Indonesia's connected clinical AI platform: ILP-aligned Kader screening, a midwife ANC module, Kasih family health on WhatsApp, and SahAIbat DoK — clinical intelligence for doctors with SATUSEHAT integration. Live in NTT.",
   alternates: {
     canonical: `${BASE}/en`,
     languages: {
-      "id-ID": BASE,
+      "id-ID": `${BASE}/id`,
       en: `${BASE}/en`,
       "x-default": BASE,
     },
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     alternateLocale: "id_ID",
     title: "SahAIbat — Indonesia's Connected Clinical AI Platform",
     description:
-      "Free Kader app, midwife module, Kasih family chat, and the DoK AI scribe with SATUSEHAT integration. Live in NTT, Indonesia.",
+      "Kader screening, midwife module, Kasih family chat and the DoK clinical AI, on one record. SATUSEHAT connected, live in NTT.",
     images: [
       {
         url: "/images/og-cover.png",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "SahAIbat — Indonesia's Connected Clinical AI Platform",
     description:
-      "Free Kader app, midwife module, Kasih family chat, and the DoK AI scribe with SATUSEHAT integration.",
+      "Kader screening, midwife module, Kasih family chat and the DoK clinical AI, on one record. SATUSEHAT connected, live in NTT.",
   },
   robots: {
     index: true,
