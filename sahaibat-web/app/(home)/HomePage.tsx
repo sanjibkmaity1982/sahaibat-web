@@ -26,6 +26,7 @@ import React, { useEffect } from "react";
 import { useI18n } from "@/components/sahaibat/LanguageProvider";
 import { FadeIn } from "@/components/sahaibat/ui";
 import { C } from "@/lib/sahaibat/theme";
+import TrustBand from "@/components/sahaibat/TrustBand";
 import { COPY, FACTS, type Lang } from "./copy";
 
 /* ── small shared pieces ─────────────────────────────────────────────────── */
@@ -1064,6 +1065,10 @@ export default function HomePage({ initialLang = "en" }: { initialLang?: Lang })
         }
       `}</style>
       <Hero t={t} />
+      {/* Directly under the hero, on cream: these are full-colour marks drawn
+          for white paper, and this is the first thing a visitor meets after the
+          headline — which is where "is this company legitimate?" gets asked. */}
+      <TrustBand lang={initialLang === "id" ? "id" : "en"} variant="band" />
       <BrandStory t={t} />
       <Platform t={t} />
       <Engine t={t} />
