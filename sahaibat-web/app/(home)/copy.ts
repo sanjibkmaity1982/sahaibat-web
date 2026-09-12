@@ -334,14 +334,14 @@ const EN: Copy = {
     tabs: [
       { id: "community", label: "Community",
         metrics: [
-          { n: "1,500+", l: "children monitored in NTT" },
+          { n: "6,000+", l: "children monitored in NTT" },
           { n: "WHO", l: "Z-scores computed on every visit" },
           { n: "SAM / MAM", l: "flagged and referred from the field" },
         ],
         note: "Growth tracked at the Posyandu against WHO standards — weight-for-age, height-for-age and weight-for-height — with malnutrition classified and referred from the same screen the measurement was taken on." },
       { id: "maternal", label: "Maternal",
         metrics: [
-          { n: "300+", l: "mothers monitored" },
+          { n: "1,500+", l: "mothers monitored" },
           { n: FACTS.ancQuality, l: "average ANC quality score" },
           { n: "10T", l: "national protocol tracked per pregnancy" },
         ],

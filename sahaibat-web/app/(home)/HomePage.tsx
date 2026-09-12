@@ -93,12 +93,19 @@ function CountUp({ value, duration = 1100 }: { value: string; duration?: number 
   const idn = lang === "id";
   const m = value.match(/^([\d.,]+)(.*)$/);
   const raw = m ? m[1] : "";
-  // Indonesian inverts the separators: 1.500 is fifteen hundred, 8,7 is 8.7.
-  const target = m
-    ? parseFloat(idn ? raw.replace(/\./g, "").replace(",", ".") : raw.replace(/,/g, ""))
-    : null;
-  const dsep = idn ? "," : ".";
-  const decimals = raw.includes(dsep) ? raw.split(dsep)[1].length : 0;
+  // THE SOURCE IS ALWAYS ENGLISH CONVENTION; ONLY THE OUTPUT IS LOCALISED.
+  //
+  // This used to parse per locale, because the copy file carried a hand-written
+  // Bahasa version whose numbers used Indonesian separators. copy.ts now ends
+  // `const ID: Copy = EN`, so the Indonesian page reads English-formatted
+  // strings through the Indonesian parser — and every number with a separator
+  // came out wrong on /id: "1,500+" as 1.5, "1.4M" as 14M, "8.7 / 10" as 87.
+  //
+  // Parsing one way and formatting per locale is also simply the right split:
+  // toLocaleString below already renders 6000 as "6,000" or "6.000" correctly,
+  // so the source never needed to be written twice.
+  const target = m ? parseFloat(raw.replace(/,/g, "")) : null;
+  const decimals = raw.includes(".") ? raw.split(".")[1].length : 0;
   const [n, setN] = React.useState(0);
 
   React.useEffect(() => {
