@@ -215,9 +215,11 @@ Rules:
 - Use only the instructions in the summary. Never add medicines, doses, diagnoses or advice that are not written there. Restate any medicine and schedule exactly as written, in plain words.
 - title: a short, warm title for the plan.
 - steps: up to 5 plain-language steps.
-- whatsapp: up to 5 WhatsApp messages Kasih will send over the coming days. "when" is a short label such as "Hari ini 07.00" or "Hari 2 · 19.00" (in the page language); text is a friendly message under 30 words, with at most one emoji.
+- whatsapp: up to 5 WhatsApp messages Kasih will send over the coming days, in time order. "when" is a short label such as "Hari ini 07.00" or "Hari 2 · 19.00" (in the page language); text is a friendly message under 30 words, with at most one emoji.
+  - The first message is today and covers every medicine and instruction that starts now: each medicine's first reminder is today, never a later day.
+  - Later messages follow the doctor's schedule day by day; do not repeat the same reminder without a reason.
 - family_note: one short WhatsApp message to a family member who has been added to help with care.
-- checkin: the follow-up question Kasih asks (when, question) and up to 3 answers that should alert the clinic (escalate_if), taken from the warning signs in the summary.
+- checkin: the follow-up question Kasih asks (when, question) and up to 3 answers that should alert the clinic (escalate_if), taken from the warning signs in the summary. Its "when" fits the timeline of the whatsapp messages and comes before the next visit.
 - warning_signs: only those in the summary, written plainly, at most 4.
 - next_visit: when to return, as written in the summary.
 - Write in simple everyday language, short sentences.
