@@ -22,10 +22,19 @@ import { verifyTurnstile } from "@/lib/experience/turnstile";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+// Read forgivingly: a dashboard value of `True`, `"true"` or `true ` (stray
+// space) should still switch the zone on, and a pasted key often carries
+// whitespace.
+function config() {
+  const flag = (process.env.EXPERIENCE_AI_ENABLED ?? "").trim().replace(/^["']|["']$/g, "").toLowerCase();
+  const key = (process.env.EXPERIENCE_OPENAI_API_KEY ?? "").trim().replace(/^["']|["']$/g, "");
+  return { enabled: ["true", "1", "yes", "on"].includes(flag), flagSet: flag !== "", key };
+}
+
 let client: OpenAI | null = null;
-function openai(): OpenAI {
+function openai(apiKey: string): OpenAI {
   client ??= new OpenAI({
-    apiKey: process.env.EXPERIENCE_OPENAI_API_KEY,
+    apiKey,
     timeout: 30_000,
     maxRetries: 1,
   });
@@ -57,7 +66,10 @@ function clientIp(req: NextRequest): string {
 export async function POST(req: NextRequest, ctx: { params: Promise<{ product: string }> }) {
   const { product } = await ctx.params;
   if (!isProduct(product)) return fail(404, "not_found");
-  if (process.env.EXPERIENCE_AI_ENABLED !== "true" || !process.env.EXPERIENCE_OPENAI_API_KEY) {
+  const cfg = config();
+  if (!cfg.enabled || !cfg.key) {
+    // Names which setting is missing, never its value.
+    console.warn(JSON.stringify({ evt: "experience_disabled", enabled: cfg.enabled, flagSet: cfg.flagSet, keySet: Boolean(cfg.key) }));
     return fail(503, "disabled");
   }
 
@@ -88,7 +100,7 @@ export async function POST(req: NextRequest, ctx: { params: Promise<{ product: s
 
   const started = Date.now();
   try {
-    const completion = await openai().chat.completions.create(
+    const completion = await openai(cfg.key).chat.completions.create(
       {
         model: process.env.EXPERIENCE_AI_MODEL ?? "gpt-4.1-mini",
         messages: [
