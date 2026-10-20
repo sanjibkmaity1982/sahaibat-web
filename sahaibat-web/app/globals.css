@@ -1,7 +1,8 @@
 /* One typeface across the group. sahaibatdok.com ships IBM Plex Sans; the
    corporate site ran Playfair + Plus Jakarta, so the two properties did not
-   read as the same company. Plex everywhere, including headlines. */
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
+   read as the same company. Plex everywhere, including headlines. The fonts
+   are self-hosted by next/font (app/layout.tsx); a Google Fonts @import here
+   was dropped from the built CSS, so it never loaded. */
 @import "tailwindcss";
 
 :root {
@@ -32,12 +33,12 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+  font-family: var(--font-plex-sans), 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
 }
 ::selection { background: #02C39A; color: #0F1F1C; }
 
 .section-max { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-.display-font { font-family: 'IBM Plex Sans', system-ui, sans-serif;
+.display-font { font-family: var(--font-plex-sans), 'IBM Plex Sans', system-ui, sans-serif;
   font-weight: 700; letter-spacing: -0.03em; }
 .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }

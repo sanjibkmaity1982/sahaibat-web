@@ -52,6 +52,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
     },
     {
+      url: `${BASE}/impact`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: { en: `${BASE}/impact`, id: `${BASE}/id/impact`, "x-default": `${BASE}/impact` },
+      },
+    },
+    {
+      url: `${BASE}/id/impact`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: {
+        languages: { en: `${BASE}/impact`, id: `${BASE}/id/impact`, "x-default": `${BASE}/impact` },
+      },
+    },
+    {
       url: `${BASE}/technology`,
       lastModified: now,
       changeFrequency: "monthly",
