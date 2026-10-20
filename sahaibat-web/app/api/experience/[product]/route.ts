@@ -21,6 +21,16 @@ import { verifyTurnstile } from "@/lib/experience/turnstile";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+// The flows produce a full consultation / claim review in one call; give a
+// stronger model room to finish.
+export const maxDuration = 60;
+
+// Stronger is better for a marketing demo: a wrong code in front of a hospital
+// coder costs more than the extra seconds. If the configured model is not
+// available on this key, fall back once to a widely available one.
+const MODEL = process.env.EXPERIENCE_AI_MODEL?.trim() || "gpt-5";
+const FALLBACK_MODEL = process.env.EXPERIENCE_AI_FALLBACK_MODEL?.trim() || "gpt-4.1";
+const isReasoningModel = (m: string) => /^(gpt-5|o\d)/.test(m);
 
 // Read forgivingly: a dashboard value of `True`, `"true"` or `true ` (stray
 // space) should still switch the zone on, and a pasted key often carries
@@ -35,8 +45,8 @@ let client: OpenAI | null = null;
 function openai(apiKey: string): OpenAI {
   client ??= new OpenAI({
     apiKey,
-    timeout: 30_000,
-    maxRetries: 1,
+    timeout: 50_000,
+    maxRetries: 0,
   });
   return client;
 }
@@ -99,10 +109,10 @@ export async function POST(req: NextRequest, ctx: { params: Promise<{ product: s
   }
 
   const started = Date.now();
-  try {
-    const completion = await openai(cfg.key).chat.completions.create(
+  const ask = (model: string) =>
+    openai(cfg.key).chat.completions.create(
       {
-        model: process.env.EXPERIENCE_AI_MODEL ?? "gpt-4.1-mini",
+        model,
         messages: [
           { role: "system", content: spec.system(lang) },
           { role: "user", content: text },
@@ -111,10 +121,25 @@ export async function POST(req: NextRequest, ctx: { params: Promise<{ product: s
           type: "json_schema",
           json_schema: { name: spec.schemaName, strict: true, schema: spec.jsonSchema },
         },
-        max_completion_tokens: 2500,
+        ...(isReasoningModel(model)
+          ? { reasoning_effort: (process.env.EXPERIENCE_AI_REASONING?.trim() || "low") as OpenAI.ReasoningEffort, max_completion_tokens: 12000 }
+          : { max_completion_tokens: 4000 }),
       },
       { signal: req.signal },
     );
+
+  let model = MODEL;
+  try {
+    let completion;
+    try {
+      completion = await ask(model);
+    } catch (err) {
+      const modelProblem = err instanceof OpenAI.NotFoundError || err instanceof OpenAI.BadRequestError;
+      if (!modelProblem || model === FALLBACK_MODEL) throw err;
+      console.warn(JSON.stringify({ evt: "experience_model_fallback", from: model, to: FALLBACK_MODEL, status: (err as InstanceType<typeof OpenAI.APIError>).status }));
+      model = FALLBACK_MODEL;
+      completion = await ask(model);
+    }
 
     const msg = completion.choices[0]?.message;
     if (msg?.refusal) return fail(422, "refused");
@@ -130,7 +155,7 @@ export async function POST(req: NextRequest, ctx: { params: Promise<{ product: s
     }
 
     // Product analytics without content: which demo, how long, did it work.
-    console.info(JSON.stringify({ evt: "experience_run", product, lang, ok: true, ms: Date.now() - started }));
+    console.info(JSON.stringify({ evt: "experience_run", product, lang, model, ok: true, ms: Date.now() - started }));
     return NextResponse.json({ result }, { headers: { "Cache-Control": "no-store" } });
   } catch (err) {
     if (err instanceof OpenAI.APIUserAbortError) return fail(499, "cancelled");
@@ -139,6 +164,7 @@ export async function POST(req: NextRequest, ctx: { params: Promise<{ product: s
       JSON.stringify({
         evt: "experience_run",
         product,
+        model,
         ok: false,
         status: err instanceof OpenAI.APIError ? err.status : undefined,
         ms: Date.now() - started,
