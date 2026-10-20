@@ -1,6 +1,5 @@
 // Shared design tokens for the commercial-rewrite pages (enterprise, node pages, company).
-// Homepage (app/(home)/HomePage.tsx) keeps its own copy for now — will be reconciled
-// when the homepage rewrite lands.
+// The homepage (components/redesign) carries its own Concept A palette.
 export const C = {
   teal: "#02C39A",
   tealDk: "#017367",

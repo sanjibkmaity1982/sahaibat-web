@@ -1,18 +1,25 @@
 // app/layout.tsx
-// SiteNav and SiteFooter render on every page — one shared design system,
-// no more per-page chrome. MainWrapper decides per-route width (full-bleed
+// SiteNav and SiteFooter render on every page except the redesigned ones
+// (see LegacyChrome), which carry their own nav and footer. MainWrapper decides per-route width (full-bleed
 // for rich marketing pages vs. constrained for plain content pages).
 import type { Metadata, Viewport } from "next";
+import { IBM_Plex_Mono, IBM_Plex_Sans, IBM_Plex_Serif } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/components/sahaibat/LanguageProvider";
 import { SiteNav } from "@/components/sahaibat/SiteNav";
 import { PromoRibbon } from "@/components/sahaibat/PromoRibbon";
 import { SiteFooter } from "@/components/sahaibat/SiteFooter";
 import { MainWrapper } from "@/components/sahaibat/MainWrapper";
+import { LegacyChrome } from "@/components/sahaibat/LegacyChrome";
+
+// ── Fonts (self-hosted at build time; no request to Google from the visitor) ──
+const plexSans = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-plex-sans", display: "swap" });
+const plexSerif = IBM_Plex_Serif({ subsets: ["latin"], weight: ["400", "500"], style: ["normal", "italic"], variable: "--font-plex-serif", display: "swap" });
+const plexMono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-plex-mono", display: "swap" });
 
 // ── Viewport (themeColor must live here in Next.js 15+, not in metadata) ──────
 export const viewport: Viewport = {
-  themeColor: "#02C39A",
+  themeColor: "#0F3D3E",
 };
 
 // ── Metadata ──────────────────────────────────────────────────────────────────
@@ -73,7 +80,7 @@ export const metadata: Metadata = {
 // ── Root Layout ────────────────────────────────────────────────────────────────
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${plexSans.variable} ${plexSerif.variable} ${plexMono.variable}`}>
       <head>
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
@@ -84,10 +91,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="min-h-screen bg-white text-slate-900">
         <LanguageProvider>
-          <PromoRibbon />
-          <SiteNav />
+          <LegacyChrome>
+            <PromoRibbon />
+            <SiteNav />
+          </LegacyChrome>
           <MainWrapper>{children}</MainWrapper>
-          <SiteFooter />
+          <LegacyChrome>
+            <SiteFooter />
+          </LegacyChrome>
         </LanguageProvider>
       </body>
     </html>
