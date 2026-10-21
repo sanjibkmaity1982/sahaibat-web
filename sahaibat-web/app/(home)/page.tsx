@@ -15,7 +15,15 @@ const organizationJsonLd = {
   name: "SahAIbat",
   url: BASE,
   logo: `${BASE}/images/brand/wordmark-horizontal-dark.png`,
-  legalName: "11679210 Canada Inc (Viantra)",
+  alternateName: ["SahAIbat Health", "Orivera"],
+  slogan: "Kesehatan, lebih dekat dari sebelumnya.",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Jl. Boulevard Raya No. 1, Kelapa Gading Timur",
+    addressLocality: "Jakarta",
+    postalCode: "14240",
+    addressCountry: "ID",
+  },
   description:
     "Kecerdasan kesehatan terhubung untuk Indonesia — Kader, Bidan, DOK, DOK Companion, Kasih, Code dan Konsensus.id.",
   areaServed: {
@@ -24,14 +32,23 @@ const organizationJsonLd = {
   },
   sameAs: [
     "https://www.sahaibatdok.com",
-    "https://instagram.com/sahaibat_health",
-    "https://youtube.com/@SahaibatHealth",
+    "https://www.instagram.com/sahaibat.sehat/",
+    "https://www.facebook.com/profile.php?id=61593890874615",
+    "https://www.linkedin.com/company/sahaibat/",
+    "https://www.tiktok.com/@sahaibat.health",
+    "https://www.youtube.com/channel/UCZ3sOfvRJPSkozGwzBpqrIQ",
   ],
   contactPoint: [
     {
       "@type": "ContactPoint",
       email: "admin@sahaibat.com",
       contactType: "customer support",
+      availableLanguage: ["Indonesian", "English"],
+    },
+    {
+      "@type": "ContactPoint",
+      email: "privacy@sahaibat.com",
+      contactType: "privacy",
       availableLanguage: ["Indonesian", "English"],
     },
     {

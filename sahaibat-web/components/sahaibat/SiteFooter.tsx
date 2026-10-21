@@ -5,9 +5,11 @@ import { useI18n } from "@/components/sahaibat/LanguageProvider";
 import { C } from "@/lib/sahaibat/theme";
 
 const SOCIAL: Array<{ icon: string; label: string; href: string }> = [
-  { icon: "📘", label: "Facebook", href: "https://www.facebook.com/profile.php?id=61593691100246" },
+  { icon: "📘", label: "Facebook", href: "https://www.facebook.com/profile.php?id=61593890874615" },
   { icon: "📷", label: "Instagram", href: "https://www.instagram.com/sahaibat.sehat/" },
   { icon: "🎵", label: "TikTok", href: "https://www.tiktok.com/@sahaibat.health" },
+  { icon: "💼", label: "LinkedIn", href: "https://www.linkedin.com/company/sahaibat/" },
+  { icon: "▶️", label: "YouTube", href: "https://www.youtube.com/channel/UCZ3sOfvRJPSkozGwzBpqrIQ" },
 ];
 
 export function SiteFooter() {
