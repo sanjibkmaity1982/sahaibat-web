@@ -15,7 +15,6 @@ const organizationJsonLd = {
   name: "SahAIbat",
   url: BASE,
   logo: `${BASE}/images/brand/wordmark-horizontal-dark.png`,
-  legalName: "Viantra Health",
   alternateName: ["SahAIbat Health", "Orivera"],
   slogan: "Kesehatan, lebih dekat dari sebelumnya.",
   address: {
