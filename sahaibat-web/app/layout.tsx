@@ -48,7 +48,7 @@ export const metadata: Metadata = {
       "One connected patient record across community, clinic and hospital. Indonesia's sovereign clinical AI, built on it.",
     url: "https://www.sahaibat.com",
     siteName: "SahAIbat",
-    locale: "en_US",
+    locale: "id_ID",
     type: "website",
     images: [
       {
@@ -80,7 +80,7 @@ export const metadata: Metadata = {
 // ── Root Layout ────────────────────────────────────────────────────────────────
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${plexSans.variable} ${plexSerif.variable} ${plexMono.variable}`}>
+    <html lang="id" className={`${plexSans.variable} ${plexSerif.variable} ${plexMono.variable}`}>
       <head>
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />

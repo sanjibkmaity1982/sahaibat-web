@@ -5,7 +5,7 @@
 
 import { usePathname } from "next/navigation";
 
-export const REDESIGN_PATHS = new Set(["/", "/en", "/id", "/impact", "/id/impact"]);
+export const REDESIGN_PATHS = new Set(["/", "/en", "/impact", "/en/impact"]);
 
 export function LegacyChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();

@@ -1,12 +1,12 @@
 // app/(home)/page.tsx
-// SERVER COMPONENT. English homepage at "/" — Concept A redesign.
+// SERVER COMPONENT. Bahasa Indonesia homepage at "/" (the default language) — Concept A redesign.
 
 import { RedesignPage } from "@/components/redesign/RedesignPage";
 import { redesignMetadata } from "@/components/redesign/meta";
 
 const BASE = "https://www.sahaibat.com";
 
-export const metadata = redesignMetadata("home", "en");
+export const metadata = redesignMetadata("home", "id");
 
 // ── Structured data (JSON-LD) ────────────────────────────────────────────────
 const organizationJsonLd = {
@@ -62,7 +62,7 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
       />
-      <RedesignPage lang="en" view="home" />
+      <RedesignPage lang="id" view="home" />
     </>
   );
 }

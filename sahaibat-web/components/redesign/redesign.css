@@ -855,3 +855,4 @@ to{background-position:100% 100%}
 .sb .fl-go[disabled]{opacity:.6;cursor:default}
 .sb .fl-go:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 .sb .fl-done{margin-left:auto;display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:12px 14px;border-radius:12px;background:#E6F4EE;color:var(--care)}
+.sb .nav .lg b{color:var(--care);font-weight:600}

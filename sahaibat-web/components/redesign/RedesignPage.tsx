@@ -20,9 +20,10 @@ import "./redesign.css";
 export type RedesignLang = "en" | "id";
 export type RedesignView = "home" | "impact";
 
+// Bahasa Indonesia is the default and owns the bare paths.
 const PATHS: Record<RedesignLang, Record<RedesignView, string>> = {
-  en: { home: "/", impact: "/impact" },
-  id: { home: "/id", impact: "/id/impact" },
+  id: { home: "/", impact: "/impact" },
+  en: { home: "/en", impact: "/en/impact" },
 };
 
 const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
