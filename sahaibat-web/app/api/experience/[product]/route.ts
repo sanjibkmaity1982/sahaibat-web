@@ -15,7 +15,6 @@
 import OpenAI from "openai";
 import { NextRequest, NextResponse } from "next/server";
 import { isProduct, PRODUCTS, type Lang } from "@/lib/experience/products";
-import { guardText } from "@/lib/experience/guard";
 import { takeRun, visitorId } from "@/lib/experience/limits";
 import { verifyTurnstile } from "@/lib/experience/turnstile";
 
@@ -85,7 +84,7 @@ export async function POST(req: NextRequest, ctx: { params: Promise<{ product: s
 
   if (!sameOrigin(req)) return fail(403, "forbidden");
 
-  let body: { text?: unknown; lang?: unknown; token?: unknown };
+  let body: { text?: unknown; data?: unknown; lang?: unknown; token?: unknown };
   try {
     body = await req.json();
   } catch {
@@ -96,7 +95,8 @@ export async function POST(req: NextRequest, ctx: { params: Promise<{ product: s
   const token = typeof body.token === "string" ? body.token : null;
 
   const spec = PRODUCTS[product];
-  if (guardText(text, spec.maxInput)) return fail(422, "guard");
+  const prepared = spec.input({ text, data: body.data }, lang);
+  if ("error" in prepared) return fail(422, "guard");
 
   const ip = clientIp(req);
   if (!(await verifyTurnstile(token, ip))) return fail(403, "verify");
@@ -115,7 +115,7 @@ export async function POST(req: NextRequest, ctx: { params: Promise<{ product: s
         model,
         messages: [
           { role: "system", content: spec.system(lang) },
-          { role: "user", content: text },
+          { role: "user", content: prepared.user },
         ],
         response_format: {
           type: "json_schema",
@@ -149,7 +149,7 @@ export async function POST(req: NextRequest, ctx: { params: Promise<{ product: s
 
     let result: unknown;
     try {
-      result = spec.parse(JSON.parse(msg.content));
+      result = spec.parse(JSON.parse(msg.content), prepared.ctx);
     } catch {
       return fail(502, "invalid_json");
     }
