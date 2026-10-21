@@ -23,16 +23,18 @@ async function incr(key: string, ttlSeconds: number): Promise<number> {
     const res = await fetch(`${REST_URL}/pipeline`, {
       method: "POST",
       headers: { Authorization: `Bearer ${REST_TOKEN}`, "Content-Type": "application/json" },
+      // Create the counter with its expiry only if it doesn't exist yet, then
+      // count. INCR keeps the TTL, and this works on every Redis version.
       body: JSON.stringify([
+        ["SET", key, "0", "EX", String(ttlSeconds), "NX"],
         ["INCR", key],
-        ["EXPIRE", key, String(ttlSeconds), "NX"],
       ]),
       cache: "no-store",
     });
     if (!res.ok) throw new Error(`rate-limit store ${res.status}`);
     const out = (await res.json()) as Array<{ result?: number; error?: string }>;
-    if (typeof out[0]?.result !== "number") throw new Error("rate-limit store reply");
-    return out[0].result;
+    if (typeof out[1]?.result !== "number") throw new Error("rate-limit store reply");
+    return out[1].result;
   }
   const now = Date.now();
   const cur = memory.get(key);

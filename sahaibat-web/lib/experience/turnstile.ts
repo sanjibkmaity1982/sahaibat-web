@@ -12,12 +12,20 @@ export async function verifyTurnstile(token: string | null, ip: string): Promise
   if (!secret) return true;
   if (!token) return false;
   const form = new URLSearchParams({ secret, response: token, remoteip: ip });
-  const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
-    method: "POST",
-    body: form,
-    cache: "no-store",
-  });
-  if (!res.ok) return false;
-  const out = (await res.json()) as { success?: boolean };
-  return out.success === true;
+  // A Cloudflare outage or timeout fails closed (the visitor is asked to try
+  // again) instead of crashing the request.
+  try {
+    const res = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "POST",
+      body: form,
+      cache: "no-store",
+      signal: AbortSignal.timeout(5000),
+    });
+    if (!res.ok) return false;
+    const out = (await res.json()) as { success?: boolean };
+    return out.success === true;
+  } catch (err) {
+    console.error("experience: turnstile verify failed", err instanceof Error ? err.message : err);
+    return false;
+  }
 }

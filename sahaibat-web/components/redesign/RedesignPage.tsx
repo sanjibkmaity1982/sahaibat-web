@@ -82,11 +82,19 @@ export function RedesignPage({ lang, view }: { lang: RedesignLang; view: Redesig
           widget = ts.render(el, { sitekey: TURNSTILE_SITE_KEY, size: "flexible", appearance: "interaction-only" });
         }
       },
-      getToken: () => {
+      // Tokens are single-use and take a moment to arrive after the widget is
+      // rendered or reset, so wait for one (up to 8 s) instead of sending none.
+      getToken: async () => {
+        if (!TURNSTILE_SITE_KEY) return null;
+        for (let i = 0; i < 40 && (!ts || !widget); i++) await new Promise((r) => setTimeout(r, 200));
         if (!ts || !widget) return null;
-        const token = ts.getResponse(widget) ?? null;
-        if (token) ts.reset(widget); // tokens are single-use
-        return token;
+        let token = ts.getResponse(widget);
+        for (let i = 0; i < 40 && !token; i++) {
+          await new Promise((r) => setTimeout(r, 200));
+          token = ts.getResponse(widget);
+        }
+        if (token) ts.reset(widget);
+        return token ?? null;
       },
     });
 
