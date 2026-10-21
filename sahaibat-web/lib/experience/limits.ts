@@ -56,6 +56,10 @@ export function visitorId(ip: string): string {
   return createHash("sha256").update(`${salt}:${ip}`).digest("hex").slice(0, 32);
 }
 
+// Which store the counters use, for the run log: "memory" in production means
+// the Upstash / Vercel KV settings are missing and limits are per instance.
+export const LIMIT_STORE = REST_URL && REST_TOKEN ? "upstash" : "memory";
+
 export async function takeRun(visitor: string): Promise<boolean> {
   const day = new Date().toISOString().slice(0, 10);
   const minute = Math.floor(Date.now() / 60000);

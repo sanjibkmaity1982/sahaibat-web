@@ -15,7 +15,7 @@
 import OpenAI from "openai";
 import { NextRequest, NextResponse } from "next/server";
 import { isProduct, PRODUCTS, type Lang } from "@/lib/experience/products";
-import { takeRun, visitorId } from "@/lib/experience/limits";
+import { LIMIT_STORE, takeRun, visitorId } from "@/lib/experience/limits";
 import { verifyTurnstile } from "@/lib/experience/turnstile";
 
 export const runtime = "nodejs";
@@ -155,7 +155,7 @@ export async function POST(req: NextRequest, ctx: { params: Promise<{ product: s
     }
 
     // Product analytics without content: which demo, how long, did it work.
-    console.info(JSON.stringify({ evt: "experience_run", product, lang, model, ok: true, ms: Date.now() - started }));
+    console.info(JSON.stringify({ evt: "experience_run", product, lang, model, store: LIMIT_STORE, ok: true, ms: Date.now() - started }));
     return NextResponse.json({ result }, { headers: { "Cache-Control": "no-store" } });
   } catch (err) {
     if (err instanceof OpenAI.APIUserAbortError) return fail(499, "cancelled");
