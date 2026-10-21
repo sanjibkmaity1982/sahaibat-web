@@ -2,7 +2,7 @@
 //
 // Spend control for the Experience Zone. Three counters, all fixed-window:
 //   - per visitor per minute   (burst)
-//   - per visitor per day      (EXPERIENCE_IP_DAILY_LIMIT, default 9 = 3 runs x 3 demos)
+//   - per visitor per day      (EXPERIENCE_IP_DAILY_LIMIT, default 15 = 3 runs x 5 demos)
 //   - whole site per day       (EXPERIENCE_DAILY_CAP, default 300)
 //
 // Counters live in Upstash Redis / Vercel KV when its REST credentials are set.
@@ -64,7 +64,7 @@ export async function takeRun(visitor: string): Promise<boolean> {
   ]);
   return (
     burst <= 3 &&
-    daily <= num(process.env.EXPERIENCE_IP_DAILY_LIMIT, 9) &&
+    daily <= num(process.env.EXPERIENCE_IP_DAILY_LIMIT, 15) &&
     site <= num(process.env.EXPERIENCE_DAILY_CAP, 300)
   );
 }

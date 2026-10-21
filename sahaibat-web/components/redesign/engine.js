@@ -108,13 +108,15 @@ export function initRedesign(root, opts){
   document.getElementById('wl').addEventListener('submit',function(e){e.preventDefault();var m=document.getElementById('wlMsg');m.hidden=false;location.href='mailto:admin@sahaibat.com?subject='+encodeURIComponent('SahAIbat Aesthetics waitlist')+'&body='+encodeURIComponent(document.getElementById('wlEmail').value);m.textContent=t({en:'Opening your email app to join the Aesthetics waitlist.',id:'Membuka aplikasi email Anda untuk mendaftar ke daftar tunggu Aesthetics.'})});
 
   // 10 experience zone
-  // The zone lists only what a visitor can actually try: three live AI flows
+  // The zone lists only what a visitor can actually try: five live AI flows
   // (flows.js) and Konsensus.id itself. Each card opens it directly.
-  var XZ=[['DOK','M6 26 q6 -18 12 0 t12 0 q6 -24 12 0 t12 0 C80 26 100 10 140 10 H400',{en:'Finish a whole visit in 60 seconds: SOAP, clinical advice, ICD-10, BPJS check and one-click SATUSEHAT.',id:'Selesaikan satu kunjungan dalam 60 detik: SOAP, saran klinis, ICD-10, cek BPJS dan SATUSEHAT satu klik.'},{en:'Try it live',id:'Coba langsung'},{en:'Live AI',id:'AI langsung'}],
+  var XZ=[['Kader','M6 38 C80 30 150 20 220 14 S330 6 400 4',{en:'Posyandu in 30 seconds: WHO growth status, follow-up plan, referral and a message to the mother.',id:'Posyandu dalam 30 detik: status gizi standar WHO, rencana tindak lanjut, rujukan dan pesan untuk ibu.'},{en:'Try it live',id:'Coba langsung'},{en:'Live AI',id:'AI langsung'}],
+    ['Bidan','M6 24 H360',{en:'Finish an ANC visit: 10T checklist, risk screening, next contact, referral and a message to the mother.',id:'Selesaikan kunjungan ANC: daftar periksa 10T, skrining risiko, kunjungan berikutnya, rujukan dan pesan untuk ibu.'},{en:'Try it live',id:'Coba langsung'},{en:'Live AI',id:'AI langsung'}],
+    ['DOK','M6 26 q6 -18 12 0 t12 0 q6 -24 12 0 t12 0 C80 26 100 10 140 10 H400',{en:'Finish a whole visit in 60 seconds: SOAP, clinical advice, ICD-10, BPJS check and one-click SATUSEHAT.',id:'Selesaikan satu kunjungan dalam 60 detik: SOAP, saran klinis, ICD-10, cek BPJS dan SATUSEHAT satu klik.'},{en:'Try it live',id:'Coba langsung'},{en:'Live AI',id:'AI langsung'}],
     ['Code','M6 8 C80 8 100 24 180 24 M6 40 C80 40 100 24 180 24 H400',{en:'Make a discharge summary claim-ready: evidence-backed codes, severity, documentation queries and audit risk.',id:'Siapkan resume medis untuk klaim: kode berbukti, tingkat keparahan, query dokumentasi dan risiko audit.'},{en:'Try it live',id:'Coba langsung'},{en:'Live AI',id:'AI langsung'}],
     ['Kasih','M6 30 C50 30 60 10 110 10 S180 30 230 30 S300 10 350 10 S395 24 400 24',{en:'Turn the doctor’s instructions into a WhatsApp care journey the whole family follows.',id:'Ubah instruksi dokter menjadi perjalanan perawatan di WhatsApp yang diikuti seluruh keluarga.'},{en:'Try it live',id:'Coba langsung'},{en:'Live AI',id:'AI langsung'}],
     ['Konsensus.id','M6 40 C120 40 160 10 250 10 S360 26 400 20',{en:'Ask a clinical question and get an evidence answer with its sources, in seconds. 5 free searches a day.',id:'Ajukan pertanyaan klinis dan dapatkan jawaban berbasis bukti beserta sumbernya, dalam hitungan detik. 5 pencarian gratis per hari.'},{en:'Search Konsensus.id',id:'Cari di Konsensus.id'},{en:'Free',id:'Gratis'}]];
-  var XK={DOK:'dok',Code:'code',Kasih:'kasih','Konsensus.id':'kons'};
+  var XK={Kader:'kader',Bidan:'bidan',DOK:'dok',Code:'code',Kasih:'kasih','Konsensus.id':'kons'};
   function renderXZ(){document.getElementById('xz').innerHTML=XZ.map(function(x){var k=XK[x[0]],ext=k==='kons';
     return '<a href="'+(ext?'https://konsensus.id':'#sbx')+'"'+(ext?' target="_blank" rel="noopener"':' data-demo="'+k+'"')+' class="p-'+k+'"><div class="xz-top">'+LK(k)+'<span class="live">'+t(x[4])+'</span></div><svg viewBox="0 0 406 48" preserveAspectRatio="none" aria-hidden="true"><path d="'+x[1]+'"/></svg><p>'+t(x[2])+'</p><div class="xz-foot"><span class="go">'+t(x[3])+(ext?' ↗':' →')+'</span></div></a>'}).join('')}
 
@@ -133,7 +135,7 @@ export function initRedesign(root, opts){
     var r=ROLES.filter(function(x){return x.k===cs})[0];document.getElementById('closeOut').innerHTML='<div class="ch-brand">'+LK(r.th,1)+'<span class="k">'+t(r.e)+'</span></div><p>'+t(r.b)+'</p><div class="btns"><a class="b1" href="#">'+t(r.c[0])+'</a></div>'}
   document.getElementById('closeSel').addEventListener('change',function(e){cs=e.target.value;renderClose()});
 
-  function renderAll(){calc();['dok','code','kasih'].forEach(function(p){if(!document.getElementById(p+'Live').hidden)flows.rerender(p)});sbxCtaText();renderPlayer();renderVig();renderRoles();renderVisits();renderTL();renderFlow();renderEv();renderXZ();renderPil();renderClose();}
+  function renderAll(){calc();['kader','bidan','dok','code','kasih'].forEach(function(p){if(!document.getElementById(p+'Live').hidden)flows.rerender(p)});sbxCtaText();renderPlayer();renderVig();renderRoles();renderVisits();renderTL();renderFlow();renderEv();renderXZ();renderPil();renderClose();}
 
 
   // ---------- pages ----------
@@ -194,7 +196,7 @@ export function initRedesign(root, opts){
       lock:{items:[E2('Consultation and treatment plan','Konsultasi dan rencana perawatan'),E2('Progress over time','Progres dari waktu ke waktu'),E2('Aftercare between visits','Perawatan lanjutan di antara kunjungan')],cta:E2('Join the waitlist','Daftar tunggu'),href:'#aesthetics',soon:1}}
   };
   var cur=null,ci=0;
-  var LIVE={dok:1,code:1,kasih:1};
+  var LIVE={kader:1,bidan:1,dok:1,code:1,kasih:1};
   function liveBtn(k){if(LIVE[k])return ' <button type="button" class="xzp-live" data-sbx="'+k+'">'+t(E2('Try it live','Coba langsung'))+'</button>';
     if(k==='kons')return ' <a class="xzp-live" href="https://konsensus.id" target="_blank" rel="noopener">'+t(E2('Try it live','Coba langsung'))+' ↗</a>';return ''}
   function renderPlayer(){if(!cur)return;var d=DEMOS[cur],n=d.steps.length;ci=Math.min(ci,n-1);
@@ -224,12 +226,12 @@ export function initRedesign(root, opts){
 
   // ---------- live sandbox (planned) ----------
   // ---------- live mini experiences: open straight into the tool ----------
-  var SBX={dok:[E2('Start free · live in 24 hours','Mulai gratis · aktif dalam 24 jam'),'#dok'],code:[E2('Request a hospital demo','Minta demo rumah sakit'),'#code'],kasih:[E2('Discover Kasih','Kenali Kasih'),'#kasih']};
+  var SBX={kader:[E2('Discuss a Posyandu programme','Diskusikan program Posyandu'),'#impact'],bidan:[E2('Request Bidan access','Minta akses Bidan'),'#bidan'],dok:[E2('Start free · live in 24 hours','Mulai gratis · aktif dalam 24 jam'),'#dok'],code:[E2('Request a hospital demo','Minta demo rumah sakit'),'#code'],kasih:[E2('Discover Kasih','Kenali Kasih'),'#kasih']};
   var sbxCur=null;
   function sbxCtaText(){if(sbxCur)document.getElementById('sbxCta').textContent=t(SBX[sbxCur][0])+' →'}
   function openSbx(k){var c=SBX[k];if(!c)return;sbxCur=k;var b=document.getElementById('sbx');b.hidden=false;b.className='sbx p-'+k;
     document.getElementById('sbxName').innerHTML=LK(k,1);var cta=document.getElementById('sbxCta');cta.href=c[1];sbxCtaText();
-    ['dok','code','kasih'].forEach(function(x){document.getElementById(x+'Live').hidden=x!==k});
+    ['kader','bidan','dok','code','kasih'].forEach(function(x){document.getElementById(x+'Live').hidden=x!==k});
     flows.open(k);if(opts.onGate)opts.onGate();
     // recalculate scroll animations first; a refresh after scrolling cancels the scroll
     if(window.ScrollTrigger)ScrollTrigger.refresh();requestAnimationFrame(function(){b.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'})});}
@@ -245,6 +247,14 @@ export function initRedesign(root, opts){
   document.getElementById('calcSel').addEventListener('change',calc);document.getElementById('calcCustom').addEventListener('input',calc);
 
   // ---------- live experiences (see flows.js) ----------
+  var KADER_CASES=[
+    {id:'k1',t:E2('Girl · 18 months · weight not gaining','Perempuan · 18 bulan · berat tidak naik'),data:{sex:'P',ageMonths:18,weightKg:9.0,lengthCm:74.5,prevWeightKg:9.0,muacCm:null}},
+    {id:'k2',t:E2('Boy · 30 months · weight dropping','Laki-laki · 30 bulan · berat turun'),data:{sex:'L',ageMonths:30,weightKg:10.0,lengthCm:84,prevWeightKg:10.1,muacCm:12}},
+    {id:'k3',t:E2('Girl · 9 months · growing well','Perempuan · 9 bulan · tumbuh baik'),data:{sex:'P',ageMonths:9,weightKg:8.2,lengthCm:70,prevWeightKg:7.9,muacCm:null}}];
+  var BIDAN_CASES=[
+    {id:'b1',t:E2('32 weeks · high blood pressure','32 minggu · tekanan darah tinggi'),tx:'Kunjungan ANC. Ibu 37 tahun, G3P2A0, hamil 32 minggu. Keluhan pusing sejak 2 hari. TD 150/95 mmHg, BB 68 kg, LILA 24 cm, TFU 29 cm, presentasi kepala, DJJ 142x/menit. Hb 10,2 g/dL. Protein urin belum diperiksa. Tablet tambah darah diminum rutin. Imunisasi TT lengkap.'},
+    {id:'b2',t:E2('10 weeks · first visit, age 19','10 minggu · kunjungan pertama, usia 19'),tx:'Kunjungan ANC pertama. Ibu 19 tahun, G1P0A0, hamil 10 minggu. Mual di pagi hari. TD 110/70 mmHg, BB 45 kg, TB 152 cm, LILA 22 cm. Belum periksa laboratorium. Belum mendapat tablet tambah darah. Status imunisasi TT belum diketahui.'},
+    {id:'b3',t:E2('24 weeks · routine visit','24 minggu · kunjungan rutin'),tx:'Kunjungan ANC. Ibu 27 tahun, G2P1A0, hamil 24 minggu. Tidak ada keluhan. TD 115/75 mmHg, BB 58 kg, LILA 26 cm, TFU 23 cm, DJJ 140x/menit. Hb 11,8 g/dL, protein urin negatif, gula darah 92 mg/dL, HIV, sifilis dan HBsAg non-reaktif. Tablet tambah darah rutin. TT lengkap. Konseling gizi dan tanda bahaya kehamilan diberikan.'}];
   var DL_CASES=[
     {id:'cough',t:E2('Cough and fever · adult','Batuk dan demam · dewasa'),tx:'Pasien laki-laki 41 tahun.\nDokter: Sudah berapa lama batuknya, Pak?\nPasien: Sudah empat hari, Dok. Demam sejak kemarin.\nDokter: Ada sesak napas atau nyeri dada?\nPasien: Tidak, cuma tenggorokan sakit.\nDokter: Obat darah tinggi masih diminum rutin?\nPasien: Masih, Dok, amlodipin tiap pagi.\nPerawat: Suhu 37,9, tensi 128/82, nadi 84, saturasi 98.'},
     {id:'diarrhoea',t:E2('Diarrhoea · child, 2 years','Diare · anak 2 tahun'),tx:'Anak perempuan 2 tahun diantar ibunya.\nIbu: Anak saya mencret sejak kemarin, kira-kira lima kali sehari, cair, tidak ada darah.\nDokter: Muntah?\nIbu: Muntah sekali tadi pagi.\nDokter: Masih mau minum? Masih kencing?\nIbu: Masih mau minum, kencing agak jarang.\nDokter: Demam?\nIbu: Sumeng sedikit.\nPerawat: Suhu 37,8, berat 11,2 kg.'},
@@ -263,7 +273,7 @@ export function initRedesign(root, opts){
     if(txt.trim().length<40)return E2('Describe the case in a few sentences.','Jelaskan kasus dalam beberapa kalimat.');return null}
   async function apiJson(product,text,signal){
     var token=opts.getToken?await opts.getToken():null,r;
-    try{r=await fetch('/api/experience/'+product,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({text:text,lang:L,token:token}),signal:signal})}
+    try{r=await fetch('/api/experience/'+product,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(typeof text==='string'?{text:text,lang:L,token:token}:{data:text,lang:L,token:token}),signal:signal})}
     catch(e){throw {code:e&&e.name==='AbortError'?'cancelled':'network'}}
     var d=await r.json().catch(function(){return null});
     if(!r.ok||!d)throw {code:(d&&d.code)||'error'};
@@ -271,7 +281,7 @@ export function initRedesign(root, opts){
   function esc(x){return String(x==null?'':x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
   function markSrc(tx,items){var h=esc(tx);(items||[]).forEach(function(it){var q=it&&it.q?String(it.q).trim():'';if(q.length<3)return;var e=esc(q);var i=h.indexOf(e);if(i>=0)h=h.slice(0,i)+'<mark'+(it.cls?' class="'+it.cls+'"':'')+'>'+e+'</mark>'+h.slice(i+e.length)});return h}
   var CROLE={primary:E2('primary','utama'),secondary:E2('secondary','sekunder'),procedure:E2('procedure','prosedur')},CCONF={high:E2('high','tinggi'),medium:E2('medium','sedang'),low:E2('low','rendah')};
-  var flows=createFlows({t:t,E2:E2,esc:esc,markSrc:markSrc,guard:dlGuard,api:apiJson,CROLE:CROLE,CCONF:CCONF,reduce:reduce,cases:{dok:DL_CASES,code:CODE_CASES,kasih:KASIH_CASES}});
+  var flows=createFlows({t:t,E2:E2,esc:esc,markSrc:markSrc,guard:dlGuard,api:apiJson,CROLE:CROLE,CCONF:CCONF,reduce:reduce,lang:function(){return L},cases:{kader:KADER_CASES,bidan:BIDAN_CASES,dok:DL_CASES,code:CODE_CASES,kasih:KASIH_CASES}});
   // ---------- motion storytelling ----------
   var motion=true,mm=null,touched={vis:0,tl:0,ev:0};
   function setB(i,p){var ring=document.getElementById('btRing');if(!ring)return;var f=p==null?i/7:p;ring.style.left='calc(5px + (100% - 10px) * '+f.toFixed(3)+')';document.querySelectorAll('#bTrack i').forEach(function(d,j){d.classList.toggle('on',j<=i)});var v=TL[i];document.getElementById('btLabel').textContent=(v[0]==='birth'?'':v[0]==='KF'?'KF · ':v[0]+' · ')+t(v[1]);}
