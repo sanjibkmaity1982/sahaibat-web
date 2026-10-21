@@ -31,6 +31,9 @@ type Product = {
   // `ctx` carries anything computed in code to merge into the result.
   input: (req: ExperienceInput, lang: Lang) => { user: string; ctx?: unknown } | { error: "guard" };
   parse: (raw: unknown, ctx?: unknown) => unknown;
+  // Reasoning effort for reasoning models. Kader and Bidan run on "minimal":
+  // their clinical numbers are computed in code, so speed matters more.
+  reasoning?: "minimal" | "low" | "medium" | "high";
 };
 
 const textInput = (maxInput: number) => (req: ExperienceInput) =>
@@ -133,6 +136,7 @@ export const PRODUCTS: Record<ProductKey, Product> = {
       return { user, ctx: r };
     },
     schemaName: "kader_posyandu",
+    reasoning: "minimal",
     system: (l) =>
       `You support a kader (community health volunteer) at an Indonesian Posyandu, inside a public demo of SahAIbat Kader. The child's growth status has already been computed from WHO standards and is given to you; it is final. Plan what happens next.
 
@@ -162,13 +166,14 @@ Rules:
       return "error" in t ? t : { ...t, ctx: lang };
     },
     schemaName: "bidan_anc_visit",
+    reasoning: "minimal",
     system: (l) =>
       `You support a midwife (bidan) during an antenatal care (ANC) visit in Indonesia, inside a public demo of SahAIbat Bidan. The user message is the visit note.
 
 Rules:
 - facts: copy numbers exactly as written in the note; use null for anything not written. Never estimate.
 - summary: one or two sentences describing the visit (trimester, main findings).
-- checklist: the Indonesian 10T ANC standard, in this order: weight and height; blood pressure; nutritional status (LILA); fundal height; fetal presentation and heart rate; tetanus immunisation status; iron tablets; laboratory tests (Hb, protein urine, blood glucose, triple elimination HIV/syphilis/hepatitis B); case management; counselling (temu wicara). For each, status "done" if the note shows it was done, otherwise "missing". Item names short, in the page language.
+- checklist: the Indonesian 10T ANC standard, in this order: weight and height; blood pressure; nutritional status (LILA); fundal height; fetal presentation and heart rate; tetanus immunisation status; iron tablets; laboratory tests (Hb, protein urine, blood glucose, triple elimination HIV/syphilis/hepatitis B); case management; counselling (temu wicara). For each, status "done" only if the note shows it was fully done, otherwise "missing". Laboratory tests count as done only when Hb, urine protein, blood glucose and the triple elimination tests are all in the note; if any is missing, mark it "missing" and name what is missing in the item (for example "Laboratorium: protein urin belum"). Item names short, in the page language.
 - next_visit: when the next ANC visit should be (for example "4 minggu lagi, usia kehamilan 28 minggu"), which contact it is (K1–K6; the minimum is six contacts), whether it should be with a doctor (with_doctor: the first-trimester contact and one third-trimester contact include a doctor and ultrasound), and one line why.
 - referral: whether referral is clinically needed from what is written, where to (Puskesmas PONED or hospital PONEK), and one line why. Thresholds are also checked separately in code.
 - education: up to 3 short counselling points relevant to this visit.
