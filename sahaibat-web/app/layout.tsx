@@ -24,15 +24,15 @@ export const viewport: Viewport = {
 
 // ── Metadata ──────────────────────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: "SahAIbat — Indonesia's Connected Clinical AI Platform",
+  title: "SahAIbat — Connected Healthcare Intelligence for Indonesia",
   description:
     "SahAIbat connects Indonesia's 1.4M community health workers, 300K doctors and 280M patients in one clinical record — from the village Posyandu to the hospital claim — and trains the country's own sovereign clinical language model on the consented data it produces.",
   keywords: [
-    "Indonesia health AI",
+    "healthcare intelligence Indonesia",
     "Kader app",
     "SahAIbat",
     "SATUSEHAT",
-    "clinical AI Indonesia",
+    "clinical intelligence Indonesia",
     "community health workers",
     "ILP Posyandu",
     "health tech Indonesia",
@@ -43,9 +43,9 @@ export const metadata: Metadata = {
   creator: "SahAIbat",
   metadataBase: new URL("https://www.sahaibat.com"),
   openGraph: {
-    title: "SahAIbat — Indonesia's Connected Clinical AI Platform",
+    title: "SahAIbat — Connected Healthcare Intelligence for Indonesia",
     description:
-      "One connected patient record across community, clinic and hospital. Indonesia's sovereign clinical AI, built on it.",
+      "One connected patient record across community, clinic and hospital, with SahAIbat Intelligence built in.",
     url: "https://www.sahaibat.com",
     siteName: "SahAIbat",
     locale: "id_ID",
@@ -55,15 +55,15 @@ export const metadata: Metadata = {
         url: "/images/brand/wordmark-horizontal-light.png",
         width: 1200,
         height: 630,
-        alt: "SahAIbat — Indonesia Health AI Platform",
+        alt: "SahAIbat — Healthcare Intelligence for Indonesia",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SahAIbat — Indonesia's Connected Clinical AI Platform",
+    title: "SahAIbat — Connected Healthcare Intelligence for Indonesia",
     description:
-      "Connecting Indonesia's 1.4M Kaders, 300K doctors, and 280M patients in one sovereign clinical AI layer.",
+      "Connecting Indonesia's kaders, midwives, doctors and hospitals with SahAIbat Intelligence.",
     images: ["/images/brand/wordmark-horizontal-light.png"],
   },
   icons: {
