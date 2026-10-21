@@ -134,15 +134,21 @@ export const SECTIONS: Section[] = [
     id: "intelligence",
     h: t("7. Safe use of SahAIbat Intelligence", "7. Penggunaan SahAIbat Intelligence yang aman"),
     body: [
-      { p: t("SahAIbat Intelligence (including DOK Intelligence) supports health workers. It is designed so that a person stays in charge:", "SahAIbat Intelligence (termasuk DOK Intelligence) mendukung tenaga kesehatan. Dirancang agar manusia tetap memegang kendali:") },
-      { ul: [
-        t("Every note, code, plan or message it drafts is reviewed, edited and signed by a qualified health worker before it becomes part of a record.", "Setiap catatan, kode, rencana atau pesan yang disusunnya ditinjau, diedit dan ditandatangani tenaga kesehatan yang berwenang sebelum menjadi bagian rekam medis."),
-        t("It makes no automated decision with legal or similarly significant effect on a patient. Diagnosis, treatment and referral are decided by the health worker.", "Tidak ada keputusan otomatis yang berdampak hukum atau signifikan bagi pasien. Diagnosis, pengobatan dan rujukan diputuskan tenaga kesehatan."),
-        t("Clinical calculations and risk thresholds (for example WHO growth z-scores, pregnancy risk flags and drug-safety checks) are computed by fixed, tested rules, not guessed.", "Perhitungan klinis dan ambang risiko (misalnya skor-z pertumbuhan WHO, tanda risiko kehamilan dan cek keamanan obat) dihitung dengan aturan tetap yang teruji, bukan ditebak."),
-        t("Safeguards stop a note being made from an empty recording, mark lines that were inferred rather than said, and check drafts against what was said.", "Pengaman mencegah catatan dibuat dari rekaman kosong, menandai baris hasil simpulan, dan mencocokkan draf dengan isi percakapan."),
-        t("It processes only the data needed for the task in front of it, and only for that task.", "Hanya memproses data yang dibutuhkan untuk tugas yang sedang dikerjakan, dan hanya untuk tugas itu."),
-        t("You have the right to object to decisions based solely on automated processing (Article 10 UU PDP). Contact us and a person will review it.", "Anda berhak menolak keputusan yang semata-mata berdasarkan pemrosesan otomatis (Pasal 10 UU PDP). Hubungi kami dan seseorang akan meninjaunya."),
-      ] },
+      { p: t("SahAIbat Intelligence (including DOK Intelligence) supports health workers; it never replaces them. These guardrails apply to every product:", "SahAIbat Intelligence (termasuk DOK Intelligence) mendukung tenaga kesehatan, bukan menggantikannya. Pengaman berikut berlaku di setiap produk:") },
+      { table: {
+        head: [t("Guardrail", "Pengaman"), t("What it means", "Artinya")],
+        rows: [
+          [t("A person decides", "Manusia yang memutuskan"), t("Every note, code, plan or message is a draft until a qualified health worker reviews, edits and signs it. Diagnosis, treatment and referral are always decided by the health worker.", "Setiap catatan, kode, rencana atau pesan adalah draf sampai tenaga kesehatan yang berwenang meninjau, mengedit dan menandatanganinya. Diagnosis, pengobatan dan rujukan selalu diputuskan tenaga kesehatan.")],
+          [t("No automated decisions", "Tanpa keputusan otomatis"), t("Intelligence makes no decision with legal or similarly significant effect on a patient, and never contacts a patient on its own. Messages are sent only after a health worker approves them.", "Intelligence tidak membuat keputusan yang berdampak hukum atau signifikan bagi pasien, dan tidak pernah menghubungi pasien sendiri. Pesan hanya dikirim setelah disetujui tenaga kesehatan.")],
+          [t("Calculated, not guessed", "Dihitung, bukan ditebak"), t("Clinical calculations and risk thresholds, such as WHO growth z-scores, pregnancy risk flags and drug-safety checks, are computed by fixed, tested rules.", "Perhitungan klinis dan ambang risiko, seperti skor-z pertumbuhan WHO, tanda risiko kehamilan dan cek keamanan obat, dihitung dengan aturan tetap yang teruji.")],
+          [t("Grounded in what was said", "Berdasarkan percakapan"), t("A note is never made from an empty recording. Lines that were inferred rather than said are marked, and drafts are checked against the consultation.", "Catatan tidak pernah dibuat dari rekaman kosong. Baris hasil simpulan ditandai, dan draf dicocokkan dengan isi konsultasi.")],
+          [t("Indonesian standards", "Standar Indonesia"), t("Clinical support follows national guidelines and professional bodies (such as Kemenkes, PERKI, PERKENI, IDAI and POGI), with the source shown.", "Dukungan klinis mengikuti pedoman nasional dan organisasi profesi (seperti Kemenkes, PERKI, PERKENI, IDAI dan POGI), dengan sumber yang ditampilkan.")],
+          [t("Safe by design", "Aman sejak rancangan"), t("Intelligence suggests no medicine dose that the health worker did not state, refuses requests that are not clinical, and treats text inside a record only as information, never as instructions.", "Intelligence tidak menyarankan dosis obat yang tidak disebutkan tenaga kesehatan, menolak permintaan non-klinis, dan memperlakukan teks dalam rekam medis hanya sebagai informasi, bukan perintah.")],
+          [t("Only what is needed", "Hanya yang dibutuhkan"), t("Each task uses only the data it needs, and only for that task.", "Setiap tugas hanya memakai data yang dibutuhkan, dan hanya untuk tugas itu.")],
+          [t("Monitored and improved", "Dipantau dan diperbaiki"), t("Quality and safety are reviewed continuously. Any safety concern reported by a health worker is investigated, and fixes are tested before release.", "Mutu dan keamanan ditinjau terus-menerus. Setiap masalah keamanan yang dilaporkan tenaga kesehatan diselidiki, dan perbaikan diuji sebelum dirilis.")],
+        ],
+      } },
+      { p: t("You have the right to object to decisions based solely on automated processing (Article 10 UU PDP). Contact us and a person will review it.", "Anda berhak menolak keputusan yang semata-mata berdasarkan pemrosesan otomatis (Pasal 10 UU PDP). Hubungi kami dan seseorang akan meninjaunya.") },
     ],
   },
   {
@@ -160,7 +166,7 @@ export const SECTIONS: Section[] = [
         t("Only the clinical text is used: the draft and the doctor’s signed correction. Identifying details are removed before any example is used, including names spoken during a consultation.", "Hanya teks klinis yang dipakai: draf dan koreksi yang ditandatangani dokter. Data identitas dihapus sebelum contoh dipakai, termasuk nama yang terucap saat konsultasi."),
         t("Training runs only on infrastructure we operate in Jakarta. The data does not leave Indonesia for training, and the resulting model is never sold or shared with third parties.", "Pelatihan hanya berjalan di infrastruktur yang kami operasikan di Jakarta. Data tidak keluar dari Indonesia untuk pelatihan, dan model yang dihasilkan tidak pernah dijual atau dibagikan ke pihak ketiga."),
         t("A data protection impact assessment is completed before training begins, and the model is checked so that it cannot reproduce an individual record.", "Penilaian dampak pelindungan data diselesaikan sebelum pelatihan dimulai, dan model diperiksa agar tidak dapat mereproduksi rekam medis individu."),
-        t("External model providers are used only under terms that prohibit them from using our customers’ data to train their models.", "Penyedia model eksternal hanya dipakai dengan ketentuan yang melarang mereka memakai data pelanggan kami untuk melatih modelnya."),
+        t("Our technology partners are never permitted to use our customers’ data to train their own models.", "Mitra teknologi kami tidak pernah diizinkan memakai data pelanggan kami untuk melatih model mereka."),
         t("Kader, Bidan, Kasih, Code, the Experience Zone and all other Services: no customer data of any kind is used for training.", "Kader, Bidan, Kasih, Code, Zona Pengalaman dan semua Layanan lain: tidak ada data pelanggan apa pun yang dipakai untuk pelatihan."),
       ] },
     ],
@@ -169,12 +175,12 @@ export const SECTIONS: Section[] = [
     id: "location",
     h: t("9. Where your data is stored", "9. Di mana data Anda disimpan"),
     body: [
+      { note: t(
+        "All personal data and health records are stored in Indonesia, in secure data centres in Jakarta. Your records are not stored outside Indonesia.",
+        "Seluruh data pribadi dan rekam medis disimpan di Indonesia, di pusat data yang aman di Jakarta. Rekam medis Anda tidak disimpan di luar Indonesia.") },
       { p: t(
-        "Personal data and health records are stored in Indonesia, in data centres in Jakarta (AWS Asia Pacific Jakarta, ap-southeast-3). SahAIbat Intelligence runs primarily in Jakarta, on infrastructure we operate and on cloud services in the Jakarta region.",
-        "Data pribadi dan rekam medis disimpan di Indonesia, di pusat data di Jakarta (AWS Asia Pacific Jakarta, ap-southeast-3). SahAIbat Intelligence berjalan terutama di Jakarta, pada infrastruktur yang kami operasikan dan layanan cloud di region Jakarta.") },
-      { p: t(
-        "If a task must be processed outside Indonesia (for example by a model provider when the Jakarta capacity is busy, or for the public Experience Zone), we do so only as allowed by Article 56 of the UU PDP: to a country or recipient with an equal or higher level of protection, or under binding contractual safeguards. The data is encrypted in transit, processed only for that task, not kept by the provider beyond what the task and the law require, and never used for its training. The stored record remains in Indonesia.",
-        "Bila suatu tugas harus diproses di luar Indonesia (misalnya oleh penyedia model saat kapasitas Jakarta penuh, atau untuk Zona Pengalaman publik), kami melakukannya hanya sebagaimana diizinkan Pasal 56 UU PDP: ke negara atau penerima dengan tingkat pelindungan setara atau lebih tinggi, atau dengan perlindungan kontraktual yang mengikat. Data dienkripsi selama pengiriman, diproses hanya untuk tugas tersebut, tidak disimpan penyedia melebihi kebutuhan tugas dan hukum, dan tidak pernah dipakai untuk pelatihannya. Rekam medis yang tersimpan tetap di Indonesia.") },
+        "Storing data in Indonesia keeps it under Indonesian law and supervision, in line with the UU PDP and the rules on electronic medical records.",
+        "Penyimpanan di Indonesia menjaga data tetap berada di bawah hukum dan pengawasan Indonesia, sesuai UU PDP dan ketentuan rekam medis elektronik.") },
     ],
   },
   {
@@ -198,7 +204,7 @@ export const SECTIONS: Section[] = [
         t("With the health facility that the record belongs to, and the health workers it authorises.", "Dengan fasilitas kesehatan pemilik rekam medis, dan tenaga kesehatan yang diberi wewenang olehnya."),
         t("With SATUSEHAT (Ministry of Health) and BPJS Kesehatan, when the facility submits data as the law requires.", "Dengan SATUSEHAT (Kementerian Kesehatan) dan BPJS Kesehatan, saat fasilitas mengirim data sesuai kewajiban hukum."),
         t("With another facility, pharmacy or the patient, when a health worker sends a referral, prescription or message.", "Dengan fasilitas lain, apotek atau pasien, saat tenaga kesehatan mengirim rujukan, resep atau pesan."),
-        t("With service providers who process data for us under a written agreement with confidentiality and security obligations (sub-processors): cloud hosting, model providers, messaging (such as WhatsApp), email and payments. They may use the data only to provide their service to us.", "Dengan penyedia layanan yang memproses data untuk kami berdasarkan perjanjian tertulis dengan kewajiban kerahasiaan dan keamanan (sub-prosesor): hosting cloud, penyedia model, pesan (seperti WhatsApp), email dan pembayaran. Mereka hanya boleh memakai data untuk memberi layanan kepada kami."),
+        t("With service providers who process data for us under a written agreement with confidentiality and security obligations (sub-processors): cloud hosting and technology services, messaging (such as WhatsApp), email and payments. They may use the data only to provide their service to us.", "Dengan penyedia layanan yang memproses data untuk kami berdasarkan perjanjian tertulis dengan kewajiban kerahasiaan dan keamanan (sub-prosesor): hosting cloud dan layanan teknologi, pesan (seperti WhatsApp), email dan pembayaran. Mereka hanya boleh memakai data untuk memberi layanan kepada kami."),
         t("With authorities, when required by Indonesian law or a valid order, and only to the extent required.", "Dengan otoritas, bila diwajibkan hukum Indonesia atau perintah yang sah, dan hanya sebatas yang diwajibkan."),
         t("With a successor, if our business is reorganised or transferred, under the same protections and after notifying you, as required by Article 48 of the UU PDP.", "Dengan penerus, bila usaha kami direorganisasi atau dialihkan, dengan perlindungan yang sama dan setelah memberi tahu Anda sesuai Pasal 48 UU PDP."),
       ] },
@@ -277,7 +283,7 @@ export const SECTIONS: Section[] = [
         t("The website uses no advertising or tracking cookies and no third-party analytics.", "Situs ini tidak memakai cookie iklan atau pelacak dan tidak memakai analitik pihak ketiga."),
         t("Your browser stores your language choice locally. It never leaves your device.", "Peramban Anda menyimpan pilihan bahasa secara lokal. Tidak pernah keluar dari perangkat Anda."),
         t("The Experience Zone is a public demonstration. Please do not enter real patient information. Text containing a NIK, phone number or email address is refused.", "Zona Pengalaman adalah demonstrasi publik. Mohon jangan memasukkan data pasien sungguhan. Teks yang berisi NIK, nomor telepon atau alamat email akan ditolak."),
-        t("Text you type in the Experience Zone is sent to SahAIbat Intelligence to produce the demonstration, which may be processed by a model provider outside Indonesia. It is not stored by us, not linked to you, and not used for training.", "Teks yang Anda ketik di Zona Pengalaman dikirim ke SahAIbat Intelligence untuk menghasilkan demonstrasi, dan dapat diproses penyedia model di luar Indonesia. Teks tersebut tidak kami simpan, tidak dikaitkan dengan Anda, dan tidak dipakai untuk pelatihan."),
+        t("Text you type in the Experience Zone is used only to produce the demonstration. It is not stored, not linked to you, and not used for training.", "Teks yang Anda ketik di Zona Pengalaman hanya dipakai untuk menghasilkan demonstrasi. Teks tersebut tidak disimpan, tidak dikaitkan dengan Anda, dan tidak dipakai untuk pelatihan."),
         t("To prevent abuse, the Experience Zone uses Cloudflare Turnstile, which checks that a visitor is human, and counts runs using a salted hash of the IP address.", "Untuk mencegah penyalahgunaan, Zona Pengalaman memakai Cloudflare Turnstile untuk memastikan pengunjung adalah manusia, dan menghitung pemakaian dengan hash alamat IP bergaram."),
       ] },
     ],

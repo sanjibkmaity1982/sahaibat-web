@@ -10,7 +10,7 @@
 .sb .pp-commit b{font-family:var(--serif);font-weight:500;font-size:1.06rem;color:var(--care)}
 .sb .pp-body{display:grid;grid-template-columns:260px minmax(0,1fr);gap:48px;margin-top:48px;align-items:start}
 .sb .pp-toc{position:sticky;top:88px;display:flex;flex-direction:column;gap:20px;font-size:.86rem}
-.sb .pp-toc ol{margin:10px 0 0;padding-left:22px;display:flex;flex-direction:column;gap:6px;color:var(--ink-3)}
+.sb .pp-toc ol{list-style:decimal;margin:10px 0 0;padding-left:22px;display:flex;flex-direction:column;gap:6px;color:var(--ink-3)}
 .sb .pp-toc a{text-decoration:none;color:var(--ink-2)}
 .sb .pp-toc a:hover{color:var(--care)}
 .sb .pp-contact{display:flex;flex-direction:column;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
@@ -19,7 +19,7 @@
 .sb .pp article{max-width:78ch;display:flex;flex-direction:column;gap:40px}
 .sb .pp section{scroll-margin-top:88px;display:flex;flex-direction:column;gap:14px;color:var(--ink-2);line-height:1.7}
 .sb .pp section h2{font-size:clamp(1.35rem,2.2vw,1.7rem);color:var(--ink);line-height:1.2}
-.sb .pp section ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.sb .pp section ul{list-style:disc;margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
 .sb .pp section li::marker{color:var(--care)}
 .sb .pp-note{background:color-mix(in srgb,var(--mint) 12%,var(--card));border:1px solid color-mix(in srgb,var(--care) 40%,transparent);border-left:4px solid var(--care);border-radius:12px;padding:16px 18px;color:var(--ink)!important;font-weight:500}
 .sb .pp-table{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
