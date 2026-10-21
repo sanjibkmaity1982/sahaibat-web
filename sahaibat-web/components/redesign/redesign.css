@@ -879,3 +879,16 @@ to{background-position:100% 100%}
 .sb .fl-risk li.high{background:#FBE9E3;border-color:#A4533F;color:#7A3324}
 .sb .fl-risk li.medium{background:#FDF6EC;border-color:#E0A458;color:#6B4A12}
 @media (max-width:560px){.sb .fl-check{grid-template-columns:minmax(0,1fr)}}
+.sb .svc{list-style:none;margin:4px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.sb .svc li{font-size:.78rem;padding:5px 11px;border-radius:999px;background:color-mix(in srgb,var(--pc,#DC937F) 16%,#fff);color:var(--ink);border:1px solid color-mix(in srgb,var(--pc,#DC937F) 40%,transparent)}
+/* DOK full suite */
+.sb .suite{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.sb .suite-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:10px}
+.sb .suite-card h3{margin:0;font-family:var(--serif);font-weight:500;font-size:1.12rem;color:var(--ink)}
+.sb .suite-card ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:.86rem;color:var(--ink-2)}
+.sb .suite-card li::marker{color:var(--care)}
+.sb .suite-facts{display:flex;flex-wrap:wrap;gap:12px}
+.sb .suite-facts div{display:flex;align-items:baseline;gap:10px;padding:10px 16px;border-radius:12px;background:var(--card);border:1px solid var(--line);font-size:.86rem;color:var(--ink-2)}
+.sb .suite-facts b{font-family:var(--serif);font-weight:500;font-size:1.6rem;color:var(--care)}
+@media (max-width:900px){.sb .suite{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.sb .suite{grid-template-columns:1fr}}

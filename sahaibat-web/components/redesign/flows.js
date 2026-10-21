@@ -26,7 +26,7 @@ export function createFlows(ctx) {
     ],
     bidan: [
       E2('Visit summary', 'Ringkasan kunjungan'),
-      E2('10T checklist', 'Daftar periksa 10T'),
+      E2('Standard checklist', 'Daftar periksa standar'),
       E2('Risk screening', 'Skrining risiko'),
       E2('Next visit and referral', 'Kunjungan berikutnya & rujukan'),
       E2('Message to the mother', 'Pesan untuk ibu'),
@@ -56,7 +56,7 @@ export function createFlows(ctx) {
 
   var GO = {
     kader: E2('Check growth · 30 seconds', 'Cek pertumbuhan · 30 detik'),
-    bidan: E2('Finish the ANC visit · 60 seconds', 'Selesaikan kunjungan ANC · 60 detik'),
+    bidan: E2('Finish the visit · 60 seconds', 'Selesaikan kunjungan · 60 detik'),
     dok: E2('Finish the visit · 60 seconds', 'Selesaikan kunjungan · 60 detik'),
     code: E2('Get claim-ready · 60 seconds', 'Siapkan klaim · 60 detik'),
     kasih: E2('Build the care journey · 60 seconds', 'Buat perjalanan perawatan · 60 detik'),
@@ -76,14 +76,14 @@ export function createFlows(ctx) {
   };
 
   var NOTE = {
-    kader: E2('Growth status is calculated from the WHO Child Growth Standards and Permenkes 2/2020 categories; the plan and message are AI-written for the kader and health worker. Nothing you enter is stored.',
-      'Status gizi dihitung dari Standar Pertumbuhan Anak WHO dan kategori Permenkes 2/2020; rencana dan pesan ditulis AI untuk kader dan tenaga kesehatan. Tidak ada yang Anda masukkan disimpan.'),
-    bidan: E2('Risk flags come from fixed ANC thresholds, not the AI; the midwife decides. Nothing you type is stored.',
-      'Tanda risiko berasal dari ambang batas ANC yang tetap, bukan AI; keputusan tetap di tangan bidan. Tidak ada yang Anda ketik disimpan.'),
-    dok: E2('Live AI for the doctor to review and sign. The doctor decides diagnosis and therapy. Nothing you type is stored.',
-      'AI langsung untuk ditinjau dan ditandatangani dokter. Diagnosis dan terapi diputuskan dokter. Tidak ada yang Anda ketik disimpan.'),
-    code: E2('Live AI suggestions for a certified coder; every decision stays with the coder. Nothing you type is stored.',
-      'Saran AI langsung untuk koder bersertifikat; setiap keputusan tetap di tangan koder. Tidak ada yang Anda ketik disimpan.'),
+    kader: E2('Growth status is calculated from the WHO Child Growth Standards and Permenkes 2/2020 categories; the plan and message are written by SahAIbat Intelligence for the kader and health worker. Nothing you enter is stored.',
+      'Status gizi dihitung dari Standar Pertumbuhan Anak WHO dan kategori Permenkes 2/2020; rencana dan pesan ditulis SahAIbat Intelligence untuk kader dan tenaga kesehatan. Tidak ada yang Anda masukkan disimpan.'),
+    bidan: E2('Pregnancy and postpartum risk flags come from fixed thresholds; checklists follow Kemenkes standards (10T, P4K, KF, WHO MEC, routine immunisation). The midwife decides. Nothing you type is stored.',
+      'Tanda risiko kehamilan dan nifas berasal dari ambang batas yang tetap; daftar periksa mengikuti standar Kemenkes (10T, P4K, KF, WHO MEC, imunisasi rutin). Keputusan tetap di tangan bidan. Tidak ada yang Anda ketik disimpan.'),
+    dok: E2('DOK Intelligence for the doctor to review and sign. The doctor decides diagnosis and therapy. Nothing you type is stored.',
+      'DOK Intelligence untuk ditinjau dan ditandatangani dokter. Diagnosis dan terapi diputuskan dokter. Tidak ada yang Anda ketik disimpan.'),
+    code: E2('SahAIbat Intelligence suggestions for a certified coder; every decision stays with the coder. Nothing you type is stored.',
+      'Saran SahAIbat Intelligence untuk koder bersertifikat; setiap keputusan tetap di tangan koder. Tidak ada yang Anda ketik disimpan.'),
     kasih: E2('Built only from the doctor’s written instructions. Kasih is not an emergency service: in an emergency, go to the nearest IGD. Nothing you type is stored.',
       'Disusun hanya dari instruksi tertulis dokter. Kasih bukan layanan darurat: dalam keadaan darurat, segera ke IGD terdekat. Tidak ada yang Anda ketik disimpan.'),
   };
@@ -150,21 +150,23 @@ export function createFlows(ctx) {
         var f = r.facts, chips = [];
         var dec = function (v) { return String(v).replace('.', ctx.lang() === 'id' ? ',' : '.'); };
         if (f.ga_weeks != null) chips.push(t(E2('Gestation', 'Usia kehamilan')) + ' ' + f.ga_weeks + ' ' + t(E2('wk', 'mg')));
+        if (f.postpartum_days != null) chips.push(t(E2('Postpartum day', 'Hari nifas ke')) + ' ' + f.postpartum_days);
+        if (f.child_age_months != null) chips.push(t(E2('Child', 'Anak')) + ' ' + f.child_age_months + ' ' + t(E2('mo', 'bln')));
         if (f.bp_systolic != null) chips.push(t(E2('BP', 'TD')) + ' ' + f.bp_systolic + '/' + f.bp_diastolic);
         if (f.hb_g_dl != null) chips.push('Hb ' + dec(f.hb_g_dl));
         if (f.lila_cm != null) chips.push('LILA ' + dec(f.lila_cm) + ' cm');
         if (f.fhr_bpm != null) chips.push(t(E2('FHR', 'DJJ')) + ' ' + f.fhr_bpm);
-        return '<p class="fl-sm">' + esc(r.summary) + '</p><div class="fl-chips">' + chips.map(function (c) { return '<span>' + esc(c) + '</span>'; }).join('') + '</div>';
+        return '<div class="fl-bpjs"><span class="ok">' + esc(r.visit_label) + '</span></div><p class="fl-sm">' + esc(r.summary) + '</p><div class="fl-chips">' + chips.map(function (c) { return '<span>' + esc(c) + '</span>'; }).join('') + '</div>';
       },
       function (r) {
         var done = r.checklist.filter(function (c) { return c.status === 'done'; }).length;
-        return '<p class="fl-sm"><b>' + done + '/' + r.checklist.length + '</b> ' + t(E2('done in this visit', 'sudah dilakukan di kunjungan ini')) + '</p><ul class="fl-check">'
+        return '<p class="fl-h">' + esc(r.checklist_title) + '</p><p class="fl-sm"><b>' + done + '/' + r.checklist.length + '</b> ' + t(E2('done in this visit', 'sudah dilakukan di kunjungan ini')) + '</p><ul class="fl-check">'
           + r.checklist.map(function (c) { return '<li class="' + c.status + '"><i>' + (c.status === 'done' ? '✓' : '○') + '</i>' + esc(c.item) + '</li>'; }).join('') + '</ul>';
       },
       function (r) {
         if (!r.risks.length) return '<p class="fl-sm fl-okline">' + t(E2('No risk factors in the recorded data.', 'Tidak ada faktor risiko dari data yang dicatat.')) + '</p>';
         return '<ul class="fl-risk">' + r.risks.map(function (x) { return '<li class="' + x.level + '">' + esc(t(x)) + '</li>'; }).join('') + '</ul>'
-          + '<p class="fl-src">' + t(E2('Checked against fixed ANC thresholds', 'Diperiksa dengan ambang batas ANC yang tetap')) + '</p>';
+          + '<p class="fl-src">' + t(E2('Pregnancy and postpartum thresholds are checked in code', 'Ambang batas kehamilan dan nifas diperiksa oleh sistem')) + '</p>';
       },
       function (r) {
         var nv = r.next_visit, rf = r.referral;
