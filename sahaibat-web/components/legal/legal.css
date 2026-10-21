@@ -1,0 +1,40 @@
+/* Privacy policy page. Scoped under .sb .pp so it uses the redesign tokens. */
+.sb .pp-nav .lg{text-decoration:none}
+.sb .pp{padding-block:48px 80px}
+.sb .pp-head{display:flex;flex-direction:column;gap:14px;max-width:1200px}
+.sb .pp-head h1{font-size:clamp(2.2rem,4.4vw,3.4rem);line-height:1.05}
+.sb .pp-updated{font-family:var(--mono);font-size:.76rem;color:var(--ink-3)}
+.sb .pp-head .lead{max-width:72ch}
+.sb .pp-commit{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.sb .pp-commit li{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:6px;font-size:.88rem;color:var(--ink-2)}
+.sb .pp-commit b{font-family:var(--serif);font-weight:500;font-size:1.06rem;color:var(--care)}
+.sb .pp-body{display:grid;grid-template-columns:260px minmax(0,1fr);gap:48px;margin-top:48px;align-items:start}
+.sb .pp-toc{position:sticky;top:88px;display:flex;flex-direction:column;gap:20px;font-size:.86rem}
+.sb .pp-toc ol{margin:10px 0 0;padding-left:22px;display:flex;flex-direction:column;gap:6px;color:var(--ink-3)}
+.sb .pp-toc a{text-decoration:none;color:var(--ink-2)}
+.sb .pp-toc a:hover{color:var(--care)}
+.sb .pp-contact{display:flex;flex-direction:column;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.sb .pp-contact b{margin-top:6px}
+.sb .pp-contact a{color:var(--care);text-decoration:none;overflow-wrap:anywhere}
+.sb .pp article{max-width:78ch;display:flex;flex-direction:column;gap:40px}
+.sb .pp section{scroll-margin-top:88px;display:flex;flex-direction:column;gap:14px;color:var(--ink-2);line-height:1.7}
+.sb .pp section h2{font-size:clamp(1.35rem,2.2vw,1.7rem);color:var(--ink);line-height:1.2}
+.sb .pp section ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.sb .pp section li::marker{color:var(--care)}
+.sb .pp-note{background:color-mix(in srgb,var(--mint) 12%,var(--card));border:1px solid color-mix(in srgb,var(--care) 40%,transparent);border-left:4px solid var(--care);border-radius:12px;padding:16px 18px;color:var(--ink)!important;font-weight:500}
+.sb .pp-table{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--card)}
+.sb .pp-table table{width:100%;border-collapse:collapse;font-size:.88rem;line-height:1.5}
+.sb .pp-table th, .sb .pp-table td{text-align:left;vertical-align:top;padding:12px 14px;border-bottom:1px solid var(--line)}
+.sb .pp-table thead th{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);font-weight:500;background:var(--paper)}
+.sb .pp-table tbody th{color:var(--ink);font-weight:600;min-width:150px}
+.sb .pp-table tr:last-child th, .sb .pp-table tr:last-child td{border-bottom:0}
+@media (max-width:980px){.sb .pp-commit{grid-template-columns:1fr 1fr}
+.sb .pp-body{grid-template-columns:minmax(0,1fr);gap:28px}
+.sb .pp-toc{position:static}
+}
+@media (max-width:560px){.sb .pp-commit{grid-template-columns:1fr}
+.sb .pp{padding-block:32px 56px}
+}
+.sb .pp-nav .lg{white-space:nowrap}
+.sb .pp section, .sb .pp-head{min-width:0}
+.sb .pp section p, .sb .pp section li{overflow-wrap:break-word}
