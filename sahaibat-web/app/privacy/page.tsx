@@ -1,6 +1,10 @@
 // SERVER COMPONENT. Privacy policy in Bahasa Indonesia (the default language).
-import { PrivacyPolicy } from "@/components/legal/PrivacyPolicy";
+import type { Metadata } from "next";
+import { LegalPage } from "@/components/legal/LegalPage";
+import { legalMetadata } from "@/components/legal/meta";
+
+export const metadata: Metadata = legalMetadata("privacy", "id");
 
 export default function Page() {
-  return <PrivacyPolicy lang="id" />;
+  return <LegalPage doc="privacy" lang="id" />;
 }

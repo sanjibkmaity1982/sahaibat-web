@@ -13,7 +13,6 @@ const nextConfig: NextConfig = {
       { source: "/enterprise", destination: "/#dok", permanent: false },
       { source: "/technology", destination: "/#why", permanent: false },
       { source: "/investors", destination: "/", permanent: false },
-      { source: "/terms", destination: "/privacy", permanent: false },
     ];
   },
 };

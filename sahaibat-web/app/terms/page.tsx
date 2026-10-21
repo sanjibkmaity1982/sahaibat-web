@@ -1,36 +1,10 @@
-"use client";
+// SERVER COMPONENT. Terms of use in Bahasa Indonesia (the default language).
+import type { Metadata } from "next";
+import { LegalPage } from "@/components/legal/LegalPage";
+import { legalMetadata } from "@/components/legal/meta";
 
-import Link from "next/link";
-import { useI18n } from "@/components/sahaibat/LanguageProvider";
+export const metadata: Metadata = legalMetadata("terms", "id");
 
-export default function TermsPage() {
-  const { t } = useI18n();
-
-  return (
-    <main className="mx-auto max-w-3xl px-6 py-14 space-y-8">
-      <header>
-        <h1 className="text-3xl font-semibold tracking-tight">
-          {t("legal.terms.title")}
-        </h1>
-        <p className="mt-2 text-sm text-slate-600">{t("legal.terms.updated")}</p>
-      </header>
-
-      <section className="space-y-4 text-slate-700 leading-7">
-        <p>{t("legal.terms.p1")}</p>
-        <p>{t("legal.terms.p2")}</p>
-      </section>
-
-      <section className="rounded-2xl border bg-white p-5">
-        <h2 className="text-lg font-semibold">{t("legal.appPolicyTitle")}</h2>
-        <p className="mt-2 text-slate-700 leading-7">{t("legal.appPolicyText")}</p>
-        <Link
-          className="mt-3 inline-block rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800"
-          href="https://app.sahaibat.com/terms"
-          target="_blank"
-        >
-          {t("legal.appPolicyLinkLabel")}
-        </Link>
-      </section>
-    </main>
-  );
+export default function Page() {
+  return <LegalPage doc="terms" lang="id" />;
 }
