@@ -9,65 +9,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   return [
-    // "/" is English, "/id" is Bahasa, "/en" is a legacy alias for "/".
-    // The previous version labelled BASE as the Bahasa default and mapped
-    // id → BASE, which pointed Google's Indonesian alternate at English copy.
+    // Bahasa Indonesia is the default language ("/", "/impact"); English
+    // lives under /en. The old /id URLs redirect to the bare paths.
     {
-      url: BASE, // English (default)
+      url: BASE,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 1,
-      alternates: {
-        languages: {
-          en: BASE,
-          id: `${BASE}/id`,
-          "x-default": BASE,
-        },
-      },
+      alternates: { languages: { id: BASE, en: `${BASE}/en`, "x-default": BASE } },
     },
     {
-      url: `${BASE}/id`, // Bahasa Indonesia
+      url: `${BASE}/en`,
       lastModified: now,
       changeFrequency: "weekly",
       priority: 0.9,
-      alternates: {
-        languages: {
-          en: BASE,
-          id: `${BASE}/id`,
-          "x-default": BASE,
-        },
-      },
-    },
-    {
-      url: `${BASE}/en`, // alias of "/", kept so indexed links do not break
-      lastModified: now,
-      changeFrequency: "weekly",
-      priority: 0.5,
-      alternates: {
-        languages: {
-          en: BASE,
-          id: `${BASE}/id`,
-          "x-default": BASE,
-        },
-      },
+      alternates: { languages: { id: BASE, en: `${BASE}/en`, "x-default": BASE } },
     },
     {
       url: `${BASE}/impact`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
-      alternates: {
-        languages: { en: `${BASE}/impact`, id: `${BASE}/id/impact`, "x-default": `${BASE}/impact` },
-      },
+      alternates: { languages: { id: `${BASE}/impact`, en: `${BASE}/en/impact`, "x-default": `${BASE}/impact` } },
     },
     {
-      url: `${BASE}/id/impact`,
+      url: `${BASE}/en/impact`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.7,
-      alternates: {
-        languages: { en: `${BASE}/impact`, id: `${BASE}/id/impact`, "x-default": `${BASE}/impact` },
-      },
+      alternates: { languages: { id: `${BASE}/impact`, en: `${BASE}/en/impact`, "x-default": `${BASE}/impact` } },
     },
     {
       url: `${BASE}/technology`,

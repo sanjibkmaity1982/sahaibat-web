@@ -1,6 +1,5 @@
 // app/en/page.tsx
-// SERVER COMPONENT. English homepage (alias).
-// Legacy alias of "/": same page, canonical points at "/".
+// SERVER COMPONENT. English homepage. Bahasa Indonesia is the default at "/".
 
 import { RedesignPage } from "@/components/redesign/RedesignPage";
 import { redesignMetadata } from "@/components/redesign/meta";

@@ -15,9 +15,10 @@ export function initRedesign(root, opts){
  var body=root; body.dataset.l=L;
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var t=function(o){return typeof o==='string'?o:o[L]};
-  function setLang(l){L=l;if(opts.onLang)opts.onLang(l);body.dataset.l=l;document.documentElement.lang=l;document.querySelectorAll('[data-l]').forEach(function(b){if(b.tagName==='BUTTON')b.setAttribute('aria-pressed',b.dataset.l===l)});renderAll();build();}
+  function langBtn(){var b=document.getElementById('navLang');b.innerHTML=L==='id'?'<b>ID</b> / EN':'ID / <b>EN</b>';b.setAttribute('aria-label',L==='id'?'Ganti ke English':'Switch to Bahasa Indonesia')}
+  function setLang(l){L=l;if(opts.onLang)opts.onLang(l);langBtn();body.dataset.l=l;document.documentElement.lang=l;document.querySelectorAll('[data-l]').forEach(function(b){if(b.tagName==='BUTTON')b.setAttribute('aria-pressed',b.dataset.l===l)});renderAll();build();}
   document.querySelectorAll('.review [data-l]').forEach(function(b){b.addEventListener('click',function(){setLang(b.dataset.l)})});
-  document.getElementById('navLang').addEventListener('click',function(){setLang(L==='en'?'id':'en')});document.getElementById('navLang').textContent=L==='en'?'ID':'EN';
+  document.getElementById('navLang').addEventListener('click',function(){setLang(L==='en'?'id':'en')});langBtn();
   document.querySelectorAll('[data-n]').forEach(function(b){b.addEventListener('click',function(){body.classList.toggle('notes',b.dataset.n==='1');document.querySelectorAll('[data-n]').forEach(function(x){x.setAttribute('aria-pressed',x===b)})})});
   var nav=root.querySelector('header.nav'),burger=root.querySelector('.burger');burger.setAttribute('aria-expanded','false');
   burger.addEventListener('click',function(){var o=nav.classList.toggle('open');burger.setAttribute('aria-expanded',String(o))});
@@ -107,16 +108,15 @@ export function initRedesign(root, opts){
   document.getElementById('wl').addEventListener('submit',function(e){e.preventDefault();var m=document.getElementById('wlMsg');m.hidden=false;location.href='mailto:admin@sahaibat.com?subject='+encodeURIComponent('SahAIbat Aesthetics waitlist')+'&body='+encodeURIComponent(document.getElementById('wlEmail').value);m.textContent=t({en:'Opening your email app to join the Aesthetics waitlist.',id:'Membuka aplikasi email Anda untuk mendaftar ke daftar tunggu Aesthetics.'})});
 
   // 10 experience zone
-  var XZ=[['Kader','M6 38 C80 30 150 20 220 14 S330 6 400 4',0,{en:'Select a child, open a visit, compare measurements, inspect follow-up.',id:'Pilih anak, buka kunjungan, bandingkan pengukuran, lihat tindak lanjut.'},{en:'Discover Kader',id:'Kenali Kader'},{en:'Simulation',id:'Simulasi'}],
-    ['Bidan','M6 24 H360',0,{en:'Open a maternal profile, choose an ANC visit, review the checklist and follow-up.',id:'Buka profil ibu, pilih kunjungan ANC, tinjau daftar periksa dan tindak lanjut.'},{en:'Request Bidan access',id:'Minta akses Bidan'},{en:'Simulation',id:'Simulasi'}],
-    ['DOK','M6 26 q6 -18 12 0 t12 0 q6 -24 12 0 t12 0 C80 26 100 10 140 10 H400',0,{en:'Choose solo or clinic, follow a patient from arrival to a signed record.',id:'Pilih praktik mandiri atau klinik, ikuti pasien dari datang hingga rekam medis ditandatangani.'},{en:'Start 30-day trial',id:'Mulai uji coba 30 hari'},{en:'Simulation',id:'Simulasi'}],
-    ['DOK Companion','M6 30 q6 -18 12 0 t12 0 C70 30 90 12 130 12 H400',0,{en:'Watch Companion draft a note beside an EMR, then fill selected fields.',id:'Lihat Companion menyusun catatan di samping RME, lalu mengisi kolom terpilih.'},{en:'Add to Chrome',id:'Tambahkan ke Chrome'},{en:'Simulation',id:'Simulasi'}],
-    ['Code','M6 8 C80 8 100 24 180 24 M6 40 C80 40 100 24 180 24 H400',0,{en:'Open an inpatient case, inspect evidence, resolve one discrepancy.',id:'Buka kasus rawat inap, periksa bukti, selesaikan satu ketidaksesuaian.'},{en:'Request a hospital demo',id:'Minta demo rumah sakit'},{en:'Simulation',id:'Simulasi'}],
-    ['Kasih','M6 30 C50 30 60 10 110 10 S180 30 230 30 S300 10 350 10 S395 24 400 24',0,{en:'Pick a family scenario, read the plan, see a reminder, learn when to reconnect.',id:'Pilih skenario keluarga, baca rencana, lihat pengingat, pahami kapan menghubungi kembali.'},{en:'Explore Kasih',id:'Jelajahi Kasih'},{en:'Simulation',id:'Simulasi'}],
-    ['Konsensus.id','M6 40 C120 40 160 10 250 10 S360 26 400 20',0,{en:'Run an example search and see how evidence is summarised with sources.',id:'Coba contoh pencarian dan lihat cara bukti dirangkum beserta sumbernya.'},{en:'Search Konsensus.id',id:'Cari di Konsensus.id'},{en:'Live',id:'Tersedia'}],
-    ['Aesthetics','M6 32 C100 32 130 12 210 12 S330 32 400 24',1,{en:'Choose a treatment goal, view a proposed consultation, aftercare concept.',id:'Pilih tujuan perawatan, lihat konsep konsultasi dan perawatan lanjutan.'},{en:'Join the waitlist',id:'Daftar tunggu'},{en:'Concept preview',id:'Pratinjau konsep'}]];
-  var XK={Kader:'kader',Bidan:'bidan',DOK:'dok','DOK Companion':'comp',Code:'code',Kasih:'kasih','Konsensus.id':'kons',Aesthetics:'aes'};
-  function renderXZ(){document.getElementById('xz').innerHTML=XZ.map(function(x){var k=XK[x[0]];return '<a href="#xzPlayer" data-demo="'+k+'" class="p-'+k+'"><div class="xz-top">'+LK(k)+(x[2]?'<span class="soon-dot">'+t({en:'Coming soon',id:'Segera hadir'})+'</span>':'<span class="live">'+t({en:'Live',id:'Tersedia'})+'</span>')+'</div><svg viewBox="0 0 406 48" preserveAspectRatio="none" aria-hidden="true"><path class="'+(x[2]?'d':'')+'" d="'+x[1]+'"/></svg><p>'+t(x[3])+'</p><div class="xz-foot"><span class="demo-meta"><i></i>'+t(x[2]?{en:'Concept preview',id:'Pratinjau konsep'}:{en:'Guided demo',id:'Demo terpandu'})+'</span><span class="go">'+t(x[4])+' →</span></div></a>'}).join('')}
+  // The zone lists only what a visitor can actually try: three live AI flows
+  // (flows.js) and Konsensus.id itself. Each card opens it directly.
+  var XZ=[['DOK','M6 26 q6 -18 12 0 t12 0 q6 -24 12 0 t12 0 C80 26 100 10 140 10 H400',{en:'Finish a whole visit in 60 seconds: SOAP, clinical advice, ICD-10, BPJS check and one-click SATUSEHAT.',id:'Selesaikan satu kunjungan dalam 60 detik: SOAP, saran klinis, ICD-10, cek BPJS dan SATUSEHAT satu klik.'},{en:'Try it live',id:'Coba langsung'},{en:'Live AI',id:'AI langsung'}],
+    ['Code','M6 8 C80 8 100 24 180 24 M6 40 C80 40 100 24 180 24 H400',{en:'Make a discharge summary claim-ready: evidence-backed codes, severity, documentation queries and audit risk.',id:'Siapkan resume medis untuk klaim: kode berbukti, tingkat keparahan, query dokumentasi dan risiko audit.'},{en:'Try it live',id:'Coba langsung'},{en:'Live AI',id:'AI langsung'}],
+    ['Kasih','M6 30 C50 30 60 10 110 10 S180 30 230 30 S300 10 350 10 S395 24 400 24',{en:'Turn the doctor’s instructions into a WhatsApp care journey the whole family follows.',id:'Ubah instruksi dokter menjadi perjalanan perawatan di WhatsApp yang diikuti seluruh keluarga.'},{en:'Try it live',id:'Coba langsung'},{en:'Live AI',id:'AI langsung'}],
+    ['Konsensus.id','M6 40 C120 40 160 10 250 10 S360 26 400 20',{en:'Ask a clinical question and get an evidence answer with its sources, in seconds. 5 free searches a day.',id:'Ajukan pertanyaan klinis dan dapatkan jawaban berbasis bukti beserta sumbernya, dalam hitungan detik. 5 pencarian gratis per hari.'},{en:'Search Konsensus.id',id:'Cari di Konsensus.id'},{en:'Free',id:'Gratis'}]];
+  var XK={DOK:'dok',Code:'code',Kasih:'kasih','Konsensus.id':'kons'};
+  function renderXZ(){document.getElementById('xz').innerHTML=XZ.map(function(x){var k=XK[x[0]],ext=k==='kons';
+    return '<a href="'+(ext?'https://konsensus.id':'#sbx')+'"'+(ext?' target="_blank" rel="noopener"':' data-demo="'+k+'"')+' class="p-'+k+'"><div class="xz-top">'+LK(k)+'<span class="live">'+t(x[4])+'</span></div><svg viewBox="0 0 406 48" preserveAspectRatio="none" aria-hidden="true"><path d="'+x[1]+'"/></svg><p>'+t(x[2])+'</p><div class="xz-foot"><span class="go">'+t(x[3])+(ext?' ↗':' →')+'</span></div></a>'}).join('')}
 
   // 11 pillars
   var PIL=[[{en:'Human-centred workflows',id:'Alur kerja berpusat pada manusia'},{en:'Designed around the person delivering care',id:'Dirancang untuk orang yang memberi layanan'},{en:'We start from the work itself: the Posyandu table, the home visit, the consultation room, the coding desk.',id:'Kami mulai dari pekerjaannya: meja Posyandu, kunjungan rumah, ruang praktik, meja koding.'},{en:['Fewer steps for routine tasks','Interfaces in clear Bahasa Indonesia','Training and support for each care setting'],id:['Langkah lebih sedikit untuk tugas rutin','Antarmuka dalam Bahasa Indonesia yang jelas','Pelatihan dan dukungan untuk setiap layanan']}],
@@ -208,7 +208,7 @@ export function initRedesign(root, opts){
     else{if(nx.tagName==='A')nx.outerHTML='<button type="button" class="pri" id="xzpNext"></button>';document.getElementById('xzpNext').textContent=t(E2('Next','Lanjut'))}
     document.getElementById('xzpCount').textContent=(ci+1)+' / '+n;
     document.querySelectorAll('#xz a').forEach(function(a){a.classList.toggle('sel',a.dataset.demo===cur)});}
-  function openDemo(k){cur=k;ci=0;var p=document.getElementById('xzPlayer');p.hidden=false;renderPlayer();p.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});if(window.ScrollTrigger)ScrollTrigger.refresh();}
+  function openDemo(k){openSbx(k)}
   __on(document,'click',function(e){var a=e.target.closest('[data-demo]');if(!a)return;e.preventDefault();openDemo(a.dataset.demo)});
   document.getElementById('xzPlayer').addEventListener('click',function(e){var b=e.target.closest('[data-st]');if(b){ci=+b.dataset.st;renderPlayer();return}
     if(e.target.closest('#xzpBack')&&ci>0){ci--;renderPlayer()}if(e.target.closest('button#xzpNext')){ci++;renderPlayer()}
@@ -231,7 +231,8 @@ export function initRedesign(root, opts){
     document.getElementById('sbxName').innerHTML=LK(k,1);var cta=document.getElementById('sbxCta');cta.href=c[1];sbxCtaText();
     ['dok','code','kasih'].forEach(function(x){document.getElementById(x+'Live').hidden=x!==k});
     flows.open(k);if(opts.onGate)opts.onGate();
-    b.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});if(window.ScrollTrigger)ScrollTrigger.refresh();}
+    // recalculate scroll animations first; a refresh after scrolling cancels the scroll
+    if(window.ScrollTrigger)ScrollTrigger.refresh();requestAnimationFrame(function(){b.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'})});}
   document.getElementById('sbxClose').addEventListener('click',function(){document.getElementById('sbx').hidden=true;if(window.ScrollTrigger)ScrollTrigger.refresh();});
   __on(document,'click',function(e){var a=e.target.closest('[data-sbx]');if(a){e.preventDefault();openSbx(a.dataset.sbx)}});
 

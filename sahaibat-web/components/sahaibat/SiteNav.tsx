@@ -15,13 +15,12 @@ const LINKS: Array<{ href: string; en: string; id: string }> = [
 // Pages that have real, separately-server-rendered EN/ID routes (better for
 // SEO than client-side text swapping) — the language pill navigates instead
 // of just flipping context state on these.
-// English is the default at "/" — the primary reader of sahaibat.com is an
-// investor or an enterprise buyer. Bahasa is a full peer site at "/id".
-// "/en" is kept as an alias so existing links and indexed URLs do not break.
+// Bahasa Indonesia is the default at "/"; English lives at "/en". (These
+// routes render their own nav today, so this map only matters if SiteNav is
+// ever shown on them again.)
 const ROUTE_PAIR: Record<string, { en: string; id: string }> = {
-  "/": { en: "/", id: "/id" },
-  "/id": { en: "/", id: "/id" },
-  "/en": { en: "/", id: "/id" },
+  "/": { en: "/en", id: "/" },
+  "/en": { en: "/en", id: "/" },
 };
 
 export function SiteNav() {
@@ -37,7 +36,7 @@ export function SiteNav() {
   }, []);
 
   const routedPair = ROUTE_PAIR[pathname];
-  const activeLang: "en" | "id" = routedPair ? (pathname === "/id" ? "id" : "en") : (lang === "en" ? "en" : "id");
+  const activeLang: "en" | "id" = routedPair ? (pathname === "/en" ? "en" : "id") : (lang === "en" ? "en" : "id");
 
   const LangButtons = ({ onPick }: { onPick?: () => void }) => (
     <>

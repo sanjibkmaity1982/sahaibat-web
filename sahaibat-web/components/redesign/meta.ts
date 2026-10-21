@@ -31,9 +31,10 @@ const COPY = {
   },
 } as const;
 
+// Bahasa Indonesia is the default language and owns the bare paths.
 const PATH = {
-  home: { en: "/", id: "/id" },
-  impact: { en: "/impact", id: "/id/impact" },
+  home: { en: "/en", id: "/" },
+  impact: { en: "/en/impact", id: "/impact" },
 } as const;
 
 export function redesignMetadata(view: "home" | "impact", lang: "en" | "id"): Metadata {
@@ -46,9 +47,9 @@ export function redesignMetadata(view: "home" | "impact", lang: "en" | "id"): Me
     alternates: {
       canonical: url,
       languages: {
-        en: `${BASE}${PATH[view].en === "/" ? "" : PATH[view].en}`,
-        "id-ID": `${BASE}${PATH[view].id}`,
-        "x-default": `${BASE}${PATH[view].en === "/" ? "" : PATH[view].en}`,
+        en: `${BASE}${PATH[view].en}`,
+        "id-ID": `${BASE}${PATH[view].id === "/" ? "" : PATH[view].id}`,
+        "x-default": `${BASE}${PATH[view].id === "/" ? "" : PATH[view].id}`,
       },
     },
     openGraph: {

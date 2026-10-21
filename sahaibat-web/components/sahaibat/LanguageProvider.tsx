@@ -13,7 +13,7 @@ type Ctx = {
 const LanguageContext = createContext<Ctx | null>(null);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("en");
+  const [lang, setLangState] = useState<Lang>("id");
 
   useEffect(() => {
     const saved = window.localStorage.getItem("sahaibat_lang") as Lang | null;
