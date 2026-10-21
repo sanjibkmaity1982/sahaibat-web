@@ -122,7 +122,7 @@ export async function POST(req: NextRequest, ctx: { params: Promise<{ product: s
           json_schema: { name: spec.schemaName, strict: true, schema: spec.jsonSchema },
         },
         ...(isReasoningModel(model)
-          ? { reasoning_effort: (process.env.EXPERIENCE_AI_REASONING?.trim() || "low") as OpenAI.ReasoningEffort, max_completion_tokens: 12000 }
+          ? { reasoning_effort: (spec.reasoning || process.env.EXPERIENCE_AI_REASONING?.trim() || "low") as OpenAI.ReasoningEffort, max_completion_tokens: 12000 }
           : { max_completion_tokens: 4000 }),
       },
       { signal: req.signal },
