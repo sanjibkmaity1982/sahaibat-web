@@ -1,0 +1,105 @@
+{
+  "slug": "rekam-medis-elektronik",
+  "section": "landing",
+  "status": "published",
+  "cluster": "rme",
+  "keywords": ["rekam medis elektronik", "RME", "aplikasi RME", "rekam medis digital", "aplikasi EMR Indonesia", "rekam medik elektronik", "software RME"],
+  "title": "Rekam Medis Elektronik (RME): Panduan Lengkap untuk Faskes",
+  "description": "Apa itu rekam medis elektronik, siapa yang wajib menerapkannya menurut Permenkes 24/2022, isi minimalnya, dan cara memilih aplikasi RME yang tepat.",
+  "kicker": "Rekam medis elektronik",
+  "h1": "Rekam medis elektronik (RME): panduan lengkap untuk fasilitas kesehatan",
+  "intro": "Sejak Permenkes No. 24 Tahun 2022, setiap fasilitas pelayanan kesehatan wajib menyelenggarakan rekam medis secara elektronik. Panduan ini menjelaskan apa itu RME, apa yang harus dicatat, bagaimana RME terhubung ke SATUSEHAT, dan apa yang perlu diperhatikan saat memilih aplikasinya.",
+  "author": "Tim SahAIbat",
+  "published": "2026-10-21",
+  "updated": "2026-10-21",
+  "sections": [
+    {
+      "id": "apa-itu-rme",
+      "h": "Apa itu rekam medis elektronik?",
+      "body": [
+        { "p": "Rekam medis elektronik (RME) adalah rekam medis yang dibuat, disimpan dan dikelola dengan sistem elektronik. Isinya sama dengan rekam medis kertas, yaitu identitas pasien, hasil pemeriksaan, pengobatan, tindakan dan pelayanan lain, tetapi tersimpan aman, mudah dicari dan dapat dipertukarkan dengan sistem lain." },
+        { "p": "Permenkes No. 24 Tahun 2022 tentang Rekam Medis menggantikan Permenkes No. 269 Tahun 2008 dan menetapkan bahwa rekam medis wajib diselenggarakan secara elektronik, dengan masa transisi yang berakhir pada **31 Desember 2023**." }
+      ]
+    },
+    {
+      "id": "siapa-wajib",
+      "h": "Siapa yang wajib menerapkan RME?",
+      "body": [
+        { "p": "Kewajiban ini berlaku untuk seluruh fasilitas pelayanan kesehatan, termasuk:" },
+        { "ul": [
+          "Tempat praktik mandiri dokter, dokter gigi dan tenaga kesehatan lain, termasuk bidan",
+          "Puskesmas dan klinik (pratama maupun utama)",
+          "Rumah sakit",
+          "Apotek, laboratorium kesehatan dan balai"
+        ] },
+        { "note": "Bagi praktik mandiri dan klinik kecil, kewajiban RME bukan hanya soal kepatuhan. RME yang baik mempercepat pelayanan, mengurangi kesalahan resep dan membuat laporan bulanan jauh lebih ringan." }
+      ]
+    },
+    {
+      "id": "isi-rme",
+      "h": "Apa saja yang harus ada di RME?",
+      "body": [
+        { "p": "Secara praktis, RME untuk rawat jalan perlu mencakup:" },
+        { "table": {
+          "head": ["Bagian", "Contoh isi"],
+          "rows": [
+            ["Identitas pasien", "Nama, NIK, tanggal lahir, jenis kelamin, alamat, nomor BPJS bila ada"],
+            ["Anamnesis dan pemeriksaan", "Keluhan, riwayat, tanda vital, pemeriksaan fisik, catatan SOAP"],
+            ["Diagnosis", "Diagnosis dengan kode ICD-10"],
+            ["Tatalaksana", "Resep, tindakan, edukasi, rencana tindak lanjut"],
+            ["Penunjang", "Hasil laboratorium dan radiologi"],
+            ["Persetujuan dan rujukan", "Persetujuan tindakan, surat rujukan, surat keterangan"]
+          ]
+        } },
+        { "p": "Data kunjungan, diagnosis, tanda vital, resep dan penyerahan obat juga dikirim ke [SATUSEHAT](/panduan/integrasi-satusehat), platform pertukaran data kesehatan nasional." }
+      ]
+    },
+    {
+      "id": "memilih-aplikasi",
+      "h": "Cara memilih aplikasi RME",
+      "body": [
+        { "p": "Gunakan daftar periksa ini sebelum memilih aplikasi:" },
+        { "ol": [
+          "**Terintegrasi SATUSEHAT.** Pastikan aplikasi dapat mengirim data kunjungan, diagnosis, tanda vital dan resep ke SATUSEHAT.",
+          "**Terhubung BPJS.** Untuk FKTP, pastikan ada koneksi ke [BPJS P-Care dan Antrean](/panduan/bpjs-pcare).",
+          "**Data disimpan di Indonesia.** Rekam medis adalah data kesehatan yang dilindungi UU PDP. Tanyakan di mana data disimpan dan bagaimana dienkripsi.",
+          "**Cepat untuk dokter.** Hitung berapa menit yang dibutuhkan untuk menyelesaikan satu kunjungan. Ini yang paling menentukan apakah RME benar-benar dipakai.",
+          "**Lengkap tanpa biaya tambahan.** Periksa apakah apotek, kasir, laporan dan integrasi termasuk di paket dasar atau dijual terpisah.",
+          "**Migrasi dan dukungan.** Pastikan data dari sistem lama bisa dipindahkan dan ada dukungan dalam Bahasa Indonesia."
+        ] }
+      ]
+    },
+    {
+      "id": "dok",
+      "h": "RME Cerdas: SahAIbat DOK",
+      "body": [
+        { "p": "SahAIbat DOK adalah RME Cerdas untuk dokter mandiri dan klinik. Rekam konsultasi, dan DOK Intelligence menyusun draf SOAP yang Anda tinjau dan tandatangani. Resep elektronik dengan cek keamanan obat, 46 kartu pedoman Indonesia, apotek, kasir dan laporan sudah termasuk." },
+        { "ul": [
+          "Terintegrasi SATUSEHAT dan BPJS (P-Care dan Antrean)",
+          "Data disimpan di Indonesia",
+          "Paket gratis selamanya, atau semua modul mulai Rp60 ribu per bulan",
+          "Aktif dalam 24 jam dan migrasi gratis dari RME lama"
+        ] }
+      ]
+    }
+  ],
+  "faq": [
+    { "q": "Apakah praktik dokter mandiri wajib memakai RME?", "a": "Ya. Permenkes No. 24 Tahun 2022 mewajibkan seluruh fasilitas pelayanan kesehatan, termasuk tempat praktik mandiri dokter dan tenaga kesehatan lain, menyelenggarakan rekam medis elektronik." },
+    { "q": "Kapan batas waktu penerapan RME?", "a": "Masa transisi dalam Permenkes No. 24 Tahun 2022 berakhir pada 31 Desember 2023. Fasilitas yang belum menerapkan RME sebaiknya segera beralih." },
+    { "q": "Apa hubungan RME dengan SATUSEHAT?", "a": "RME adalah sistem pencatatan di fasilitas Anda. SATUSEHAT adalah platform nasional tempat data dari RME dikirim dan dipertukarkan. Aplikasi RME perlu terintegrasi agar data terkirim otomatis." },
+    { "q": "Apakah ada aplikasi RME gratis?", "a": "Ada. SahAIbat DOK memiliki paket gratis selamanya dengan rekam manual tanpa batas dan 15 konsultasi berbantuan Intelligence per bulan, tanpa kartu kredit." },
+    { "q": "Apakah RME bisa dipakai di daerah dengan sinyal lemah?", "a": "Produk lapangan SahAIbat seperti Kader dan Bidan bekerja sepenuhnya offline dan tersinkron saat sinyal kembali. Suite RME lengkap yang juga bisa offline segera hadir." }
+  ],
+  "sources": [
+    { "title": "JDIH Kementerian Kesehatan (Permenkes No. 24 Tahun 2022 tentang Rekam Medis)", "publisher": "Kementerian Kesehatan RI", "url": "https://jdih.kemkes.go.id/" },
+    { "title": "Kemenkes ajak fasyankes segera lakukan registrasi rekam medis elektronik", "publisher": "Kementerian Kesehatan RI", "url": "https://www.kemkes.go.id/id/kemenkes-ajak-fasyankes-segera-lakukan-registrasi-rekam-medis-elektronik" },
+    { "title": "SATUSEHAT Platform", "publisher": "Kementerian Kesehatan RI", "url": "https://satusehat.kemkes.go.id/platform" }
+  ],
+  "cta": {
+    "h": "Coba RME Cerdas, gratis",
+    "p": "Mulai dengan paket gratis selamanya, atau aktifkan semua modul mulai Rp60 ribu per bulan. Aktif dalam 24 jam.",
+    "label": "Mulai SahAIbat DOK",
+    "href": "https://www.sahaibatdok.com"
+  },
+  "related": ["software-klinik", "integrasi-satusehat", "bpjs-pcare"]
+}

@@ -6,11 +6,11 @@ const COPY = {
   privacy: {
     en: {
       title: "Privacy Policy | SahAIbat",
-      description: "How SahAIbat protects personal and health data under Indonesia’s UU PDP: data stored in Indonesia, safe use of Intelligence, no identities in model training, and your rights.",
+      description: "How SahAIbat protects personal and health data under UU PDP: data stored in Indonesia, safe use of Intelligence, and your rights.",
     },
     id: {
       title: "Kebijakan Privasi | SahAIbat",
-      description: "Cara SahAIbat melindungi data pribadi dan kesehatan sesuai UU PDP: data disimpan di Indonesia, penggunaan Intelligence yang aman, tanpa identitas dalam pelatihan model, dan hak-hak Anda.",
+      description: "Cara SahAIbat melindungi data pribadi dan kesehatan sesuai UU PDP: data disimpan di Indonesia, Intelligence yang aman, dan hak Anda.",
     },
   },
   terms: {

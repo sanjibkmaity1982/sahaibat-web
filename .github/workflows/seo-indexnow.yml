@@ -1,0 +1,56 @@
+# After a change to the SEO pages reaches main, wait for Vercel to publish it,
+# then ping IndexNow (Bing and the assistants that search with it) so the new
+# or updated pages are recrawled within hours. Google reads the sitemap.
+name: SEO IndexNow
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "sahaibat-web/content/pages/**"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: sahaibat-web
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: sahaibat-web/package-lock.json
+      - run: npm ci
+      - name: Changed pages
+        id: changed
+        run: |
+          paths=$(git diff --name-only HEAD~1 HEAD -- content/pages | node --no-warnings -e '
+            const fs = require("fs");
+            const out = [];
+            for (const f of fs.readFileSync(0, "utf8").split("\n").filter(Boolean)) {
+              const file = f.replace(/^sahaibat-web\//, "");
+              if (!fs.existsSync(file)) continue;
+              const p = JSON.parse(fs.readFileSync(file, "utf8"));
+              if (p.status === "published") out.push(p.section === "panduan" ? `/panduan/${p.slug}` : `/${p.slug}`);
+            }
+            console.log(out.join(" "));')
+          echo "paths=$paths" >> "$GITHUB_OUTPUT"
+      - name: Wait for the deploy
+        if: steps.changed.outputs.paths != '' || github.event_name == 'workflow_dispatch'
+        run: |
+          first=$(echo "${{ steps.changed.outputs.paths }}" | awk '{print $1}')
+          [ -z "$first" ] && exit 0
+          for i in $(seq 1 40); do
+            [ "$(curl -s -o /dev/null -w '%{http_code}' "https://www.sahaibat.com$first")" = "200" ] && exit 0
+            sleep 30
+          done
+          echo "Page not live after 20 minutes" && exit 1
+      - name: Ping IndexNow
+        if: steps.changed.outputs.paths != '' || github.event_name == 'workflow_dispatch'
+        run: npm run -s seo:indexnow -- ${{ steps.changed.outputs.paths }}

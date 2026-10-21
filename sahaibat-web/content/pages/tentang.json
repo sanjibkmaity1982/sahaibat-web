@@ -1,0 +1,67 @@
+{
+  "slug": "tentang",
+  "section": "landing",
+  "status": "published",
+  "cluster": "brand",
+  "keywords": ["SahAIbat", "tentang SahAIbat", "SahAIbat DOK", "SahAIbat Kader", "SahAIbat Bidan", "Kasih", "teknologi kesehatan Indonesia"],
+  "title": "Tentang SahAIbat: Teknologi Kesehatan Terhubung untuk Indonesia",
+  "description": "SahAIbat membuat teknologi kesehatan untuk kader, bidan, dokter, klinik, rumah sakit dan keluarga di Indonesia: Kader, Bidan, DOK, Kasih, Code dan Konsensus.id.",
+  "kicker": "Tentang kami",
+  "h1": "Tentang SahAIbat",
+  "intro": "SahAIbat membuat teknologi kesehatan yang praktis untuk orang-orang yang menjalankan layanan kesehatan di Indonesia: kader Posyandu, bidan, dokter, klinik, rumah sakit dan keluarga. **Kesehatan, lebih dekat dari sebelumnya.**",
+  "author": "Tim SahAIbat",
+  "published": "2026-10-21",
+  "updated": "2026-10-21",
+  "sections": [
+    {
+      "id": "produk",
+      "h": "Produk kami",
+      "body": [
+        { "table": {
+          "head": ["Produk", "Untuk siapa", "Apa yang dilakukan"],
+          "rows": [
+            ["SahAIbat Kader", "Kader Posyandu", "Mencatat pertumbuhan anak dengan skor-z WHO, menandai risiko stunting, merencanakan tindak lanjut dan rujukan"],
+            ["SahAIbat Bidan", "Bidan dan praktik kebidanan", "ANC 10T, rencana persalinan (P4K), nifas (KF1–KF4), KB dan kontrasepsi, serta imunisasi anak"],
+            ["SahAIbat DOK", "Dokter mandiri dan klinik", "RME Cerdas: konsultasi dengan DOK Intelligence, resep, apotek, kasir, laporan, SATUSEHAT dan BPJS"],
+            ["DOK Companion", "Dokter yang sudah memakai RME lain", "Ekstensi Chrome yang menambahkan DOK Intelligence ke RME yang sudah dipakai"],
+            ["Kasih", "Pasien dan keluarga", "Instruksi dokter menjadi rencana perawatan yang mudah dipahami di rumah"],
+            ["Code", "Tim koding rumah sakit", "Menemukan bukti di rekam medis dan menyarankan kode untuk ditinjau koder"],
+            ["Konsensus.id", "Tenaga kesehatan", "Pengetahuan klinis berbasis pedoman Indonesia"]
+          ]
+        } }
+      ]
+    },
+    {
+      "id": "prinsip",
+      "h": "Cara kami bekerja",
+      "body": [
+        { "ul": [
+          "**Manusia yang memutuskan.** SahAIbat Intelligence menyusun draf dan memeriksa; tenaga kesehatan yang meninjau dan menandatangani.",
+          "**Data disimpan di Indonesia.** Data pribadi dan rekam medis disimpan di pusat data di Jakarta. Baca [Kebijakan Privasi](/privacy).",
+          "**Dibuat untuk realitas Indonesia.** Kader, Bidan dan produk lapangan kami bekerja sepenuhnya offline untuk daerah dengan sinyal lemah.",
+          "**Terhubung dengan sistem nasional.** SahAIbat DOK terintegrasi SATUSEHAT dan BPJS."
+        ] }
+      ]
+    },
+    {
+      "id": "perusahaan",
+      "h": "Perusahaan",
+      "body": [
+        { "p": "SahAIbat terdaftar di Indonesia dengan NIB 1202260248509 dan sebagai Penyelenggara Sistem Elektronik (PSE) di Komdigi. SahAIbat adalah anggota NVIDIA Inception." },
+        { "p": "Alamat: Jl. Boulevard Raya No. 1, Kelapa Gading Timur, Kec. Kelapa Gading, Jakarta 14240, Indonesia. Email: [admin@sahaibat.com](mailto:admin@sahaibat.com)." }
+      ]
+    }
+  ],
+  "faq": [
+    { "q": "Apa itu SahAIbat?", "a": "SahAIbat adalah penyedia teknologi kesehatan di Indonesia dengan produk untuk kader (Kader), bidan (Bidan), dokter dan klinik (DOK), keluarga (Kasih), rumah sakit (Code) dan pengetahuan klinis (Konsensus.id)." },
+    { "q": "Apa itu SahAIbat DOK?", "a": "SahAIbat DOK adalah RME Cerdas untuk dokter mandiri dan klinik, terintegrasi SATUSEHAT dan BPJS, dengan paket gratis selamanya atau semua modul mulai Rp60 ribu per bulan." }
+  ],
+  "sources": [],
+  "cta": {
+    "h": "Mulai dengan SahAIbat DOK",
+    "p": "RME Cerdas untuk dokter mandiri dan klinik. Gratis untuk memulai.",
+    "label": "Mulai SahAIbat DOK",
+    "href": "https://www.sahaibatdok.com"
+  },
+  "related": ["rekam-medis-elektronik", "software-klinik"]
+}

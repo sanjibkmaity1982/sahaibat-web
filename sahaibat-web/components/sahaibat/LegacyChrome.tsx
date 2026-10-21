@@ -1,14 +1,18 @@
 "use client";
 
-// The redesigned pages carry their own nav and footer; the older pages keep
-// the shared SiteNav / PromoRibbon / SiteFooter until they are redesigned too.
+// The redesigned pages carry their own nav and footer. Only the older pages
+// (which now redirect to the new site, see next.config.ts) still use the
+// shared SiteNav / PromoRibbon / SiteFooter.
 
 import { usePathname } from "next/navigation";
 
-export const REDESIGN_PATHS = new Set(["/", "/en", "/impact", "/en/impact", "/privacy", "/en/privacy", "/terms", "/en/terms"]);
+const LEGACY_PREFIXES = ["/enterprise", "/technology", "/investors", "/partner", "/contact"];
+
+export const isRedesignPath = (pathname: string) =>
+  !LEGACY_PREFIXES.some((p) => pathname === p || pathname.startsWith(`${p}/`));
 
 export function LegacyChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  if (REDESIGN_PATHS.has(pathname)) return null;
+  if (isRedesignPath(pathname)) return null;
   return <>{children}</>;
 }

@@ -1,0 +1,140 @@
+{
+  "_about": "The factual claims registry. Pages (hand-written or drafted by scripts/seo) may state only what is listed under `verified`. `banned` phrases fail validation. Update this file when a fact changes; every page is re-checked against it on each PR. `claim` is public (it is published in /llms.txt); `rule` is internal guidance for writers and is never published.",
+  "updated": "2026-10-21",
+  "verified": [
+    {
+      "id": "dok-free-plan",
+      "claim": "DOK has a free-for-life plan: 15 Intelligence-assisted consultations a month and unlimited manual records, no credit card.",
+      "source": "sahaibat.com pricing section"
+    },
+    {
+      "id": "dok-price",
+      "claim": "Paid DOK starts from Rp60 ribu a month, with every module in one plan.",
+      "source": "sahaibat.com pricing section",
+      "rule": "Do not quote any other DOK price."
+    },
+    {
+      "id": "dok-setup",
+      "claim": "DOK is live within 24 hours, guaranteed, or the first paid month is free. Migration from an old RME is free.",
+      "source": "sahaibat.com pricing section"
+    },
+    {
+      "id": "integrations",
+      "claim": "DOK is integrated with SATUSEHAT and BPJS (P-Care and Antrean). BPJS connections are activated per clinic with its own BPJS credentials.",
+      "source": "DOK codebase; user instruction",
+      "rule": "Say integrated (terintegrasi), never certified (bersertifikat)."
+    },
+    {
+      "id": "dok-modules",
+      "claim": "DOK modules: consultation with DOK Intelligence (SOAP draft from a recorded consultation), e-prescription with drug-safety checks and the KFA catalogue, 7 speciality toolkits, maternity suite with KIA forms, front office (NIK registration, queue, booking), pharmacy and batch stock, cashier and billing, reports (LB1, Puskesmas reports, lab and radiology report reading), SATUSEHAT and BPJS.",
+      "source": "DOK codebase (features marked fully built)"
+    },
+    {
+      "id": "guideline-cards",
+      "claim": "DOK has 46 Indonesian guideline cards (PERKI, PERKENI, PAPDI, IDAI, POGI, PDGI and more).",
+      "source": "DOK codebase"
+    },
+    {
+      "id": "bidan",
+      "claim": "SahAIbat Bidan covers ANC (10T), birth planning (P4K), postnatal care (KF1–KF4), family planning and contraception (WHO MEC), and child immunisation.",
+      "source": "sahaibat.com Bidan section"
+    },
+    {
+      "id": "kader",
+      "claim": "SahAIbat Kader helps Posyandu kaders record child growth with WHO z-scores and Permenkes 2/2020 categories, and plan follow-up and referral.",
+      "source": "sahaibat.com Kader section"
+    },
+    {
+      "id": "offline",
+      "claim": "Kader, Bidan and SahAIbat field products work fully offline and sync when a signal returns. A full RME suite that also works offline is coming soon.",
+      "source": "user instruction",
+      "rule": "Say 'segera hadir' for the offline RME suite; never imply it is available."
+    },
+    {
+      "id": "data-residency",
+      "claim": "Personal data and health records are stored in Indonesia, in data centres in Jakarta.",
+      "source": "privacy policy"
+    },
+    {
+      "id": "no-identity-training",
+      "claim": "Identifying details (name, NIK, date of birth and the like) are never used to train models.",
+      "source": "privacy policy"
+    },
+    {
+      "id": "registration",
+      "claim": "SahAIbat is registered in Indonesia under NIB 1202260248509 and as a PSE with Komdigi.",
+      "source": "footer"
+    },
+    {
+      "id": "nvidia",
+      "claim": "SahAIbat is a member of NVIDIA Inception.",
+      "source": "footer"
+    },
+    {
+      "id": "human-in-charge",
+      "claim": "Every draft from SahAIbat Intelligence is reviewed and signed by a health worker; it makes no automated clinical decisions.",
+      "source": "privacy policy section 7"
+    }
+  ],
+  "banned": [
+    {
+      "pattern": "(?<![A-Za-z])AI(?![A-Za-z])",
+      "flags": "",
+      "reason": "Never say AI. Use Intelligence, SahAIbat Intelligence or DOK Intelligence.",
+      "except": [
+        "SahAIbat"
+      ]
+    },
+    {
+      "pattern": "artificial intelligence|kecerdasan buatan",
+      "flags": "i",
+      "reason": "Never say AI in any form."
+    },
+    {
+      "pattern": "bersertifikat|tersertifikasi|certified",
+      "flags": "i",
+      "reason": "Integrations are 'terintegrasi', never certified."
+    },
+    {
+      "pattern": "(resmi|direkomendasikan|disetujui|didukung) (oleh )?kemenkes|endorsed by|rekomendasi kemenkes",
+      "flags": "i",
+      "reason": "Never imply Kemenkes endorsement."
+    },
+    {
+      "pattern": "nomor ?1|#1|terbaik di indonesia|paling (murah|lengkap|canggih)",
+      "flags": "i",
+      "reason": "Unsupported superlative."
+    },
+    {
+      "pattern": "analisis gambar|image analysis|baca rontgen|membaca foto rontgen",
+      "flags": "i",
+      "reason": "Image analysis is not built; only lab and radiology report reading."
+    },
+    {
+      "pattern": "vera",
+      "flags": "i",
+      "reason": "Do not name competitors' products."
+    },
+    {
+      "pattern": "ISO ?27001 (certified|bersertifikat)|bersertifikat ISO",
+      "flags": "i",
+      "reason": "Controls are aligned with ISO, not certified."
+    },
+    {
+      "pattern": "garansi (peringkat|ranking)|dijamin (diagnosis|sembuh)",
+      "flags": "i",
+      "reason": "No guarantees of rankings or clinical outcomes."
+    },
+    {
+      "pattern": "Rp ?\\d+([.,]\\d+)? ?(rb|ribu|k)?\\s*/?\\s*(bulan|bln)",
+      "flags": "i",
+      "reason": "Prices must match the registry (Rp60 ribu). Checked separately.",
+      "allow": [
+        "Rp60 ribu",
+        "Rp60rb",
+        "Rp60K",
+        "Rp 60 ribu"
+      ]
+    }
+  ]
+}
