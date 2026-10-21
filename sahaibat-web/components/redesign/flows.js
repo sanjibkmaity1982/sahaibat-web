@@ -91,7 +91,7 @@ export function createFlows(ctx) {
   var ERR = {
     disabled: E2('The live demo is resting right now. Please try again later.', 'Demo langsung sedang istirahat. Silakan coba lagi nanti.'),
     limit: E2('You have reached today’s live runs. Start free with DOK for the full product.', 'Batas percobaan hari ini tercapai. Mulai gratis dengan DOK untuk produk lengkap.'),
-    verify: E2('Checking you are not a bot. Try again in a moment.', 'Memastikan Anda bukan bot. Coba lagi sebentar.'),
+    verify: E2('Please tick “Verify you are human” above if it is shown, then try again.', 'Centang “Verify you are human” di atas jika muncul, lalu coba lagi.'),
     guard: E2('Please remove ID numbers, phone numbers and emails.', 'Mohon hapus NIK, nomor telepon dan email.'),
     rate_limited: E2('Too many requests. Try again in a minute.', 'Terlalu banyak permintaan. Coba lagi sebentar lagi.'),
     invalid_json: E2('The result came back incomplete. Try again.', 'Hasil tidak lengkap. Coba lagi.'),
