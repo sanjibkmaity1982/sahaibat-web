@@ -38,10 +38,18 @@ function existingPages(): Page[] {
   return fs.readdirSync(DIR).filter((f) => f.endsWith(".json")).map((f) => PageSchema.parse(readJson(path.join(DIR, f))));
 }
 
-async function openDraftBranches(): Promise<Set<string>> {
+// Branches of every SEO PR, open or closed: a topic is drafted only once, so
+// closing a draft PR rejects that topic. To try it again, write the page by
+// hand or reopen the closed PR.
+async function draftedBranches(): Promise<Set<string>> {
   if (!hasGitHub) return new Set();
-  const prs = await gh<any[]>("GET", `/repos/${REPO}/pulls?state=open&per_page=100`);
-  return new Set(prs.map((p) => p.head.ref as string).filter((r) => r.startsWith("seo/")));
+  const refs = new Set<string>();
+  for (let page = 1; page <= 5; page++) {
+    const prs = await gh<any[]>("GET", `/repos/${REPO}/pulls?state=all&per_page=100&page=${page}`);
+    for (const p of prs) if (String(p.head.ref).startsWith("seo/")) refs.add(p.head.ref);
+    if (prs.length < 100) break;
+  }
+  return refs;
 }
 
 async function writePage(brief: Record<string, unknown>, file: string): Promise<{ page: Page; citations: string[] } | null> {
@@ -119,7 +127,7 @@ export async function draft() {
     return result;
   }
   const opp = readOut("opportunities.json", { newPages: [], quickWins: [] } as any);
-  const open = await openDraftBranches();
+  const open = await draftedBranches();
   const pages = existingPages();
 
   // New pages.
@@ -127,7 +135,7 @@ export async function draft() {
     if (result.opened.filter((o) => o.kind === "new").length >= MAX_NEW) break;
     const slug = String(c.proposedSlug);
     if (pages.some((p) => p.slug === slug) || open.has(`seo/new-${slug}`)) {
-      result.skipped.push(`${slug}: already exists or has an open PR`);
+      result.skipped.push(`${slug}: already exists or was drafted before`);
       continue;
     }
     const file = `${slug}.json`;

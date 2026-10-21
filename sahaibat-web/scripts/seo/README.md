@@ -38,7 +38,7 @@ Each draft PR has a Vercel preview and a checklist. Read the page on the preview
 - check regulatory statements against the cited official sources
 - for guides, add a named reviewer as `reviewedBy`
 
-Merge the PR to publish. To reject a draft, close the PR; the same topic won't come back while another PR for it is open.
+Merge the PR to publish. To reject a draft, close the PR. Each topic is drafted only once, so a closed draft won't come back. To revisit it, reopen the PR or write the page by hand.
 
 ## Adding or changing pages by hand
 
