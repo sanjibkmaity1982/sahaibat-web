@@ -40,6 +40,17 @@
       "source": "sahaibat.com Bidan section"
     },
     {
+      "id": "bidan-intelligence",
+      "claim": "SahAIbat Bidan includes SahAIbat Intelligence: it summarises ANC findings, supports family planning (KB), runs a smart immunisation tracker, checks 10T quality and produces a care card. A health worker reviews every draft.",
+      "source": "user instruction"
+    },
+    {
+      "id": "bidan-pdp",
+      "claim": "SahAIbat Bidan is a UU PDP compliance-ready RME.",
+      "source": "user instruction",
+      "rule": "Use RME (rekam medis elektronik) as the main term, as Indonesians do. EMR may appear alongside it, e.g. RME (EMR), for people who search that way. Say compliance-ready (siap UU PDP); never say certified or guaranteed compliant."
+    },
+    {
       "id": "kader",
       "claim": "SahAIbat Kader helps Posyandu kaders record child growth with WHO z-scores and Permenkes 2/2020 categories, and plan follow-up and referral.",
       "source": "sahaibat.com Kader section"
