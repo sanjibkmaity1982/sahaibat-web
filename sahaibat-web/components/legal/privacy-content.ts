@@ -13,7 +13,7 @@ export type Section = { id: string; h: T; body: Block[] };
 
 const t = (en: string, id: string): T => ({ en, id });
 
-export const UPDATED = t("Last updated: 21 October 2026 · Version 2.0", "Terakhir diperbarui: 21 Oktober 2026 · Versi 2.0");
+export const UPDATED = t("Last updated: 22 October 2026 · Version 2.1", "Terakhir diperbarui: 22 Oktober 2026 · Versi 2.1");
 
 export const INTRO = t(
   "SahAIbat looks after some of the most personal information there is: the health of mothers, children, patients and families. This policy explains, in plain language, what personal data we process, why, where it is kept, who can see it, how SahAIbat Intelligence uses it, and the rights you have under Indonesian law.",
@@ -248,6 +248,7 @@ export const SECTIONS: Section[] = [
           [t("Account and billing data", "Data akun dan tagihan"), t("While the account is active, then as long as tax and accounting law requires (generally 10 years for financial records)", "Selama akun aktif, lalu selama diwajibkan hukum pajak dan akuntansi (umumnya 10 tahun untuk catatan keuangan)")],
           [t("Support and enquiry messages", "Pesan dukungan dan pertanyaan"), t("Up to 2 years after the last contact", "Hingga 2 tahun setelah kontak terakhir")],
           [t("Security and access logs", "Log keamanan dan akses"), t("Up to 12 months, longer for an open investigation", "Hingga 12 bulan, lebih lama bila sedang diselidiki")],
+          [t("Website visit counts", "Hitungan kunjungan situs"), t("Daily aggregate totals, kept for up to 25 months to compare trends year on year", "Total agregat harian, disimpan hingga 25 bulan untuk membandingkan tren dari tahun ke tahun")],
           [t("Experience Zone text", "Teks Zona Pengalaman"), t("Not stored. Rate-limit counters use a salted hash of the IP and expire within 24 hours", "Tidak disimpan. Penghitung batas pemakaian memakai hash IP bergaram dan kedaluwarsa dalam 24 jam")],
         ],
       } },
@@ -280,7 +281,10 @@ export const SECTIONS: Section[] = [
     h: t("15. This website and the Experience Zone", "15. Situs ini dan Zona Pengalaman"),
     body: [
       { ul: [
-        t("The website uses no advertising or tracking cookies and no third-party analytics.", "Situs ini tidak memakai cookie iklan atau pelacak dan tidak memakai analitik pihak ketiga."),
+        t("The website uses no cookies for tracking or advertising, and no third-party analytics or advertising tools.", "Situs ini tidak memakai cookie untuk pelacakan atau iklan, dan tidak memakai alat analitik atau iklan pihak ketiga."),
+        t("To understand which pages help people, we count visits in aggregate on our own systems: the page viewed, the type of site the visit came from (for example a search engine, an answer assistant such as ChatGPT, or social media), clicks through to SahAIbat DOK, and how many Experience Zone demos are started. These are daily totals only. We do not store your IP address, set cookies, create a profile or follow you across other websites, and the counts cannot identify you.", "Untuk memahami halaman mana yang membantu, kami menghitung kunjungan secara agregat di sistem kami sendiri: halaman yang dilihat, jenis situs asal kunjungan (misalnya mesin pencari, asisten jawaban seperti ChatGPT, atau media sosial), klik menuju SahAIbat DOK, dan jumlah demo Zona Pengalaman yang dimulai. Yang disimpan hanya total harian. Kami tidak menyimpan alamat IP Anda, tidak memasang cookie, tidak membuat profil, dan tidak mengikuti Anda di situs lain; hitungan ini tidak dapat mengidentifikasi Anda."),
+        t("If your browser sends Do Not Track or Global Privacy Control, nothing is counted.", "Bila peramban Anda mengirim sinyal Do Not Track atau Global Privacy Control, tidak ada yang dihitung."),
+        t("Links to SahAIbat DOK carry a label showing which page they came from (utm parameters), so DOK can see which pages lead to sign-ups. The label contains no personal data.", "Tautan ke SahAIbat DOK membawa label halaman asal (parameter utm), agar DOK dapat melihat halaman mana yang menghasilkan pendaftaran. Label ini tidak berisi data pribadi."),
         t("Your browser stores your language choice locally. It never leaves your device.", "Peramban Anda menyimpan pilihan bahasa secara lokal. Tidak pernah keluar dari perangkat Anda."),
         t("The Experience Zone is a public demonstration. Please do not enter real patient information. Text containing a NIK, phone number or email address is refused.", "Zona Pengalaman adalah demonstrasi publik. Mohon jangan memasukkan data pasien sungguhan. Teks yang berisi NIK, nomor telepon atau alamat email akan ditolak."),
         t("Text you type in the Experience Zone is used only to produce the demonstration. It is not stored, not linked to you, and not used for training.", "Teks yang Anda ketik di Zona Pengalaman hanya dipakai untuk menghasilkan demonstrasi. Teks tersebut tidak disimpan, tidak dikaitkan dengan Anda, dan tidak dipakai untuk pelatihan."),

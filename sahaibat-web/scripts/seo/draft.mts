@@ -103,7 +103,7 @@ async function openPr(kind: "new" | "refresh", page: Page, file: string, why: st
     "### Before merging (required)",
     "- [ ] Every SahAIbat claim matches `content/claims.json`",
     "- [ ] Regulatory or clinical statements match the cited official sources",
-    "- [ ] A named clinical/regulatory reviewer is added as `reviewedBy` (guides)",
+    "- [ ] Optional: add a named clinical/regulatory reviewer as `reviewedBy`",
     "- [ ] Read the page on the Vercel preview for this PR",
     "",
     "### Sources found during drafting",
@@ -150,6 +150,27 @@ export async function draft() {
     const pr = await openPr("new", done.page, file, why, done.citations);
     if (hasGitHub) fs.rmSync(path.join(DIR, file), { force: true });
     result.opened.push({ kind: "new", slug, ...(pr ?? {}) });
+  }
+
+  // Fact-check problems come first: a page with a wrong statement is fixed
+  // before any growth work on it.
+  const fc = readOut("factcheck.json", { pages: [] } as any);
+  for (const x of (fc.pages ?? []).filter((x: any) => x.verdict === "wrong")) {
+    if (result.opened.filter((o) => o.kind === "refresh").length >= MAX_REFRESH) break;
+    const p = pages.find((pg) => pg.slug === x.slug);
+    if (!p || open.has(`seo/refresh-${p.slug}`)) continue;
+    const file = `${p.slug}.json`;
+    const original = fs.readFileSync(path.join(DIR, file), "utf8");
+    const done = await writePage({ task: "correct these fact-check problems in this existing page; keep slug, section, cluster and published date; set updated to today; change nothing else that is correct", page: p, problems: x.problems }, file);
+    if (!done) {
+      fs.writeFileSync(path.join(DIR, file), original);
+      result.skipped.push(`${p.slug}: correction failed validation`);
+      continue;
+    }
+    const pr = await openPr("refresh", done.page, file, `The weekly fact check found:\n${x.problems.map((pr: any) => `- "${pr.statement}": ${pr.issue}${pr.source ? ` (${pr.source})` : ""}`).join("\n")}`, done.citations);
+    if (hasGitHub) fs.writeFileSync(path.join(DIR, file), original);
+    result.opened.push({ kind: "refresh", slug: p.slug, ...(pr ?? {}) });
+    open.add(`seo/refresh-${p.slug}`);
   }
 
   // Refreshes of pages that already rank 4–20.

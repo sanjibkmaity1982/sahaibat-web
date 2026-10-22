@@ -11,6 +11,7 @@ import { PromoRibbon } from "@/components/sahaibat/PromoRibbon";
 import { SiteFooter } from "@/components/sahaibat/SiteFooter";
 import { MainWrapper } from "@/components/sahaibat/MainWrapper";
 import { LegacyChrome } from "@/components/sahaibat/LegacyChrome";
+import { Measure } from "@/components/Measure";
 
 // ── Fonts (self-hosted at build time; no request to Google from the visitor) ──
 const plexSans = IBM_Plex_Sans({ subsets: ["latin"], weight: ["400", "500", "600", "700"], variable: "--font-plex-sans", display: "swap" });
@@ -101,6 +102,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <SiteNav />
           </LegacyChrome>
           <MainWrapper>{children}</MainWrapper>
+          <Measure />
           <LegacyChrome>
             <SiteFooter />
           </LegacyChrome>
