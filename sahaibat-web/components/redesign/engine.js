@@ -275,6 +275,8 @@ export function initRedesign(root, opts){
     if(txt.trim().length<40)return E2('Describe the case in a few sentences.','Jelaskan kasus dalam beberapa kalimat.');return null}
   async function apiJson(product,text,signal){
     var token=opts.getToken?await opts.getToken():null,r;
+    // Aggregate count of demo runs per product (app/api/m); no content is sent.
+    try{if(navigator.doNotTrack!=='1'&&!navigator.globalPrivacyControl)navigator.sendBeacon('/api/m',new Blob([JSON.stringify({e:'demo_start',p:'/experience/'+product})],{type:'text/plain'}))}catch(e){}
     try{r=await fetch('/api/experience/'+product,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(typeof text==='string'?{text:text,lang:L,token:token}:{data:text,lang:L,token:token}),signal:signal})}
     catch(e){throw {code:e&&e.name==='AbortError'?'cancelled':'network'}}
     var d=await r.json().catch(function(){return null});

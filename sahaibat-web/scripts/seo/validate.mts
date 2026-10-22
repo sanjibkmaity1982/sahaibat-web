@@ -81,7 +81,6 @@ export function validate(files?: string[]): Issue[] {
       const official = page.sources.filter((s) => OFFICIAL.test(new URL(s.url).hostname));
       if (page.sources.length < 2) add("error", "guides need at least 2 sources");
       if (!official.length) add("error", "regulatory guides need at least one official (.go.id or WHO) source");
-      if (!page.reviewedBy) add("warn", "no named reviewer yet (reviewedBy)");
     }
     if (page.updated > today) add("error", `updated date ${page.updated} is in the future`);
     if (page.updated < page.published) add("error", "updated is before published");

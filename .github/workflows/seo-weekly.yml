@@ -53,6 +53,8 @@ jobs:
           SEO_MODEL: ${{ vars.SEO_MODEL }}
           GSC_SERVICE_ACCOUNT_JSON: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
           GSC_SITES: ${{ vars.GSC_SITES }}
+          KV_REST_API_URL: ${{ secrets.KV_REST_API_URL }}
+          KV_REST_API_READ_ONLY_TOKEN: ${{ secrets.KV_REST_API_READ_ONLY_TOKEN }}
           SEO_DRAFTS_PER_RUN: ${{ vars.SEO_DRAFTS_PER_RUN }}
           SEO_REFRESHES_PER_RUN: ${{ vars.SEO_REFRESHES_PER_RUN }}
           SEO_SKIP_DRAFTS: ${{ inputs.skip_drafts && '1' || '' }}

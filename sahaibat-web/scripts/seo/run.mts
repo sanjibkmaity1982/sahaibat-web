@@ -1,13 +1,16 @@
 // The weekly SEO run, end to end. Each step is isolated: one failing step
 // (an API outage, a missing key) is reported and the rest still run.
 //
-//   audit → Search Console → keywords → drafts → AI visibility → IndexNow → report
+//   audit → Search Console → funnel → fact check → keywords → drafts
+//   → AI visibility → IndexNow → report
 
 import { audit } from "./audit.mts";
 import { gsc } from "./gsc.mts";
 import { keywords } from "./keywords.mts";
 import { draft } from "./draft.mts";
 import { visibility } from "./visibility.mts";
+import { factcheck } from "./factcheck.mts";
+import { funnel } from "./funnel.mts";
 import { indexnow } from "./indexnow.mts";
 import { report } from "./report.mts";
 import { log } from "./lib.mts";
@@ -15,6 +18,8 @@ import { log } from "./lib.mts";
 const steps: [string, () => Promise<unknown>][] = [
   ["audit", () => audit()],
   ["gsc", () => gsc()],
+  ["funnel", () => funnel()],
+  ["factcheck", () => factcheck()],
   ["keywords", () => keywords()],
   ["draft", () => (process.env.SEO_SKIP_DRAFTS ? Promise.resolve() : draft())],
   ["visibility", () => visibility()],
