@@ -15,7 +15,8 @@ const REST_URL = process.env.UPSTASH_REDIS_REST_URL ?? process.env.KV_REST_API_U
 const REST_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN ?? process.env.KV_REST_API_TOKEN;
 const TTL = 60 * 60 * 24 * 760;
 
-const EVENTS = new Set(["view", "dok_click", "demo_start"]);
+// dok_* events come from www.sahaibatdok.com (paths under /dok).
+const EVENTS = new Set(["view", "dok_click", "demo_start", "dok_view", "dok_persona", "dok_demo_start", "dok_demo_done", "dok_signup"]);
 const BOT = /bot|crawl|spider|slurp|preview|headless|lighthouse|pingdom|monitor/i;
 
 // Referrer host → a small fixed set of sources. The referrer itself is not
