@@ -18,7 +18,7 @@ const meta = (html: string, key: string) => {
 };
 const decode = (s: string) => s.replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#x27;|&#39;/g, "'").replace(/&lt;/g, "<").replace(/&gt;/g, ">");
 
-export async function audit(base = SITE) {
+export async function audit(base = SITE, outFile = "audit.json") {
   const urls = await sitemapUrls(base);
   const issues: Issue[] = [];
   const pages: Record<string, unknown>[] = [];
@@ -105,7 +105,7 @@ export async function audit(base = SITE) {
   const errors = issues.filter((i) => i.level === "error").length;
   log(`audit: ${pages.length} pages, ${errors} errors, ${issues.length - errors} warnings`);
   const result = { at: new Date().toISOString(), base, pages, issues };
-  writeOut("audit.json", result);
+  writeOut(outFile, result);
   return result;
 }
 

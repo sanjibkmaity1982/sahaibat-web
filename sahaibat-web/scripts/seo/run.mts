@@ -15,8 +15,12 @@ import { indexnow } from "./indexnow.mts";
 import { report } from "./report.mts";
 import { log } from "./lib.mts";
 
+// The DOK product site; its pages are built in the sahaibat-dok repo.
+const DOK = "https://www.sahaibatdok.com";
+
 const steps: [string, () => Promise<unknown>][] = [
   ["audit", () => audit()],
+  ["audit sahaibatdok.com", () => audit(DOK, "audit-dok.json")],
   ["gsc", () => gsc()],
   ["funnel", () => funnel()],
   ["factcheck", () => factcheck()],
@@ -24,6 +28,7 @@ const steps: [string, () => Promise<unknown>][] = [
   ["draft", () => (process.env.SEO_SKIP_DRAFTS ? Promise.resolve() : draft())],
   ["visibility", () => visibility()],
   ["indexnow", () => indexnow()],
+  ["indexnow sahaibatdok.com", () => indexnow(undefined, DOK)],
 ];
 
 let failed = 0;

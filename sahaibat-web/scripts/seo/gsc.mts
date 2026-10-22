@@ -3,13 +3,13 @@
 // user on the property) — no Google SDK, just a signed JWT.
 //
 //   GSC_SERVICE_ACCOUNT_JSON  the service account key JSON
-//   GSC_SITES                 comma-separated, default "sc-domain:sahaibat.com"
+//   GSC_SITES                 comma-separated, default "sc-domain:sahaibat.com,sc-domain:sahaibatdok.com"
 
 import crypto from "node:crypto";
 import { log, writeOut } from "./lib.mts";
 
 const SA = process.env.GSC_SERVICE_ACCOUNT_JSON;
-const SITES = (process.env.GSC_SITES || "sc-domain:sahaibat.com").split(",").map((s) => s.trim()).filter(Boolean);
+const SITES = (process.env.GSC_SITES || "sc-domain:sahaibat.com,sc-domain:sahaibatdok.com").split(",").map((s) => s.trim()).filter(Boolean);
 const BRAND = /sah\s?a?i?\s?bat|sahaibat|sahabat dok|sahaibatdok|kasih sahaibat/i;
 
 export type Row = { query: string; page: string; clicks: number; impressions: number; ctr: number; position: number };
@@ -65,8 +65,16 @@ export async function gsc() {
   const prev = { start: day(59), end: day(32) };
   const sites: Record<string, unknown> = {};
   for (const site of SITES) {
-    const now = await query(tok, site, cur.start, cur.end);
-    const before = await query(tok, site, prev.start, prev.end);
+    let now: Row[], before: Row[];
+    try {
+      now = await query(tok, site, cur.start, cur.end);
+      before = await query(tok, site, prev.start, prev.end);
+    } catch (e) {
+      // usually: the property is not verified yet, or the service account is not a user on it
+      sites[site] = { error: (e as Error).message.slice(0, 200) };
+      log(`gsc: ${site} skipped: ${(e as Error).message.slice(0, 120)}`);
+      continue;
+    }
     const nonBrand = (r: Row) => !BRAND.test(r.query);
     sites[site] = {
       period: cur,

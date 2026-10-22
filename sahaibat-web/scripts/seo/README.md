@@ -6,14 +6,14 @@ Organic growth without ads, following the *AI + SEO Acquisition Strategy for Ind
 
 | Step | Script | What it does |
 |---|---|---|
-| Technical audit | `audit.mts` | Crawls the live sitemap. Checks status, title, description, one H1, canonical, structured data, indexability, speed, the word "AI", broken internal links and dead source links. |
-| Search Console | `gsc.mts` | Pulls 28 days of queries and pages, plus the 28 days before. Splits branded and non-branded traffic. |
+| Technical audit | `audit.mts` | Crawls the live sitemaps of sahaibat.com and sahaibatdok.com. Checks status, title, description, one H1, canonical, structured data, indexability, speed, the word "AI", broken internal links and dead source links. |
+| Search Console | `gsc.mts` | Pulls 28 days of queries and pages, plus the 28 days before, for both sites. Splits branded and non-branded traffic. A property that is not connected yet is named in the report instead of stopping the run. |
 | Funnel | `funnel.mts` | Reads the site's own aggregate counters (`app/api/m`): landings from search engines and from answer assistants (ChatGPT, Perplexity, Gemini, Copilot), Experience Zone demos and clicks through to DOK. Compares the last 28 days with the 28 before. |
 | Fact check | `factcheck.mts` | Uses web search to check every published page against official sources and the claims registry. Pages with a wrong statement get a correction draft PR first. |
 | Keyword analyst | `keywords.mts` | Merges the seed matrix (`content/keywords.json`) with real queries. OpenAI clusters them by intent and maps each cluster to a page or a new page idea. Scores use the strategy formula. Only Search Console impressions count as demand. |
 | Editorial assistant | `draft.mts` | Turns the top new-page opportunities and pages ranking 4–20 into drafts. Drafts are researched with web search and checked by the validator and claims registry. Each draft opens as a **draft PR**. Nothing is merged automatically. |
 | AI visibility | `visibility.mts` | Asks 8 fixed Bahasa questions to a web-searching assistant. Records whether SahAIbat is mentioned and cited, and whether the description is accurate. |
-| IndexNow | `indexnow.mts` | Tells Bing and the assistants that search with it which pages changed. It also runs after every merge that touches `content/pages`. |
+| IndexNow | `indexnow.mts` | Tells Bing and the assistants that search with it which pages changed, on both sites. It also runs after every merge that touches `content/pages` here, and after every marketing deploy in sahaibat-dok. |
 | Report | `report.mts` | Opens one GitHub issue (label `seo-report`) with the numbers, opportunities, drafts waiting for review, visibility and issues. |
 
 On every pull request, `seo-ci.yml` validates content, builds the site and runs the audit in strict mode.
@@ -27,8 +27,8 @@ On every pull request, `seo-ci.yml` validates content, builds the site and runs 
    2. In Google Cloud, create a project and enable the **Google Search Console API**. Then create a **service account** and download its JSON key.
    3. In Search Console, go to *Settings → Users and permissions → Add user*. Add the service account's email with **Restricted** permission, on each property.
    4. Add the whole JSON as the secret `GSC_SERVICE_ACCOUNT_JSON`.
-   5. Optional: add the variable `GSC_SITES` = `sc-domain:sahaibat.com,sc-domain:sahaibatdok.com`.
-4. **Bing Webmaster Tools.** At <https://www.bing.com/webmasters>, import the site from Search Console. Bing feeds ChatGPT search and Copilot. Optionally set `BING_SITE_VERIFICATION` in Vercel.
+   5. Optional: the variable `GSC_SITES` (default `sc-domain:sahaibat.com,sc-domain:sahaibatdok.com`) changes which properties are read.
+4. **Bing Webmaster Tools.** At <https://www.bing.com/webmasters>, import both sites from Search Console. Bing feeds ChatGPT search and Copilot. Optionally set `BING_SITE_VERIFICATION` in Vercel.
 5. **On-site funnel.** Add the secrets `KV_REST_API_URL` and `KV_REST_API_READ_ONLY_TOKEN`. Copy both from the Upstash database the site already uses (Vercel → Storage, or the Upstash console). The read-only token is enough.
 6. **First run.** Go to *Actions → SEO weekly run → Run workflow*.
 
