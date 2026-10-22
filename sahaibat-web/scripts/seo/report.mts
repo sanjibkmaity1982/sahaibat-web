@@ -84,8 +84,12 @@ export async function report() {
   }
   if (vis.available) {
     md.push("## AI search visibility", "", "| Question | Mentioned | Cited | Accurate | Recommended instead |", "|---|---|---|---|---|");
-    for (const r of vis.results) md.push(r.error ? `| ${r.question} | error | | | ${r.error.slice(0, 60)} |` : `| ${r.question} | ${r.mentioned ? "✓" : "·"} | ${r.cited ? "✓" : "·"} | ${r.accurate == null ? "" : r.accurate ? "✓" : "✖ " + r.problems.join("; ")} | ${r.competitors.join(", ")} |`);
+    for (const r of vis.results) md.push(r.error ? `| ${r.question} | error | | | ${r.error.slice(0, 60)} |` : `| ${r.question} | ${r.mentioned ? "✓" : "·"} | ${r.cited ? "✓" : "·"} | ${r.accurate == null ? "" : r.accurate ? "✓" : `✖ ${r.problems.length} wrong`} | ${r.competitors.join(", ")} |`);
     md.push("");
+    const wrong = [...new Set(vis.results.flatMap((r: any) => r.problems ?? []))] as string[];
+    if (wrong.length) {
+      md.push("### What assistants get wrong about SahAIbat", "They learn this from pages on the web, often old ones. Fix the source page (or publish a clear, correct one) and it fades over the following weeks.", "", ...wrong.slice(0, 15).map((w) => `- ${w}`), "");
+    }
   }
   md.push("## Technical issues", errors.length ? "" : "No errors.", ...errors.slice(0, 30).map((i: any) => `- ✖ **${i.check}** ${new URL(i.url).pathname}: ${i.msg}`));
   if (warns.length) md.push("", `<details><summary>${warns.length} warnings</summary>`, "", ...warns.slice(0, 60).map((i: any) => `- ${i.check} ${i.url}: ${i.msg}`), "", "</details>");
