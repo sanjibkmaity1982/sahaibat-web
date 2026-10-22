@@ -17,8 +17,9 @@ import { validate } from "./validate.mts";
 import { ROOT, REPO, ask, claims, gh, git, hasGitHub, hasOpenAI, linkAlive, log, readJson, readOut, today, writeOut } from "./lib.mts";
 
 const DIR = path.join(ROOT, "content", "pages");
-const MAX_NEW = Number(process.env.SEO_DRAFTS_PER_RUN ?? 2);
-const MAX_REFRESH = Number(process.env.SEO_REFRESHES_PER_RUN ?? 1);
+// Unset repository variables arrive as "" in Actions, so fall back on empty too.
+const MAX_NEW = Number(process.env.SEO_DRAFTS_PER_RUN || 2);
+const MAX_REFRESH = Number(process.env.SEO_REFRESHES_PER_RUN || 1);
 const PAGE_JSON_SCHEMA = z.toJSONSchema(PageSchema, { io: "input" }) as Record<string, unknown>;
 
 const STYLE = `Write in natural, professional Bahasa Indonesia for doctors, clinic managers and midwives in Indonesia.

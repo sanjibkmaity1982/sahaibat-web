@@ -70,4 +70,5 @@ jobs:
         with:
           name: seo-run-${{ github.run_id }}
           path: sahaibat-web/.seo/
+          include-hidden-files: true
           retention-days: 90

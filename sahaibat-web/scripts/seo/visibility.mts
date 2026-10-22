@@ -22,8 +22,12 @@ const ANSWER = {
 const GRADE = {
   type: "object",
   additionalProperties: false,
-  required: ["accurate", "problems"],
-  properties: { accurate: { type: "boolean" }, problems: { type: "array", items: { type: "string" } } },
+  required: ["accurate", "wrong", "unverified"],
+  properties: {
+    accurate: { type: "boolean" },
+    wrong: { type: "array", items: { type: "string" } },
+    unverified: { type: "array", items: { type: "string" } },
+  },
 };
 
 const OURS = /sahaibat(dok)?\.com/i;
@@ -49,17 +53,20 @@ export async function visibility() {
       });
       const mentioned = /sah\s?ai\s?bat/i.test(data.answer) || data.products.some((p) => /sah\s?ai\s?bat/i.test(p.name));
       const cited = citations.some((u) => OURS.test(u)) || data.products.some((p) => p.url && OURS.test(p.url));
-      let grade: { accurate: boolean; problems: string[] } | null = null;
+      let grade: { accurate: boolean; wrong: string[]; unverified: string[] } | null = null;
       if (mentioned) {
-        grade = (await ask<{ accurate: boolean; problems: string[] }>({
+        grade = (await ask<{ accurate: boolean; wrong: string[]; unverified: string[] }>({
           name: "brand_accuracy",
           effort: "low",
-          system: "Compare what this answer says about SahAIbat with the verified facts. List each statement about SahAIbat that is wrong, outdated or unsupported by the facts. Ignore statements about other companies.",
+          system: `Compare what this answer says about SahAIbat with the verified facts.
+- "wrong": statements that CONTRADICT the facts — a different price, quota, plan, product name, company or legal entity, a capability the facts say is not available, or anything the facts rule out. Quote the statement and give the correct fact, briefly.
+- "unverified": important statements the facts neither confirm nor contradict. Leave out harmless details.
+- accurate = true when "wrong" is empty. Ignore statements about other companies. Write in English.`,
           user: JSON.stringify({ facts, answer: data.answer }),
           schema: GRADE,
         })).data;
       }
-      results.push({ question: q, mentioned, cited, accurate: grade?.accurate ?? null, problems: grade?.problems ?? [], competitors: data.products.map((p) => p.name).filter((n) => !/sah\s?ai\s?bat/i.test(n)).slice(0, 6), citations: citations.slice(0, 8) });
+      results.push({ question: q, mentioned, cited, accurate: grade?.accurate ?? null, problems: grade?.wrong ?? [], unverified: grade?.unverified ?? [], competitors: data.products.map((p) => p.name).filter((n) => !/sah\s?ai\s?bat/i.test(n)).slice(0, 6), citations: citations.slice(0, 8) });
       log(`visibility: ${mentioned ? "✓" : "·"} ${cited ? "cited" : "      "} ${q}`);
     } catch (e) {
       results.push({ question: q, error: (e as Error).message });

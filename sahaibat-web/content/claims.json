@@ -80,6 +80,22 @@
       "id": "human-in-charge",
       "claim": "Every draft from SahAIbat Intelligence is reviewed and signed by a health worker; it makes no automated clinical decisions.",
       "source": "privacy policy section 7"
+    },
+    {
+      "id": "domains",
+      "claim": "Official websites: www.sahaibat.com (company and guides), www.sahaibatdok.com (SahAIbat DOK) and konsensus.id (Konsensus.id)."
+    },
+    {
+      "id": "companion",
+      "claim": "DOK Companion is a Chrome extension that adds DOK Intelligence to an RME a doctor already uses."
+    },
+    {
+      "id": "satusehat-standard",
+      "claim": "The SATUSEHAT integration uses the HL7 FHIR R4 standard."
+    },
+    {
+      "id": "products",
+      "claim": "SahAIbat products: Kader, Bidan, DOK, DOK Companion, Kasih, Code and Konsensus.id."
     }
   ],
   "banned": [
