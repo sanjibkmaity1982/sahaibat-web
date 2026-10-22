@@ -1,0 +1,215 @@
+{
+  "slug": "aplikasi-bidan",
+  "section": "landing",
+  "status": "published",
+  "cluster": "bidan",
+  "keywords": [
+    "aplikasi bidan",
+    "pencatatan ANC 10T",
+    "aplikasi partograf",
+    "RME kebidanan",
+    "aplikasi praktik mandiri bidan",
+    "P4K rencana persalinan"
+  ],
+  "title": "Aplikasi Bidan: ANC 10T, P4K, KF1–KF4",
+  "description": "Panduan praktis memilih dan menerapkan aplikasi bidan untuk ANC 10T, P4K, partograf serta KF1–KF4 yang tetap berjalan offline dan tersinkron saat ada sinyal.",
+  "kicker": "Untuk praktik mandiri dan jejaring Puskesmas",
+  "h1": "Aplikasi Bidan untuk ANC 10T, P4K dan KF1–KF4",
+  "intro": "Halaman ini merangkum langkah cepat digitalisasi layanan kebidanan harian—dari ANC 10T, P4K, penggunaan partograf hingga kunjungan nifas KF1–KF4—beserta acuan regulasi yang perlu diikuti. Minimal 6 kontak ANC sepanjang kehamilan diatur dalam Permenkes 21/2021, dengan distribusi 1× trimester I, 2× trimester II, dan 3× trimester III; minimal dua kali harus kontak dengan dokter, sesuai penjelasan BKPK Kemenkes (SKI 2023). ([jdih.kemkes.go.id](https://jdih.kemkes.go.id/pdfjs/web/viewer.html?file=https%3A%2F%2Fjdih.kemkes.go.id%2Fstorage%2Fdocuments%2Fpdfs%2F2021permenkes021.pdf&utm_source=openai))",
+  "author": "Tim SahAIbat",
+  "published": "2026-10-22",
+  "updated": "2026-10-22",
+  "sections": [
+    {
+      "id": "mulai-digital",
+      "h": "Langkah cepat memulai pencatatan kebidanan digital",
+      "body": [
+        {
+          "ol": [
+            "Petakan layanan yang Anda jalankan: ANC, persalinan (dengan partograf), nifas (KF1–KF4), KB, dan imunisasi anak. Pastikan alur mengacu Buku KIA sebagai media pencatatan dasar. ([kemkes.go.id](https://kemkes.go.id/id/buku-kia-sahabat-tumbuh-kembang-anak?utm_source=openai))",
+            "Tetapkan standar kunjungan: minimal 6 kontak ANC per kehamilan (1-2-3 per trimester) dan kunjungan masa nifas minimal 4 kali (KF1: 6 jam–2 hari; KF2: 3–7 hari; KF3: 8–28 hari; KF4: 29–42 hari). Dokumentasikan setiap kontak. ([jdih.kemkes.go.id](https://jdih.kemkes.go.id/pdfjs/web/viewer.html?file=https%3A%2F%2Fjdih.kemkes.go.id%2Fstorage%2Fdocuments%2Fpdfs%2F2021permenkes021.pdf&utm_source=openai))",
+            "Siapkan formulir kerja: ringkasan ANC 10T, rencana P4K, lembar partograf untuk persalinan normal, serta format KF1–KF4. Pastikan komponen 10T tercatat konsisten sesuai pedoman Kemenkes. ([repository.kemkes.go.id](https://repository.kemkes.go.id/book/147))",
+            "Tetapkan prosedur rujukan dan konseling (mis. tanda bahaya, triple eliminasi, gizi, pilihan KB mengacu WHO MEC). Cantumkan nomor kontak rujukan dan sarana transportasi di P4K. ([ayosehat.kemkes.go.id](https://ayosehat.kemkes.go.id/buku-kia-kesehatan-ibu-dan-anak?utm_source=openai))",
+            "Uji alur selama 1–2 minggu pada 5–10 pasien terlebih dulu. Pastikan pencatatan berjalan offline di lapangan dan tersinkron saat ada sinyal sebelum diperluas ke seluruh sasaran."
+          ]
+        },
+        {
+          "note": "Catatan hukum: Kewajiban jumlah kunjungan dan mutu layanan mengacu Permenkes 21/2021 serta pengaturan SPM yang saat ini berada pada Permenkes 6/2024; bila daerah Anda memiliki petunjuk teknis tambahan, ikuti instruksi dinas kesehatan setempat. ([jdih.kemkes.go.id](https://jdih.kemkes.go.id/pdfjs/web/viewer.html?file=https%3A%2F%2Fjdih.kemkes.go.id%2Fstorage%2Fdocuments%2Fpdfs%2F2021permenkes021.pdf&utm_source=openai))"
+        }
+      ]
+    },
+    {
+      "id": "standar-pencatatan",
+      "h": "Standar klinis yang disarankan untuk dicatat (ringkas)",
+      "body": [
+        {
+          "p": "Di bawah ini ringkasan komponen yang sebaiknya tercatat rapi pada aplikasi atau formulir kerja Anda:"
+        },
+        {
+          "table": {
+            "head": [
+              "Tahap",
+              "Catatan kunci yang dicatat",
+              "Acuan"
+            ],
+            "rows": [
+              [
+                "ANC",
+                "Kontak minimal 6×/kehamilan (1× trimester I; 2× trimester II; 3× trimester III); komponen **10T**: berat/tinggi badan, tekanan darah, LILA, TFU, presentasi & DJJ, laboratorium (Hb, urin protein/glukosa, triple eliminasi sesuai indikasi), imunisasi TT/TTD sesuai kebutuhan, tablet tambah darah, konseling/temu wicara, dan tatalaksana kasus.",
+                "Permenkes 21/2021; SKI 2023; Pedoman ANC Kemenkes; SATUSEHAT ANC (variabel 10T). ([jdih.kemkes.go.id](https://jdih.kemkes.go.id/pdfjs/web/viewer.html?file=https%3A%2F%2Fjdih.kemkes.go.id%2Fstorage%2Fdocuments%2Fpdfs%2F2021permenkes021.pdf&utm_source=openai))"
+              ],
+              [
+                "Persalinan normal",
+                "Penggunaan partograf untuk memantau kemajuan kala I–IV sebagai bagian dari asuhan persalinan normal; ikuti pelatihan/kurikulum resmi. Status kewajiban formulir dapat berbeda sesuai regulasi SPM yang berlaku saat ini.",
+                "Kurikulum APN & EMAS Kemenkes; Permenkes 6/2024 (SPM terkini). ([ditmutunakes.kemkes.go.id](https://ditmutunakes.kemkes.go.id/index.php/detail-kurikulum-pelatihan/pelatihan-klinik-asuhan-persalinan-normal-bagi-dokter-bidan-dan-perawat-di-fasilitas-pelayanan-kesehatan/4d7a557a4e544d774d7a51744d7a677a4f4330304e544d314c5749324d7a51744d7a557a4d444d774d7a4d7a4f444d30?utm_source=openai))"
+              ],
+              [
+                "Masa nifas",
+                "KF1: 6 jam–2 hari; KF2: 3–7 hari; KF3: 8–28 hari; KF4: 29–42 hari; isi dan edukasi Buku KIA, deteksi dini komplikasi ibu/BBL.",
+                "BKPK Kemenkes (SKI 2023); Buku KIA. ([badankebijakan.kemkes.go.id](https://www.badankebijakan.kemkes.go.id/daftar-frequently-asked-question-seputar-hasil-utama-ski-2023/hasil-utama-ski-2023/?utm_source=openai))"
+              ],
+              [
+                "KB & konseling",
+                "Asesmen kelayakan metode mengacu WHO MEC terbaru (edisi ke-6 tahun 2025); dokumentasikan kontraindikasi/kehati-hatian per kategori 1–4.",
+                "WHO MEC 2025. ([who.int](https://www.who.int/publications/i/item/9789240115583?utm_source=openai))"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "sahaibat-bidan",
+      "h": "Tentang SahAIbat Bidan",
+      "body": [
+        {
+          "ul": [
+            "Mencakup ANC (10T), rencana persalinan P4K, kunjungan nifas (KF1–KF4), layanan KB dengan referensi WHO MEC, serta imunisasi anak.",
+            "Bekerja penuh secara offline dan akan tersinkron otomatis saat ada sinyal—cocok untuk kunjungan rumah, desa terpencil, dan kegiatan Posyandu.",
+            "Penyimpanan data pribadi dan rekam kesehatan berada di Indonesia, di pusat data di Jakarta.",
+            "Jika mengaktifkan SahAIbat Intelligence untuk membantu ringkasan temuan/edukasi, setiap draft tetap ditinjau dan ditandatangani tenaga kesehatan; tidak ada keputusan klinis otomatis.",
+            "SahAIbat terdaftar di Indonesia (NIB 1202260248509) dan sebagai PSE Komdigi; dibangun dan dioperasikan oleh Viantra Health."
+          ]
+        },
+        {
+          "note": "Untuk RME klinik yang terintegrasi ke SATUSEHAT dan BPJS (P-Care & Antrean) dengan standar HL7 FHIR R4, lihat SahAIbat DOK. ([satusehat.kemkes.go.id](https://satusehat.kemkes.go.id/platform/docs/id/interoperability/anc/?utm_source=openai))"
+        }
+      ]
+    },
+    {
+      "id": "butuh-integrasi",
+      "h": "Perlu integrasi SATUSEHAT/BPJS? Gunakan SahAIbat DOK",
+      "body": [
+        {
+          "p": "Jika praktik Anda berkembang menjadi klinik/jejaring FKTP dengan kebutuhan integrasi nasional, SahAIbat DOK adalah RME klinik yang terintegrasi dengan SATUSEHAT dan BPJS (P-Care dan Antrean). Integrasi SATUSEHAT DOK menggunakan standar HL7 FHIR R4. Aktivasi koneksi BPJS dilakukan per klinik dengan kredensial BPJS milik klinik."
+        },
+        {
+          "ul": [
+            "Tersedia paket gratis seumur hidup: 15 konsultasi berbantuan Intelligence per bulan dan pencatatan manual tanpa batas, tanpa kartu kredit.",
+            "Paket berbayar mulai Rp60 ribu per bulan (semua modul dalam satu paket).",
+            "Go-live maksimal 24 jam, bergaransi; migrasi data RME lama gratis.",
+            "Modul: konsultasi dengan DOK Intelligence (draf SOAP dari rekaman konsultasi), e-resep dengan cek keamanan obat & katalog KFA, 7 toolkit spesialis, maternity suite KIA, front office (registrasi NIK, antrean & booking), farmasi & batch stok, kasir & billing, laporan (LB1, laporan Puskesmas, pembacaan hasil lab & radiologi), serta integrasi SATUSEHAT & BPJS.",
+            "Data tetap di Indonesia; detail perusahaan di bagian Tentang kami."
+          ]
+        },
+        {
+          "p": "Pelajari lebih lanjut integrasi di panduan: [Integrasi SATUSEHAT](/panduan/integrasi-satusehat) dan [BPJS P-Care, Antrean dan SATUSEHAT](/panduan/bpjs-pcare)."
+        }
+      ]
+    },
+    {
+      "id": "checklist-implementasi",
+      "h": "Checklist implementasi di PMB/jejaring Puskesmas (14 hari)",
+      "body": [
+        {
+          "ol": [
+            "Hari 1–2: Audit form kerja (ANC 10T, P4K, partograf, KF1–KF4) dan mapping ke Buku KIA. ([kemkes.go.id](https://kemkes.go.id/id/buku-kia-sahabat-tumbuh-kembang-anak?utm_source=openai))",
+            "Hari 3–5: Susun alur rujukan & edukasi; pastikan kontak minimal ANC dan jadwal KF terdokumentasi. ([jdih.kemkes.go.id](https://jdih.kemkes.go.id/pdfjs/web/viewer.html?file=https%3A%2F%2Fjdih.kemkes.go.id%2Fstorage%2Fdocuments%2Fpdfs%2F2021permenkes021.pdf&utm_source=openai))",
+            "Hari 6–9: Uji di 10 pasien; verifikasi semua komponen 10T terekam termasuk laboratorium/rujukan. ([repository.kemkes.go.id](https://repository.kemkes.go.id/book/147))",
+            "Hari 10–12: Tindak lanjut hasil uji; perbarui SOP (termasuk penggunaan partograf pada persalinan normal). ([ditmutunakes.kemkes.go.id](https://ditmutunakes.kemkes.go.id/index.php/detail-kurikulum-pelatihan/pelatihan-klinik-asuhan-persalinan-normal-bagi-dokter-bidan-dan-perawat-di-fasilitas-pelayanan-kesehatan/4d7a557a4e544d774d7a51744d7a677a4f4330304e544d314c5749324d7a51744d7a557a4d444d774d7a4d7a4f444d30?utm_source=openai))",
+            "Hari 13–14: Roll-out ke seluruh sasaran dan siapkan monitoring mutu sesuai SPM Kesehatan terbaru. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Details/288060/permenkes-no-6-tahun-))"
+          ]
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Apakah partograf wajib dicatat digital?",
+      "a": "Partograf merupakan alat asuhan persalinan normal yang diajarkan dalam kurikulum resmi; banyak fasilitas mewajibkan penggunaannya sebagai bagian mutu klinis. Status kewajiban formulir spesifik mengikuti pengaturan SPM Kesehatan yang saat ini berada pada Permenkes 6/2024 serta kebijakan daerah. Rujuk juknis dinas setempat. ([ditmutunakes.kemkes.go.id](https://ditmutunakes.kemkes.go.id/index.php/detail-kurikulum-pelatihan/pelatihan-klinik-asuhan-persalinan-normal-bagi-dokter-bidan-dan-perawat-di-fasilitas-pelayanan-kesehatan/4d7a557a4e544d774d7a51744d7a677a4f4330304e544d314c5749324d7a51744d7a557a4d444d774d7a4d7a4f444d30?utm_source=openai))"
+    },
+    {
+      "q": "Berapa kali minimal kontak ANC dan bagaimana pembagiannya?",
+      "a": "Minimal 6 kontak: 1× pada trimester I (0–12 minggu), 2× pada trimester II (>12–24 minggu), dan 3× pada trimester III (>24 minggu–persalinan). Minimal dua kali harus kontak dengan dokter (1× trimester I dan 1× trimester III). ([badankebijakan.kemkes.go.id](https://www.badankebijakan.kemkes.go.id/daftar-frequently-asked-question-seputar-hasil-utama-ski-2023/hasil-utama-ski-2023/?utm_source=openai))"
+    },
+    {
+      "q": "Apa saja isi 10T yang perlu selalu tercatat?",
+      "a": "Secara ringkas: timbang/ukur tinggi badan; tekanan darah; LILA; TFU; presentasi & DJJ janin; laboratorium dasar (mis. Hb, urin protein/glukosa, triple eliminasi sesuai indikasi); imunisasi TT/TTD sesuai kebutuhan; tablet tambah darah; konseling/temu wicara; serta tatalaksana kasus. Lihat juga mapping variabel 10T pada dokumen SATUSEHAT ANC. ([repository.kemkes.go.id](https://repository.kemkes.go.id/book/147))"
+    },
+    {
+      "q": "Kapan jadwal kunjungan masa nifas KF1–KF4?",
+      "a": "KF1: 6 jam–2 hari; KF2: 3–7 hari; KF3: 8–28 hari; KF4: 29–42 hari setelah melahirkan. Dokumentasikan temuan, edukasi, dan rujukan bila ada tanda bahaya. ([badankebijakan.kemkes.go.id](https://www.badankebijakan.kemkes.go.id/daftar-frequently-asked-question-seputar-hasil-utama-ski-2023/hasil-utama-ski-2023/?utm_source=openai))"
+    },
+    {
+      "q": "Apakah SahAIbat Bidan bisa digunakan tanpa internet?",
+      "a": "Bisa. Produk lapangan SahAIbat (Kader, Bidan, dan produk lapangan lainnya) bekerja penuh offline dan akan tersinkron otomatis ketika sinyal kembali. Untuk RME klinik offline penuh, solusi ini segera hadir; saat ini gunakan DOK untuk kebutuhan RME terintegrasi. "
+    },
+    {
+      "q": "Bagaimana acuan untuk pemilihan metode KB?",
+      "a": "Gunakan kategori WHO MEC terbaru; catat kondisi medis dan karakteristik pasien untuk menentukan kategori 1–4 sebelum memulai metode. Edisi ke-6 (2025) tersedia sebagai rujukan global. ([who.int](https://www.who.int/publications/i/item/9789240115583?utm_source=openai))"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Permenkes No. 21 Tahun 2021 tentang Penyelenggaraan Pelayanan Kesehatan Masa Sebelum Hamil, Masa Hamil, Persalinan, dan Masa Sesudah Melahirkan, Pelayanan Kontrasepsi, dan Pelayanan Kesehatan Seksual",
+      "publisher": "JDIH Kemenkes",
+      "url": "https://jdih.kemkes.go.id/storage/documents/pdfs/2021permenkes021.pdf"
+    },
+    {
+      "title": "Hasil Utama SKI 2023 (FAQ ringkas dan definisi indikator)",
+      "publisher": "BKPK Kemenkes",
+      "url": "https://www.badankebijakan.kemkes.go.id/daftar-frequently-asked-question-seputar-hasil-utama-ski-2023/hasil-utama-ski-2023/"
+    },
+    {
+      "title": "Pedoman Pelayanan Antenatal Terpadu (repository)",
+      "publisher": "Kementerian Kesehatan RI",
+      "url": "https://repository.kemkes.go.id/book/147"
+    },
+    {
+      "title": "Buku Kesehatan Ibu dan Anak (KIA) – artikel informasi",
+      "publisher": "Kementerian Kesehatan RI",
+      "url": "https://kemkes.go.id/id/buku-kia-sahabat-tumbuh-kembang-anak"
+    },
+    {
+      "title": "Program P4K – penjelasan publik",
+      "publisher": "Ayosehat Kemenkes",
+      "url": "https://ayosehat.kemkes.go.id/p4k-persalinan-anak"
+    },
+    {
+      "title": "SATUSEHAT Platform – Interoperability: Antenatal Care (ANC)",
+      "publisher": "Kementerian Kesehatan RI",
+      "url": "https://satusehat.kemkes.go.id/platform/docs/id/interoperability/anc/"
+    },
+    {
+      "title": "Permenkes No. 6 Tahun 2024 tentang Standar Teknis Pemenuhan Standar Pelayanan Minimal Kesehatan",
+      "publisher": "JDIH BPK RI",
+      "url": "https://peraturan.bpk.go.id/Details/288060/permenkes-no-6-tahun-2024"
+    },
+    {
+      "title": "Medical eligibility criteria for contraceptive use, 6th ed. (2025)",
+      "publisher": "World Health Organization",
+      "url": "https://www.who.int/publications/i/item/9789240115583"
+    }
+  ],
+  "cta": {
+    "h": "Coba SahAIbat Bidan",
+    "p": "Pencatatan ANC 10T, P4K, nifas dan KB yang tetap berjalan offline—sinkron saat ada sinyal, cocok untuk praktik mandiri dan jejaring Puskesmas.",
+    "label": "Jadwalkan demo",
+    "href": "https://www.sahaibatdok.com/#bidan"
+  },
+  "related": [
+    "integrasi-satusehat",
+    "rekam-medis-elektronik",
+    "software-klinik"
+  ]
+}
