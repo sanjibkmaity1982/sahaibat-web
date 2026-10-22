@@ -66,6 +66,12 @@
       "source": "footer"
     },
     {
+      "id": "operator",
+      "claim": "SahAIbat is built and operated by Viantra Health.",
+      "source": "user instruction",
+      "rule": "Name the company as Viantra Health. Do not use the numbered company name."
+    },
+    {
       "id": "nvidia",
       "claim": "SahAIbat is a member of NVIDIA Inception.",
       "source": "footer"
