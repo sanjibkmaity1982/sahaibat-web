@@ -37,7 +37,8 @@
     {
       "id": "bidan",
       "claim": "SahAIbat Bidan covers ANC (10T), birth planning (P4K), postnatal care (KF1–KF4), family planning and contraception (WHO MEC), and child immunisation.",
-      "source": "sahaibat.com Bidan section"
+      "source": "sahaibat.com Bidan section",
+      "rule": "SahAIbat Bidan has no Intelligence features by design. Never say Bidan uses SahAIbat Intelligence."
     },
     {
       "id": "kader",
