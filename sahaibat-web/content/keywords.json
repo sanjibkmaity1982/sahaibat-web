@@ -1,0 +1,23 @@
+{
+  "_about": "Seed keyword matrix from the 2026 AI + SEO acquisition strategy. The weekly run merges these with real Search Console queries, clusters them by intent and scores them. Add or remove seeds here; volumes are never invented — only Search Console data counts as verified demand.",
+  "clusters": [
+    { "id": "rme", "priority": "P1", "objective": "DOK registrations", "domain": "sahaibat.com", "seeds": ["rekam medis elektronik", "aplikasi RME gratis", "software RME klinik", "rekam medis digital", "aplikasi EMR Indonesia", "rekam medik elektronik", "RME online", "aplikasi rekam medis dokter"] },
+    { "id": "klinik", "priority": "P1", "objective": "Clinic acquisition", "domain": "sahaibat.com", "seeds": ["software klinik", "aplikasi klinik", "SIM klinik", "aplikasi dokter praktik mandiri", "aplikasi klinik pratama", "sistem informasi klinik"] },
+    { "id": "satusehat", "priority": "P1", "objective": "Authority and qualified leads", "domain": "sahaibat.com", "seeds": ["RME Kemenkes", "RME SATUSEHAT", "integrasi SATUSEHAT", "cara daftar RME", "regulasi RME", "cara daftar SATUSEHAT", "client id SATUSEHAT"] },
+    { "id": "bpjs", "priority": "P1", "objective": "Authority and qualified leads", "domain": "sahaibat.com", "seeds": ["BPJS PCare", "bridging BPJS klinik", "antrean online BPJS klinik", "144 diagnosis FKTP", "kapitasi berbasis kinerja", "rujukan non spesialistik"] },
+    { "id": "clinical-intelligence", "priority": "P1/P2", "objective": "DOK demonstration", "domain": "sahaibatdok.com", "seeds": ["SOAP otomatis", "catatan SOAP dokter", "ICD-10 otomatis", "transkripsi konsultasi", "scribe dokter Indonesia"] },
+    { "id": "bidan", "priority": "P2", "objective": "Bidan / maternity acquisition", "domain": "sahaibat.com", "seeds": ["aplikasi bidan", "pencatatan ANC 10T", "aplikasi partograf", "RME kebidanan", "aplikasi praktik mandiri bidan", "P4K rencana persalinan"] },
+    { "id": "posyandu", "priority": "P2", "objective": "Kader / partners", "domain": "sahaibat.com", "seeds": ["aplikasi posyandu digital", "pencatatan stunting", "pemantauan pertumbuhan anak", "z-score WHO balita", "aplikasi kader posyandu"] },
+    { "id": "farmasi", "priority": "P2", "objective": "Relevant module discovery", "domain": "sahaibat.com", "seeds": ["software farmasi klinik", "stok obat klinik", "imunisasi anak digital", "pencatatan KB", "aplikasi apotek klinik"] }
+  ],
+  "visibilityQuestions": [
+    "Apa aplikasi rekam medis elektronik gratis untuk dokter praktik mandiri di Indonesia?",
+    "Software klinik apa yang terintegrasi SATUSEHAT dan BPJS P-Care?",
+    "Bagaimana cara integrasi SATUSEHAT untuk klinik pratama?",
+    "Apa itu SahAIbat?",
+    "Apa itu SahAIbat DOK dan berapa harganya?",
+    "Aplikasi untuk bidan praktik mandiri yang mencatat ANC 10T dan KB?",
+    "Aplikasi posyandu digital untuk pencatatan stunting dan pertumbuhan anak?",
+    "Aplikasi dokter yang bisa membuat catatan SOAP otomatis dari rekaman konsultasi di Indonesia?"
+  ]
+}

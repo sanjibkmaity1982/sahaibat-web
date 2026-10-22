@@ -1,0 +1,34 @@
+// The weekly SEO run, end to end. Each step is isolated: one failing step
+// (an API outage, a missing key) is reported and the rest still run.
+//
+//   audit → Search Console → keywords → drafts → AI visibility → IndexNow → report
+
+import { audit } from "./audit.mts";
+import { gsc } from "./gsc.mts";
+import { keywords } from "./keywords.mts";
+import { draft } from "./draft.mts";
+import { visibility } from "./visibility.mts";
+import { indexnow } from "./indexnow.mts";
+import { report } from "./report.mts";
+import { log } from "./lib.mts";
+
+const steps: [string, () => Promise<unknown>][] = [
+  ["audit", () => audit()],
+  ["gsc", () => gsc()],
+  ["keywords", () => keywords()],
+  ["draft", () => (process.env.SEO_SKIP_DRAFTS ? Promise.resolve() : draft())],
+  ["visibility", () => visibility()],
+  ["indexnow", () => indexnow()],
+];
+
+let failed = 0;
+for (const [name, fn] of steps) {
+  try {
+    await fn();
+  } catch (e) {
+    failed++;
+    log(`✖ ${name} failed: ${(e as Error).message}`);
+  }
+}
+await report();
+log(failed ? `done with ${failed} failed step(s)` : "done");

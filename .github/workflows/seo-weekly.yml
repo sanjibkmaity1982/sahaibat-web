@@ -1,0 +1,71 @@
+# The weekly SEO run: technical audit, Search Console, keyword scoring, draft
+# pages (opened as draft PRs for review), AI search visibility, IndexNow and a
+# report issue. Runs every Monday 07:37 WIB, or on demand from the Actions tab.
+name: SEO weekly run
+
+on:
+  schedule:
+    - cron: "37 0 * * 1"
+  workflow_dispatch:
+    inputs:
+      skip_drafts:
+        description: "Skip drafting new pages this run"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: seo-weekly
+  cancel-in-progress: false
+
+jobs:
+  seo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    defaults:
+      run:
+        working-directory: sahaibat-web
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: sahaibat-web/package-lock.json
+      - run: npm ci
+      - name: Restore SEO history
+        uses: actions/cache/restore@v4
+        with:
+          path: sahaibat-web/.seo/history.json
+          key: seo-history-${{ github.run_id }}
+          restore-keys: seo-history-
+      - name: Run
+        run: npm run seo:run
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SEO_OPENAI_API_KEY: ${{ secrets.SEO_OPENAI_API_KEY }}
+          SEO_MODEL: ${{ vars.SEO_MODEL }}
+          GSC_SERVICE_ACCOUNT_JSON: ${{ secrets.GSC_SERVICE_ACCOUNT_JSON }}
+          GSC_SITES: ${{ vars.GSC_SITES }}
+          SEO_DRAFTS_PER_RUN: ${{ vars.SEO_DRAFTS_PER_RUN }}
+          SEO_REFRESHES_PER_RUN: ${{ vars.SEO_REFRESHES_PER_RUN }}
+          SEO_SKIP_DRAFTS: ${{ inputs.skip_drafts && '1' || '' }}
+      - name: Save SEO history
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: sahaibat-web/.seo/history.json
+          key: seo-history-${{ github.run_id }}
+      - name: Keep the raw results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: seo-run-${{ github.run_id }}
+          path: sahaibat-web/.seo/
+          retention-days: 90

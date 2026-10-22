@@ -2,6 +2,7 @@
 // with alternate-language annotations Google reads directly from the sitemap.
 
 import type { MetadataRoute } from "next";
+import { publishedPages, pagePath } from "@/lib/seo/content";
 
 const BASE = "https://www.sahaibat.com";
 
@@ -63,5 +64,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.2,
     },
+    {
+      url: `${BASE}/panduan`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.7,
+    },
+    // SEO pages from content/pages, dated by their own "updated" field.
+    ...publishedPages().map((p) => ({
+      url: `${BASE}${pagePath(p)}`,
+      lastModified: new Date(p.updated),
+      changeFrequency: "monthly" as const,
+      priority: p.section === "landing" ? 0.8 : 0.7,
+    })),
   ];
 }

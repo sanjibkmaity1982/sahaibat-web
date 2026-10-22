@@ -1,0 +1,80 @@
+{
+  "slug": "bpjs-pcare",
+  "section": "panduan",
+  "status": "published",
+  "cluster": "bpjs",
+  "keywords": ["BPJS P-Care", "PCare BPJS", "Antrean Mobile JKN", "bridging BPJS klinik", "144 diagnosis FKTP", "kapitasi berbasis kinerja", "rujukan non spesialistik"],
+  "title": "BPJS P-Care, Antrean dan SATUSEHAT: Bedanya untuk FKTP",
+  "description": "Perbedaan BPJS P-Care, Antrean Mobile JKN, VClaim dan SATUSEHAT, serta 144 diagnosis FKTP dan indikator kapitasi berbasis kinerja, dijelaskan untuk klinik.",
+  "kicker": "Panduan BPJS",
+  "h1": "BPJS P-Care, Antrean dan SATUSEHAT: apa bedanya untuk FKTP?",
+  "intro": "Klinik dan praktik dokter yang bekerja sama dengan BPJS Kesehatan berurusan dengan beberapa sistem sekaligus. Panduan ini menjelaskan fungsi masing-masing, kapan dipakai, dan bagaimana alur kerjanya bisa dibuat lebih ringan.",
+  "author": "Tim SahAIbat",
+  "published": "2026-10-21",
+  "updated": "2026-10-21",
+  "sections": [
+    {
+      "id": "sistem",
+      "h": "Empat sistem yang sering tertukar",
+      "body": [
+        { "table": {
+          "head": ["Sistem", "Dikelola oleh", "Untuk apa"],
+          "rows": [
+            ["P-Care", "BPJS Kesehatan", "Pendaftaran dan pencatatan pelayanan peserta JKN di FKTP: kunjungan, diagnosis, obat, rujukan"],
+            ["Antrean (Mobile JKN)", "BPJS Kesehatan", "Antrean online peserta JKN dan status antrean di FKTP"],
+            ["VClaim", "BPJS Kesehatan", "Layanan di FKRTL (rumah sakit): SEP, rujukan dan klaim"],
+            ["SATUSEHAT", "Kementerian Kesehatan", "Pertukaran data kesehatan nasional dari rekam medis elektronik semua pasien, bukan hanya peserta JKN"]
+          ]
+        } },
+        { "p": "Jadi satu kunjungan pasien BPJS di klinik umumnya tercatat di [rekam medis elektronik](/rekam-medis-elektronik), dilaporkan ke P-Care, memperbarui status antrean, dan dikirim ke [SATUSEHAT](/panduan/integrasi-satusehat)." }
+      ]
+    },
+    {
+      "id": "144-diagnosis",
+      "h": "144 diagnosis yang dituntaskan di FKTP",
+      "body": [
+        { "p": "BPJS Kesehatan menetapkan daftar **144 diagnosis** yang termasuk kompetensi dokter umum dan diharapkan dapat dituntaskan di FKTP. Merujuk diagnosis dalam daftar ini tanpa indikasi medis dihitung sebagai rujukan non-spesialistik." },
+        { "p": "Pasien tetap boleh dirujuk bila ada indikasi medis, misalnya kondisi tidak membaik, butuh pemeriksaan yang tidak tersedia, atau ada penyulit. Kasus gawat darurat langsung ditangani sesuai kebutuhan." }
+      ]
+    },
+    {
+      "id": "kbk",
+      "h": "Kapitasi berbasis kinerja (KBK)",
+      "body": [
+        { "p": "Pembayaran kapitasi FKTP dipengaruhi pemenuhan indikator kinerja. Indikator yang umum dipakai adalah:" },
+        { "ul": [
+          "**Angka kontak:** seberapa banyak peserta terdaftar yang dilayani.",
+          "**Rasio rujukan non-spesialistik:** seberapa sering kasus yang seharusnya tuntas di FKTP dirujuk.",
+          "**Rasio peserta Prolanis terkendali:** peserta hipertensi dan diabetes dalam Prolanis yang kondisinya terkendali."
+        ] },
+        { "note": "Indikator dan ambang batasnya dapat berubah. Selalu periksa ketentuan terbaru dari BPJS Kesehatan." }
+      ]
+    },
+    {
+      "id": "alur-ringan",
+      "h": "Membuat alur BPJS lebih ringan",
+      "body": [
+        { "p": "Masalah terbesar biasanya input ganda: dokter mengetik di RME, lalu staf mengetik ulang di P-Care. Aplikasi yang terhubung langsung menghilangkan langkah itu." },
+        { "p": "SahAIbat DOK terintegrasi BPJS P-Care dan Antrean, dengan pengecekan 144 diagnosis dan KBK saat dokter menulis catatan, sehingga rujukan non-spesialistik terlihat sebelum terjadi. Koneksi BPJS diaktifkan per klinik dengan kredensial BPJS milik klinik." }
+      ]
+    }
+  ],
+  "faq": [
+    { "q": "Apa bedanya P-Care dan SATUSEHAT?", "a": "P-Care adalah sistem BPJS Kesehatan untuk pelayanan peserta JKN di FKTP. SATUSEHAT adalah platform Kementerian Kesehatan untuk pertukaran data rekam medis semua pasien. Klinik yang bekerja sama dengan BPJS umumnya memakai keduanya." },
+    { "q": "Apakah rumah sakit memakai P-Care?", "a": "Tidak. Rumah sakit (FKRTL) memakai VClaim untuk SEP, rujukan dan klaim. P-Care dipakai di FKTP seperti puskesmas, klinik pratama dan praktik dokter." },
+    { "q": "Apa itu rujukan non-spesialistik?", "a": "Rujukan untuk diagnosis yang termasuk dalam 144 diagnosis kompetensi FKTP tanpa indikasi medis yang membenarkannya. Rasionya menjadi salah satu indikator kapitasi berbasis kinerja." },
+    { "q": "Apakah aplikasi klinik bisa terhubung langsung ke P-Care?", "a": "Bisa, melalui bridging resmi BPJS Kesehatan dengan kredensial milik klinik. SahAIbat DOK terintegrasi P-Care dan Antrean." }
+  ],
+  "sources": [
+    { "title": "BPJS Kesehatan", "publisher": "BPJS Kesehatan", "url": "https://www.bpjs-kesehatan.go.id/" },
+    { "title": "BPJS Kesehatan ungkap 144 diagnosis penyakit yang ditangani FKTP", "publisher": "ANTARA Jawa Timur", "url": "https://jatim.antaranews.com/berita/880905/bpjs-kesehatan-ungkap-144-diagnosis-penyakit-yang-ditangani-fktp" },
+    { "title": "SATUSEHAT Platform", "publisher": "Kementerian Kesehatan RI", "url": "https://satusehat.kemkes.go.id/platform" }
+  ],
+  "cta": {
+    "h": "P-Care dan Antrean tanpa input ganda",
+    "p": "SahAIbat DOK terintegrasi BPJS P-Care dan Antrean, dengan cek 144 diagnosis dan KBK saat menulis catatan.",
+    "label": "Mulai SahAIbat DOK",
+    "href": "https://www.sahaibatdok.com"
+  },
+  "related": ["integrasi-satusehat", "software-klinik", "rekam-medis-elektronik"]
+}

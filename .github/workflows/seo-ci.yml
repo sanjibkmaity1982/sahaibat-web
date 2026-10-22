@@ -1,0 +1,38 @@
+# Guardrails on every pull request that touches the site: content must pass the
+# schema and claims registry, the site must build, and the built pages must pass
+# the technical SEO audit (titles, canonicals, structured data, links).
+name: SEO checks
+
+on:
+  pull_request:
+    paths:
+      - "sahaibat-web/**"
+
+concurrency:
+  group: seo-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: sahaibat-web
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: sahaibat-web/package-lock.json
+      - run: npm ci
+      - name: Content and claims
+        run: npm run seo:validate
+      - name: Build
+        run: npm run build
+      - name: Technical SEO audit
+        run: |
+          npx next start -p 3000 &
+          for i in $(seq 1 30); do curl -sf http://localhost:3000/robots.txt >/dev/null && break; sleep 1; done
+          SEO_SITE_URL=http://localhost:3000 npm run -s seo:audit -- --strict

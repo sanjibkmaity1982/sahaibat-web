@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "seo:validate": "node --no-warnings scripts/seo/validate.mts",
+    "seo:audit": "node --no-warnings scripts/seo/audit.mts",
+    "seo:run": "node --no-warnings scripts/seo/run.mts",
+    "seo:indexnow": "node --no-warnings scripts/seo/indexnow.mts"
   },
   "dependencies": {
     "gsap": "^3.15.0",

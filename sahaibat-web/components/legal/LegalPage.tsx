@@ -15,7 +15,7 @@ type Lang = "en" | "id";
 const title = (h: string) => h.replace(/^\d+[a-z]?\.\s*/, "");
 
 // The home page footer, with its in-page anchors pointed back at the home page.
-function footer(lang: Lang) {
+export function footer(lang: Lang) {
   const home = lang === "en" ? "/en" : "/";
   const f = MARKUP.slice(MARKUP.indexOf("<footer"), MARKUP.indexOf("</footer>") + 9);
   return f
@@ -77,21 +77,28 @@ const UI: Record<string, T> = {
   switchTo: { en: "ID · Bahasa", id: "EN · English" },
 };
 
+// A slim version of the home page nav. `other` is the same page in the other
+// language; pages that exist in one language only leave it out.
+export function SiteHeader({ lang: l, other }: { lang: Lang; other?: string }) {
+  return (
+    <header className="nav pp-nav">
+      <div className="wrap">
+        <a href={l === "en" ? "/en" : "/"} aria-label={UI.back[l]}>
+          <img src="/redesign/img/wm_light.png" alt="SahAIbat" />
+        </a>
+        <span className="sp" />
+        {other && <a className="lg" href={other} hrefLang={l === "en" ? "id" : "en"}>{UI.switchTo[l]}</a>}
+        <a className="b1" href={l === "en" ? "/en#dok" : "/#dok"}>{l === "en" ? "Try DOK" : "Coba DOK"}</a>
+      </div>
+    </header>
+  );
+}
+
 export function LegalPage({ doc: name, lang: l }: { doc: "privacy" | "terms"; lang: Lang }) {
   const d = DOCS[name];
-  const other = l === "en" ? d.path : `/en${d.path}`;
   return (
     <div className="sb" data-l={l} lang={l}>
-      <header className="nav pp-nav">
-        <div className="wrap">
-          <a href={l === "en" ? "/en" : "/"} aria-label={UI.back[l]}>
-            <img src="/redesign/img/wm_light.png" alt="SahAIbat" />
-          </a>
-          <span className="sp" />
-          <a className="lg" href={other} hrefLang={l === "en" ? "id" : "en"}>{UI.switchTo[l]}</a>
-          <a className="b1" href={l === "en" ? "/en#dok" : "/#dok"}>{l === "en" ? "Try DOK" : "Coba DOK"}</a>
-        </div>
-      </header>
+      <SiteHeader lang={l} other={l === "en" ? d.path : `/en${d.path}`} />
 
       <main className="pp">
         <div className="wrap pp-head">

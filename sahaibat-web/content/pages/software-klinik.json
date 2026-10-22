@@ -1,0 +1,88 @@
+{
+  "slug": "software-klinik",
+  "section": "landing",
+  "status": "published",
+  "cluster": "klinik",
+  "keywords": ["software klinik", "aplikasi klinik", "SIM klinik", "aplikasi dokter praktik mandiri", "sistem informasi klinik", "aplikasi klinik pratama"],
+  "title": "Software Klinik: Fitur yang Dibutuhkan Klinik di Indonesia",
+  "description": "Daftar fitur software klinik dari pendaftaran hingga kasir: antrean, rekam medis, resep, apotek, laporan, SATUSEHAT dan BPJS. Plus cara membandingkan biayanya.",
+  "kicker": "Software klinik",
+  "h1": "Software klinik: fitur yang benar-benar dibutuhkan klinik di Indonesia",
+  "intro": "Software klinik yang baik mengikuti alur pasien dari pintu masuk sampai kasir, tanpa input ganda. Halaman ini merangkum modul yang dibutuhkan klinik pratama, klinik utama dan praktik mandiri, serta hal-hal yang sering menambah biaya tanpa terlihat.",
+  "author": "Tim SahAIbat",
+  "published": "2026-10-21",
+  "updated": "2026-10-21",
+  "sections": [
+    {
+      "id": "alur-pasien",
+      "h": "Alur pasien yang harus didukung",
+      "body": [
+        { "ol": [
+          "**Pendaftaran.** Pasien baru dan lama dengan NIK, deteksi data ganda, dan nomor BPJS bila ada.",
+          "**Antrean.** Antrean per poli, layar TV, panggilan suara, dan antrean online atau Mobile JKN untuk peserta BPJS.",
+          "**Pemeriksaan.** Anamnesis perawat, tanda vital, catatan dokter (SOAP), diagnosis ICD-10.",
+          "**Resep dan tindakan.** Resep elektronik dengan racikan, cek alergi dan interaksi obat, serta tindakan.",
+          "**Apotek.** Penyerahan obat, stok per batch dan tanggal kedaluwarsa.",
+          "**Kasir.** Tagihan otomatis dari kunjungan, tarif per penjamin, QRIS dan pembayaran lain.",
+          "**Laporan dan integrasi.** Laporan bulanan, pengiriman ke SATUSEHAT dan klaim BPJS."
+        ] }
+      ]
+    },
+    {
+      "id": "modul",
+      "h": "Modul yang dibutuhkan, menurut jenis faskes",
+      "body": [
+        { "table": {
+          "head": ["Modul", "Praktik mandiri", "Klinik pratama", "Klinik utama"],
+          "rows": [
+            ["Rekam medis elektronik", "Wajib", "Wajib", "Wajib"],
+            ["SATUSEHAT", "Wajib", "Wajib", "Wajib"],
+            ["BPJS P-Care dan Antrean", "Bila bekerja sama dengan BPJS", "Umumnya dibutuhkan", "Sesuai kerja sama"],
+            ["Apotek dan stok", "Bila menyediakan obat", "Dibutuhkan", "Dibutuhkan"],
+            ["Kasir dan tagihan", "Dibutuhkan", "Dibutuhkan", "Dibutuhkan"],
+            ["Laboratorium", "Opsional", "Sering dibutuhkan", "Dibutuhkan"],
+            ["Laporan Dinkes dan Puskesmas", "Dibutuhkan", "Dibutuhkan", "Dibutuhkan"]
+          ]
+        } }
+      ]
+    },
+    {
+      "id": "biaya",
+      "h": "Biaya yang sering tersembunyi",
+      "body": [
+        { "p": "Banyak software klinik menampilkan harga awal yang rendah, lalu menjual modul penting secara terpisah. Sebelum memilih, tanyakan:" },
+        { "ul": [
+          "Apakah integrasi SATUSEHAT dan BPJS termasuk di paket dasar?",
+          "Apakah apotek, stok, laboratorium dan rawat inap dikenai biaya tambahan?",
+          "Apakah ada batas jumlah pengguna, kunjungan atau pasien?",
+          "Apakah fitur scribe atau dokumentasi otomatis dijual terpisah per pemakaian?",
+          "Berapa biaya migrasi dan pelatihan?"
+        ] },
+        { "note": "SahAIbat DOK hanya punya satu paket berisi semua modul, termasuk DOK Intelligence, SATUSEHAT dan BPJS. Tanpa add-on, mulai Rp60 ribu per bulan, atau gratis selamanya untuk memulai." }
+      ]
+    },
+    {
+      "id": "spesialis",
+      "h": "Untuk klinik dengan layanan spesialis dan maternitas",
+      "body": [
+        { "p": "Klinik gigi, anak, kebidanan atau penyakit dalam membutuhkan formulir khusus. SahAIbat DOK menyertakan 7 perangkat spesialis, seperti odontogram gigi, grafik pertumbuhan anak dengan skor-z WHO, kalkulator HPL dan taksiran berat janin, serta suite maternitas dengan formulir KIA yang terhubung dengan [SahAIbat Bidan](/#bidan)." }
+      ]
+    }
+  ],
+  "faq": [
+    { "q": "Apa bedanya software klinik dengan aplikasi RME?", "a": "Aplikasi RME berfokus pada rekam medis. Software klinik mencakup seluruh operasional: pendaftaran, antrean, rekam medis, apotek, kasir dan laporan. SahAIbat DOK mencakup semuanya dalam satu paket." },
+    { "q": "Apakah software klinik harus terintegrasi SATUSEHAT?", "a": "Ya. Fasilitas kesehatan wajib menyelenggarakan rekam medis elektronik dan mengirim datanya ke SATUSEHAT, sehingga software klinik perlu terintegrasi." },
+    { "q": "Berapa lama pindah dari software klinik lama?", "a": "Dengan SahAIbat DOK, klinik aktif dalam 24 jam, dijamin, dan migrasi data dari RME lama gratis, dengan uji coba sebelum data ditulis." }
+  ],
+  "sources": [
+    { "title": "SATUSEHAT Platform", "publisher": "Kementerian Kesehatan RI", "url": "https://satusehat.kemkes.go.id/platform" },
+    { "title": "JDIH Kementerian Kesehatan", "publisher": "Kementerian Kesehatan RI", "url": "https://jdih.kemkes.go.id/" }
+  ],
+  "cta": {
+    "h": "Satu paket untuk seluruh klinik",
+    "p": "Pendaftaran sampai kasir, DOK Intelligence, SATUSEHAT dan BPJS. Mulai gratis, atau semua modul mulai Rp60 ribu per bulan.",
+    "label": "Mulai SahAIbat DOK",
+    "href": "https://www.sahaibatdok.com"
+  },
+  "related": ["rekam-medis-elektronik", "bpjs-pcare", "integrasi-satusehat"]
+}

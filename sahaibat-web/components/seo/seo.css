@@ -1,0 +1,26 @@
+/* SEO pages: extras on top of the legal page layout (legal.css). */
+.sb .seo-crumbs ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px;font-size:.8rem;color:var(--ink-3)}
+.sb .seo-crumbs li+li::before{content:"›";margin-right:6px;color:var(--ink-3)}
+.sb .seo-crumbs a{color:var(--ink-2);text-decoration:none}
+.sb .seo-crumbs a:hover{color:var(--care)}
+.sb .seo section a{color:var(--care)}
+.sb .seo .seo-steps{list-style:decimal;margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px}
+.sb .seo .seo-steps li::marker{color:var(--care);font-weight:600}
+.sb .seo-side-cta .b1{margin-top:10px;justify-content:center;min-height:42px;font-size:.86rem;color:var(--paper)!important}
+.sb .seo-faq{display:flex;flex-direction:column;gap:10px}
+.sb .seo-faq details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px}
+.sb .seo-faq summary{cursor:pointer;font-weight:600;color:var(--ink);list-style-position:outside}
+.sb .seo-faq details p{margin-top:10px}
+.sb .seo-cta{background:var(--teal);color:var(--on-teal);border-radius:20px;padding:26px 28px}
+.sb .pp section.seo-cta h2{color:#fff}
+.sb .pp section.seo-cta p{color:var(--on-teal-2)}
+.sb .seo-cta a{color:var(--mint-l)}
+.sb .seo-cta .b1{align-self:flex-start;background:var(--mint);color:var(--teal-2)!important}
+.sb .seo-sources{list-style:decimal;margin:0;padding-left:22px;display:flex;flex-direction:column;gap:6px;font-size:.9rem}
+.sb .seo-sources span{color:var(--ink-3)}
+.sb .seo-disclaimer{font-size:.8rem;color:var(--ink-3)}
+.sb .seo-related{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+.sb .seo-related a{display:flex;flex-direction:column;gap:6px;height:100%;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;text-decoration:none;color:var(--ink-2)!important;font-size:.86rem}
+.sb .seo-related a:hover{border-color:var(--care)}
+.sb .seo-related b{font-family:var(--serif);font-weight:500;font-size:1.05rem;color:var(--ink)}
+.sb .seo-hub{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}

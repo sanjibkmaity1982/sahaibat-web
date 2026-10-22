@@ -60,6 +60,27 @@ const organizationJsonLd = {
   ],
 };
 
+// DOK as a software product, matching the pricing shown on the page.
+const dokJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "SahAIbat DOK",
+  applicationCategory: "MedicalApplication",
+  operatingSystem: "Web, Android, iOS",
+  url: "https://www.sahaibatdok.com",
+  description:
+    "RME Cerdas untuk dokter mandiri dan klinik: konsultasi dengan DOK Intelligence, resep, apotek, kasir, laporan, terintegrasi SATUSEHAT dan BPJS.",
+  publisher: { "@type": "Organization", name: "SahAIbat", url: BASE },
+  offers: {
+    "@type": "AggregateOffer",
+    priceCurrency: "IDR",
+    lowPrice: 0,
+    highPrice: 60000,
+    offerCount: 2,
+    description: "Paket gratis selamanya, atau semua modul mulai Rp60 ribu per bulan.",
+  },
+};
+
 const webSiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
@@ -78,6 +99,10 @@ export default function Page() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(dokJsonLd) }}
       />
       <RedesignPage lang="id" view="home" />
     </>

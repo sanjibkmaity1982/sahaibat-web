@@ -1,0 +1,89 @@
+{
+  "slug": "integrasi-satusehat",
+  "section": "panduan",
+  "status": "published",
+  "cluster": "satusehat",
+  "keywords": ["integrasi SATUSEHAT", "RME SATUSEHAT", "cara daftar SATUSEHAT", "client id SATUSEHAT", "SATUSEHAT platform", "kirim data SATUSEHAT"],
+  "title": "Integrasi SATUSEHAT: Langkah Praktis untuk Klinik dan Dokter",
+  "description": "Langkah integrasi SATUSEHAT untuk klinik dan praktik mandiri: registrasi, kredensial Organization ID dan Client ID, uji sandbox, dan data apa saja yang dikirim.",
+  "kicker": "Panduan SATUSEHAT",
+  "h1": "Integrasi SATUSEHAT: langkah praktis untuk klinik dan praktik mandiri",
+  "intro": "SATUSEHAT adalah platform pertukaran data kesehatan nasional dari Kementerian Kesehatan. Aplikasi rekam medis elektronik di fasilitas Anda mengirim data pelayanan ke SATUSEHAT. Panduan ini menjelaskan langkahnya dengan bahasa sederhana, untuk dokter dan pengelola klinik yang bukan orang IT.",
+  "author": "Tim SahAIbat",
+  "published": "2026-10-21",
+  "updated": "2026-10-21",
+  "sections": [
+    {
+      "id": "apa-itu",
+      "h": "Apa itu SATUSEHAT dan mengapa perlu terintegrasi?",
+      "body": [
+        { "p": "SATUSEHAT menghubungkan data kesehatan dari puskesmas, klinik, praktik mandiri, rumah sakit, apotek dan laboratorium. Tujuannya agar riwayat pasien tidak terpecah di banyak tempat." },
+        { "p": "Karena fasilitas kesehatan wajib menyelenggarakan [rekam medis elektronik](/rekam-medis-elektronik), aplikasi RME Anda perlu terhubung ke SATUSEHAT agar data pelayanan terkirim tanpa diketik ulang." }
+      ]
+    },
+    {
+      "id": "langkah",
+      "h": "Langkah integrasi",
+      "body": [
+        { "ol": [
+          "**Pastikan fasilitas terdaftar.** Fasilitas perlu memiliki kode fasyankes dari sistem registrasi fasilitas pelayanan kesehatan Kemenkes.",
+          "**Masuk ke SATUSEHAT Platform.** Penanggung jawab fasilitas mendaftar atau masuk ke SATUSEHAT Platform dan menyelesaikan verifikasi yang diminta.",
+          "**Ambil kredensial.** Di SATUSEHAT Platform, buka bagian kode akses API dan catat **Organization ID**, **Client ID** dan **Client Secret**. Ada kredensial untuk lingkungan uji (sandbox) dan produksi.",
+          "**Masukkan ke aplikasi RME.** Isi kredensial di pengaturan aplikasi RME Anda. Jangan bagikan Client Secret lewat chat atau email terbuka.",
+          "**Uji di sandbox.** Kirim beberapa kunjungan uji dan pastikan tidak ada galat.",
+          "**Pindah ke produksi.** Ganti ke kredensial produksi, lalu pantau status pengiriman setiap hari pada minggu pertama."
+        ] },
+        { "note": "Di SahAIbat DOK, tim kami mendampingi langkah 3 sampai 6. Anda cukup menyiapkan kredensial; pengiriman berikutnya berjalan otomatis dari setiap kunjungan." }
+      ]
+    },
+    {
+      "id": "data",
+      "h": "Data apa saja yang dikirim?",
+      "body": [
+        { "p": "SATUSEHAT memakai standar HL7 FHIR. Untuk rawat jalan, data yang umum dikirim adalah:" },
+        { "table": {
+          "head": ["Data pelayanan", "Nama di FHIR", "Contoh"],
+          "rows": [
+            ["Kunjungan", "Encounter", "Tanggal, poli, dokter yang memeriksa"],
+            ["Diagnosis", "Condition", "Diagnosis dengan kode ICD-10"],
+            ["Tanda vital dan pemeriksaan", "Observation", "Tekanan darah, nadi, suhu, berat badan"],
+            ["Resep", "MedicationRequest", "Obat yang diresepkan"],
+            ["Penyerahan obat", "MedicationDispense", "Obat yang diserahkan apotek"],
+            ["Tindakan", "Procedure", "Tindakan yang dilakukan"]
+          ]
+        } },
+        { "p": "Pasien dan tenaga kesehatan dikenali dengan NIK, sehingga NIK yang benar saat pendaftaran sangat penting." }
+      ]
+    },
+    {
+      "id": "masalah-umum",
+      "h": "Masalah yang sering terjadi",
+      "body": [
+        { "ul": [
+          "**NIK pasien tidak ditemukan.** Periksa kembali NIK di pendaftaran; satu digit salah membuat data gagal terkirim.",
+          "**Dokter belum terdaftar.** Tenaga kesehatan perlu dikenali di SATUSEHAT melalui NIK-nya.",
+          "**Memakai kredensial yang salah.** Kredensial sandbox tidak berlaku di produksi, dan sebaliknya.",
+          "**Lokasi atau poli belum dibuat.** Data kunjungan membutuhkan lokasi pelayanan yang sudah terdaftar."
+        ] }
+      ]
+    }
+  ],
+  "faq": [
+    { "q": "Apakah praktik dokter mandiri perlu integrasi SATUSEHAT?", "a": "Ya. Praktik mandiri termasuk fasilitas pelayanan kesehatan yang wajib menyelenggarakan rekam medis elektronik, dan datanya dikirim ke SATUSEHAT." },
+    { "q": "Apa itu Organization ID, Client ID dan Client Secret?", "a": "Ketiganya adalah kredensial dari SATUSEHAT Platform yang dipakai aplikasi RME untuk mengirim data atas nama fasilitas Anda. Simpan Client Secret seperti kata sandi." },
+    { "q": "Apakah SATUSEHAT sama dengan BPJS P-Care?", "a": "Tidak. SATUSEHAT dikelola Kementerian Kesehatan untuk pertukaran data kesehatan. P-Care dikelola BPJS Kesehatan untuk pelayanan peserta JKN di FKTP. Lihat [perbedaannya di sini](/panduan/bpjs-pcare)." },
+    { "q": "Berapa lama proses integrasi?", "a": "Tergantung kesiapan data fasilitas. Bila fasilitas sudah terdaftar dan kredensial siap, pengujian dan peralihan ke produksi umumnya bisa selesai dalam hitungan hari." }
+  ],
+  "sources": [
+    { "title": "SATUSEHAT Platform", "publisher": "Kementerian Kesehatan RI", "url": "https://satusehat.kemkes.go.id/platform" },
+    { "title": "Dokumentasi SATUSEHAT Platform", "publisher": "Kementerian Kesehatan RI", "url": "https://satusehat.kemkes.go.id/platform/docs" },
+    { "title": "Kemenkes ajak fasyankes segera lakukan registrasi rekam medis elektronik", "publisher": "Kementerian Kesehatan RI", "url": "https://www.kemkes.go.id/id/kemenkes-ajak-fasyankes-segera-lakukan-registrasi-rekam-medis-elektronik" }
+  ],
+  "cta": {
+    "h": "Biarkan SATUSEHAT berjalan otomatis",
+    "p": "SahAIbat DOK terintegrasi SATUSEHAT. Setiap kunjungan, diagnosis, tanda vital dan resep terkirim tanpa diketik ulang, dan tim kami mendampingi aktivasinya.",
+    "label": "Mulai SahAIbat DOK",
+    "href": "https://www.sahaibatdok.com"
+  },
+  "related": ["rekam-medis-elektronik", "bpjs-pcare", "software-klinik"]
+}

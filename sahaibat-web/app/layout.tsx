@@ -26,7 +26,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "SahAIbat — Connected Healthcare Intelligence for Indonesia",
   description:
-    "SahAIbat connects Indonesia's 1.4M community health workers, 300K doctors and 280M patients in one clinical record — from the village Posyandu to the hospital claim — and trains the country's own sovereign clinical language model on the consented data it produces.",
+    "Teknologi kesehatan terhubung untuk Indonesia: Kader untuk Posyandu, Bidan untuk layanan ibu, DOK RME Cerdas untuk dokter dan klinik, Kasih untuk keluarga, dan Code untuk rumah sakit.",
   keywords: [
     "healthcare intelligence Indonesia",
     "Kader app",
@@ -39,9 +39,14 @@ export const metadata: Metadata = {
     "stunting Indonesia",
     "maternal health Indonesia",
   ],
-  authors: [{ name: "Viantra · 11679210 Canada Inc" }],
+  authors: [{ name: "SahAIbat" }],
   creator: "SahAIbat",
   metadataBase: new URL("https://www.sahaibat.com"),
+  // Search Console / Bing Webmaster verification, set in Vercel env vars.
+  verification: {
+    ...(process.env.GOOGLE_SITE_VERIFICATION ? { google: process.env.GOOGLE_SITE_VERIFICATION } : {}),
+    ...(process.env.BING_SITE_VERIFICATION ? { other: { "msvalidate.01": process.env.BING_SITE_VERIFICATION } } : {}),
+  },
   openGraph: {
     title: "SahAIbat — Connected Healthcare Intelligence for Indonesia",
     description:
