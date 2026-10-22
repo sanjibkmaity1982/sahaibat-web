@@ -15,9 +15,12 @@ const TOKEN = process.env.KV_REST_API_READ_ONLY_TOKEN ?? process.env.UPSTASH_RED
 const ORGANIC = new Set(["google", "bing", "search_other"]);
 const AI = new Set(["chatgpt", "perplexity", "ai_other"]);
 
-type Counts = { views: number; organic: number; ai: number; dokClicks: number; demos: number; bySource: Record<string, number>; organicByPage: Record<string, number>; aiByPage: Record<string, number>; dokClicksByPage: Record<string, number> };
+type Dok = { views: number; bySource: Record<string, number>; byPage: Record<string, number>; personas: Record<string, number>; demoStarts: number; demoDone: number; signupClicks: number; signupByPlacement: Record<string, number> };
+const emptyDok = (): Dok => ({ views: 0, bySource: {}, byPage: {}, personas: {}, demoStarts: 0, demoDone: 0, signupClicks: 0, signupByPlacement: {} });
 
-const empty = (): Counts => ({ views: 0, organic: 0, ai: 0, dokClicks: 0, demos: 0, bySource: {}, organicByPage: {}, aiByPage: {}, dokClicksByPage: {} });
+type Counts = { views: number; organic: number; ai: number; dokClicks: number; demos: number; bySource: Record<string, number>; organicByPage: Record<string, number>; aiByPage: Record<string, number>; dokClicksByPage: Record<string, number>; dok: Dok };
+
+const empty = (): Counts => ({ views: 0, organic: 0, ai: 0, dokClicks: 0, demos: 0, bySource: {}, organicByPage: {}, aiByPage: {}, dokClicksByPage: {}, dok: emptyDok() });
 const bump = (o: Record<string, number>, k: string, n: number) => (o[k] = (o[k] ?? 0) + n);
 
 async function days(from: number, to: number): Promise<Counts> {
@@ -34,6 +37,24 @@ async function days(from: number, to: number): Promise<Counts> {
     for (let i = 0; i < (result?.length ?? 0); i += 2) {
       const [event, src, path] = result![i].split("|");
       const n = Number(result![i + 1]);
+      // www.sahaibatdok.com: its own funnel, kept apart from sahaibat.com.
+      if (event.startsWith("dok_") && event !== "dok_click") {
+        const d = c.dok;
+        const rest = path.replace(/^\/dok/, "") || "/";
+        if (event === "dok_view") {
+          if (src === "internal") continue;
+          d.views += n;
+          bump(d.bySource, src, n);
+          bump(d.byPage, rest, n);
+        } else if (event === "dok_persona") bump(d.personas, rest.split("/").pop() || "?", n);
+        else if (event === "dok_demo_start") d.demoStarts += n;
+        else if (event === "dok_demo_done") d.demoDone += n;
+        else if (event === "dok_signup") {
+          d.signupClicks += n;
+          bump(d.signupByPlacement, rest.split("/").pop() || "?", n);
+        }
+        continue;
+      }
       if (event === "view") {
         if (src === "internal") continue; // a page within a visit, not a landing
         c.views += n;

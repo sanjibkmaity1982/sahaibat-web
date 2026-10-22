@@ -39,8 +39,14 @@ export async function report() {
     const c = fun.cur, p = fun.prev;
     md.push(`| Landings from search engines | **${num(c.organic)}**${delta(c.organic, p.organic)} | Google, Bing and others, counted on the site |`);
     md.push(`| Landings from AI assistants | **${num(c.ai)}**${delta(c.ai, p.ai)} | ChatGPT, Perplexity, Gemini, Copilot |`);
-    md.push(`| Clicks through to DOK | **${num(c.dokClicks)}**${delta(c.dokClicks, p.dokClicks)} | ${c.views ? pct(c.dokClicks / c.views) + " of landings" : ""}; sign-ups are tracked on sahaibatdok.com (utm_source=sahaibat.com) |`);
+    md.push(`| Clicks through to DOK | **${num(c.dokClicks)}**${delta(c.dokClicks, p.dokClicks)} | ${c.views ? pct(c.dokClicks / c.views) + " of landings" : ""}; sign-ups happen in the DOK app (utm_source=sahaibat.com) |`);
     md.push(`| Experience Zone demos | ${num(c.demos)}${delta(c.demos, p.demos)} | |`);
+    const d = c.dok, dp = p.dok ?? { views: 0, demoStarts: 0, signupClicks: 0 };
+    if (d) {
+      md.push(`| sahaibatdok.com landings | **${num(d.views)}**${delta(d.views, dp.views)} | ${num((d.bySource.google ?? 0) + (d.bySource.bing ?? 0) + (d.bySource.search_other ?? 0))} from search, ${num((d.bySource.chatgpt ?? 0) + (d.bySource.perplexity ?? 0) + (d.bySource.ai_other ?? 0))} from AI assistants |`);
+      md.push(`| DOK demo started → finished | ${num(d.demoStarts)} → ${num(d.demoDone)}${delta(d.demoStarts, dp.demoStarts)} | ${d.demoStarts ? pct(d.demoDone / d.demoStarts) + " finish" : ""} |`);
+      md.push(`| DOK sign-up clicks | **${num(d.signupClicks)}**${delta(d.signupClicks, dp.signupClicks)} | ${d.views ? pct(d.signupClicks / d.views) + " of landings" : ""}; completed sign-ups are in the DOK app (utm_source=sahaibatdok.com) |`);
+    }
   } else md.push("| On-site funnel | — | Upstash credentials not set for the weekly run |");
   if (fc.available) md.push(`| Fact check | ${fc.pages.filter((x: any) => x.verdict === "ok").length}/${fc.pages.length} pages clean | ${fc.pages.filter((x: any) => x.verdict === "wrong").length} with errors |`);
   md.push(`| Pages audited | ${audit.pages.length} | ${errors.length} errors, ${warns.length} warnings |`);
@@ -63,6 +69,13 @@ export async function report() {
     const pagesSet = new Set([...top(fun.cur.organicByPage), ...top(fun.cur.aiByPage)].map(([k]) => k));
     for (const p of pagesSet) md.push(`| ${p} | ${num(fun.cur.organicByPage[p] ?? 0)} | ${num(fun.cur.aiByPage[p] ?? 0)} | ${num(fun.cur.dokClicksByPage[p] ?? 0)} |`);
     md.push("");
+  }
+  if (fun.available && fun.cur.dok?.views) {
+    const d = fun.cur.dok;
+    const top = (o: Record<string, number>, n = 8) => Object.entries(o).sort((a, b) => b[1] - a[1]).slice(0, n);
+    md.push("## sahaibatdok.com funnel", "", "| Page | Landings |", "|---|---|", ...top(d.byPage).map(([k, v]) => `| ${k} | ${num(v)} |`), "");
+    if (Object.keys(d.personas).length) md.push(`Personas chosen: ${top(d.personas).map(([k, v]) => `${k} ${num(v)}`).join(" · ")}`, "");
+    if (Object.keys(d.signupByPlacement).length) md.push(`Sign-up clicks by button: ${top(d.signupByPlacement).map(([k, v]) => `${k} ${num(v)}`).join(" · ")}`, "");
   }
   if (opp.opportunities?.length) {
     md.push("## Top opportunities", "", "| Score | Cluster | Intent | Page | Demand |", "|---|---|---|---|---|");
