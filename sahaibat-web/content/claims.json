@@ -83,7 +83,7 @@
     },
     {
       "id": "domains",
-      "claim": "Official websites: www.sahaibat.com (company and guides), www.sahaibatdok.com (SahAIbat DOK) and konsensus.id (Konsensus.id)."
+      "claim": "Official websites: www.sahaibat.com (company and guides), app.sahaibat.com (SahAIbat One), www.sahaibatdok.com (SahAIbat DOK) and konsensus.id (Konsensus.id)."
     },
     {
       "id": "companion",
@@ -95,7 +95,7 @@
     },
     {
       "id": "products",
-      "claim": "SahAIbat products: Kader, Bidan, DOK, DOK Companion, Kasih, Code and Konsensus.id."
+      "claim": "SahAIbat products: SahAIbat One (app.sahaibat.com), Kader, Bidan, DOK, DOK Companion, Kasih, Code and Konsensus.id."
     }
   ],
   "banned": [
