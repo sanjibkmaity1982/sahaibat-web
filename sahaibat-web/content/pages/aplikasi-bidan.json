@@ -5,7 +5,11 @@
   "cluster": "bidan",
   "keywords": [
     "aplikasi bidan",
+    "aplikasi kebidanan",
+    "aplikasi bidan offline",
+    "aplikasi ANC",
     "pencatatan ANC 10T",
+    "pencatatan nifas KF1–KF4",
     "RME kebidanan",
     "aplikasi praktik mandiri bidan",
     "P4K rencana persalinan"
@@ -86,7 +90,8 @@
             "Mencakup ANC (10T), rencana persalinan P4K, kunjungan nifas (KF1–KF4), layanan KB dengan referensi WHO MEC, serta imunisasi anak.",
             "Bekerja penuh secara offline dan akan tersinkron otomatis saat ada sinyal—cocok untuk kunjungan rumah, desa terpencil, dan kegiatan Posyandu.",
             "Penyimpanan data pribadi dan rekam kesehatan berada di Indonesia, di pusat data di Jakarta.",
-            "SahAIbat terdaftar di Indonesia (NIB 1202260248509) dan sebagai PSE Komdigi; dibangun dan dioperasikan oleh Viantra Health."
+            "SahAIbat terdaftar di Indonesia (NIB 1202260248509) dan sebagai PSE Komdigi; dibangun dan dioperasikan oleh Viantra Health.",
+            "Cocok untuk praktik mandiri bidan (PMB), bidan desa dan bidan Puskesmas yang membutuhkan aplikasi kebidanan offline untuk pencatatan ANC, nifas dan KIA."
           ]
         },
         {
@@ -155,6 +160,10 @@
     {
       "q": "Bagaimana acuan untuk pemilihan metode KB?",
       "a": "Gunakan kategori WHO MEC terbaru; catat kondisi medis dan karakteristik pasien untuk menentukan kategori 1–4 sebelum memulai metode. Edisi ke-6 (2025) tersedia sebagai rujukan global. ([who.int](https://www.who.int/publications/i/item/9789240115583))"
+    },
+    {
+      "q": "Apa yang perlu diperhatikan saat memilih aplikasi bidan offline?",
+      "a": "Pastikan aplikasi ANC atau RME kebidanan tersebut mencatat 10T, P4K rencana persalinan, pencatatan nifas KF1–KF4 dan KB, tetap berjalan tanpa sinyal, serta menyimpan data di Indonesia. SahAIbat Bidan dirancang sebagai aplikasi praktik mandiri bidan (PMB), bidan desa dan bidan Puskesmas dengan kriteria tersebut."
     }
   ],
   "sources": [
