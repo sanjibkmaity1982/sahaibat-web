@@ -12,7 +12,10 @@
     "pencatatan nifas KF1–KF4",
     "RME kebidanan",
     "aplikasi praktik mandiri bidan",
-    "P4K rencana persalinan"
+    "P4K rencana persalinan",
+    "aplikasi RME bidan",
+    "EMR kebidanan",
+    "siap UU PDP"
   ],
   "title": "Aplikasi Bidan: ANC 10T, P4K, KF1–KF4",
   "description": "Pencatatan ANC 10T, P4K dan nifas KF1–KF4 untuk bidan sesuai acuan Permenkes, plus SahAIbat Bidan yang bekerja offline dan sinkron saat ada sinyal.",
@@ -88,6 +91,7 @@
         {
           "ul": [
             "Mencakup ANC (10T), rencana persalinan P4K, kunjungan nifas (KF1–KF4), layanan KB dengan referensi WHO MEC, serta imunisasi anak.",
+            "SahAIbat Bidan adalah aplikasi RME bidan (EMR kebidanan) yang siap UU PDP (Undang-Undang Pelindungan Data Pribadi).",
             "Bekerja penuh secara offline dan akan tersinkron otomatis saat ada sinyal—cocok untuk kunjungan rumah, desa terpencil, dan kegiatan Posyandu.",
             "Penyimpanan data pribadi dan rekam kesehatan berada di Indonesia, di pusat data di Jakarta.",
             "Dilengkapi SahAIbat Intelligence untuk merangkum temuan ANC, mendukung layanan KB, pelacak imunisasi pintar, pemeriksaan kualitas 10T dan kartu perawatan (care card). Setiap draft tetap ditinjau dan ditandatangani tenaga kesehatan; tidak ada keputusan klinis otomatis.",
