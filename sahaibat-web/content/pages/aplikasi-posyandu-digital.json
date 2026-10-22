@@ -1,0 +1,271 @@
+{
+  "slug": "aplikasi-posyandu-digital",
+  "section": "landing",
+  "status": "published",
+  "cluster": "posyandu",
+  "keywords": [
+    "aplikasi posyandu digital",
+    "pencatatan stunting",
+    "pemantauan pertumbuhan anak",
+    "z-score WHO balita",
+    "aplikasi kader posyandu"
+  ],
+  "title": "Aplikasi Posyandu Digital: z‑score WHO & offline",
+  "description": "Panduan menerapkan aplikasi Posyandu: alur 5 langkah, tabel kategori gizi Permenkes 2/2020, z‑score WHO, tips akurasi pengukuran, dan dukungan offline.",
+  "kicker": "Untuk Posyandu dan Puskesmas",
+  "h1": "Aplikasi Posyandu digital untuk pemantauan gizi balita",
+  "intro": "Butuh aplikasi Posyandu yang memudahkan pemantauan pertumbuhan, klasifikasi gizi, dan tindak lanjut meski tanpa sinyal? Halaman ini merangkum langkah implementasi, tabel kategori gizi balita sesuai Permenkes 2/2020, serta cara kerja SahAIbat Kader yang mendukung perhitungan z‑score WHO dan bekerja penuh offline. Kategori dan ambang z‑score mengacu pada Permenkes 2/2020 dan WHO Child Growth Standards. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Download/144762/Permenkes%20Nomor%202%20Tahun%202020.pdf))",
+  "author": "Tim SahAIbat",
+  "published": "2026-10-22",
+  "updated": "2026-10-22",
+  "sections": [
+    {
+      "id": "langkah",
+      "h": "Mulai cepat: 5 langkah menerapkan aplikasi Posyandu",
+      "body": [
+        {
+          "ol": [
+            "Siapkan perangkat dan tim. Tentukan 1 koordinator (bidan/perawat) dan 2–3 kader untuk penimbangan, pengukuran, serta pencatatan.",
+            "Buat akun dan struktur Posyandu. Daftarkan pos, jadwal, dan pengguna; latih alur timbang–ukur–catat–tindak lanjut.",
+            "Uji alur penimbangan dan pengukuran. Gunakan timbangan yang dikalibrasi, lengkapi papan pengukur/infantometer/stadiometer, dan pastikan dua petugas saat mengukur panjang/tinggi.",
+            "Catat hasil dan klasifikasikan. Hitung z‑score, tetapkan kategori gizi (BB/U, PB/TB/U, BB/PB atau BB/TB, IMT/U) sesuai Permenkes 2/2020.",
+            "Tindak lanjut & rujuk bila perlu. Anak dengan Z‑score PB/U atau TB/U < −2 SD atau > +3 SD perlu dikonfirmasi/ditindaklanjuti oleh tenaga kesehatan berkompeten; rujuk sesuai kebutuhan. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Download/144762/Permenkes%20Nomor%202%20Tahun%202020.pdf))"
+          ]
+        },
+        {
+          "p": "Gunakan standar antropometri yang diwajibkan Permenkes 2/2020 sebagai acuan penilaian status gizi dan tren pertumbuhan anak. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Download/144762/Permenkes%20Nomor%202%20Tahun%202020.pdf))"
+        }
+      ]
+    },
+    {
+      "id": "kategori",
+      "h": "Tabel ringkas kategori status gizi (0–59 bulan)",
+      "body": [
+        {
+          "p": "Ambang batas berikut dipakai saat menilai balita 0–59 bulan. Tabel diringkas dari Lampiran Permenkes 2/2020 dan konsisten dengan WHO Child Growth Standards. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Download/144762/Permenkes%20Nomor%202%20Tahun%202020.pdf))"
+        },
+        {
+          "table": {
+            "head": [
+              "Indeks",
+              "Kategori",
+              "Ambang Z‑score"
+            ],
+            "rows": [
+              [
+                "BB/U (0–59 bl)",
+                "Berat badan sangat kurang",
+                "< −3 SD"
+              ],
+              [
+                "BB/U (0–59 bl)",
+                "Berat badan kurang",
+                "≥ −3 SD s/d < −2 SD"
+              ],
+              [
+                "BB/U (0–59 bl)",
+                "Berat badan normal",
+                "≥ −2 SD s/d ≤ +1 SD"
+              ],
+              [
+                "BB/U (0–59 bl)",
+                "Risiko berat badan lebih",
+                "> +1 SD s/d ≤ +2 SD"
+              ],
+              [
+                "PB/U atau TB/U",
+                "Sangat pendek",
+                "< −3 SD"
+              ],
+              [
+                "PB/U atau TB/U",
+                "Pendek",
+                "≥ −3 SD s/d < −2 SD"
+              ],
+              [
+                "PB/U atau TB/U",
+                "Normal",
+                "≥ −2 SD s/d ≤ +3 SD"
+              ],
+              [
+                "PB/U atau TB/U",
+                "Tinggi",
+                "> +3 SD"
+              ],
+              [
+                "BB/PB atau BB/TB",
+                "Gizi buruk",
+                "< −3 SD"
+              ],
+              [
+                "BB/PB atau BB/TB",
+                "Gizi kurang",
+                "≥ −3 SD s/d < −2 SD"
+              ],
+              [
+                "BB/PB atau BB/TB",
+                "Gizi baik",
+                "≥ −2 SD s/d ≤ +1 SD"
+              ],
+              [
+                "BB/PB atau BB/TB",
+                "Berisiko gizi lebih",
+                "> +1 SD s/d ≤ +2 SD"
+              ],
+              [
+                "BB/PB atau BB/TB",
+                "Gizi lebih",
+                "> +2 SD s/d ≤ +3 SD"
+              ],
+              [
+                "BB/PB atau BB/TB",
+                "Obesitas",
+                "> +3 SD"
+              ],
+              [
+                "IMT/U (0–59 bl)",
+                "Gizi buruk",
+                "< −3 SD"
+              ],
+              [
+                "IMT/U (0–59 bl)",
+                "Gizi kurang",
+                "≥ −3 SD s/d < −2 SD"
+              ],
+              [
+                "IMT/U (0–59 bl)",
+                "Gizi baik",
+                "≥ −2 SD s/d ≤ +1 SD"
+              ],
+              [
+                "IMT/U (0–59 bl)",
+                "Berisiko gizi lebih",
+                "> +1 SD s/d ≤ +2 SD"
+              ],
+              [
+                "IMT/U (0–59 bl)",
+                "Gizi lebih",
+                "> +2 SD s/d ≤ +3 SD"
+              ],
+              [
+                "IMT/U (0–59 bl)",
+                "Obesitas",
+                "> +3 SD"
+              ]
+            ]
+          }
+        },
+        {
+          "note": "Untuk anak usia 5–18 tahun, klasifikasi IMT/U berbeda: gizi lebih = > +1 SD s/d ≤ +2 SD, obesitas = > +2 SD. Rujuk Lampiran Permenkes 2/2020. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Download/144762/Permenkes%20Nomor%202%20Tahun%202020.pdf))"
+        }
+      ]
+    },
+    {
+      "id": "data",
+      "h": "Data yang sebaiknya dicatat di Posyandu",
+      "body": [
+        {
+          "p": "Berikut praktik baik pencatatan agar pemantauan gizi lebih konsisten dan mudah ditindaklanjuti:"
+        },
+        {
+          "ul": [
+            "Identitas anak dan orang tua/wali (nama, tanggal lahir, alamat/kontak).",
+            "Riwayat lahir ringkas (BBL, prematuritas jika diketahui).",
+            "Antropometri kunjungan ini: berat badan, panjang/tinggi, umur (atau tanggal lahir), jenis kelamin, z‑score tiap indeks.",
+            "Riwayat imunisasi dan penyakit akut/kronik yang relevan (bila diketahui).",
+            "Tindak lanjut: konseling gizi, jadwal kunjungan berikutnya, dan apakah perlu konfirmasi/rujukan."
+          ]
+        },
+        {
+          "p": "Mengacu regulasi, **Standar Antropometri Anak wajib digunakan** sebagai acuan penilaian status gizi dan tren pertumbuhan. Implementasi dan pembinaan diawasi berjenjang oleh Kemenkes dan Dinas Kesehatan setempat. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Download/144762/Permenkes%20Nomor%202%20Tahun%202020.pdf))"
+        },
+        {
+          "p": "Jika wilayah Anda memiliki format atau aplikasi Dinkes tertentu, ikuti petunjuk resmi setempat untuk pelaporan program gizi. (Peraturan lokal dapat berbeda; rujuk Dinkes kab/kota Anda.)"
+        }
+      ]
+    },
+    {
+      "id": "sahaibat-kader",
+      "h": "Bagaimana SahAIbat Kader membantu Posyandu",
+      "body": [
+        {
+          "ul": [
+            "Mencatat pertumbuhan anak dengan perhitungan z‑score WHO dan **kategori Permenkes 2/2020** secara konsisten.",
+            "Bekerja **penuh offline** di lapangan; data akan tersinkron saat sinyal kembali.",
+            "Membantu perencanaan tindak lanjut dan rujukan berdasarkan hasil penilaian di pos.",
+            "Data pribadi dan rekam kesehatan disimpan di Indonesia (pusat data di Jakarta).",
+            "Detail identitas (nama, NIK, tanggal lahir, dan sejenisnya) tidak digunakan untuk melatih model.",
+            "SahAIbat terdaftar di Indonesia (NIB 1202260248509) dan sebagai PSE di Kominfo/Komdigi.",
+            "Produk lapangan SahAIbat: Kader, Bidan, DOK, DOK Companion, Kasih, Code, Konsensus.id. **Suite RME yang juga bekerja offline segera hadir**."
+          ]
+        },
+        {
+          "p": "Untuk fasilitas kesehatan atau mitra Puskesmas yang sudah memiliki RME, SahAIbat One dan produk lapangan dapat melengkapi proses pemantauan gizi balita di wilayah binaan."
+        }
+      ]
+    },
+    {
+      "id": "akurasi",
+      "h": "Tips akurasi pengukuran antropometri",
+      "body": [
+        {
+          "ul": [
+            "Untuk anak < 2 tahun, ukur panjang badan terlentang dengan infantometer; untuk ≥ 2 tahun gunakan stadiometer berdiri. Jika terpaksa menukar cara, konversi ±0,7 cm (tinggi → panjang: +0,7 cm; panjang → tinggi: −0,7 cm). ([iris.who.int](https://iris.who.int/bitstream/handle/10665/70449/WHO_NHD_02.4_Update_2009_eng.pdf?isAllowed=y&sequence=13&utm_source=openai))",
+            "Pastikan dua petugas saat mengukur panjang: satu memegang kepala tegak (Frankfurt plane), satu meluruskan lutut dan tumit menempel papan. ([iris.who.int](https://iris.who.int/bitstream/handle/10665/70449/WHO_NHD_02.4_Update_2009_eng.pdf?isAllowed=y&sequence=13&utm_source=openai))",
+            "Kalibrasi timbangan dan alat ukur secara berkala; anak ditimbang tanpa alas kaki dan dengan pakaian seminimal mungkin. ([iris.who.int](https://iris.who.int/bitstream/handle/10665/70449/WHO_NHD_02.4_Update_2009_eng.pdf?isAllowed=y&sequence=13&utm_source=openai))",
+            "Gunakan grafik/tabel WHO untuk WFL/WFH saat menilai kurus/kelebihan berat; catat z‑score, bukan hanya persentil. ([who.int](https://www.who.int/tools/child-growth-standards/standards/weight-for-length-height?utm_source=openai))"
+          ]
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Bagaimana cara cepat menetapkan stunting/wasting dengan z‑score?",
+      "a": "Stunting: nilai TB/U (atau PB/U) < −2 SD; wasting: nilai BB/TB atau BB/PB < −2 SD; obesitas umumnya BB/TB > +3 SD pada balita. Gunakan tabel WHO dan kategori Permenkes 2/2020 saat menilai per anak. ([who.int](https://www.who.int/tools/child-growth-standards/standards/weight-for-length-height?utm_source=openai))"
+    },
+    {
+      "q": "Kapan anak perlu dirujuk atau dikonfirmasi ke tenaga kesehatan?",
+      "a": "Permenkes 2/2020 menyebutkan anak dengan Z‑score PB/U atau TB/U < −2 SD atau > +3 SD perlu dikonfirmasi oleh tenaga kesehatan berkompeten untuk penilaian lengkap dan tatalaksana sesuai kebutuhan. Wasting (BB/TB atau BB/PB < −2 SD) juga memerlukan intervensi. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Download/144762/Permenkes%20Nomor%202%20Tahun%202020.pdf))"
+    },
+    {
+      "q": "Untuk anak usia berapa dipakai panjang vs tinggi badan?",
+      "a": "Umumnya: < 2 tahun diukur panjang terlentang; ≥ 2 tahun diukur tinggi berdiri. Bila harus menukar metode, gunakan koreksi ±0,7 cm sesuai panduan pengukuran WHO. ([iris.who.int](https://iris.who.int/bitstream/handle/10665/70449/WHO_NHD_02.4_Update_2009_eng.pdf?isAllowed=y&sequence=13&utm_source=openai))"
+    },
+    {
+      "q": "Apakah aplikasi bisa dipakai tanpa internet?",
+      "a": "SahAIbat Kader bekerja penuh offline dan akan sinkron saat sinyal kembali—sesuai kebutuhan Posyandu di lapangan."
+    },
+    {
+      "q": "Bagaimana perlindungan data di SahAIbat?",
+      "a": "Data pribadi dan rekam kesehatan disimpan di pusat data di Jakarta. Detail identitas (nama, NIK, tanggal lahir, dll) tidak digunakan untuk melatih model. SahAIbat terdaftar di Indonesia (NIB 1202260248509) dan sebagai PSE Komdigi."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Permenkes No. 2 Tahun 2020 tentang Standar Antropometri Anak (PDF)",
+      "publisher": "JDIH BPK / Kementerian Kesehatan RI",
+      "url": "https://peraturan.bpk.go.id/Download/144762/Permenkes%20Nomor%202%20Tahun%202020.pdf"
+    },
+    {
+      "title": "WHO Child Growth Standards – Weight-for-length/height",
+      "publisher": "World Health Organization",
+      "url": "https://www.who.int/tools/child-growth-standards/standards/weight-for-length-height"
+    },
+    {
+      "title": "WHO Training Course on Child Growth Assessment (Update 2009)",
+      "publisher": "World Health Organization",
+      "url": "https://iris.who.int/bitstream/handle/10665/70449/WHO_NHD_02.4_Update_2009_eng.pdf"
+    }
+  ],
+  "cta": {
+    "h": "Siap digitalkan Posyandu Anda?",
+    "p": "Gunakan SahAIbat Kader untuk pencatatan pertumbuhan, klasifikasi gizi Permenkes 2/2020, dan tindak lanjut—meski tanpa sinyal.",
+    "label": "Lihat solusi Posyandu",
+    "href": "/#solutions"
+  },
+  "related": [
+    "rekam-medis-elektronik",
+    "integrasi-satusehat"
+  ]
+}
