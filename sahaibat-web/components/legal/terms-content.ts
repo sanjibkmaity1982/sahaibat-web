@@ -26,7 +26,7 @@ export const SECTIONS: Section[] = [
     body: [
       { p: t(
         "These Terms of Use apply to the website www.sahaibat.com, including the Experience Zone, and to the SahAIbat products: Kader, Bidan, DOK, DOK Companion, Kasih, Code and Konsensus.id, with their apps and extensions (the “Services”). By using the Services you agree to these terms.",
-        "Ketentuan Penggunaan ini berlaku untuk situs www.sahaibat.com, termasuk Zona Pengalaman, dan produk SahAIbat: Kader, Bidan, DOK, DOK Companion, Kasih, Code dan Konsensus.id, beserta aplikasi dan ekstensinya (“Layanan”). Dengan menggunakan Layanan, Anda menyetujui ketentuan ini.") },
+        "Ketentuan Penggunaan ini berlaku untuk situs www.sahaibat.com, termasuk fitur Coba langsung, dan produk SahAIbat: Kader, Bidan, DOK, DOK Companion, Kasih, Code dan Konsensus.id, beserta aplikasi dan ekstensinya (“Layanan”). Dengan menggunakan Layanan, Anda menyetujui ketentuan ini.") },
       { p: t(
         "If you use the Services for a health facility or organisation, you confirm that you may accept these terms for it. Where your organisation has signed a separate agreement with us, that agreement prevails over these terms if they differ.",
         "Bila Anda menggunakan Layanan untuk fasilitas kesehatan atau organisasi, Anda menyatakan berwenang menyetujui ketentuan ini atas namanya. Bila organisasi Anda menandatangani perjanjian terpisah dengan kami, perjanjian itu yang berlaku bila berbeda dengan ketentuan ini.") },
@@ -79,11 +79,11 @@ export const SECTIONS: Section[] = [
   },
   {
     id: "experience",
-    h: t("6. The Experience Zone", "6. Zona Pengalaman"),
+    h: t("6. The Experience Zone", "6. Coba langsung"),
     body: [
       { p: t(
         "The Experience Zone on our website is a public demonstration. Its results are illustrations, not clinical advice. Use only the sample cases or invented details; never enter real patient information. Use is limited per visitor and per day, and may be paused at any time.",
-        "Zona Pengalaman di situs kami adalah demonstrasi publik. Hasilnya berupa ilustrasi, bukan nasihat klinis. Gunakan hanya kasus contoh atau data rekaan; jangan pernah memasukkan data pasien sungguhan. Pemakaian dibatasi per pengunjung dan per hari, dan dapat dihentikan sewaktu-waktu.") },
+        "Fitur Coba langsung di situs kami adalah demonstrasi publik. Hasilnya berupa ilustrasi, bukan nasihat klinis. Gunakan hanya kasus contoh atau data rekaan; jangan pernah memasukkan data pasien sungguhan. Pemakaian dibatasi per pengunjung dan per hari, dan dapat dihentikan sewaktu-waktu.") },
     ],
   },
   {

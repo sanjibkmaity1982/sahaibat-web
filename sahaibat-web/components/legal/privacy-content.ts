@@ -34,7 +34,7 @@ export const SECTIONS: Section[] = [
     body: [
       { p: t(
         "This policy applies to the website www.sahaibat.com (including the Experience Zone), and to the SahAIbat products and services: SahAIbat Kader, SahAIbat Bidan, SahAIbat DOK, DOK Companion, Kasih, Code and Konsensus.id, together with their apps, browser extensions and support channels (the “Services”).",
-        "Kebijakan ini berlaku untuk situs www.sahaibat.com (termasuk Zona Pengalaman), serta produk dan layanan SahAIbat: SahAIbat Kader, SahAIbat Bidan, SahAIbat DOK, DOK Companion, Kasih, Code dan Konsensus.id, beserta aplikasi, ekstensi peramban dan kanal dukungannya (“Layanan”).") },
+        "Kebijakan ini berlaku untuk situs www.sahaibat.com (termasuk fitur Coba langsung), serta produk dan layanan SahAIbat: SahAIbat Kader, SahAIbat Bidan, SahAIbat DOK, DOK Companion, Kasih, Code dan Konsensus.id, beserta aplikasi, ekstensi peramban dan kanal dukungannya (“Layanan”).") },
       { p: t(
         "A product may have additional terms or an agreement with your organisation (for example a data processing agreement with a clinic). Where those are more protective, they apply in addition to this policy.",
         "Suatu produk dapat memiliki ketentuan tambahan atau perjanjian dengan organisasi Anda (misalnya perjanjian pemrosesan data dengan klinik). Bila ketentuan tersebut memberi perlindungan lebih, ketentuan itu berlaku bersama kebijakan ini.") },
@@ -167,7 +167,7 @@ export const SECTIONS: Section[] = [
         t("Training runs only on infrastructure we operate in Jakarta. The data does not leave Indonesia for training, and the resulting model is never sold or shared with third parties.", "Pelatihan hanya berjalan di infrastruktur yang kami operasikan di Jakarta. Data tidak keluar dari Indonesia untuk pelatihan, dan model yang dihasilkan tidak pernah dijual atau dibagikan ke pihak ketiga."),
         t("A data protection impact assessment is completed before training begins, and the model is checked so that it cannot reproduce an individual record.", "Penilaian dampak pelindungan data diselesaikan sebelum pelatihan dimulai, dan model diperiksa agar tidak dapat mereproduksi rekam medis individu."),
         t("Our technology partners are never permitted to use our customers’ data to train their own models.", "Mitra teknologi kami tidak pernah diizinkan memakai data pelanggan kami untuk melatih model mereka."),
-        t("Kader, Bidan, Kasih, Code, the Experience Zone and all other Services: no customer data of any kind is used for training.", "Kader, Bidan, Kasih, Code, Zona Pengalaman dan semua Layanan lain: tidak ada data pelanggan apa pun yang dipakai untuk pelatihan."),
+        t("Kader, Bidan, Kasih, Code, the Experience Zone and all other Services: no customer data of any kind is used for training.", "Kader, Bidan, Kasih, Code, fitur Coba langsung dan semua Layanan lain: tidak ada data pelanggan apa pun yang dipakai untuk pelatihan."),
       ] },
     ],
   },
@@ -249,7 +249,7 @@ export const SECTIONS: Section[] = [
           [t("Support and enquiry messages", "Pesan dukungan dan pertanyaan"), t("Up to 2 years after the last contact", "Hingga 2 tahun setelah kontak terakhir")],
           [t("Security and access logs", "Log keamanan dan akses"), t("Up to 12 months, longer for an open investigation", "Hingga 12 bulan, lebih lama bila sedang diselidiki")],
           [t("Website visit counts", "Hitungan kunjungan situs"), t("Daily aggregate totals, kept for up to 25 months to compare trends year on year", "Total agregat harian, disimpan hingga 25 bulan untuk membandingkan tren dari tahun ke tahun")],
-          [t("Experience Zone text", "Teks Zona Pengalaman"), t("Not stored. Rate-limit counters use a salted hash of the IP and expire within 24 hours", "Tidak disimpan. Penghitung batas pemakaian memakai hash IP bergaram dan kedaluwarsa dalam 24 jam")],
+          [t("Experience Zone text", "Teks di fitur Coba langsung"), t("Not stored. Rate-limit counters use a salted hash of the IP and expire within 24 hours", "Tidak disimpan. Penghitung batas pemakaian memakai hash IP bergaram dan kedaluwarsa dalam 24 jam")],
         ],
       } },
       { p: t("When data is no longer needed, it is deleted or irreversibly anonymised.", "Bila data tidak lagi dibutuhkan, data dihapus atau dianonimkan secara permanen.") },
@@ -278,7 +278,7 @@ export const SECTIONS: Section[] = [
   },
   {
     id: "website",
-    h: t("15. This website and the Experience Zone", "15. Situs ini dan Zona Pengalaman"),
+    h: t("15. This website and the Experience Zone", "15. Situs ini dan fitur Coba langsung"),
     body: [
       { ul: [
         t("The website uses no cookies for tracking or advertising, and no third-party analytics or advertising tools.", "Situs ini tidak memakai cookie untuk pelacakan atau iklan, dan tidak memakai alat analitik atau iklan pihak ketiga."),
@@ -286,9 +286,9 @@ export const SECTIONS: Section[] = [
         t("If your browser sends Do Not Track or Global Privacy Control, nothing is counted.", "Bila peramban Anda mengirim sinyal Do Not Track atau Global Privacy Control, tidak ada yang dihitung."),
         t("Links to SahAIbat DOK carry a label showing which page they came from (utm parameters), so DOK can see which pages lead to sign-ups. The label contains no personal data.", "Tautan ke SahAIbat DOK membawa label halaman asal (parameter utm), agar DOK dapat melihat halaman mana yang menghasilkan pendaftaran. Label ini tidak berisi data pribadi."),
         t("Your browser stores your language choice locally. It never leaves your device.", "Peramban Anda menyimpan pilihan bahasa secara lokal. Tidak pernah keluar dari perangkat Anda."),
-        t("The Experience Zone is a public demonstration. Please do not enter real patient information. Text containing a NIK, phone number or email address is refused.", "Zona Pengalaman adalah demonstrasi publik. Mohon jangan memasukkan data pasien sungguhan. Teks yang berisi NIK, nomor telepon atau alamat email akan ditolak."),
-        t("Text you type in the Experience Zone is used only to produce the demonstration. It is not stored, not linked to you, and not used for training.", "Teks yang Anda ketik di Zona Pengalaman hanya dipakai untuk menghasilkan demonstrasi. Teks tersebut tidak disimpan, tidak dikaitkan dengan Anda, dan tidak dipakai untuk pelatihan."),
-        t("To prevent abuse, the Experience Zone uses Cloudflare Turnstile, which checks that a visitor is human, and counts runs using a salted hash of the IP address.", "Untuk mencegah penyalahgunaan, Zona Pengalaman memakai Cloudflare Turnstile untuk memastikan pengunjung adalah manusia, dan menghitung pemakaian dengan hash alamat IP bergaram."),
+        t("The Experience Zone is a public demonstration. Please do not enter real patient information. Text containing a NIK, phone number or email address is refused.", "Fitur Coba langsung adalah demonstrasi publik. Mohon jangan memasukkan data pasien sungguhan. Teks yang berisi NIK, nomor telepon atau alamat email akan ditolak."),
+        t("Text you type in the Experience Zone is used only to produce the demonstration. It is not stored, not linked to you, and not used for training.", "Teks yang Anda ketik di fitur Coba langsung hanya dipakai untuk menghasilkan demonstrasi. Teks tersebut tidak disimpan, tidak dikaitkan dengan Anda, dan tidak dipakai untuk pelatihan."),
+        t("To prevent abuse, the Experience Zone uses Cloudflare Turnstile, which checks that a visitor is human, and counts runs using a salted hash of the IP address.", "Untuk mencegah penyalahgunaan, fitur Coba langsung memakai Cloudflare Turnstile untuk memastikan pengunjung adalah manusia, dan menghitung pemakaian dengan hash alamat IP bergaram."),
       ] },
     ],
   },
