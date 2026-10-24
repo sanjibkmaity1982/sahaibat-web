@@ -87,7 +87,7 @@
     { "q": "Apakah praktik dokter mandiri wajib memakai RME?", "a": "Ya. Permenkes No. 24 Tahun 2022 mewajibkan seluruh fasilitas pelayanan kesehatan, termasuk tempat praktik mandiri dokter dan tenaga kesehatan lain, menyelenggarakan rekam medis elektronik." },
     { "q": "Kapan batas waktu penerapan RME?", "a": "Masa transisi dalam Permenkes No. 24 Tahun 2022 berakhir pada 31 Desember 2023. Fasilitas yang belum menerapkan RME sebaiknya segera beralih." },
     { "q": "Apa hubungan RME dengan SATUSEHAT?", "a": "RME adalah sistem pencatatan di fasilitas Anda. SATUSEHAT adalah platform nasional tempat data dari RME dikirim dan dipertukarkan. Aplikasi RME perlu terintegrasi agar data terkirim otomatis." },
-    { "q": "Apakah ada aplikasi RME gratis?", "a": "Ada. SahAIbat DOK memiliki paket gratis selamanya dengan rekam manual tanpa batas dan 15 konsultasi berbantuan Intelligence per bulan, tanpa kartu kredit." },
+    { "q": "Apakah ada aplikasi RME gratis?", "a": "Ada. SahAIbat DOK memiliki paket gratis selamanya dengan 15 konsultasi per bulan dengan dukungan DOK Intelligence, tanpa kartu kredit." },
     { "q": "Apakah RME bisa dipakai di daerah dengan sinyal lemah?", "a": "Produk lapangan SahAIbat seperti Kader dan Bidan bekerja sepenuhnya offline dan tersinkron saat sinyal kembali. Suite RME lengkap yang juga bisa offline segera hadir." }
   ],
   "sources": [

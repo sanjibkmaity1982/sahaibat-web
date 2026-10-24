@@ -56,8 +56,8 @@ export function createFlows(ctx) {
 
   var GO = {
     kader: E2('Check growth · 30 seconds', 'Cek pertumbuhan · 30 detik'),
-    bidan: E2('Finish the visit · 60 seconds', 'Selesaikan kunjungan · 60 detik'),
-    dok: E2('Finish the visit · 60 seconds', 'Selesaikan kunjungan · 60 detik'),
+    bidan: E2('Finish the visit · 60 seconds', 'Selesaikan dokumentasi · 60 detik'),
+    dok: E2('Finish the visit · 60 seconds', 'Selesaikan dokumentasi · 60 detik'),
     code: E2('Get claim-ready · 60 seconds', 'Siapkan klaim · 60 detik'),
     kasih: E2('Build the care journey · 60 seconds', 'Buat perjalanan perawatan · 60 detik'),
   };
