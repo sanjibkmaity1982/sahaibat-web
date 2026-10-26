@@ -23,8 +23,9 @@
   "h1": "Aplikasi Posyandu digital untuk pemantauan gizi balita",
   "intro": "Butuh aplikasi Posyandu yang memudahkan pemantauan pertumbuhan, klasifikasi gizi, dan tindak lanjut meski tanpa sinyal? Halaman ini merangkum langkah implementasi, tabel kategori gizi balita sesuai Permenkes 2/2020, serta cara kerja SahAIbat Kader yang mendukung perhitungan z‑score WHO dan bekerja penuh offline. Kategori dan ambang z‑score mengacu pada Permenkes 2/2020 dan WHO Child Growth Standards. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Download/144762/Permenkes%20Nomor%202%20Tahun%202020.pdf))",
   "author": "Tim SahAIbat",
+  "reviewedBy": "",
   "published": "2026-10-22",
-  "updated": "2026-10-22",
+  "updated": "2026-10-26",
   "sections": [
     {
       "id": "langkah",
@@ -35,8 +36,8 @@
             "Siapkan perangkat dan tim. Tentukan 1 koordinator (bidan/perawat) dan 2–3 kader untuk penimbangan, pengukuran, serta pencatatan.",
             "Buat akun dan struktur Posyandu. Daftarkan pos, jadwal, dan pengguna; latih alur timbang–ukur–catat–tindak lanjut.",
             "Uji alur penimbangan dan pengukuran. Gunakan timbangan yang dikalibrasi, lengkapi papan pengukur/infantometer/stadiometer, dan pastikan dua petugas saat mengukur panjang/tinggi.",
-            "Catat hasil dan klasifikasikan. Hitung z‑score, tetapkan kategori gizi (BB/U, PB/TB/U, BB/PB atau BB/TB, IMT/U) sesuai Permenkes 2/2020.",
-            "Tindak lanjut & rujuk bila perlu. Anak dengan Z‑score PB/U atau TB/U < −2 SD atau > +3 SD perlu dikonfirmasi/ditindaklanjuti oleh tenaga kesehatan berkompeten; rujuk sesuai kebutuhan. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Download/144762/Permenkes%20Nomor%202%20Tahun%202020.pdf))"
+            "Catat hasil dan klasifikasikan. Hitung z‑score, tetapkan kategori gizi (BB/U, PB/U atau TB/U, BB/PB atau BB/TB, IMT/U) sesuai Permenkes 2/2020.",
+            "Tindak lanjut & rujuk. Anak dengan Z‑score PB/U atau TB/U < −2 SD wajib ditindaklanjuti (tatalaksana stunting) dan dirujuk; bila > +3 SD perlu dirujuk ke fasilitas pelayanan kesehatan yang lebih tinggi untuk deteksi dini penyebabnya. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Download/144762/Permenkes%20Nomor%202%20Tahun%202020.pdf))"
           ]
         },
         {
@@ -46,10 +47,10 @@
     },
     {
       "id": "kategori",
-      "h": "Tabel ringkas kategori status gizi (0–59 bulan)",
+      "h": "Tabel ringkas kategori status gizi (0–60 bulan)",
       "body": [
         {
-          "p": "Ambang batas berikut dipakai saat menilai balita 0–59 bulan. Tabel diringkas dari Lampiran Permenkes 2/2020 dan konsisten dengan WHO Child Growth Standards. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Download/144762/Permenkes%20Nomor%202%20Tahun%202020.pdf))"
+          "p": "Ambang batas berikut dipakai saat menilai balita 0–60 bulan. Tabel diringkas dari Lampiran Permenkes 2/2020 dan konsisten dengan WHO Child Growth Standards. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Download/144762/Permenkes%20Nomor%202%20Tahun%202020.pdf))"
         },
         {
           "table": {
@@ -60,24 +61,24 @@
             ],
             "rows": [
               [
-                "BB/U (0–59 bl)",
+                "BB/U (0–60 bl)",
                 "Berat badan sangat kurang",
                 "< −3 SD"
               ],
               [
-                "BB/U (0–59 bl)",
+                "BB/U (0–60 bl)",
                 "Berat badan kurang",
                 "≥ −3 SD s/d < −2 SD"
               ],
               [
-                "BB/U (0–59 bl)",
+                "BB/U (0–60 bl)",
                 "Berat badan normal",
                 "≥ −2 SD s/d ≤ +1 SD"
               ],
               [
-                "BB/U (0–59 bl)",
+                "BB/U (0–60 bl)",
                 "Risiko berat badan lebih",
-                "> +1 SD s/d ≤ +2 SD"
+                "> +1 SD"
               ],
               [
                 "PB/U atau TB/U",
@@ -130,32 +131,32 @@
                 "> +3 SD"
               ],
               [
-                "IMT/U (0–59 bl)",
+                "IMT/U (0–60 bl)",
                 "Gizi buruk",
                 "< −3 SD"
               ],
               [
-                "IMT/U (0–59 bl)",
+                "IMT/U (0–60 bl)",
                 "Gizi kurang",
                 "≥ −3 SD s/d < −2 SD"
               ],
               [
-                "IMT/U (0–59 bl)",
+                "IMT/U (0–60 bl)",
                 "Gizi baik",
                 "≥ −2 SD s/d ≤ +1 SD"
               ],
               [
-                "IMT/U (0–59 bl)",
+                "IMT/U (0–60 bl)",
                 "Berisiko gizi lebih",
                 "> +1 SD s/d ≤ +2 SD"
               ],
               [
-                "IMT/U (0–59 bl)",
+                "IMT/U (0–60 bl)",
                 "Gizi lebih",
                 "> +2 SD s/d ≤ +3 SD"
               ],
               [
-                "IMT/U (0–59 bl)",
+                "IMT/U (0–60 bl)",
                 "Obesitas",
                 "> +3 SD"
               ]
@@ -229,11 +230,11 @@
   "faq": [
     {
       "q": "Bagaimana cara cepat menetapkan stunting/wasting dengan z‑score?",
-      "a": "Stunting: nilai TB/U (atau PB/U) < −2 SD; wasting: nilai BB/TB atau BB/PB < −2 SD; obesitas umumnya BB/TB > +3 SD pada balita. Gunakan tabel WHO dan kategori Permenkes 2/2020 saat menilai per anak. ([who.int](https://www.who.int/tools/child-growth-standards/standards/weight-for-length-height))"
+      "a": "Stunting: nilai TB/U (atau PB/U) < −2 SD; wasting: nilai BB/TB atau BB/PB < −2 SD; obesitas pada balita umumnya BB/TB atau BB/PB > +3 SD. Gunakan tabel WHO dan kategori Permenkes 2/2020 saat menilai per anak. ([who.int](https://www.who.int/tools/child-growth-standards/standards/weight-for-length-height))"
     },
     {
       "q": "Kapan anak perlu dirujuk atau dikonfirmasi ke tenaga kesehatan?",
-      "a": "Permenkes 2/2020 menyebutkan anak dengan Z‑score PB/U atau TB/U < −2 SD atau > +3 SD perlu dikonfirmasi oleh tenaga kesehatan berkompeten untuk penilaian lengkap dan tatalaksana sesuai kebutuhan. Wasting (BB/TB atau BB/PB < −2 SD) juga memerlukan intervensi. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Download/144762/Permenkes%20Nomor%202%20Tahun%202020.pdf))"
+      "a": "Permenkes 2/2020 menyebutkan anak dengan Z‑score PB/U atau TB/U < −2 SD wajib ditindaklanjuti (tatalaksana stunting) dan dirujuk. Anak dengan PB/U atau TB/U > +3 SD perlu dirujuk ke fasilitas layanan kesehatan yang lebih tinggi untuk deteksi dini penyebabnya. Wasting (BB/TB atau BB/PB < −2 SD) juga memerlukan intervensi. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Download/144762/Permenkes%20Nomor%202%20Tahun%202020.pdf))"
     },
     {
       "q": "Untuk anak usia berapa dipakai panjang vs tinggi badan?",
@@ -253,6 +254,11 @@
     }
   ],
   "sources": [
+    {
+      "title": "Permenkes No. 2 Tahun 2020 tentang Standar Antropometri Anak (PDF)",
+      "publisher": "JDIH Kementerian Kesehatan RI",
+      "url": "https://jdih.kemkes.go.id/storage/documents/pdfs/2020permenkes002.pdf"
+    },
     {
       "title": "Permenkes No. 2 Tahun 2020 tentang Standar Antropometri Anak (PDF)",
       "publisher": "JDIH BPK / Kementerian Kesehatan RI",
