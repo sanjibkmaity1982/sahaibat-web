@@ -34,6 +34,8 @@ const DECK_FIELDS = (en: boolean): Field[] => [
     options: en
       ? ["Venture fund", "Angel investor", "Strategic / corporate", "Family office", "Development finance", "Other"]
       : ["Dana ventura", "Investor angel", "Strategis / korporasi", "Family office", "Lembaga pembiayaan pembangunan", "Lainnya"] },
+  { k: "phone", label: en ? "Phone or WhatsApp (optional)" : "Telepon atau WhatsApp (opsional)",
+    type: "tel", half: true, placeholder: "+62 8xx xxxx xxxx" },
   { k: "note", label: en ? "Anything you want us to know (optional)" : "Hal yang ingin Anda sampaikan (opsional)",
     type: "textarea",
     placeholder: en ? "Stage focus, cheque size, what prompted the look…" : "Fokus tahapan, ukuran investasi, apa yang membuat Anda tertarik…" },

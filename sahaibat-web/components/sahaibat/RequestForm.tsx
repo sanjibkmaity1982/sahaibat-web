@@ -21,7 +21,7 @@ import { C } from "@/lib/sahaibat/theme";
 export type Field = {
   k: string;
   label: string;
-  type?: "text" | "email" | "textarea" | "select";
+  type?: "text" | "email" | "tel" | "textarea" | "select";
   options?: string[];
   required?: boolean;
   half?: boolean;
@@ -46,7 +46,14 @@ export function RequestForm({
   const emailField = fields.find((f) => f.type === "email");
   const emailBad =
     !!emailField && !!(v[emailField.k] || "").trim() && !/^\S+@\S+\.\S+$/.test(v[emailField.k]);
-  const ok = missing.length === 0 && !emailBad;
+
+  // Phone is deliberately forgiving: +62, 0, spaces, dashes and brackets all
+  // arrive in real submissions. We only insist on enough digits to be dialable.
+  const telField = fields.find((f) => f.type === "tel");
+  const telRaw = telField ? (v[telField.k] || "").trim() : "";
+  const telBad = !!telRaw && (telRaw.replace(/\D/g, "").length < 8 || /[^\d+()\s-]/.test(telRaw));
+
+  const ok = missing.length === 0 && !emailBad && !telBad;
 
   const href = useMemo(() => {
     const body = fields
@@ -76,7 +83,11 @@ export function RequestForm({
                   {f.options?.map((o) => <option key={o} value={o}>{o}</option>)}
                 </select>
               ) : (
-                <input type={f.type === "email" ? "email" : "text"} className={`rf-i${bad ? " bad" : ""}`}
+                <input
+                  type={f.type === "email" ? "email" : f.type === "tel" ? "tel" : "text"}
+                  inputMode={f.type === "tel" ? "tel" : undefined}
+                  autoComplete={f.type === "tel" ? "tel" : f.type === "email" ? "email" : undefined}
+                  className={`rf-i${bad ? " bad" : ""}`}
                   value={v[f.k] || ""} placeholder={f.placeholder}
                   onChange={(e) => set(f.k, e.target.value)} />
               )}
@@ -87,7 +98,11 @@ export function RequestForm({
 
       {tried && !ok && (
         <div className="rf-err" role="alert">
-          {emailBad ? "That email address does not look right." : "Please complete the required fields."}
+          {emailBad
+            ? "That email address does not look right."
+            : telBad
+              ? "That phone number does not look right — include the country or area code."
+              : "Please complete the required fields."}
         </div>
       )}
 
