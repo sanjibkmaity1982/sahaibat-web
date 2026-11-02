@@ -86,6 +86,8 @@ const BRIEF_FIELDS = (en: boolean): Field[] => [
     options: en
       ? ["Investor / technical diligence", "Hospital or clinic IT", "Government / health office", "Research or academic", "Press", "Other"]
       : ["Investor / uji tuntas teknis", "TI rumah sakit atau klinik", "Pemerintah / dinas kesehatan", "Riset atau akademik", "Pers", "Lainnya"] },
+  { k: "phone", label: en ? "Phone or WhatsApp (optional)" : "Telepon atau WhatsApp (opsional)",
+    type: "tel", half: true, placeholder: "+62 8xx xxxx xxxx" },
   { k: "ask", label: en ? "What do you need to evaluate?" : "Apa yang perlu Anda evaluasi?", type: "textarea",
     placeholder: en
       ? "Security review, integration scope, model provenance, procurement…"

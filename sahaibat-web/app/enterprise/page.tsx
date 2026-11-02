@@ -103,6 +103,8 @@ const FIELDS = (en: boolean): Field[] => [
   { k: "name", label: en ? "Your name" : "Nama Anda", required: true, half: true },
   { k: "email", label: "Email", type: "email", required: true, half: true },
   { k: "role", label: en ? "Your role" : "Jabatan Anda", half: true },
+  { k: "phone", label: en ? "Phone or WhatsApp" : "Telepon atau WhatsApp", type: "tel", required: true, half: true,
+    placeholder: "+62 8xx xxxx xxxx" },
   { k: "type", label: en ? "You are" : "Anda adalah", type: "select", required: true, half: true,
     options: en
       ? ["Hospital", "Clinic network", "Health office / Dinas Kesehatan", "Other"]

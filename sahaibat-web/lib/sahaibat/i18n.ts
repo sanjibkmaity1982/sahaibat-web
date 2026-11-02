@@ -70,6 +70,8 @@ export type I18nKey =
 | "legal.contact.p1"
 | "legal.contact.emailLabel"
 | "legal.contact.emailValue"
+| "legal.contact.phoneLabel"
+| "legal.contact.phoneValue"
 | "legal.contact.indonesiaNote"
 
 
@@ -168,6 +170,8 @@ export const DICT: Record<Lang, Record<I18nKey, string>> = {
   "For questions, partnerships, or more information, please contact:",
 "legal.contact.emailLabel": "Email",
 "legal.contact.emailValue": "privacy@sahaibat.com",
+"legal.contact.phoneLabel": "Phone / WhatsApp",
+"legal.contact.phoneValue": "+62 819 1866 9241",
 "legal.contact.indonesiaNote":
   "Note: Indonesia representative details and Jakarta hosting apply to the SahAIbat app (app.sahaibat.com), not this marketing website.",
   },
@@ -266,6 +270,8 @@ export const DICT: Record<Lang, Record<I18nKey, string>> = {
   "Untuk pertanyaan, kemitraan, atau informasi lebih lanjut, silakan hubungi kami:",
 "legal.contact.emailLabel": "Email",
 "legal.contact.emailValue": "privacy@sahaibat.com",
+"legal.contact.phoneLabel": "Telepon / WhatsApp",
+"legal.contact.phoneValue": "+62 819 1866 9241",
 "legal.contact.indonesiaNote":
   "Catatan: Kontak perwakilan Indonesia dan detail hosting Jakarta berlaku untuk aplikasi SahAIbat (app.sahaibat.com), bukan untuk situs marketing ini.",
 
@@ -365,6 +371,8 @@ export const DICT: Record<Lang, Record<I18nKey, string>> = {
   "Pour toute question, partenariat ou information, contactez-nous :",
 "legal.contact.emailLabel": "Email",
 "legal.contact.emailValue": "privacy@sahaibat.com",
+"legal.contact.phoneLabel": "Téléphone / WhatsApp",
+"legal.contact.phoneValue": "+62 819 1866 9241",
 "legal.contact.indonesiaNote":
   "Remarque : les détails du contact indonésien et l’hébergement à Jakarta s’appliquent à l’application (app.sahaibat.com), pas à ce site.",
 

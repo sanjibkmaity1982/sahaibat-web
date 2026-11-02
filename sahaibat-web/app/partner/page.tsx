@@ -43,6 +43,8 @@ const FIELDS = (en: boolean): Field[] => [
   { k: "name", label: en ? "Your name" : "Nama Anda", required: true, half: true },
   { k: "email", label: "Email", type: "email", required: true, half: true },
   { k: "role", label: en ? "Your role" : "Jabatan Anda", half: true },
+  { k: "phone", label: en ? "Phone or WhatsApp" : "Telepon atau WhatsApp", type: "tel", required: true, half: true,
+    placeholder: "+62 8xx xxxx xxxx" },
   { k: "track", label: en ? "Which conversation is this?" : "Percakapan yang mana ini?", type: "select", required: true,
     options: TRACKS(en).map((x) => x.t) },
   { k: "where", label: en ? "Province or district" : "Provinsi atau kabupaten", required: true, half: true },
@@ -107,8 +109,8 @@ export default function PartnerPage() {
           submitLabel={en ? "Send this" : "Kirim"}
           note={en ? "Usually answered within two working days." : "Biasanya dijawab dalam dua hari kerja."}
           done={en
-            ? "Prefer email? Write to admin@sahaibat.com directly."
-            : "Lebih suka email? Kirim langsung ke admin@sahaibat.com."}
+            ? "Prefer to reach us directly? Email admin@sahaibat.com or message us on WhatsApp at +62 819 1866 9241."
+            : "Lebih suka menghubungi langsung? Email admin@sahaibat.com atau kirim pesan WhatsApp ke +62 819 1866 9241."}
         />
       </div>
     </div>

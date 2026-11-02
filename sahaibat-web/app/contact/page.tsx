@@ -17,7 +17,20 @@ export default function ContactPage() {
         <p>{t("legal.contact.p1")}</p>
         <p>
           <span className="font-semibold">{t("legal.contact.emailLabel")}:</span>{" "}
-          {t("legal.contact.emailValue")}
+          <a className="underline" href={`mailto:${t("legal.contact.emailValue")}`}>
+            {t("legal.contact.emailValue")}
+          </a>
+        </p>
+        <p>
+          <span className="font-semibold">{t("legal.contact.phoneLabel")}:</span>{" "}
+          <a
+            className="underline"
+            href={`https://wa.me/${t("legal.contact.phoneValue").replace(/[^\d]/g, "")}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {t("legal.contact.phoneValue")}
+          </a>
         </p>
       </section>
 
