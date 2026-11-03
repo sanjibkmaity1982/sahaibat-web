@@ -11,7 +11,7 @@
   "intro": "Klinik dan praktik dokter yang bekerja sama dengan BPJS Kesehatan berurusan dengan beberapa sistem sekaligus. Panduan ini menjelaskan fungsi masing-masing, kapan dipakai, dan bagaimana alur kerjanya bisa dibuat lebih ringan.",
   "author": "Tim SahAIbat",
   "published": "2026-10-21",
-  "updated": "2026-10-21",
+  "updated": "2026-11-02",
   "sections": [
     {
       "id": "sistem",
@@ -73,8 +73,8 @@
   "cta": {
     "h": "P-Care dan Antrean tanpa input ganda",
     "p": "SahAIbat DOK terintegrasi BPJS P-Care dan Antrean, dengan cek 144 diagnosis dan KBK saat menulis catatan.",
-    "label": "Mulai SahAIbat DOK",
-    "href": "https://www.sahaibatdok.com"
+    "label": "Coba demo DOK, tanpa daftar",
+    "href": "https://www.sahaibatdok.com/#coba"
   },
   "related": ["integrasi-satusehat", "software-klinik", "rekam-medis-elektronik"]
 }
