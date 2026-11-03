@@ -15,7 +15,8 @@
     "status gizi balita",
     "standar antropometri anak",
     "penimbangan balita",
-    "kategori status gizi Permenkes 2/2020"
+    "kategori status gizi Permenkes 2/2020",
+    "e-PPGBM"
   ],
   "title": "Aplikasi Posyandu Digital: z‑score WHO & offline",
   "description": "Panduan menerapkan aplikasi Posyandu: alur 5 langkah, tabel kategori gizi Permenkes 2/2020, z‑score WHO, tips akurasi pengukuran, dan dukungan offline.",
@@ -24,7 +25,7 @@
   "intro": "Butuh aplikasi Posyandu yang memudahkan pemantauan pertumbuhan, klasifikasi gizi, dan tindak lanjut meski tanpa sinyal? Halaman ini merangkum langkah implementasi, tabel kategori gizi balita sesuai Permenkes 2/2020, serta cara kerja SahAIbat Kader yang mendukung perhitungan z‑score WHO dan bekerja penuh offline. Kategori dan ambang z‑score mengacu pada Permenkes 2/2020 dan WHO Child Growth Standards. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Download/144762/Permenkes%20Nomor%202%20Tahun%202020.pdf))",
   "author": "Tim SahAIbat",
   "published": "2026-10-22",
-  "updated": "2026-11-02",
+  "updated": "2026-11-03",
   "sections": [
     {
       "id": "langkah",
@@ -199,6 +200,7 @@
           "ul": [
             "Mencatat pertumbuhan anak dengan perhitungan z‑score WHO dan **kategori Permenkes 2/2020** secara konsisten.",
             "Bekerja **penuh offline** di lapangan; data akan tersinkron saat sinyal kembali.",
+            "Data diisi langsung di HP kader dan dapat diekspor ke Excel yang siap dikirim ke e-PPGBM.",
             "Membantu perencanaan tindak lanjut dan rujukan berdasarkan hasil penilaian di pos.",
             "Data pribadi dan rekam kesehatan disimpan di Indonesia (pusat data di Jakarta).",
             "Detail identitas (nama, NIK, tanggal lahir, dan sejenisnya) tidak digunakan untuk melatih model.",
