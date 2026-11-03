@@ -11,7 +11,7 @@
   "intro": "Sejak Permenkes No. 24 Tahun 2022, setiap fasilitas pelayanan kesehatan wajib menyelenggarakan rekam medis secara elektronik. Panduan ini menjelaskan apa itu RME, apa yang harus dicatat, bagaimana RME terhubung ke SATUSEHAT, dan apa yang perlu diperhatikan saat memilih aplikasinya.",
   "author": "Tim SahAIbat",
   "published": "2026-10-21",
-  "updated": "2026-10-21",
+  "updated": "2026-11-02",
   "sections": [
     {
       "id": "apa-itu-rme",
@@ -98,8 +98,8 @@
   "cta": {
     "h": "Coba RME Cerdas, gratis",
     "p": "Mulai dengan paket gratis selamanya, atau aktifkan semua modul mulai Rp60 ribu per bulan. Aktif dalam 24 jam.",
-    "label": "Mulai SahAIbat DOK",
-    "href": "https://www.sahaibatdok.com"
+    "label": "Coba demo DOK, tanpa daftar",
+    "href": "https://www.sahaibatdok.com/#coba"
   },
   "related": ["software-klinik", "integrasi-satusehat", "bpjs-pcare"]
 }

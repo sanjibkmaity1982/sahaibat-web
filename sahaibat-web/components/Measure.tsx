@@ -1,8 +1,9 @@
 "use client";
 
 // Aggregate, cookieless measurement (see app/api/m). Sends one "view" per page
-// with the referring site, and one "dok_click" when a visitor follows a link to
-// sahaibatdok.com. DOK links get utm parameters so the DOK site can attribute
+// with the referring site, one "dok_click" when a visitor follows a link to
+// sahaibatdok.com, and one "partner_click" (with the page it was on) when a
+// visitor follows a link to the partnership form (#ip-partner). DOK links get utm parameters so the DOK site can attribute
 // sign-ups to the page they came from. Honours Do Not Track and Global
 // Privacy Control.
 
@@ -44,6 +45,10 @@ export function Measure() {
       try {
         url = new URL(a.href);
       } catch {
+        return;
+      }
+      if (url.hash === "#ip-partner" && url.origin === location.origin) {
+        send("partner_click", location.pathname);
         return;
       }
       if (!/(^|\.)sahaibatdok\.com$/.test(url.hostname)) return;

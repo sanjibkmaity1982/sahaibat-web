@@ -11,7 +11,7 @@
   "intro": "SATUSEHAT adalah platform pertukaran data kesehatan nasional dari Kementerian Kesehatan. Aplikasi rekam medis elektronik di fasilitas Anda mengirim data pelayanan ke SATUSEHAT. Panduan ini menjelaskan langkahnya dengan bahasa sederhana, untuk dokter dan pengelola klinik yang bukan orang IT.",
   "author": "Tim SahAIbat",
   "published": "2026-10-21",
-  "updated": "2026-10-21",
+  "updated": "2026-11-02",
   "sections": [
     {
       "id": "apa-itu",
@@ -82,8 +82,8 @@
   "cta": {
     "h": "Biarkan SATUSEHAT berjalan otomatis",
     "p": "SahAIbat DOK terintegrasi SATUSEHAT. Setiap kunjungan, diagnosis, tanda vital dan resep terkirim tanpa diketik ulang, dan tim kami mendampingi aktivasinya.",
-    "label": "Mulai SahAIbat DOK",
-    "href": "https://www.sahaibatdok.com"
+    "label": "Coba demo DOK, tanpa daftar",
+    "href": "https://www.sahaibatdok.com/#coba"
   },
   "related": ["rekam-medis-elektronik", "bpjs-pcare", "software-klinik"]
 }

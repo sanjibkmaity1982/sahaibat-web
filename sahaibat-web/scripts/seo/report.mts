@@ -46,6 +46,8 @@ export async function report() {
     md.push(`| Landings from search engines | **${num(c.organic)}**${delta(c.organic, p.organic)} | Google, Bing and others, counted on the site |`);
     md.push(`| Landings from AI assistants | **${num(c.ai)}**${delta(c.ai, p.ai)} | ChatGPT, Perplexity, Gemini, Copilot |`);
     md.push(`| Clicks through to DOK | **${num(c.dokClicks)}**${delta(c.dokClicks, p.dokClicks)} | ${c.views ? pct(c.dokClicks / c.views) + " of landings" : ""}; sign-ups happen in the DOK app (utm_source=sahaibat.com) |`);
+    md.push(`| Partnership form: button clicks | **${num(c.partnerClicks ?? 0)}**${delta(c.partnerClicks ?? 0, p.partnerClicks ?? 0)} | Clicks on buttons that lead to the partnership form; by page below |`);
+    md.push(`| Partnership inquiries sent | **${num(c.partnerSubmits ?? 0)}**${delta(c.partnerSubmits ?? 0, p.partnerSubmits ?? 0)} | The form opens the visitor's email app; check admin@sahaibat.com for the messages |`);
     md.push(`| Experience Zone demos | ${num(c.demos)}${delta(c.demos, p.demos)} | |`);
     const d = c.dok, dp = p.dok ?? { views: 0, demoStarts: 0, signupClicks: 0 };
     if (d) {
@@ -74,9 +76,9 @@ export async function report() {
   }
   if (fun.available && (fun.cur.organic || fun.cur.ai)) {
     const top = (o: Record<string, number>) => Object.entries(o).sort((a, b) => b[1] - a[1]).slice(0, 8);
-    md.push("## Where visitors land", "", "| Page | From search | From AI assistants | DOK clicks |", "|---|---|---|---|");
-    const pagesSet = new Set([...top(fun.cur.organicByPage), ...top(fun.cur.aiByPage)].map(([k]) => k));
-    for (const p of pagesSet) md.push(`| ${p} | ${num(fun.cur.organicByPage[p] ?? 0)} | ${num(fun.cur.aiByPage[p] ?? 0)} | ${num(fun.cur.dokClicksByPage[p] ?? 0)} |`);
+    md.push("## Where visitors land", "", "| Page | From search | From AI assistants | DOK clicks | Partnership clicks |", "|---|---|---|---|---|");
+    const pagesSet = new Set([...top(fun.cur.organicByPage), ...top(fun.cur.aiByPage), ...top(fun.cur.partnerClicksByPage ?? {})].map(([k]) => k));
+    for (const p of pagesSet) md.push(`| ${p} | ${num(fun.cur.organicByPage[p] ?? 0)} | ${num(fun.cur.aiByPage[p] ?? 0)} | ${num(fun.cur.dokClicksByPage[p] ?? 0)} | ${num(fun.cur.partnerClicksByPage?.[p] ?? 0)} |`);
     md.push("");
   }
   if (fun.available && fun.cur.dok?.views) {

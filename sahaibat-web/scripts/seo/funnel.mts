@@ -1,5 +1,6 @@
 // Acquisition funnel from the site's own aggregate counters (app/api/m):
-// landing views by source and page → demo runs → clicks through to DOK, for
+// landing views by source and page → demo runs → clicks through to DOK, and
+// partnership-form clicks (by page) and inquiries sent, for
 // the last 28 days and the 28 before. Sign-ups and activation happen on
 // sahaibatdok.com; links carry utm_source=sahaibat.com so DOK can attribute
 // them on its side.
@@ -18,9 +19,9 @@ const AI = new Set(["chatgpt", "perplexity", "ai_other"]);
 type Dok = { views: number; bySource: Record<string, number>; byPage: Record<string, number>; personas: Record<string, number>; demoStarts: number; demoDone: number; signupClicks: number; signupByPlacement: Record<string, number> };
 const emptyDok = (): Dok => ({ views: 0, bySource: {}, byPage: {}, personas: {}, demoStarts: 0, demoDone: 0, signupClicks: 0, signupByPlacement: {} });
 
-type Counts = { views: number; organic: number; ai: number; dokClicks: number; demos: number; bySource: Record<string, number>; organicByPage: Record<string, number>; aiByPage: Record<string, number>; dokClicksByPage: Record<string, number>; dok: Dok };
+type Counts = { views: number; organic: number; ai: number; dokClicks: number; demos: number; partnerClicks: number; partnerSubmits: number; partnerClicksByPage: Record<string, number>; bySource: Record<string, number>; organicByPage: Record<string, number>; aiByPage: Record<string, number>; dokClicksByPage: Record<string, number>; dok: Dok };
 
-const empty = (): Counts => ({ views: 0, organic: 0, ai: 0, dokClicks: 0, demos: 0, bySource: {}, organicByPage: {}, aiByPage: {}, dokClicksByPage: {}, dok: emptyDok() });
+const empty = (): Counts => ({ views: 0, organic: 0, ai: 0, dokClicks: 0, demos: 0, partnerClicks: 0, partnerSubmits: 0, partnerClicksByPage: {}, bySource: {}, organicByPage: {}, aiByPage: {}, dokClicksByPage: {}, dok: emptyDok() });
 const bump = (o: Record<string, number>, k: string, n: number) => (o[k] = (o[k] ?? 0) + n);
 
 async function days(from: number, to: number): Promise<Counts> {
@@ -71,6 +72,10 @@ async function days(from: number, to: number): Promise<Counts> {
         c.dokClicks += n;
         bump(c.dokClicksByPage, path, n);
       } else if (event === "demo_start") c.demos += n;
+      else if (event === "partner_click") {
+        c.partnerClicks += n;
+        bump(c.partnerClicksByPage, path, n);
+      } else if (event === "partner_submit") c.partnerSubmits += n;
     }
   }
   return c;
@@ -87,7 +92,7 @@ export async function funnel() {
   const prev = await days(29, 57);
   const out = { available: true, cur, prev };
   writeOut("funnel.json", out);
-  log(`funnel: ${cur.views} landings (${cur.organic} organic, ${cur.ai} from AI assistants), ${cur.dokClicks} DOK clicks`);
+  log(`funnel: ${cur.views} landings (${cur.organic} organic, ${cur.ai} from AI assistants), ${cur.dokClicks} DOK clicks, ${cur.partnerClicks} partnership clicks, ${cur.partnerSubmits} partnership inquiries`);
   return out;
 }
 
