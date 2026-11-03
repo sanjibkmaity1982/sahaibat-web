@@ -11,7 +11,7 @@
     "aplikasi stunting",
     "posyandu digital",
     "e-PPGBM",
-    "ekspor data posyandu ke Excel"
+    "laporan e-PPGBM"
   ],
   "title": "Posyandu Digital untuk Dinas Kesehatan dan Puskesmas",
   "description": "Program kader Posyandu digital bersama Dinas Kesehatan dan Puskesmas: skor-z WHO, kategori Permenkes 2/2020, tindak lanjut dan rujukan, tetap jalan offline.",
@@ -43,7 +43,7 @@
         {
           "ul": [
             "Mencatat pertumbuhan anak dengan skor-z WHO dan kategori status gizi sesuai Permenkes 2/2020.",
-            "Data diisi langsung di HP kader dan dapat diekspor ke Excel yang siap dikirim ke e-PPGBM.",
+            "Data diisi langsung di HP kader, dan laporan e-PPGBM cukup sekali klik: 100% otomatis dari pencatatan kader Posyandu, sehingga menghemat waktu semua pihak.",
             "Membantu kader merencanakan tindak lanjut dan rujukan bagi balita yang membutuhkan.",
             "Bekerja penuh secara offline di Posyandu dan tersinkron saat sinyal kembali.",
             "Data pribadi dan rekam kesehatan disimpan di Indonesia, di pusat data di Jakarta.",
@@ -52,7 +52,7 @@
           ]
         },
         {
-          "p": "Bagi Dinas Kesehatan, SahAIbat Kader adalah aplikasi posyandu untuk dinas kesehatan sekaligus aplikasi stunting di tingkat kader: mendukung digitalisasi posyandu di wilayah binaan Puskesmas, menghasilkan data yang konsisten untuk pemantauan stunting tingkat kabupaten, dan memungkinkan ekspor data posyandu ke Excel yang siap dikirim ke e-PPGBM."
+          "p": "Bagi Dinas Kesehatan, SahAIbat Kader adalah aplikasi posyandu untuk dinas kesehatan sekaligus aplikasi stunting di tingkat kader: mendukung digitalisasi posyandu di wilayah binaan Puskesmas, menghasilkan data yang konsisten untuk pemantauan stunting tingkat kabupaten, dan membuat laporan e-PPGBM cukup sekali klik."
         },
         {
           "p": "Baca juga panduan [aplikasi Posyandu digital](/aplikasi-posyandu-digital) untuk tabel kategori status gizi dan tips akurasi pengukuran."
@@ -89,7 +89,7 @@
     },
     {
       "q": "Apakah data posyandu bisa dikirim ke e-PPGBM?",
-      "a": "Ya. Data dari SahAIbat Kader dapat diekspor ke Excel yang siap dikirim ke e-PPGBM, sehingga kader dan Puskesmas tidak perlu mengetik ulang."
+      "a": "Ya. Laporan e-PPGBM cukup sekali klik: 100% otomatis dari pencatatan kader Posyandu dan siap diunggah melalui portal e-PPGBM, sehingga menghemat waktu kader dan Puskesmas."
     },
     {
       "q": "Di mana data balita disimpan?",
