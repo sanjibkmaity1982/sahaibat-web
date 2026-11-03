@@ -24,7 +24,7 @@
   "intro": "Butuh aplikasi Posyandu yang memudahkan pemantauan pertumbuhan, klasifikasi gizi, dan tindak lanjut meski tanpa sinyal? Halaman ini merangkum langkah implementasi, tabel kategori gizi balita sesuai Permenkes 2/2020, serta cara kerja SahAIbat Kader yang mendukung perhitungan z‑score WHO dan bekerja penuh offline. Kategori dan ambang z‑score mengacu pada Permenkes 2/2020 dan WHO Child Growth Standards. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Download/144762/Permenkes%20Nomor%202%20Tahun%202020.pdf))",
   "author": "Tim SahAIbat",
   "published": "2026-10-22",
-  "updated": "2026-10-22",
+  "updated": "2026-11-02",
   "sections": [
     {
       "id": "langkah",
@@ -46,10 +46,10 @@
     },
     {
       "id": "kategori",
-      "h": "Tabel ringkas kategori status gizi (0–59 bulan)",
+      "h": "Tabel ringkas kategori status gizi (0–60 bulan)",
       "body": [
         {
-          "p": "Ambang batas berikut dipakai saat menilai balita 0–59 bulan. Tabel diringkas dari Lampiran Permenkes 2/2020 dan konsisten dengan WHO Child Growth Standards. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Download/144762/Permenkes%20Nomor%202%20Tahun%202020.pdf))"
+          "p": "Ambang batas berikut dipakai saat menilai balita 0–60 bulan. Tabel diringkas dari Lampiran Permenkes 2/2020 dan konsisten dengan WHO Child Growth Standards. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Download/144762/Permenkes%20Nomor%202%20Tahun%202020.pdf))"
         },
         {
           "table": {
@@ -60,24 +60,24 @@
             ],
             "rows": [
               [
-                "BB/U (0–59 bl)",
+                "BB/U (0–60 bl)",
                 "Berat badan sangat kurang",
                 "< −3 SD"
               ],
               [
-                "BB/U (0–59 bl)",
+                "BB/U (0–60 bl)",
                 "Berat badan kurang",
                 "≥ −3 SD s/d < −2 SD"
               ],
               [
-                "BB/U (0–59 bl)",
+                "BB/U (0–60 bl)",
                 "Berat badan normal",
                 "≥ −2 SD s/d ≤ +1 SD"
               ],
               [
-                "BB/U (0–59 bl)",
+                "BB/U (0–60 bl)",
                 "Risiko berat badan lebih",
-                "> +1 SD s/d ≤ +2 SD"
+                "> +1 SD"
               ],
               [
                 "PB/U atau TB/U",
@@ -130,32 +130,32 @@
                 "> +3 SD"
               ],
               [
-                "IMT/U (0–59 bl)",
+                "IMT/U (0–60 bl)",
                 "Gizi buruk",
                 "< −3 SD"
               ],
               [
-                "IMT/U (0–59 bl)",
+                "IMT/U (0–60 bl)",
                 "Gizi kurang",
                 "≥ −3 SD s/d < −2 SD"
               ],
               [
-                "IMT/U (0–59 bl)",
+                "IMT/U (0–60 bl)",
                 "Gizi baik",
                 "≥ −2 SD s/d ≤ +1 SD"
               ],
               [
-                "IMT/U (0–59 bl)",
+                "IMT/U (0–60 bl)",
                 "Berisiko gizi lebih",
                 "> +1 SD s/d ≤ +2 SD"
               ],
               [
-                "IMT/U (0–59 bl)",
+                "IMT/U (0–60 bl)",
                 "Gizi lebih",
                 "> +2 SD s/d ≤ +3 SD"
               ],
               [
-                "IMT/U (0–59 bl)",
+                "IMT/U (0–60 bl)",
                 "Obesitas",
                 "> +3 SD"
               ]
