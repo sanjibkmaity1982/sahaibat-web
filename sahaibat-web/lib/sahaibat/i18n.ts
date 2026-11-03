@@ -47,6 +47,10 @@ export type I18nKey =
   | "partner.submit"
   | "partner.directEmail"
   | "disclaimer"
+  | "form.err.required"
+  | "form.err.email"
+  | "form.err.phone"
+  | "form.select"
 | "legal.privacy"
 | "legal.terms"
 | "legal.contact"
@@ -131,6 +135,12 @@ export const DICT: Record<Lang, Record<I18nKey, string>> = {
     "partner.directEmail": "Or email us directly:",
     "disclaimer":
       "SahAIbat provides triage support and care guidance — not diagnosis, not emergency services.",
+
+    "form.err.required": "Please complete the required fields.",
+    "form.err.email": "That email address does not look right.",
+    "form.err.phone":
+      "That phone number does not look right — include the country or area code.",
+    "form.select": "Select…",
     // ✅ Add inside translations.en
 "legal.privacy": "Privacy",
 "legal.terms": "Terms",
@@ -231,6 +241,12 @@ export const DICT: Record<Lang, Record<I18nKey, string>> = {
     "partner.directEmail": "Atau email langsung:",
     "disclaimer":
       "SahAIbat membantu triase dan panduan perawatan — bukan diagnosis, bukan layanan darurat.",
+
+    "form.err.required": "Mohon lengkapi kolom yang wajib diisi.",
+    "form.err.email": "Alamat email itu sepertinya kurang tepat.",
+    "form.err.phone":
+      "Nomor telepon itu sepertinya kurang tepat — sertakan kode negara atau kode area.",
+    "form.select": "Pilih…",
     // ✅ Add inside translations.id
 "legal.privacy": "Privasi",
 "legal.terms": "Ketentuan",
@@ -332,6 +348,12 @@ export const DICT: Record<Lang, Record<I18nKey, string>> = {
     "partner.directEmail": "Ou écrivez-nous :",
     "disclaimer":
       "SahAIbat fournit une aide au triage et une guidance — pas un diagnostic, ni des services d’urgence.",
+
+    "form.err.required": "Veuillez remplir les champs obligatoires.",
+    "form.err.email": "Cette adresse e-mail ne semble pas correcte.",
+    "form.err.phone":
+      "Ce numéro de téléphone ne semble pas correct — indiquez l’indicatif du pays ou de la région.",
+    "form.select": "Sélectionner…",
     // ✅ Add inside translations.fr
 "legal.privacy": "Confidentialité",
 "legal.terms": "Conditions",

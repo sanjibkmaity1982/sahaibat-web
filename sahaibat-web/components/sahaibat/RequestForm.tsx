@@ -16,6 +16,7 @@
 // reads the inbox. Swap `onSubmit` for a POST the day an endpoint exists.
 
 import React, { useMemo, useState } from "react";
+import { useI18n } from "@/components/sahaibat/LanguageProvider";
 import { C } from "@/lib/sahaibat/theme";
 
 export type Field = {
@@ -38,6 +39,7 @@ export function RequestForm({
   note?: string;
   done?: string;
 }) {
+  const { t } = useI18n();
   const [v, setV] = useState<Record<string, string>>({});
   const [tried, setTried] = useState(false);
   const set = (k: string, val: string) => setV((p) => ({ ...p, [k]: val }));
@@ -79,7 +81,7 @@ export function RequestForm({
               ) : f.type === "select" ? (
                 <select className={`rf-i${bad ? " bad" : ""}`} value={v[f.k] || ""}
                   onChange={(e) => set(f.k, e.target.value)}>
-                  <option value="">Select…</option>
+                  <option value="">{t("form.select")}</option>
                   {f.options?.map((o) => <option key={o} value={o}>{o}</option>)}
                 </select>
               ) : (
@@ -99,10 +101,10 @@ export function RequestForm({
       {tried && !ok && (
         <div className="rf-err" role="alert">
           {emailBad
-            ? "That email address does not look right."
+            ? t("form.err.email")
             : telBad
-              ? "That phone number does not look right — include the country or area code."
-              : "Please complete the required fields."}
+              ? t("form.err.phone")
+              : t("form.err.required")}
         </div>
       )}
 
