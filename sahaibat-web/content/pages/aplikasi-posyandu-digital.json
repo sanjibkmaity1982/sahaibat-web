@@ -270,10 +270,10 @@
     }
   ],
   "cta": {
-    "h": "Siap digitalkan Posyandu Anda?",
-    "p": "Gunakan SahAIbat Kader untuk pencatatan pertumbuhan, klasifikasi gizi Permenkes 2/2020, dan tindak lanjut—meski tanpa sinyal.",
-    "label": "Lihat solusi Posyandu",
-    "href": "/#solutions"
+    "h": "Ingin menerapkan SahAIbat Kader di Posyandu Anda?",
+    "p": "Isi formulir kemitraan. Tim kami akan menghubungi Anda untuk demo dan penerapan bersama Puskesmas, dinas kesehatan atau mitra program di wilayah Anda.",
+    "label": "Isi formulir kemitraan",
+    "href": "/#ip-partner"
   },
   "related": [
     "rekam-medis-elektronik",
