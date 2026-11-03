@@ -1,0 +1,205 @@
+{
+  "slug": "software-farmasi-klinik",
+  "section": "landing",
+  "status": "published",
+  "cluster": "farmasi",
+  "keywords": [
+    "software farmasi klinik",
+    "stok obat klinik",
+    "aplikasi apotek klinik",
+    "e-resep KFA",
+    "P-Care",
+    "Antrean BPJS"
+  ],
+  "title": "Software farmasi klinik: e-resep, stok & kasir",
+  "description": "Atur e-resep berbasis katalog KFA, kelola batch dan stok kedaluwarsa, sambungkan ke kasir dan laporan. Terintegrasi dengan SATUSEHAT serta BPJS (P-Care & Antrean).",
+  "kicker": "Modul farmasi untuk klinik & praktik",
+  "h1": "Software farmasi klinik untuk e-resep, stok, dan kasir",
+  "intro": "Sedang menata modul farmasi untuk klinik Anda? Halaman ini memberi langkah praktis menyiapkan e-resep berbasis katalog KFA, pengelolaan batch & stok kedaluwarsa, keterhubungan ke kasir dan laporan, plus cara aktivasi integrasi SATUSEHAT dan BPJS (P-Care dan Antrean). DOK menyatukan semuanya dalam satu paket yang siap dipakai cepat.",
+  "author": "Tim SahAIbat",
+  "reviewedBy": "",
+  "published": "2026-11-02",
+  "updated": "2026-11-02",
+  "sections": [
+    {
+      "id": "langkah-cepat",
+      "h": "Langkah cepat menyiapkan farmasi klinik",
+      "body": [
+        {
+          "ol": [
+            "Sinkronkan daftar obat dengan katalog KFA agar nama, sediaan, dan kode konsisten untuk e-resep dan pelaporan.",
+            "Atur alur e-resep: dokter memilih obat, farmasi melakukan verifikasi, dan sistem mencatat penyerahan obat.",
+            "Aktifkan pengecekan keamanan obat (mis. duplikasi terapi, alergi yang dicatat) sesuai kebijakan internal klinik.",
+            "Input stok awal per batch beserta tanggal kedaluwarsa, lalu tetapkan stok minimum sebagai acuan pemesanan ulang.",
+            "Hubungkan farmasi dengan kasir agar obat yang diserahkan langsung masuk ke tagihan pasien.",
+            "Siapkan laporan yang dibutuhkan (mis. ringkas penyerahan obat, pemakaian per diagnosa, dan rekap untuk audit internal).",
+            "Opsional: aktifkan integrasi SATUSEHAT dan BPJS (P-Care & Antrean) setelah kredensial masing‑masing fasilitas tersedia. Lihat [Integrasi SATUSEHAT](/panduan/integrasi-satusehat) dan [BPJS P-Care](/panduan/bpjs-pcare)."
+          ]
+        },
+        {
+          "note": "Hal yang diwajibkan regulasi berbeda dengan praktik baik dan fitur aplikasi. Lihat ringkasannya di bawah dan rujuk tautan sumber resmi pada bagian Sumber."
+        }
+      ]
+    },
+    {
+      "id": "regulasi",
+      "h": "Apa yang diwajibkan regulasi (dan apa yang praktik baik)",
+      "body": [
+        {
+          "p": "Berikut ringkasan kewajiban, praktik baik, dan bagaimana perangkat lunak membantu. Pastikan meninjau naskah resmi jika membutuhkan kepastian terbaru."
+        },
+        {
+          "table": {
+            "head": [
+              "Aspek",
+              "Kewajiban regulasi",
+              "Praktik baik di klinik",
+              "Bagaimana perangkat lunak membantu"
+            ],
+            "rows": [
+              [
+                "Pelayanan kefarmasian di klinik",
+                "Standar pelayanan kefarmasian di klinik ditetapkan dalam PMK 34/2021 (pengelolaan sediaan farmasi & pelayanan farmasi klinik).",
+                "SPO tertulis untuk verifikasi resep, konseling singkat, dan dokumentasi farmasi yang mudah diaudit.",
+                "Formulir e-resep, log verifikasi & serah obat, serta rekam jejak pengguna yang dapat ditinjau."
+              ],
+              [
+                "Rekam medis (termasuk e-resep)",
+                "PMK 24/2022 mengatur rekam medis, termasuk penyelenggaraan RME (EMR) di fasyankes dan interoperabilitas.",
+                "Menata format SOAP, obat, dan hasil pelayanan agar konsisten lintas poli.",
+                "Struktur data konsisten, pengisian terarah, dan ekspor data bila diperlukan."
+              ],
+              [
+                "Katalog obat nasional (KFA) & SATUSEHAT",
+                "Dokumentasi SATUSEHAT menyarankan penggunaan kode KFA pada resource obat untuk pertukaran data.",
+                "Mapping KFA rutin dan audit kode untuk obat baru/ubah kemasan.",
+                "Pemetaan KFA terkelola serta validasi isian saat membuat resep atau dispensing."
+              ],
+              [
+                "Antrean & Pendaftaran peserta JKN",
+                "BPJS menyediakan fitur antrean pada Mobile JKN untuk faskes yang terhubung dengan Aplikasi Antrean Faskes dan P‑Care.",
+                "Menjaga sinkron jadwal dokter/poli dan nomor antrean harian.",
+                "Integrasi antrean dan pendaftaran menyalurkan data pasien ke alur farmasi setelah kunjungan."
+              ]
+            ]
+          }
+        },
+        {
+          "p": "Perlindungan data pribadi diatur oleh UU 27/2022. Terapkan kebijakan internal (otorisasi, enkripsi, dan minimalisasi akses) sesuai peraturan yang berlaku di fasilitas Anda."
+        }
+      ]
+    },
+    {
+      "id": "modul-dok",
+      "h": "Modul farmasi di DOK",
+      "body": [
+        {
+          "ul": [
+            "E-resep dengan pemeriksaan keamanan obat dan katalog KFA.",
+            "Farmasi dan stok per batch.",
+            "Kasir dan tagihan dalam alur yang sama dengan pelayanan.",
+            "Laporan: LB1, laporan Puskesmas, serta pembacaan hasil lab dan radiologi.",
+            "Terintegrasi dengan SATUSEHAT (standar HL7 FHIR R4) serta BPJS (P-Care dan Antrean); koneksi BPJS diaktifkan per klinik dengan kredensial BPJS milik klinik.",
+            "Suite RME lengkap yang juga bekerja offline: segera hadir."
+          ]
+        },
+        {
+          "note": "Setiap draf dari SahAIbat Intelligence ditinjau dan ditandatangani tenaga kesehatan; tidak membuat keputusan klinis otomatis."
+        }
+      ]
+    },
+    {
+      "id": "harga-dan-implementasi",
+      "h": "Harga dan implementasi",
+      "body": [
+        {
+          "ul": [
+            "Gratis seumur hidup: 15 konsultasi per bulan dengan bantuan DOK Intelligence dan pencatatan manual tanpa batas, tanpa kartu kredit.",
+            "Paket berbayar mulai Rp60 ribu per bulan, semua modul dalam satu paket.",
+            "Aktif dalam 24 jam, dijamin, atau bulan berbayar pertama gratis. Migrasi dari RME lama gratis."
+          ]
+        },
+        {
+          "note": "Harga lain di luar yang disebut di atas tidak berlaku di halaman ini."
+        }
+      ]
+    },
+    {
+      "id": "aktivasi-integrasi",
+      "h": "Cara aktivasi SATUSEHAT & BPJS (ringkas)",
+      "body": [
+        {
+          "ol": [
+            "SATUSEHAT: daftarkan aplikasi dan gunakan spesifikasi HL7 FHIR R4 sesuai dokumentasi; pastikan pemetaan KFA untuk obat.",
+            "BPJS P‑Care & Antrean: siapkan kredensial masing‑masing klinik dari BPJS Kesehatan; hubungkan modul antrean dan pendaftaran agar Mobile JKN dapat menarik nomor antrean dari faskes Anda.",
+            "Uji kirim data pada mode uji/coba (bila tersedia), cek log kesalahan, dan tetapkan PIC untuk operasional harian."
+          ]
+        },
+        {
+          "note": "Integrasi dilakukan oleh fasilitas dengan kredensialnya sendiri. Hindari membagikan akun ke pihak yang tidak berwenang."
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Apakah DOK terintegrasi dengan SATUSEHAT?",
+      "a": "Ya. DOK terintegrasi dengan SATUSEHAT menggunakan standar HL7 FHIR R4 sesuai dokumentasi platform tersebut."
+    },
+    {
+      "q": "Bagaimana DOK menangani KFA pada e‑resep?",
+      "a": "E-resep di DOK memakai katalog KFA, sehingga kode obat konsisten saat data dikirim ke SATUSEHAT."
+    },
+    {
+      "q": "Apakah DOK terhubung ke BPJS (P‑Care dan Antrean)?",
+      "a": "Ya. DOK terintegrasi dengan BPJS (P‑Care dan Antrean). Koneksi diaktifkan per klinik menggunakan kredensial BPJS masing‑masing."
+    },
+    {
+      "q": "Di mana data pasien disimpan?",
+      "a": "Data pribadi dan rekam kesehatan disimpan di Indonesia, pada pusat data di Jakarta. Identitas seperti nama, NIK, dan tanggal lahir tidak digunakan untuk melatih model apa pun."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Permenkes 34/2021 tentang Standar Pelayanan Kefarmasian di Klinik",
+      "publisher": "Kementerian Kesehatan RI (Ditjen Farmalkes)",
+      "url": "https://farmalkes.kemkes.go.id/unduh/permenkes-34-2021/"
+    },
+    {
+      "title": "Permenkes 24/2022 tentang Rekam Medis",
+      "publisher": "JDIH Kementerian Kesehatan RI",
+      "url": "https://jdih.kemkes.go.id/documents/peraturan-menteri-kesehatan-nomor-24-tahun-2022"
+    },
+    {
+      "title": "SATUSEHAT Platform — Pengenalan & standar HL7 FHIR",
+      "publisher": "Kementerian Kesehatan RI",
+      "url": "https://satusehat.kemkes.go.id/platform/docs/id/playbook/introduction/"
+    },
+    {
+      "title": "SATUSEHAT — Ketentuan Kefarmasian (penggunaan kode KFA)",
+      "publisher": "Kementerian Kesehatan RI",
+      "url": "https://satusehat.kemkes.go.id/platform/docs/id/interoperability/kefarmasian/"
+    },
+    {
+      "title": "Panduan Mobile JKN — Pendaftaran pelayanan & Antrean Faskes (terintegrasi dengan P‑Care)",
+      "publisher": "BPJS Kesehatan",
+      "url": "https://www.bpjs-kesehatan.go.id/user-manual-mobile-jkn/pelayanan%20jkn.html"
+    },
+    {
+      "title": "UU 27/2022 tentang Pelindungan Data Pribadi",
+      "publisher": "JDIH Kementerian Komunikasi dan Informatika (Komdigi)",
+      "url": "https://jdih.komdigi.go.id/produk_hukum/view/id/832/t/crc32/"
+    }
+  ],
+  "cta": {
+    "h": "Siapkan farmasi klinik yang rapi sejak hari pertama",
+    "p": "Mulai dengan paket gratis 15 konsultasi per bulan atau aktifkan paket berbayar Rp60 ribu per bulan untuk membuka semua modul, termasuk e‑resep KFA, stok & kasir, SATUSEHAT, dan BPJS.",
+    "label": "Coba DOK sekarang",
+    "href": "https://www.sahaibatdok.com"
+  },
+  "related": [
+    "software-klinik",
+    "rekam-medis-elektronik",
+    "bpjs-pcare"
+  ]
+}
