@@ -1,6 +1,6 @@
 // POST /api/m: privacy-friendly, aggregate measurement for the website.
 //
-// Counts page views and clicks through to DOK per day, page and traffic source
+// Counts page views, clicks through to DOK and partnership-form use per day, page and traffic source
 // (search engine, AI assistant, social, direct). No cookies, no IP address, no
 // user identifier and no fingerprinting are stored: only counters in one hash
 // per day, e.g.  m:2026-10-22 → "view|google|/rekam-medis-elektronik" = 14.
@@ -16,7 +16,7 @@ const REST_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN ?? process.env.KV_REST_A
 const TTL = 60 * 60 * 24 * 760;
 
 // dok_* events come from www.sahaibatdok.com (paths under /dok).
-const EVENTS = new Set(["view", "dok_click", "demo_start", "dok_view", "dok_persona", "dok_demo_start", "dok_demo_done", "dok_signup"]);
+const EVENTS = new Set(["view", "dok_click", "demo_start", "partner_click", "partner_submit", "dok_view", "dok_persona", "dok_demo_start", "dok_demo_done", "dok_signup"]);
 const BOT = /bot|crawl|spider|slurp|preview|headless|lighthouse|pingdom|monitor/i;
 
 // Referrer host → a small fixed set of sources. The referrer itself is not
