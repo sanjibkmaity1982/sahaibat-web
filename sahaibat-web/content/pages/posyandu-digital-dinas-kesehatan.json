@@ -4,12 +4,14 @@
   "status": "published",
   "cluster": "posyandu",
   "keywords": [
-    "aplikasi posyandu dinas kesehatan",
+    "aplikasi posyandu untuk dinas kesehatan",
     "program kader posyandu digital",
-    "digitalisasi posyandu puskesmas",
-    "pemantauan stunting kabupaten",
-    "aplikasi stunting dinas kesehatan",
-    "posyandu digital"
+    "digitalisasi posyandu",
+    "pemantauan stunting tingkat kabupaten",
+    "aplikasi stunting",
+    "posyandu digital",
+    "e-PPGBM",
+    "ekspor data posyandu ke Excel"
   ],
   "title": "Posyandu Digital untuk Dinas Kesehatan dan Puskesmas",
   "description": "Program kader Posyandu digital bersama Dinas Kesehatan dan Puskesmas: skor-z WHO, kategori Permenkes 2/2020, tindak lanjut dan rujukan, tetap jalan offline.",
@@ -18,7 +20,7 @@
   "intro": "Dinas Kesehatan dan Puskesmas membutuhkan data pertumbuhan balita yang konsisten dari setiap Posyandu, termasuk di desa dengan sinyal lemah. SahAIbat Kader membantu kader mencatat pertumbuhan anak dengan skor-z WHO dan kategori Permenkes 2/2020, lalu merencanakan tindak lanjut dan rujukan. Halaman ini menjelaskan apa yang dilakukan aplikasinya dan cara memulai program kader Posyandu digital di wilayah Anda.",
   "author": "Tim SahAIbat",
   "published": "2026-11-02",
-  "updated": "2026-11-02",
+  "updated": "2026-11-03",
   "sections": [
     {
       "id": "tantangan",
@@ -41,12 +43,16 @@
         {
           "ul": [
             "Mencatat pertumbuhan anak dengan skor-z WHO dan kategori status gizi sesuai Permenkes 2/2020.",
+            "Data diisi langsung di HP kader dan dapat diekspor ke Excel yang siap dikirim ke e-PPGBM.",
             "Membantu kader merencanakan tindak lanjut dan rujukan bagi balita yang membutuhkan.",
             "Bekerja penuh secara offline di Posyandu dan tersinkron saat sinyal kembali.",
             "Data pribadi dan rekam kesehatan disimpan di Indonesia, di pusat data di Jakarta.",
             "Detail identitas (nama, NIK, tanggal lahir dan sejenisnya) tidak pernah dipakai untuk melatih model.",
             "SahAIbat terdaftar di Indonesia (NIB 1202260248509) dan sebagai PSE Komdigi; dibangun dan dioperasikan oleh Viantra Health."
           ]
+        },
+        {
+          "p": "Bagi Dinas Kesehatan, SahAIbat Kader adalah aplikasi posyandu untuk dinas kesehatan sekaligus aplikasi stunting di tingkat kader: mendukung digitalisasi posyandu di wilayah binaan Puskesmas, menghasilkan data yang konsisten untuk pemantauan stunting tingkat kabupaten, dan memungkinkan ekspor data posyandu ke Excel yang siap dikirim ke e-PPGBM."
         },
         {
           "p": "Baca juga panduan [aplikasi Posyandu digital](/aplikasi-posyandu-digital) untuk tabel kategori status gizi dan tips akurasi pengukuran."
@@ -80,6 +86,10 @@
     {
       "q": "Apakah SahAIbat Kader bisa dipakai di desa tanpa sinyal?",
       "a": "Bisa. SahAIbat Kader bekerja penuh secara offline di Posyandu dan menyinkronkan data saat sinyal kembali."
+    },
+    {
+      "q": "Apakah data posyandu bisa dikirim ke e-PPGBM?",
+      "a": "Ya. Data dari SahAIbat Kader dapat diekspor ke Excel yang siap dikirim ke e-PPGBM, sehingga kader dan Puskesmas tidak perlu mengetik ulang."
     },
     {
       "q": "Di mana data balita disimpan?",
