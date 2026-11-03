@@ -219,10 +219,10 @@
     }
   ],
   "cta": {
-    "h": "Coba SahAIbat Bidan",
-    "p": "Pencatatan ANC 10T, P4K, nifas dan KB yang tetap berjalan offline—sinkron saat ada sinyal, cocok untuk praktik mandiri dan jejaring Puskesmas.",
-    "label": "Lihat SahAIbat Bidan",
-    "href": "/#bidan"
+    "h": "Ingin menerapkan SahAIbat Bidan?",
+    "p": "Isi formulir kemitraan. Tim kami akan menghubungi Anda untuk demo dan penerapan di praktik mandiri bidan, bidan desa atau jejaring Puskesmas Anda.",
+    "label": "Isi formulir kemitraan",
+    "href": "/#ip-partner"
   },
   "related": [
     "integrasi-satusehat",
