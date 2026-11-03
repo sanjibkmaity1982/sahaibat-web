@@ -11,7 +11,7 @@
   "intro": "Software klinik yang baik mengikuti alur pasien dari pintu masuk sampai kasir, tanpa input ganda. Halaman ini merangkum modul yang dibutuhkan klinik pratama, klinik utama dan praktik mandiri, serta hal-hal yang sering menambah biaya tanpa terlihat.",
   "author": "Tim SahAIbat",
   "published": "2026-10-21",
-  "updated": "2026-10-21",
+  "updated": "2026-11-02",
   "sections": [
     {
       "id": "alur-pasien",
@@ -81,8 +81,8 @@
   "cta": {
     "h": "Satu paket untuk seluruh klinik",
     "p": "Pendaftaran sampai kasir, DOK Intelligence, SATUSEHAT dan BPJS. Mulai gratis, atau semua modul mulai Rp60 ribu per bulan.",
-    "label": "Mulai SahAIbat DOK",
-    "href": "https://www.sahaibatdok.com"
+    "label": "Coba demo DOK, tanpa daftar",
+    "href": "https://www.sahaibatdok.com/#coba"
   },
   "related": ["rekam-medis-elektronik", "bpjs-pcare", "integrasi-satusehat"]
 }
