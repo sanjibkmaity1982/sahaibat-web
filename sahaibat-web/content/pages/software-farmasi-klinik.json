@@ -15,7 +15,7 @@
   "description": "Atur e-resep berbasis katalog KFA, kelola batch dan stok kedaluwarsa, sambungkan ke kasir dan laporan. Terintegrasi dengan SATUSEHAT serta BPJS (P-Care & Antrean).",
   "kicker": "Modul farmasi untuk klinik & praktik",
   "h1": "Software farmasi klinik untuk e-resep, stok, dan kasir",
-  "intro": "Sedang menata modul farmasi untuk klinik Anda? Halaman ini memberi langkah praktis menyiapkan e-resep berbasis katalog KFA, pengelolaan batch & stok kedaluwarsa, keterhubungan ke kasir dan laporan, plus cara aktivasi integrasi SATUSEHAT dan BPJS (P-Care dan Antrean). DOK menyatukan semuanya dalam satu paket yang siap dipakai cepat, tanpa mengganti alur kerja yang sudah berjalan.",
+  "intro": "Sedang menata modul farmasi untuk klinik Anda? Halaman ini memberi langkah praktis menyiapkan e-resep berbasis katalog KFA, pengelolaan batch & stok kedaluwarsa, keterhubungan ke kasir dan laporan, plus cara aktivasi integrasi SATUSEHAT dan BPJS (P-Care dan Antrean). DOK menyatukan semuanya dalam satu paket yang siap dipakai cepat.",
   "author": "Tim SahAIbat",
   "reviewedBy": "",
   "published": "2026-11-02",
@@ -30,8 +30,8 @@
             "Sinkronkan daftar obat dengan katalog KFA agar nama, sediaan, dan kode konsisten untuk e-resep dan pelaporan.",
             "Atur alur e-resep: dokter memilih obat, farmasi melakukan verifikasi, dan sistem mencatat penyerahan obat.",
             "Aktifkan pengecekan keamanan obat (mis. duplikasi terapi, alergi yang dicatat) sesuai kebijakan internal klinik.",
-            "Input stok awal per batch, nomor LOT/seri, dan tanggal kedaluwarsa. Tetapkan stok minimum dan notifikasi restock.",
-            "Hubungkan modul farmasi dengan kasir & billing agar penjualan obat, paket tindakan, dan klaim tercatat otomatis.",
+            "Input stok awal per batch beserta tanggal kedaluwarsa, lalu tetapkan stok minimum sebagai acuan pemesanan ulang.",
+            "Hubungkan farmasi dengan kasir agar obat yang diserahkan langsung masuk ke tagihan pasien.",
             "Siapkan laporan yang dibutuhkan (mis. ringkas penyerahan obat, pemakaian per diagnosa, dan rekap untuk audit internal).",
             "Opsional: aktifkan integrasi SATUSEHAT dan BPJS (P-Care & Antrean) setelah kredensial masing‑masing fasilitas tersedia. Lihat [Integrasi SATUSEHAT](/panduan/integrasi-satusehat) dan [BPJS P-Care](/panduan/bpjs-pcare)."
           ]
@@ -95,12 +95,12 @@
       "body": [
         {
           "ul": [
-            "E‑resep dengan katalog KFA dan pemeriksaan keamanan obat untuk membantu verifikasi farmasi.",
-            "Manajemen batch & stok: nomor batch/LOT, kedaluwarsa, stok minimum, dan peringatan restock.",
-            "Terhubung ke kasir & billing: penjualan obat, paket layanan, dan klaim dalam satu alur.",
-            "Laporan operasional: pemakaian obat per diagnosa/dokter, rekap serah obat, stok mendekati kedaluwarsa.",
-            "Terintegrasi dengan SATUSEHAT (standar HL7 FHIR R4) serta BPJS (P‑Care dan Antrean) sesuai kredensial klinik masing‑masing.",
-            "RME penuh yang juga bekerja offline: segera hadir."
+            "E-resep dengan pemeriksaan keamanan obat dan katalog KFA.",
+            "Farmasi dan stok per batch.",
+            "Kasir dan tagihan dalam alur yang sama dengan pelayanan.",
+            "Laporan: LB1, laporan Puskesmas, serta pembacaan hasil lab dan radiologi.",
+            "Terintegrasi dengan SATUSEHAT (standar HL7 FHIR R4) serta BPJS (P-Care dan Antrean); koneksi BPJS diaktifkan per klinik dengan kredensial BPJS milik klinik.",
+            "Suite RME lengkap yang juga bekerja offline: segera hadir."
           ]
         },
         {
@@ -114,9 +114,9 @@
       "body": [
         {
           "ul": [
-            "Gratis seumur hidup: 15 konsultasi per bulan didukung DOK Intelligence, tanpa kartu kredit.",
-            "Paket berbayar mulai Rp60 ribu per bulan, semua modul termasuk (farmasi, e‑resep KFA, kasir & billing, laporan, SATUSEHAT, BPJS).",
-            "Go‑live dalam 24 jam; migrasi dari RME lama gratis."
+            "Gratis seumur hidup: 15 konsultasi per bulan dengan bantuan DOK Intelligence dan pencatatan manual tanpa batas, tanpa kartu kredit.",
+            "Paket berbayar mulai Rp60 ribu per bulan, semua modul dalam satu paket.",
+            "Aktif dalam 24 jam, dijamin, atau bulan berbayar pertama gratis. Migrasi dari RME lama gratis."
           ]
         },
         {
@@ -148,7 +148,7 @@
     },
     {
       "q": "Bagaimana DOK menangani KFA pada e‑resep?",
-      "a": "E‑resep di DOK menggunakan katalog KFA untuk kode obat/zat aktif agar konsisten saat bertukar data. Pemetaan KFA dijaga agar resep dan dispensing sesuai format yang disarankan dokumentasi SATUSEHAT."
+      "a": "E-resep di DOK memakai katalog KFA, sehingga kode obat konsisten saat data dikirim ke SATUSEHAT."
     },
     {
       "q": "Apakah DOK terhubung ke BPJS (P‑Care dan Antrean)?",
@@ -157,10 +157,6 @@
     {
       "q": "Di mana data pasien disimpan?",
       "a": "Data pribadi dan rekam kesehatan disimpan di Indonesia, pada pusat data di Jakarta. Identitas seperti nama, NIK, dan tanggal lahir tidak digunakan untuk melatih model apa pun."
-    },
-    {
-      "q": "Apakah RME DOK siap untuk UU Pelindungan Data Pribadi?",
-      "a": "SahAIbat DOK siap UU PDP. Untuk pemahaman kewajiban hukum di fasilitas Anda, rujuk naskah UU 27/2022 dan kebijakan internal pengamanan data."
     }
   ],
   "sources": [
