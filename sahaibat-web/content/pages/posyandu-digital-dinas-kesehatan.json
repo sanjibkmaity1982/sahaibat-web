@@ -1,0 +1,119 @@
+{
+  "slug": "posyandu-digital-dinas-kesehatan",
+  "section": "landing",
+  "status": "published",
+  "cluster": "posyandu",
+  "keywords": [
+    "aplikasi posyandu dinas kesehatan",
+    "program kader posyandu digital",
+    "digitalisasi posyandu puskesmas",
+    "pemantauan stunting kabupaten",
+    "aplikasi stunting dinas kesehatan",
+    "posyandu digital"
+  ],
+  "title": "Posyandu Digital untuk Dinas Kesehatan dan Puskesmas",
+  "description": "Program kader Posyandu digital bersama Dinas Kesehatan dan Puskesmas: skor-z WHO, kategori Permenkes 2/2020, tindak lanjut dan rujukan, tetap jalan offline.",
+  "kicker": "Untuk Dinas Kesehatan dan Puskesmas",
+  "h1": "Program kader Posyandu digital bersama Dinas Kesehatan dan Puskesmas",
+  "intro": "Dinas Kesehatan dan Puskesmas membutuhkan data pertumbuhan balita yang konsisten dari setiap Posyandu, termasuk di desa dengan sinyal lemah. SahAIbat Kader membantu kader mencatat pertumbuhan anak dengan skor-z WHO dan kategori Permenkes 2/2020, lalu merencanakan tindak lanjut dan rujukan. Halaman ini menjelaskan apa yang dilakukan aplikasinya dan cara memulai program kader Posyandu digital di wilayah Anda.",
+  "author": "Tim SahAIbat",
+  "published": "2026-11-02",
+  "updated": "2026-11-02",
+  "sections": [
+    {
+      "id": "tantangan",
+      "h": "Tantangan pemantauan pertumbuhan di tingkat wilayah",
+      "body": [
+        {
+          "ul": [
+            "Pencatatan di buku dan kertas membuat penentuan status gizi rawan salah hitung dan sulit direkap.",
+            "Banyak Posyandu berada di desa dengan sinyal lemah, sehingga aplikasi yang harus selalu daring tidak terpakai.",
+            "Balita yang berisiko perlu ditindaklanjuti dan dirujuk tepat waktu, bukan menunggu rekap bulanan.",
+            "Kader membutuhkan alat yang sederhana dan konsisten di semua Posyandu binaan Puskesmas."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sahaibat-kader",
+      "h": "Apa yang dilakukan SahAIbat Kader",
+      "body": [
+        {
+          "ul": [
+            "Mencatat pertumbuhan anak dengan skor-z WHO dan kategori status gizi sesuai Permenkes 2/2020.",
+            "Membantu kader merencanakan tindak lanjut dan rujukan bagi balita yang membutuhkan.",
+            "Bekerja penuh secara offline di Posyandu dan tersinkron saat sinyal kembali.",
+            "Data pribadi dan rekam kesehatan disimpan di Indonesia, di pusat data di Jakarta.",
+            "Detail identitas (nama, NIK, tanggal lahir dan sejenisnya) tidak pernah dipakai untuk melatih model.",
+            "SahAIbat terdaftar di Indonesia (NIB 1202260248509) dan sebagai PSE Komdigi; dibangun dan dioperasikan oleh Viantra Health."
+          ]
+        },
+        {
+          "p": "Baca juga panduan [aplikasi Posyandu digital](/aplikasi-posyandu-digital) untuk tabel kategori status gizi dan tips akurasi pengukuran."
+        }
+      ]
+    },
+    {
+      "id": "memulai",
+      "h": "Cara memulai program kemitraan",
+      "body": [
+        {
+          "ol": [
+            "Isi formulir kemitraan: sebutkan wilayah, perkiraan jumlah Posyandu dan tujuan program Anda.",
+            "Tim kami menghubungi Dinas Kesehatan atau Puskesmas Anda untuk membahas kebutuhan dan rencana program.",
+            "Rencana uji coba dan pelatihan kader disepakati bersama Puskesmas pembina sebelum diperluas."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "acuan",
+      "h": "Acuan regulasi",
+      "body": [
+        {
+          "p": "Penilaian status gizi balita mengacu pada Permenkes 2/2020 tentang Standar Antropometri Anak. Upaya percepatan penurunan stunting diatur dalam Perpres 72/2021 tentang Percepatan Penurunan Stunting. Ikuti juga petunjuk teknis dan format pelaporan dari Kementerian Kesehatan serta dinas kesehatan setempat."
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Apakah SahAIbat Kader bisa dipakai di desa tanpa sinyal?",
+      "a": "Bisa. SahAIbat Kader bekerja penuh secara offline di Posyandu dan menyinkronkan data saat sinyal kembali."
+    },
+    {
+      "q": "Di mana data balita disimpan?",
+      "a": "Data pribadi dan rekam kesehatan disimpan di Indonesia, di pusat data di Jakarta. Detail identitas seperti nama, NIK dan tanggal lahir tidak pernah dipakai untuk melatih model."
+    },
+    {
+      "q": "Standar apa yang dipakai untuk menentukan status gizi?",
+      "a": "Skor-z WHO dengan kategori status gizi sesuai Permenkes 2/2020 tentang Standar Antropometri Anak."
+    },
+    {
+      "q": "Bagaimana Dinas Kesehatan atau Puskesmas memulai kerja sama?",
+      "a": "Isi formulir kemitraan di halaman ini. Tim kami akan menghubungi Anda untuk membahas wilayah, jumlah Posyandu dan rencana program."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Permenkes No. 2 Tahun 2020 tentang Standar Antropometri Anak",
+      "publisher": "JDIH BPK RI",
+      "url": "https://peraturan.bpk.go.id/Download/144762/Permenkes%20Nomor%202%20Tahun%202020.pdf"
+    },
+    {
+      "title": "Peraturan Presiden No. 72 Tahun 2021 tentang Percepatan Penurunan Stunting",
+      "publisher": "JDIH BPK RI",
+      "url": "https://peraturan.bpk.go.id/Details/174964/perpres-no-72-tahun-2021"
+    }
+  ],
+  "cta": {
+    "h": "Rencanakan program Posyandu digital di wilayah Anda",
+    "p": "Isi formulir kemitraan. Tim kami akan menghubungi Dinas Kesehatan atau Puskesmas Anda untuk membahas program.",
+    "label": "Isi formulir kemitraan",
+    "href": "/impact#ip-partner"
+  },
+  "related": [
+    "aplikasi-posyandu-digital",
+    "aplikasi-bidan"
+  ]
+}
