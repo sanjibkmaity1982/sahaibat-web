@@ -9,6 +9,7 @@ import "./seo.css";
 import { SiteHeader, footer } from "@/components/legal/LegalPage";
 import { publishedPages, pagePath } from "@/lib/seo/content";
 import type { Block, Page } from "@/lib/seo/schema";
+import { PartnerForm } from "./PartnerForm";
 
 const BASE = "https://www.sahaibat.com";
 const MONTHS = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
@@ -97,6 +98,9 @@ export function SeoPage({ page: p }: { page: Page }) {
       : []),
   ];
 
+  // Pages whose call to action is the partnership form show a short form here.
+  const partner = p.cta.href.endsWith("#ip-partner");
+
   return (
     <div className="sb" data-l="id" lang="id">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
@@ -126,9 +130,9 @@ export function SeoPage({ page: p }: { page: Page }) {
               </ol>
             </nav>
             <div className="pp-contact seo-side-cta">
-              <span className="k">SahAIbat DOK</span>
+              <span className="k">{partner ? "Kemitraan" : "SahAIbat DOK"}</span>
               <b>{p.cta.h}</b>
-              <a className="b1" href={p.cta.href}>{p.cta.label}</a>
+              <a className="b1" href={partner ? "#formulir" : p.cta.href}>{p.cta.label}</a>
             </div>
           </aside>
 
@@ -154,10 +158,10 @@ export function SeoPage({ page: p }: { page: Page }) {
               </section>
             )}
 
-            <section className="seo-cta" aria-label={p.cta.h}>
+            <section className="seo-cta" id={partner ? "formulir" : undefined} aria-label={p.cta.h}>
               <h2>{p.cta.h}</h2>
               <p><Inline s={p.cta.p} /></p>
-              <a className="b1" href={p.cta.href}>{p.cta.label}</a>
+              {partner ? <PartnerForm product={p.cluster === "bidan" ? "Bidan" : "Kader"} /> : <a className="b1" href={p.cta.href}>{p.cta.label}</a>}
             </section>
 
             {p.sources.length > 0 && (
