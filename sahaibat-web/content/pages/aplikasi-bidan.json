@@ -24,7 +24,7 @@
   "intro": "Halaman ini merangkum langkah cepat digitalisasi layanan kebidanan harian—dari ANC 10T, P4K, penggunaan partograf hingga kunjungan nifas KF1–KF4—beserta acuan regulasi yang perlu diikuti. Minimal 6 kontak ANC sepanjang kehamilan diatur dalam Permenkes 21/2021, dengan distribusi 1× trimester I, 2× trimester II, dan 3× trimester III; minimal dua kali harus kontak dengan dokter, sesuai penjelasan BKPK Kemenkes (SKI 2023). ([jdih.kemkes.go.id](https://jdih.kemkes.go.id/pdfjs/web/viewer.html?file=https%3A%2F%2Fjdih.kemkes.go.id%2Fstorage%2Fdocuments%2Fpdfs%2F2021permenkes021.pdf))",
   "author": "Tim SahAIbat",
   "published": "2026-10-22",
-  "updated": "2026-10-22",
+  "updated": "2026-11-02",
   "sections": [
     {
       "id": "mulai-digital",
@@ -40,7 +40,7 @@
           ]
         },
         {
-          "note": "Catatan hukum: Kewajiban jumlah kunjungan dan mutu layanan mengacu Permenkes 21/2021 serta pengaturan SPM yang saat ini berada pada Permenkes 6/2024; bila daerah Anda memiliki petunjuk teknis tambahan, ikuti instruksi dinas kesehatan setempat. ([jdih.kemkes.go.id](https://jdih.kemkes.go.id/pdfjs/web/viewer.html?file=https%3A%2F%2Fjdih.kemkes.go.id%2Fstorage%2Fdocuments%2Fpdfs%2F2021permenkes021.pdf))"
+          "note": "Catatan hukum: Ketentuan pelayanan kesehatan masa hamil, persalinan dan masa sesudah melahirkan dalam Permenkes 21/2021 masih berlaku. Ketentuan pelayanan kontrasepsi dan kesehatan seksual di dalamnya dicabut oleh Permenkes 2/2025 tentang Penyelenggaraan Upaya Kesehatan Reproduksi, yang kini menjadi acuan layanan KB. Standar pelayanan minimal (SPM) diatur dalam Permenkes 6/2024; ikuti juga petunjuk teknis dinas kesehatan setempat."
         }
       ]
     },
@@ -77,7 +77,7 @@
               [
                 "KB & konseling",
                 "Asesmen kelayakan metode mengacu WHO MEC terbaru (edisi ke-6 tahun 2025); dokumentasikan kontraindikasi/kehati-hatian per kategori 1–4.",
-                "WHO MEC 2025. ([who.int](https://www.who.int/publications/i/item/9789240115583))"
+                "WHO MEC 2025; Permenkes 2/2025 tentang Penyelenggaraan Upaya Kesehatan Reproduksi."
               ]
             ]
           }
@@ -211,6 +211,11 @@
       "title": "Medical eligibility criteria for contraceptive use, 6th ed. (2025)",
       "publisher": "World Health Organization",
       "url": "https://www.who.int/publications/i/item/9789240115583"
+    },
+    {
+      "title": "Permenkes No. 2 Tahun 2025 tentang Penyelenggaraan Upaya Kesehatan Reproduksi",
+      "publisher": "JDIH BPK RI",
+      "url": "https://peraturan.bpk.go.id/Details/314518/permenkes-no-2-tahun-2025"
     }
   ],
   "cta": {
