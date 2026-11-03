@@ -81,7 +81,7 @@ export function RequestForm({
               ) : f.type === "select" ? (
                 <select className={`rf-i${bad ? " bad" : ""}`} value={v[f.k] || ""}
                   onChange={(e) => set(f.k, e.target.value)}>
-                  <option value="">Select…</option>
+                  <option value="">{t("form.select")}</option>
                   {f.options?.map((o) => <option key={o} value={o}>{o}</option>)}
                 </select>
               ) : (

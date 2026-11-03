@@ -50,6 +50,7 @@ export type I18nKey =
   | "form.err.required"
   | "form.err.email"
   | "form.err.phone"
+  | "form.select"
 | "legal.privacy"
 | "legal.terms"
 | "legal.contact"
@@ -139,6 +140,7 @@ export const DICT: Record<Lang, Record<I18nKey, string>> = {
     "form.err.email": "That email address does not look right.",
     "form.err.phone":
       "That phone number does not look right — include the country or area code.",
+    "form.select": "Select…",
     // ✅ Add inside translations.en
 "legal.privacy": "Privacy",
 "legal.terms": "Terms",
@@ -244,6 +246,7 @@ export const DICT: Record<Lang, Record<I18nKey, string>> = {
     "form.err.email": "Alamat email itu sepertinya kurang tepat.",
     "form.err.phone":
       "Nomor telepon itu sepertinya kurang tepat — sertakan kode negara atau kode area.",
+    "form.select": "Pilih…",
     // ✅ Add inside translations.id
 "legal.privacy": "Privasi",
 "legal.terms": "Ketentuan",
@@ -350,6 +353,7 @@ export const DICT: Record<Lang, Record<I18nKey, string>> = {
     "form.err.email": "Cette adresse e-mail ne semble pas correcte.",
     "form.err.phone":
       "Ce numéro de téléphone ne semble pas correct — indiquez l’indicatif du pays ou de la région.",
+    "form.select": "Sélectionner…",
     // ✅ Add inside translations.fr
 "legal.privacy": "Confidentialité",
 "legal.terms": "Conditions",
