@@ -1,0 +1,251 @@
+{
+  "slug": "regulasi-rme-kemenkes",
+  "section": "panduan",
+  "status": "published",
+  "cluster": "satusehat",
+  "keywords": [
+    "RME Kemenkes",
+    "regulasi RME",
+    "cara daftar RME",
+    "SATUSEHAT FHIR R4",
+    "PSE Kominfo",
+    "UU PDP"
+  ],
+  "title": "Regulasi RME Kemenkes: kewajiban & cara daftar",
+  "description": "Ringkasan kewajiban RME untuk klinik/praktik dan langkah pendaftaran sistem RME ke SATUSEHAT, termasuk PSE, HL7 FHIR R4, variabel–metadata, dan tenggat sanksi.",
+  "kicker": "Panduan praktis 2026",
+  "h1": "Regulasi RME Kemenkes: kewajiban dan cara daftar",
+  "intro": "Halaman ini merangkum apa saja yang secara hukum wajib untuk penyelenggaraan rekam medis elektronik (RME/EMR) di Indonesia dan langkah praktis mendaftarkan sistem RME ke SATUSEHAT. Kami sertakan tenggat, dokumen, serta pointer resmi agar pimpinan klinik dan tim TI tidak tersesat di detail teknis.",
+  "author": "Tim SahAIbat",
+  "published": "2026-11-09",
+  "updated": "2026-11-09",
+  "sections": [
+    {
+      "id": "wajib",
+      "h": "Apa yang wajib menurut Kemenkes (ringkas)",
+      "body": [
+        {
+          "p": "- Seluruh fasilitas pelayanan kesehatan wajib menyelenggarakan RME dan mengintegrasikannya dengan Platform SATUSEHAT. Surat Edaran Menteri Kesehatan No. HK.02.01/MENKES/1030/2023 menetapkan target implementasi 31 Desember 2023 dan skema sanksi administratif terkait keterlambatan integrasi dan pengiriman data sampai 31 Desember 2024. Tenggat tersebut sudah berlalu; cek pembaruan kebijakan sebelum audit atau akreditasi berikutnya. ([jdih.kemkes.go.id](https://jdih.kemkes.go.id/common/dokumen/SE%20No.%20HK.02.01-MENKES-1030-2023%20ttg%20Penyelenggaraan%20Rekam%20Medis%20Elektronik%20di%20Fasyankes%20Serta%20Penerapan%20Sanksi%20Administratif-signed.pdf))"
+        },
+        {
+          "p": "- Dasar hukumnya: Permenkes 24/2022 tentang Rekam Medis (menggantikan Permenkes 269/2008) yang mewajibkan penyelenggara RME mengacu pada pedoman resmi dan teregistrasi sebagai Penyelenggara Sistem Elektronik (PSE) sektor kesehatan sesuai ketentuan peraturan perundang-undangan. ([jdih.kemkes.go.id](https://jdih.kemkes.go.id/documents/peraturan-menteri-kesehatan-nomor-24-tahun-2022?utm_source=openai))"
+        },
+        {
+          "p": "- Kewajiban PSE sendiri diatur dalam PP 71/2019 tentang Penyelenggaraan Sistem dan Transaksi Elektronik (PSTE). Untuk RME, nomor PSE diminta saat registrasi di SATUSEHAT. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Details/122030/pp-no-71-tahun-2019?utm_source=openai))"
+        },
+        {
+          "p": "- Isi data RME harus mengikuti variabel dan metadata yang ditetapkan melalui KMK HK.01.07/MENKES/1423/2022. ([jdih.kemkes.go.id](https://jdih.kemkes.go.id/documents/keputusan-menteri-kesehatan-nomor-hk0107menkes14232022?utm_source=openai))"
+        },
+        {
+          "p": "- Perlindungan data pribadi pasien (data pribadi spesifik) harus dipenuhi sesuai UU 27/2022. Permenkes 24/2022 juga menegaskan aspek keamanan, keutuhan, kerahasiaan, dan ketersediaan data RME. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Details/229798/uu-no-27-tahun-2022-10?utm_source=openai))"
+        },
+        {
+          "note": "Jika Anda menemukan rujukan aturan yang berbeda di lapangan, verifikasi tanggal dokumen. SE 1030/2023 ditetapkan pada 13 Desember 2023. Kebijakan operasional dapat diperbarui; pantau halaman \"Supporting Policies\" di dokumentasi SATUSEHAT. ([jdih.kemkes.go.id](https://jdih.kemkes.go.id/common/dokumen/SE%20No.%20HK.02.01-MENKES-1030-2023%20ttg%20Penyelenggaraan%20Rekam%20Medis%20Elektronik%20di%20Fasyankes%20Serta%20Penerapan%20Sanksi%20Administratif-signed.pdf))"
+        }
+      ]
+    },
+    {
+      "id": "daftar-satusehat",
+      "h": "Cara daftar sistem RME ke SATUSEHAT (vendor atau fasyankes mandiri)",
+      "body": [
+        {
+          "p": "Ikuti urutan berikut agar pengajuan cepat diverifikasi:"
+        },
+        {
+          "ol": [
+            "Buat akun SATUSEHAT Platform (SSP) untuk tim TI/penyedia sistem melalui portal resmi, aktifkan via email, lalu login. ([satusehat.kemkes.go.id](https://satusehat.kemkes.go.id/platform/docs/id/registration-guide/registration/))",
+            "Siapkan prasyarat administrasi: nomor PSE dari Kominfo/Komdigi (wajib dicantumkan saat registrasi), nomor afiliasi SNOMED CT, dan bukti uji kirim data sandbox. ([satusehat.kemkes.go.id](https://satusehat.kemkes.go.id/platform/docs/id/registration-guide/regis-vendor/))",
+            "Lakukan uji coba integrasi di sandbox minimal sampai transaksi Encounter dan Condition dengan respons 200/201; rekam tangkapan layar dan kirim screen record ke helpdesk sesuai petunjuk. ([satusehat.kemkes.go.id](https://satusehat.kemkes.go.id/platform/docs/id/registration-guide/regis-vendor/))",
+            "Susun berkas PDF: surat kuasa/tugas pemohon; dokumentasi fitur RME (manual/screenshot); lampiran bukti uji sandbox; surat pernyataan variabel–metadata; daftar fasyankes pengguna (sertakan kode registrasi). ([satusehat.kemkes.go.id](https://satusehat.kemkes.go.id/platform/docs/id/registration-guide/regis-vendor/))",
+            "Masuk ke menu Registrasi Institusi di SSP, pilih kategori (Fasyankes atau Penyedia Sistem RME), lengkapi data sistem, isi survei keamanan, lalu pantau status verifikasi. ([satusehat.kemkes.go.id](https://satusehat.kemkes.go.id/platform/docs/id/registration-guide/regis-vendor/))",
+            "Bila sistem RME dikembangkan mandiri oleh fasyankes dan akan dipakai sendiri/di cabang, daftarkan juga sebagai Penyedia Sistem RME (akun terpisah dari akun fasyankes). ([satusehat.kemkes.go.id](https://satusehat.kemkes.go.id/platform/docs/id/registration-guide/regis-institution/regis-system-rme-mandiri/))"
+          ]
+        },
+        {
+          "table": {
+            "head": [
+              "Dokumen",
+              "Inti Isi",
+              "Catatan"
+            ],
+            "rows": [
+              [
+                "Nomor PSE",
+                "Nomor PSE Kominfo/Komdigi aktif",
+                "Diminta saat registrasi SSP. ([satusehat.kemkes.go.id](https://satusehat.kemkes.go.id/platform/docs/id/registration-guide/regis-vendor/))"
+              ],
+              [
+                "Afiliasi SNOMED CT",
+                "Application/Approval Number",
+                "Diajukan ke SNOMED International. ([satusehat.kemkes.go.id](https://satusehat.kemkes.go.id/platform/docs/id/registration-guide/regis-vendor/))"
+              ],
+              [
+                "Bukti uji sandbox",
+                "Screenshot 200/201 Encounter & Condition + screen record",
+                "Sertakan juga ringkasan transaksi FHIR di dashboard SSP. ([satusehat.kemkes.go.id](https://satusehat.kemkes.go.id/platform/docs/id/registration-guide/regis-vendor/))"
+              ],
+              [
+                "Pernyataan variabel–metadata",
+                "Ditandatangani pimpinan di atas materai",
+                "Sesuai KMK 1423/2022. ([jdih.kemkes.go.id](https://jdih.kemkes.go.id/documents/keputusan-menteri-kesehatan-nomor-hk0107menkes14232022?utm_source=openai))"
+              ]
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "teknis",
+      "h": "Persyaratan teknis inti yang perlu disiapkan",
+      "body": [
+        {
+          "ul": [
+            "Gunakan standar HL7 FHIR R4 dan HTTPS REST API sesuai dokumentasi; endpoint tersedia untuk sandbox dan produksi. ([satusehat.kemkes.go.id](https://satusehat.kemkes.go.id/platform/docs/id/playbook/introduction/))",
+            "Pemetaan variabel dan metadata mengacu ke KMK 1423/2022; pastikan setiap elemen data memiliki definisi, format, dan kode referensi yang benar. ([jdih.kemkes.go.id](https://jdih.kemkes.go.id/documents/keputusan-menteri-kesehatan-nomor-hk0107menkes14232022?utm_source=openai))",
+            "Keamanan dan tata kelola: pastikan kerahasiaan, keutuhan, ketersediaan data; lakukan penjaminan mutu internal/audit RME berkala sebagaimana Permenkes 24/2022. ([jdih.kemkes.go.id](https://jdih.kemkes.go.id/common/dokumen/2022permenkes024.pdf?utm_source=openai))",
+            "Kepatuhan privasi: perlakukan RME sebagai data pribadi spesifik; penuhi hak subjek data, dasar pemrosesan, dan langkah-langkah perlindungan sesuai UU 27/2022. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Details/229798/uu-no-27-tahun-2022-10?utm_source=openai))"
+          ]
+        },
+        {
+          "note": "Di luar prasyarat hukum, banyak fasyankes memilih menyimpan data di pusat data Indonesia untuk alasan kinerja dan tata kelola. SahAIbat menyimpan data di Jakarta. (Fakta produk SahAIbat.)"
+        }
+      ]
+    },
+    {
+      "id": "tanggung-jawab",
+      "h": "Tanggung jawab hukum vs praktik baik vs dukungan SahAIbat",
+      "body": [
+        {
+          "table": {
+            "head": [
+              "Kategori",
+              "Yang perlu dilakukan"
+            ],
+            "rows": [
+              [
+                "Kewajiban hukum",
+                "- Selenggarakan RME dan integrasikan ke SATUSEHAT; patuhi tenggat dan sanksi. - Registrasi sebagai PSE. - Penuhi variabel–metadata KMK 1423/2022. - Terapkan keamanan, kerahasiaan, dan mutu RME. ([jdih.kemkes.go.id](https://jdih.kemkes.go.id/common/dokumen/SE%20No.%20HK.02.01-MENKES-1030-2023%20ttg%20Penyelenggaraan%20Rekam%20Medis%20Elektronik%20di%20Fasyankes%20Serta%20Penerapan%20Sanksi%20Administratif-signed.pdf))"
+              ],
+              [
+                "Praktik baik (disarankan)",
+                "- Tetapkan penanggung jawab RME & privasi. - Latih staf front office dan klinis. - Uji coba rollback/backup berkala. - Dokumentasikan SOP perubahan versi dan downtime."
+              ],
+              [
+                "Bagaimana SahAIbat membantu",
+                "- DOK terintegrasi dengan SATUSEHAT dan BPJS (P-Care & Antrean). - Modul konsultasi dengan SahAIbat Intelligence (draft SOAP dari rekaman), e-resep dengan cek keamanan obat & KFA, front office (NIK, antrean, booking), farmasi & stok batch, kasir & billing, laporan (LB1, Puskesmas), serta toolkits spesialis dan maternitas (KIA). - Tersedia 46 kartu ringkas panduan Indonesia. - Penyimpanan data di Jakarta. - DOK bisa live ≤24 jam; migrasi RME lama gratis. - Rencana suite RME penuh yang juga bekerja offline: segera hadir."
+              ]
+            ]
+          }
+        },
+        {
+          "p": "Untuk praktik mandiri/klinik yang baru mulai, DOK memiliki paket gratis 15 konsultasi/bulan (tanpa kartu kredit). Paket berbayar mulai Rp60 ribu/bulan, satu paket mencakup semua modul. Aktivasi integrasi BPJS dilakukan per klinik dengan kredensial BPJS milik klinik. Setiap draft dari SahAIbat Intelligence selalu ditinjau dan ditandatangani tenaga kesehatan; tidak ada keputusan klinis otomatis. (Fakta produk SahAIbat.)"
+        }
+      ]
+    },
+    {
+      "id": "checklist-30-hari",
+      "h": "Checklist 30 hari menuju RME terintegrasi",
+      "body": [
+        {
+          "ol": [
+            "Hari 1–3: Tunjuk penanggung jawab RME, buka akun SSP, buat daftar kebutuhan data/fitur; ajukan nomor PSE bila belum. ([satusehat.kemkes.go.id](https://satusehat.kemkes.go.id/platform/docs/id/registration-guide/registration/))",
+            "Hari 4–10: Petakan variabel–metadata ke formulir dan database; siapkan surat pernyataan. ([jdih.kemkes.go.id](https://jdih.kemkes.go.id/documents/keputusan-menteri-kesehatan-nomor-hk0107menkes14232022?utm_source=openai))",
+            "Hari 11–20: Implementasikan koneksi FHIR R4 (Patient, Encounter, Condition), uji di sandbox dan dokumentasikan bukti uji. ([satusehat.kemkes.go.id](https://satusehat.kemkes.go.id/platform/docs/id/api-catalogue/integrations/))",
+            "Hari 21–25: Finalisasi berkas PDF (manual, tangkapan layar, daftar fasyankes), kirim screen record ke helpdesk SATUSEHAT. ([satusehat.kemkes.go.id](https://satusehat.kemkes.go.id/platform/docs/id/registration-guide/regis-vendor/))",
+            "Hari 26–30: Ajukan registrasi sistem RME di SSP, pantau status verifikasi, siapkan SOP operasional dan pelatihan staf. ([satusehat.kemkes.go.id](https://satusehat.kemkes.go.id/platform/docs/id/registration-guide/regis-vendor/))"
+          ]
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Apakah RME benar‑benar wajib untuk klinik dan praktik mandiri?",
+      "a": "Ya. Permenkes 24/2022 mewajibkan penyelenggaraan rekam medis (termasuk elektronik). SE Menkes 1030/2023 menegaskan seluruh fasyankes wajib menyelenggarakan RME dan mengintegrasikannya dengan SATUSEHAT, dengan skema sanksi administratif terkait keterlambatan integrasi/pengiriman data. ([jdih.kemkes.go.id](https://jdih.kemkes.go.id/documents/peraturan-menteri-kesehatan-nomor-24-tahun-2022?utm_source=openai))"
+    },
+    {
+      "q": "Apa beda registrasi PSE dan registrasi SATUSEHAT?",
+      "a": "Registrasi PSE adalah kewajiban legal sebagai Penyelenggara Sistem Elektronik berdasarkan PP 71/2019. Registrasi SATUSEHAT (SSP) adalah proses administratif dan teknis untuk mengintegrasikan sistem RME ke ekosistem SATUSEHAT; nomor PSE diminta saat registrasi di SSP. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Details/122030/pp-no-71-tahun-2019?utm_source=openai))"
+    },
+    {
+      "q": "Apakah harus memakai HL7 FHIR R4?",
+      "a": "Dokumentasi SATUSEHAT menyebut penggunaan HL7 FHIR dan HTTPS REST API, dengan endpoint FHIR R4 untuk sandbox dan produksi. Implementasi integrasi mengacu pada spesifikasi tersebut. ([satusehat.kemkes.go.id](https://satusehat.kemkes.go.id/platform/docs/id/playbook/introduction/))"
+    },
+    {
+      "q": "Apakah masih berlaku tenggat 31 Maret, 31 Juli, 31 Desember 2024 untuk integrasi/pengiriman data?",
+      "a": "Itu adalah tenggat pada SE 1030/2023 (ditetapkan 13 Desember 2023). Karena tanggal‑tanggal itu telah lewat, cek kebijakan terbaru di dokumentasi SATUSEHAT sebelum akreditasi/survei. ([jdih.kemkes.go.id](https://jdih.kemkes.go.id/common/dokumen/SE%20No.%20HK.02.01-MENKES-1030-2023%20ttg%20Penyelenggaraan%20Rekam%20Medis%20Elektronik%20di%20Fasyankes%20Serta%20Penerapan%20Sanksi%20Administratif-signed.pdf))"
+    },
+    {
+      "q": "Apakah UU PDP berlaku juga untuk klinik kecil?",
+      "a": "Ya. UU 27/2022 mengatur pelindungan data pribadi untuk semua pengendali/prosesor data pribadi, termasuk layanan kesehatan yang memproses data pribadi spesifik pasien. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Details/229798/uu-no-27-tahun-2022-10?utm_source=openai))"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Permenkes 24/2022 tentang Rekam Medis (halaman JDIH)",
+      "publisher": "JDIH Kementerian Kesehatan",
+      "url": "https://jdih.kemkes.go.id/documents/peraturan-menteri-kesehatan-nomor-24-tahun-2022"
+    },
+    {
+      "title": "Permenkes 24/2022 PDF (Berita Negara)",
+      "publisher": "Peraturan BPK RI",
+      "url": "https://peraturan.bpk.go.id/Home/Download/301563/Permenkes%20Nomor%2024%20Tahun%202022.pdf"
+    },
+    {
+      "title": "PP 71/2019 tentang Penyelenggaraan Sistem dan Transaksi Elektronik",
+      "publisher": "Peraturan BPK RI",
+      "url": "https://peraturan.bpk.go.id/Details/122030/pp-no-71-tahun-2019"
+    },
+    {
+      "title": "UU 27/2022 tentang Pelindungan Data Pribadi (PDF)",
+      "publisher": "Peraturan BPK RI",
+      "url": "https://peraturan.bpk.go.id/Home/Download/224884/UU%20Nomor%2027%20Tahun%202022.pdf"
+    },
+    {
+      "title": "KMK HK.01.07/MENKES/1423/2022 (Pedoman Variabel & Metadata RME)",
+      "publisher": "JDIH Kementerian Kesehatan",
+      "url": "https://jdih.kemkes.go.id/documents/keputusan-menteri-kesehatan-nomor-hk0107menkes14232022"
+    },
+    {
+      "title": "SATUSEHAT Platform – Daftar & Aktivasi Akun",
+      "publisher": "Kementerian Kesehatan RI",
+      "url": "https://satusehat.kemkes.go.id/platform/docs/id/registration-guide/registration/"
+    },
+    {
+      "title": "SATUSEHAT Platform – Registrasi Sistem RME (Vendor)",
+      "publisher": "Kementerian Kesehatan RI",
+      "url": "https://satusehat.kemkes.go.id/platform/docs/id/registration-guide/regis-vendor/"
+    },
+    {
+      "title": "SATUSEHAT Platform – Sistem RME Mandiri",
+      "publisher": "Kementerian Kesehatan RI",
+      "url": "https://satusehat.kemkes.go.id/platform/docs/id/registration-guide/regis-institution/regis-system-rme-mandiri/"
+    },
+    {
+      "title": "SATUSEHAT Platform – Apa itu SATUSEHAT? (HL7 FHIR, REST)",
+      "publisher": "Kementerian Kesehatan RI",
+      "url": "https://satusehat.kemkes.go.id/platform/docs/id/playbook/introduction/"
+    },
+    {
+      "title": "SATUSEHAT Platform – Interoperabilitas (endpoint FHIR R4)",
+      "publisher": "Kementerian Kesehatan RI",
+      "url": "https://satusehat.kemkes.go.id/platform/docs/id/api-catalogue/integrations/"
+    },
+    {
+      "title": "SATUSEHAT Platform – Supporting Policies",
+      "publisher": "Kementerian Kesehatan RI",
+      "url": "https://satusehat.kemkes.go.id/platform/supporting-policies"
+    }
+  ],
+  "cta": {
+    "h": "Butuh RME terintegrasi SATUSEHAT & BPJS, live ≤24 jam?",
+    "p": "Coba SahAIbat DOK: gratis selamanya 15 konsultasi/bulan, atau paket berbayar mulai Rp60 ribu/bulan. Migrasi RME lama gratis.",
+    "label": "Pelajari DOK untuk Klinik & Dokter",
+    "href": "https://www.sahaibatdok.com"
+  },
+  "related": [
+    "rekam-medis-elektronik",
+    "integrasi-satusehat",
+    "bpjs-pcare"
+  ]
+}
