@@ -1,0 +1,192 @@
+{
+  "slug": "jadwal-kunjungan-nifas-kf1-kf4",
+  "section": "panduan",
+  "status": "published",
+  "cluster": "bidan",
+  "keywords": [
+    "KF1",
+    "KF2",
+    "KF3",
+    "KF4",
+    "kunjungan nifas",
+    "Buku KIA",
+    "jadwal masa nifas",
+    "postnatal care"
+  ],
+  "title": "Jadwal Kunjungan Nifas KF1–KF4 dan Checklist",
+  "description": "Rangkuman jadwal KF1–KF4 sesuai Kemenkes, apa yang diperiksa tiap kunjungan, cara pencatatan di Buku KIA, plus template dan tips untuk bidan.",
+  "kicker": "Panduan kebidanan",
+  "h1": "Jadwal kunjungan nifas KF1–KF4: kapan dan apa yang diperiksa",
+  "intro": "Jawab cepat: jadwal kunjungan nifas untuk ibu adalah 4 kali, masing‑masing pada 6–48 jam (KF1), hari ke‑3–7 (KF2), hari ke‑8–28 (KF3), dan hari ke‑29–42 (KF4) setelah melahirkan. Ini adalah ketentuan resmi dan menjadi indikator program; pastikan pencatatan rapi di Buku KIA dan layanan sesuai standar. ([peraturan.go.id](https://www.peraturan.go.id/files/permenkes%2B-no-3-tahun-2023.pdf?utm_source=openai))",
+  "author": "Tim SahAIbat",
+  "published": "2026-11-09",
+  "updated": "2026-11-09",
+  "sections": [
+    {
+      "id": "jadwal",
+      "h": "Kapan KF1–KF4 dilakukan (dengan rentang hari)",
+      "body": [
+        {
+          "p": "Gunakan tabel ini untuk merencanakan kunjungan dan menandai janji temu sejak hari persalinan."
+        },
+        {
+          "table": {
+            "head": [
+              "Kunjungan",
+              "Rentang waktu pascapersalinan",
+              "Tujuan ringkas"
+            ],
+            "rows": [
+              [
+                "KF1",
+                "6–48 jam",
+                "Deteksi dini perdarahan/infeksi, stabilisasi ibu, edukasi awal menyusui dan istirahat"
+              ],
+              [
+                "KF2",
+                "Hari ke‑3–7",
+                "Evaluasi involusi, deteksi demam/infeksi, dukungan laktasi dan nutrisi"
+              ],
+              [
+                "KF3",
+                "Hari ke‑8–28",
+                "Pantau pemulihan berkelanjutan, masalah payudara/lochia, konseling KB dini"
+              ],
+              [
+                "KF4",
+                "Hari ke‑29–42",
+                "Tutup masa nifas: evaluasi akhir, skrining masalah psikologis, rencana KB"
+              ]
+            ]
+          }
+        },
+        {
+          "p": "Jadwal di atas merupakan ketentuan minimal 4 kali layanan nifas yang berlaku nasional dan juga menjadi definisi operasional cakupan nifas lengkap. ([peraturan.go.id](https://www.peraturan.go.id/files/permenkes%2B-no-3-tahun-2023.pdf?utm_source=openai))"
+        }
+      ]
+    },
+    {
+      "id": "checklist",
+      "h": "Checklist pemeriksaan ibu nifas per kunjungan",
+      "body": [
+        {
+          "p": "Gunakan daftar berikut sebagai pengingat layanan pokok. Sesuaikan dengan temuan klinis pada tiap kontak."
+        },
+        {
+          "ul": [
+            "Anamnesis singkat: perdarahan banyak, demam, nyeri perut hebat, nyeri kepala hebat/pandangan kabur, kejang, keluarnya cairan berbau dari jalan lahir, keluhan payudara, suasana hati sedih/menarik diri.",
+            "Tanda vital: tekanan darah, nadi, suhu, respirasi; evaluasi involusi uterus dan lochia; periksa perineum/luka operasi bila ada.",
+            "Laktasi dan nutrisi: observasi pelekatan, atasi bendungan/nyeri; edukasi makan beragam dan cukup cairan.",
+            "KB pascapersalinan: konseling pilihan metode dan rencana mulai sesuai kondisi klinis dan preferensi.",
+            "Kesehatan mental: skrining gejala depresi/ansietas; edukasi tanda bahaya psikologis dan dukungan keluarga."
+          ]
+        },
+        {
+          "note": "Ringkasan ini merujuk pada Buku KIA 2024 dan materi pedoman layanan Puskesmas (Klaster 2). ([kesprimkom.kemkes.go.id](https://kesprimkom.kemkes.go.id/assets/uploads/contents/others/Buku_KIA_2024.pdf?utm_source=openai))"
+        },
+        {
+          "ol": [
+            "KF1 (6–48 jam): fokus pada pencegahan perdarahan dan infeksi, dukungan IMD/ASI, vitamin A bila sesuai kebijakan setempat, serta rencana kunjungan berikutnya. ([renbut.kemkes.go.id](https://renbut.kemkes.go.id/regulasi/Pedoman%20Puskesmas%20Klaster%202.pdf?utm_source=openai))",
+            "KF2 (3–7 hari): pastikan involusi normal, tidak ada demam/infeksi, atasi masalah menyusui, pastikan istirahat dan asupan gizi cukup. ([renbut.kemkes.go.id](https://renbut.kemkes.go.id/regulasi/Pedoman%20Puskesmas%20Klaster%202.pdf?utm_source=openai))",
+            "KF3 (8–28 hari): lanjutkan pemantauan pemulihan, tangani masalah payudara/lochia, konseling KB dini. ([renbut.kemkes.go.id](https://renbut.kemkes.go.id/regulasi/Pedoman%20Puskesmas%20Klaster%202.pdf?utm_source=openai))",
+            "KF4 (29–42 hari): evaluasi akhir, pastikan rencana KB, skrining masalah psikologis; rujuk bila ada tanda bahaya. ([renbut.kemkes.go.id](https://renbut.kemkes.go.id/regulasi/Pedoman%20Puskesmas%20Klaster%202.pdf?utm_source=openai))"
+          ]
+        },
+        {
+          "p": "Tanda bahaya yang memerlukan rujukan segera antara lain: perdarahan banyak; demam ≥38 °C >2 hari; sakit kepala berat/penglihatan kabur; kejang; cairan berbau dari jalan lahir; payudara bengkak bernanah; keluhan psikologis berat (mis. sedih terus‑menerus, ide menyakiti diri). Edukasi keluarga untuk mengenali dan segera membawa ibu ke fasilitas kesehatan. ([kesprimkom.kemkes.go.id](https://kesprimkom.kemkes.go.id/assets/uploads/contents/others/Buku_KIA_2024.pdf?utm_source=openai))"
+        }
+      ]
+    },
+    {
+      "id": "pencatatan",
+      "h": "Pencatatan di Buku KIA dan pelaporan",
+      "body": [
+        {
+          "ul": [
+            "Catat setiap layanan KF1–KF4 pada halaman ibu nifas Buku KIA (tanggal, fasyankes/kunjungan rumah, masalah dan tindakan).",
+            "Pastikan jendela waktu sesuai definisi program agar tercatat sebagai **cakupan nifas lengkap**: KF1 (6–48 jam), KF2 (hari 3–7), KF3 (hari 8–28), KF4 (hari 29–42).",
+            "Selaraskan jadwal dengan kunjungan bayi baru lahir (KN) bila memungkinkan, tanpa mengurangi mutu pemeriksaan ibu."
+          ]
+        },
+        {
+          "p": "Definisi operasional cakupan nifas lengkap dan pembagian waktu KF1–KF4 tercantum dalam dokumen indikator/definisi Kementerian Kesehatan dan menjadi rujukan pemantauan program. ([kemkes.go.id](https://www.kemkes.go.id/app_asset/file_content_download/172247989066aaf512936579.51341712.pdf?utm_source=openai))"
+        },
+        {
+          "p": "Praktik baik tambahan: gunakan pengingat janji (kartu/telepon), tawarkan kunjungan rumah bila ibu sulit datang, dan dokumentasikan edukasi yang diberikan. (Ini praktik baik, bukan kewajiban regulasi.)"
+        }
+      ]
+    },
+    {
+      "id": "sahaibat",
+      "h": "Bagaimana SahAIbat Bidan membantu",
+      "body": [
+        {
+          "p": "SahAIbat Bidan adalah RME (EMR) siap UU PDP untuk pekerjaan ANC 10T, perencanaan P4K, **KF1–KF4**, KB, dan imunisasi anak. SahAIbat Bidan menyertakan SahAIbat Intelligence yang meringkas temuan ANC/kunjungan, memeriksa kualitas 10T, membantu perencanaan KB, melacak imunisasi secara cerdas, dan menghasilkan kartu perawatan; setiap draf ditinjau dan ditandatangani tenaga kesehatan, tidak ada keputusan klinis otomatis."
+        },
+        {
+          "ul": [
+            "Bekerja penuh di lapangan: aplikasi lapangan Bidan bekerja offline dan akan sinkron saat sinyal kembali.",
+            "Data pribadi dan rekam medis disimpan di pusat data di Jakarta.",
+            "Terintegrasi dalam ekosistem SahAIbat One; solusi RME penuh yang juga bekerja offline **segera hadir**."
+          ]
+        },
+        {
+          "p": "Butuh ringkasan KF yang rapi tiap pasien? Lihat halaman **[Aplikasi Bidan](/aplikasi-bidan)** untuk alur kerja dan contoh tampilan."
+        },
+        {
+          "note": "SahAIbat dibangun dan dioperasikan oleh Viantra Health; terdaftar di Indonesia (NIB 1202260248509) dan sebagai PSE Kominfo. Identitas pasien (NIK, nama, tanggal lahir, dll.) tidak digunakan untuk melatih model."
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Apa beda KF (ibu nifas) dan KN (bayi baru lahir)?",
+      "a": "KF adalah layanan untuk ibu pada 6–48 jam, 3–7 hari, 8–28 hari, dan 29–42 hari pascapersalinan. KN adalah layanan untuk bayi baru lahir, minimal 3 kali (6–48 jam, 3–7 hari, 8–28 hari). Jadwalkan beriringan bila memungkinkan untuk efisiensi, namun pemeriksaan ibu dan bayi tetap lengkap. ([peraturan.go.id](https://www.peraturan.go.id/files/permenkes%2B-no-3-tahun-2023.pdf?utm_source=openai))"
+    },
+    {
+      "q": "Kalau ibu datang di luar jendela waktu KF, apakah tetap dilayani?",
+      "a": "Tetap layani sesuai kebutuhan klinis dan catat tanggal sebenarnya di Buku KIA. Lalu jadwalkan kunjungan susulan agar seluruh kontak minimal 4 kali tetap terpenuhi. (Ini praktik baik program; rujukan tetap mengikuti kondisi klinis.)"
+    },
+    {
+      "q": "Apa yang termasuk ‘pelayanan lengkap’ pada KF?",
+      "a": "Intinya mencakup identifikasi tanda bahaya (perdarahan, hipertensi/kejang, demam/infeksi, keluarnya cairan berbau), edukasi menyusui, edukasi/pelayanan KB, serta edukasi gizi ibu menyusui. ([jdih.kemkes.go.id](https://jdih.kemkes.go.id/storage/documents/pdfs/2025permenkes012.pdf?utm_source=openai))"
+    },
+    {
+      "q": "Apa saja tanda bahaya nifas yang harus disampaikan ke keluarga?",
+      "a": "Perdarahan banyak; demam ≥38 °C lebih dari 2 hari; sakit kepala berat/pandangan kabur; kejang; cairan berbau dari jalan lahir; nyeri/payudara bengkak bernanah; perubahan suasana hati berat. Bila muncul, segera rujuk. ([kesprimkom.kemkes.go.id](https://kesprimkom.kemkes.go.id/assets/uploads/contents/others/Buku_KIA_2024.pdf?utm_source=openai))"
+    },
+    {
+      "q": "Perlu telekonsultasi?",
+      "a": "Telekonsultasi dapat membantu edukasi dan pemantauan keluhan, tetapi sejumlah pemeriksaan (tanda vital, involusi, luka) memerlukan tatap muka. Gunakan kebijakan fasilitas/Dinas Kesehatan setempat, dan rujuk bila ada tanda bahaya."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Definisi Operasional Cakupan Pelayanan Nifas KF1–KF4",
+      "publisher": "Kementerian Kesehatan RI",
+      "url": "https://www.kemkes.go.id/app_asset/file_content_download/172247989066aaf512936579.51341712.pdf"
+    },
+    {
+      "title": "Buku KIA Edisi 2024 (Bagian tanda bahaya masa nifas)",
+      "publisher": "Direktorat Jenderal Kesehatan Primer dan Komunitas, Kemenkes RI",
+      "url": "https://kesprimkom.kemkes.go.id/assets/uploads/contents/others/Buku_KIA_2024.pdf"
+    },
+    {
+      "title": "Pedoman Puskesmas Klaster 2 (materi pelayanan dan tanda bahaya nifas)",
+      "publisher": "Kementerian Kesehatan RI",
+      "url": "https://renbut.kemkes.go.id/regulasi/Pedoman%20Puskesmas%20Klaster%202.pdf"
+    }
+  ],
+  "cta": {
+    "h": "Kelola KF1–KF4 rapi dari ponsel bidan",
+    "p": "SahAIbat Bidan membantu merencanakan jadwal KF, meringkas temuan, dan menyimpan rekam medis secara aman di pusat data Jakarta. Bekerja offline dan sinkron saat sinyal kembali.",
+    "label": "Coba SahAIbat Bidan",
+    "href": "/#bidan"
+  },
+  "related": [
+    "aplikasi-bidan",
+    "aplikasi-posyandu-digital",
+    "bpjs-pcare"
+  ]
+}
