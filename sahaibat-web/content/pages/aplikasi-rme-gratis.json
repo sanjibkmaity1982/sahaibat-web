@@ -1,0 +1,237 @@
+{
+  "slug": "aplikasi-rme-gratis",
+  "section": "landing",
+  "status": "published",
+  "cluster": "rme",
+  "keywords": [
+    "aplikasi rme gratis",
+    "rme online gratis",
+    "aplikasi rekam medis dokter",
+    "software rme klinik",
+    "rme untuk praktik mandiri",
+    "rme satusehat bpjs",
+    "migrasi data rme",
+    "rme go live 24 jam",
+    "rekam medis elektronik gratis",
+    "integrasi satusehat fhir r4"
+  ],
+  "title": "Aplikasi RME gratis untuk klinik dan praktik",
+  "description": "Mulai RME tanpa biaya: DOK Free-for-life untuk 15 konsultasi/bulan. Terintegrasi SATUSEHAT & BPJS, migrasi dari RME lama gratis, dan go-live maksimal 24 jam.",
+  "kicker": "Mulai gratis, aktif dalam 24 jam",
+  "h1": "Aplikasi RME (EMR) gratis—terintegrasi SATUSEHAT & BPJS",
+  "intro": "Butuh RME yang bisa dipakai hari ini tanpa komitmen panjang? DOK menawarkan paket gratis selamanya untuk 15 konsultasi per bulan didukung SahAIbat Intelligence, tanpa kartu kredit. Saat siap berkembang, Anda bisa mengaktifkan seluruh modul DOK—termasuk e-resep dengan KFA, antrean, kasir, farmasi, laporan, dan integrasi SATUSEHAT serta BPJS—mulai Rp60 ribu per bulan. Di halaman ini kami ringkas langkah mulai cepat, kewajiban regulasi, dan cara aktivasi integrasi agar klinik atau praktik mandiri Anda segera berjalan rapi dan patuh aturan.",
+  "author": "Tim SahAIbat",
+  "published": "2026-10-26",
+  "updated": "2026-10-26",
+  "sections": [
+    {
+      "id": "mulai-cepat",
+      "h": "3 langkah mulai cepat RME gratis",
+      "body": [
+        {
+          "ol": [
+            "Daftar DOK dan pilih **Free-for-life**: 15 konsultasi/bulan didukung SahAIbat Intelligence, tanpa kartu kredit.",
+            "Siapkan dasar operasional: identitas fasilitas, poli, layanan, template SOAP, dan daftar obat internal. Untuk latar konsep RME, baca ringkasan di [Rekam medis elektronik (RME)](/rekam-medis-elektronik).",
+            "Rencanakan peningkatan: saat volume pasien bertambah, aktifkan paket berbayar DOK (mulai Rp60 ribu/bulan) untuk membuka semua modul dalam satu paket—termasuk e-resep dengan cek keamanan obat dan katalog KFA, front office (NIK, antrean, booking), farmasi & stok batch, kasir & billing, laporan (LB1, Puskesmas, pembacaan lab/radio), serta integrasi SATUSEHAT dan BPJS."
+          ]
+        },
+        {
+          "note": "DOK aktif maksimal dalam 24 jam; bila terlewati, bulan pertama paket berbayar menjadi gratis. Migrasi dari RME lama gratis."
+        },
+        {
+          "p": "Ringkasan pilihan paket:"
+        },
+        {
+          "ul": [
+            "DOK Free-for-life: 15 konsultasi/bulan didukung SahAIbat Intelligence; cocok untuk mulai dan uji alur.",
+            "DOK berbayar: semua modul dalam satu paket mulai Rp60 ribu/bulan; siap untuk operasional penuh klinik/praktik."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kewajiban-dan-praktik-baik",
+      "h": "Kepatuhan: bedakan kewajiban hukum, praktik baik, dan apa yang disediakan DOK",
+      "body": [
+        {
+          "p": "Bagian ini membantu Anda membedakan apa yang wajib menurut aturan, apa yang merupakan praktik baik, dan bagaimana DOK membantu."
+        },
+        {
+          "table": {
+            "head": [
+              "Kebutuhan",
+              "Status",
+              "Rujukan/penjelasan"
+            ],
+            "rows": [
+              [
+                "Penyelenggaraan rekam medis elektronik di fasyankes",
+                "Kewajiban hukum",
+                "Diatur dalam Permenkes 24/2022 tentang Rekam Medis; mencabut Permenkes 269/2008. Dokumen resmi tersedia di JDIH Kemenkes dan BPK. ([jdih.kemkes.go.id](https://jdih.kemkes.go.id/common/dokumen/2022permenkes024.pdf?utm_source=openai))"
+              ],
+              [
+                "Pertukaran/transfer isi RME antar sistem nasional",
+                "Ketentuan teknis",
+                "Permenkes 24/2022 mengatur transfer isi RME melalui platform interoperabilitas yang dikelola Kemenkes (SATUSEHAT). ([jdih.kemkes.go.id](https://jdih.kemkes.go.id/common/dokumen/2022permenkes024.pdf?utm_source=openai))"
+              ],
+              [
+                "Standar interoperabilitas SATUSEHAT",
+                "Ketentuan teknis",
+                "SATUSEHAT menerapkan HL7 FHIR R4 dan HTTPS REST API. ([satusehat.kemkes.go.id](https://satusehat.kemkes.go.id/platform/docs/id/playbook/introduction/?utm_source=openai))"
+              ],
+              [
+                "Perlindungan Data Pribadi pasien",
+                "Kewajiban hukum",
+                "UU 27/2022 mengatur pemrosesan data pribadi dan sanksi bila melanggar. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Details/229798/uu-no-27-tahun-2022?via=topaitools&utm_source=openai))"
+              ],
+              [
+                "Antrean dan layanan JKN di FKTP",
+                "Ketentuan layanan JKN",
+                "Mobile JKN menghubungkan antrean FKTP yang terintegrasi dengan Aplikasi Antrean Faskes dan P-Care. ([bpjs-kesehatan.go.id](https://bpjs-kesehatan.go.id/user-manual-mobile-jkn/pelayanan%20jkn.html?utm_source=openai))"
+              ],
+              [
+                "Praktik baik operasional",
+                "Praktik baik",
+                "SOP klinik, pelatihan staf, audit akses, pelabelan obat sesuai KFA, dan uji coba go-live bertahap. Lihat juga [Software klinik](/software-klinik)."
+              ],
+              [
+                "Cara DOK membantu",
+                "Fitur produk",
+                "DOK menyediakan modul lengkap dalam satu paket berbayar; terintegrasi SATUSEHAT & BPJS; e-resep dengan KFA; laporan layanan. Aktivasi sesuai kredensial masing-masing klinik."
+              ]
+            ]
+          }
+        },
+        {
+          "note": "Regulasi dapat berubah. Untuk interpretasi hukum yang mengikat, rujuk langsung ke naskah resmi Permenkes 24/2022 dan UU 27/2022 pada situs pemerintah yang ditautkan di sumber."
+        }
+      ]
+    },
+    {
+      "id": "integrasi-satusehat-bpjs",
+      "h": "Integrasi SATUSEHAT dan BPJS: alur dan aktivasi",
+      "body": [
+        {
+          "p": "Di DOK, integrasi dilakukan mengikuti pedoman resmi pemerintah. Gambaran singkat:"
+        },
+        {
+          "ol": [
+            "SATUSEHAT: gunakan organisasi/fasilitas terdaftar, lalu kirim resource klinis sesuai HL7 FHIR R4 (misal Encounter, Observation, MedicationRequest). Untuk domain kefarmasian, pemetaan obat mengikuti Kamus Farmasi dan Alat Kesehatan (KFA). ([satusehat.kemkes.go.id](https://satusehat.kemkes.go.id/platform/docs/id/playbook/introduction/?utm_source=openai))",
+            "BPJS: antrean FKTP pada Mobile JKN membaca data dari Faskes yang mengaktifkan Aplikasi Antrean Faskes dan P-Care. Aktivasi koneksi dilakukan per klinik menggunakan kredensial BPJS masing-masing. ([bpjs-kesehatan.go.id](https://bpjs-kesehatan.go.id/user-manual-mobile-jkn/pelayanan%20jkn.html?utm_source=openai))",
+            "Perubahan prosedur bisa terjadi sewaktu-waktu; selalu cek dokumentasi resmi SATUSEHAT dan kanal resmi BPJS Kesehatan yang kami cantumkan di bagian sumber."
+          ]
+        },
+        {
+          "note": "Integrasi berarti sistem DOK dapat bertukar data dengan platform pemerintah sesuai pedoman teknis. Integrasi tidak sama dengan dukungan/endorsement dari instansi pemerintah mana pun."
+        },
+        {
+          "p": "Untuk uraian langkah dan checklist integrasi, baca panduan praktis kami di [Integrasi SATUSEHAT](/panduan/integrasi-satusehat) dan ringkasan peran P-Care/Antrean vs SATUSEHAT di [BPJS P-Care, Antrean dan SATUSEHAT](/panduan/bpjs-pcare)."
+        }
+      ]
+    },
+    {
+      "id": "migrasi-dan-go-live",
+      "h": "Migrasi data dan SLA go-live 24 jam",
+      "body": [
+        {
+          "ul": [
+            "Migrasi dari RME lama ke DOK gratis. Tim kami membantu ekstraksi dan pemetaan data.",
+            "Go-live maksimal 24 jam sejak data/akun siap; bila melampaui, bulan pertama paket berbayar menjadi gratis.",
+            "Uji coba singkat disarankan: verifikasi template SOAP, stok obat, tarif, serta alur antrean/kasir sebelum shift penuh pertama."
+          ]
+        },
+        {
+          "p": "Jika Anda sudah memakai RME lain namun ingin tetap memanfaatkan Intelligence di alur kerja sekarang, gunakan ekstensi **DOK Companion** untuk menambahkan SahAIbat Intelligence ke RME yang ada. (Chrome extension)."
+        }
+      ]
+    },
+    {
+      "id": "keamanan-privasi",
+      "h": "Keamanan, privasi, dan lokasi data",
+      "body": [
+        {
+          "ul": [
+            "SahAIbat Bidang DOK adalah RME yang **siap UU PDP**: praktik, kebijakan, dan kontrol disusun untuk memudahkan kepatuhan fasilitas Anda terhadap UU 27/2022. Selalu rujuk ke naskah UU untuk ketentuan final. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Details/229798/uu-no-27-tahun-2022?via=topaitools&utm_source=openai))",
+            "Data pribadi dan rekam medis disimpan di pusat data di Jakarta, Indonesia.",
+            "Detail identitas seperti nama, NIK, dan tanggal lahir tidak digunakan untuk melatih model.",
+            "Setiap draf dari **SahAIbat Intelligence** ditinjau dan ditandatangani petugas kesehatan; tidak ada keputusan klinis yang dibuat secara otomatis.",
+            "SahAIbat terdaftar di Indonesia dengan NIB 1202260248509 dan sebagai PSE di Komdigi.",
+            "Untuk e-resep dan pertukaran data farmasi, DOK memakai KFA sesuai pedoman SATUSEHAT. ([satusehat.kemkes.go.id](https://satusehat.kemkes.go.id/platform/docs/id/interoperability/kefarmasian/?utm_source=openai))"
+          ]
+        },
+        {
+          "note": "Produk lapangan (Kader, Bidan, dan SahAIbat Field) dapat bekerja penuh offline dan sinkron saat sinyal kembali. Suite RME penuh yang juga bekerja offline: segera hadir."
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Apa yang saya dapat dari paket DOK Free-for-life?",
+      "a": "Anda mendapat 15 konsultasi per bulan didukung SahAIbat Intelligence tanpa kartu kredit. Cocok untuk mulai mencoba alur SOAP digital pada praktik atau klinik kecil."
+    },
+    {
+      "q": "Kapan saya perlu paket berbayar DOK?",
+      "a": "Saat volume konsultasi melebihi 15 per bulan atau Anda butuh operasional penuh (e-resep dengan KFA, antrean/booking, kasir, farmasi, laporan, integrasi SATUSEHAT & BPJS). Paket berbayar berisi semua modul dalam satu paket mulai Rp60 ribu/bulan."
+    },
+    {
+      "q": "Bagaimana aktivasi integrasi SATUSEHAT dan BPJS di DOK?",
+      "a": "SATUSEHAT mengikuti standar HL7 FHIR R4; siapkan kredensial dan data fasilitas/organisasi pada platform tersebut. Untuk BPJS, aktivasi dilakukan per klinik menggunakan kredensial BPJS masing-masing; antrean FKTP di Mobile JKN membaca data dari Faskes yang mengaktifkan Aplikasi Antrean Faskes dan P-Care. Rujuk dokumentasi resmi pada bagian sumber. ([satusehat.kemkes.go.id](https://satusehat.kemkes.go.id/platform/docs/id/playbook/introduction/?utm_source=openai))"
+    },
+    {
+      "q": "Apakah DOK memenuhi UU 27/2022 tentang Pelindungan Data Pribadi?",
+      "a": "DOK adalah RME yang siap UU PDP: kami merancang proses dan kontrol agar memudahkan fasilitas mematuhi UU 27/2022. Namun, kewajiban kepatuhan berada pada penyelenggara RME dan fasilitas. Selalu rujuk pada naskah UU di situs pemerintah. ([peraturan.bpk.go.id](https://peraturan.bpk.go.id/Details/229798/uu-no-27-tahun-2022?via=topaitools&utm_source=openai))"
+    },
+    {
+      "q": "Di mana data pasien saya disimpan?",
+      "a": "Data pribadi dan rekam medis disimpan di Indonesia (pusat data di Jakarta). Identitas (nama, NIK, tanggal lahir, dll.) tidak digunakan untuk melatih model."
+    },
+    {
+      "q": "Apakah DOK bisa digunakan offline?",
+      "a": "Produk lapangan SahAIbat (Kader, Bidan, dan solusi field) bekerja penuh offline dan sinkron saat sinyal kembali. Suite RME penuh yang juga bekerja offline: segera hadir."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Permenkes No. 24 Tahun 2022 tentang Rekam Medis (halaman JDIH BPK)",
+      "publisher": "JDIH BPK RI",
+      "url": "https://peraturan.bpk.go.id/Details/245544/permenkes-no-24-tahun-2022"
+    },
+    {
+      "title": "SATUSEHAT Platform — Playbook: Apa itu SATUSEHAT (HL7 FHIR R4)",
+      "publisher": "Kementerian Kesehatan RI",
+      "url": "https://satusehat.kemkes.go.id/platform/docs/id/playbook/introduction/"
+    },
+    {
+      "title": "SATUSEHAT Platform — Interoperabilitas & API Catalogue",
+      "publisher": "Kementerian Kesehatan RI",
+      "url": "https://satusehat.kemkes.go.id/platform/docs/id/api-catalogue/integrations/"
+    },
+    {
+      "title": "SATUSEHAT Platform — Interoperabilitas Pelayanan Kefarmasian (KFA)",
+      "publisher": "Kementerian Kesehatan RI",
+      "url": "https://satusehat.kemkes.go.id/platform/docs/id/interoperability/kefarmasian/"
+    },
+    {
+      "title": "UU No. 27 Tahun 2022 tentang Pelindungan Data Pribadi",
+      "publisher": "JDIH BPK RI",
+      "url": "https://peraturan.bpk.go.id/Details/229798/uu-no-27-tahun-2022"
+    },
+    {
+      "title": "Panduan Mobile JKN — Pendaftaran/Antrean FKTP (terhubung Antrean Faskes & P-Care)",
+      "publisher": "BPJS Kesehatan",
+      "url": "https://bpjs-kesehatan.go.id/user-manual-mobile-jkn/pelayanan%20jkn.html"
+    }
+  ],
+  "cta": {
+    "h": "Coba DOK sekarang",
+    "p": "Mulai dari paket gratis; aktif maksimal 24 jam. Saat siap berkembang, buka semua modul dalam satu paket mulai Rp60 ribu/bulan.",
+    "label": "Buka DOK di sahaibatdok.com",
+    "href": "https://www.sahaibatdok.com"
+  },
+  "related": [
+    "rekam-medis-elektronik",
+    "integrasi-satusehat",
+    "bpjs-pcare"
+  ]
+}
