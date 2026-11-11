@@ -1,0 +1,190 @@
+{
+  "slug": "bridging-bpjs-klinik",
+  "section": "landing",
+  "status": "published",
+  "cluster": "bpjs",
+  "keywords": [
+    "bridging bpjs klinik",
+    "integrasi pcare klinik",
+    "antrean online bpjs klinik",
+    "aktivasi pcare klinik",
+    "koneksi antrean mobile jkn",
+    "bridging bpjs satusehat",
+    "integrasi satusehat klinik",
+    "pcare fkTP"
+  ],
+  "title": "Bridging BPJS untuk Klinik: P-Care & Antrean",
+  "description": "Aktivasi cepat bridging BPJS untuk klinik: P-Care dan Antrean Mobile JKN yang terintegrasi dengan SATUSEHAT. Dilengkapi langkah, prasyarat, serta opsi DOK.",
+  "kicker": "P-Care, Antrean Mobile JKN, SATUSEHAT",
+  "h1": "Bridging BPJS Klinik: P-Care, Antrean Mobile JKN dan SATUSEHAT",
+  "intro": "Halaman ini merangkum apa saja yang termasuk “bridging BPJS” untuk klinik FKTP—P-Care dan Antrean Mobile JKN—bagaimana langkah aktivasinya per-klinik, serta peran SATUSEHAT. Di bagian akhir, Anda dapat melihat bagaimana DOK membantu integrasi ini tanpa mengubah alur kerja klinik.",
+  "author": "Tim SahAIbat",
+  "published": "2026-10-26",
+  "updated": "2026-10-26",
+  "sections": [
+    {
+      "id": "apa-itu-bridging-bpjs",
+      "h": "Apa yang dimaksud bridging BPJS untuk klinik",
+      "body": [
+        {
+          "p": "Di konteks FKTP, “bridging BPJS” biasanya mencakup dua koneksi operasional utama: **P-Care** untuk pencatatan layanan peserta JKN di FKTP, dan **Antrean Mobile JKN** agar peserta dapat mengambil nomor antre dari ponsel. Di saat yang sama, **SATUSEHAT** berfungsi sebagai jembatan pertukaran data kesehatan nasional (bukan aplikasi peserta), sehingga sering dikerjakan paralel."
+        },
+        {
+          "table": {
+            "head": [
+              "Komponen",
+              "Untuk apa",
+              "Siapa mengaktifkan"
+            ],
+            "rows": [
+              [
+                "P-Care (Primary Care)",
+                "Pencatatan kunjungan FKTP: eligibility, diagnosa, tindakan, rujukan peserta JKN",
+                "Fasilitas (akun P-Care) sesuai kebijakan BPJS Kesehatan"
+              ],
+              [
+                "Antrean Mobile JKN",
+                "Pengambilan nomor antre online di FKTP; sinkron jadwal/poli",
+                "Kantor Cabang BPJS memperbarui profil faskes & jadwal; faskes mengoperasikan Aplikasi Antrean Faskes"
+              ],
+              [
+                "SATUSEHAT (HL7 FHIR R4)",
+                "Pertukaran data kesehatan nasional dan standarisasi data",
+                "Pengembang RME & fasyankes melakukan integrasi sesuai panduan Kemenkes"
+              ]
+            ]
+          }
+        },
+        {
+          "note": "Rujukan resmi: Mobile JKN mencatat bahwa fitur pendaftaran/antrean bekerja pada FKTP yang terintegrasi dengan Aplikasi Antrean Faskes dan P-Care. SATUSEHAT menggunakan standar HL7 FHIR R4 untuk interoperabilitas."
+        }
+      ]
+    },
+    {
+      "id": "langkah-aktivasi",
+      "h": "Checklist aktivasi per-klinik (praktis)",
+      "body": [
+        {
+          "p": "Gunakan daftar berikut saat menyiapkan bridging untuk klinik FKTP Anda:"
+        },
+        {
+          "ol": [
+            "Tetapkan penanggung jawab (PIC) untuk urusan BPJS dan SATUSEHAT di tingkat klinik.",
+            "Pastikan status klinik sebagai FKTP BPJS aktif dan memiliki akun P-Care yang digunakan petugas layanan.",
+            "Susun pemetaan poli/jadwal dokter internal agar konsisten antara sistem antrean klinik dan yang akan tampil di Mobile JKN.",
+            "Koordinasikan dengan Kantor Cabang BPJS untuk mengaktifkan Aplikasi Antrean Faskes klinik Anda serta memperbarui profil faskes dan jadwal praktik yang akan tersaji di Mobile JKN.",
+            "Uji coba alur pendaftaran/antre di Mobile JKN (ambil nomor antre uji, cek tampilnya poli/jadwal, dan status antrian berjalan).",
+            "Siapkan SOP internal: siapa yang membuka-tutup poli, mengelola pindah jadwal, dan menutup antrean pada kondisi penuh.",
+            "Dokumentasikan kontak Kantor Cabang, akun operasional, dan langkah pemulihan bila antrean tidak sinkron atau P-Care tidak dapat diakses."
+          ]
+        },
+        {
+          "note": "Detail teknis dan persyaratan dapat berbeda antar wilayah dan dapat berubah. Selalu rujuk panduan resmi BPJS Kesehatan atau konfirmasi ke Kantor Cabang setempat."
+        }
+      ]
+    },
+    {
+      "id": "satusehat",
+      "h": "Bagaimana SATUSEHAT terkait dengan bridging BPJS",
+      "body": [
+        {
+          "p": "SATUSEHAT adalah ekosistem pertukaran data kesehatan Indonesia yang menggunakan **HL7 FHIR R4** dan HTTPS REST API. Integrasi SATUSEHAT tidak menggantikan P-Care atau Mobile JKN; fungsinya melengkapi arsitektur data klinik Anda, misalnya untuk standardisasi data klinis lintas sistem."
+        },
+        {
+          "ul": [
+            "Gunakan SATUSEHAT untuk pertukaran data klinis terstandar lintas aplikasi.",
+            "Gunakan P-Care untuk pencatatan layanan JKN di FKTP sesuai kebijakan BPJS.",
+            "Gunakan Antrean Mobile JKN agar peserta bisa mengambil nomor antre dari ponsel, dengan profil faskes dan jadwal yang dikelola bersama Kantor Cabang."
+          ]
+        },
+        {
+          "p": "Untuk langkah teknis integrasi SATUSEHAT di fasilitas kesehatan, lihat [Integrasi SATUSEHAT](/panduan/integrasi-satusehat) dan ringkasan peran P-Care/Antrean di [BPJS P-Care, Antrean dan SATUSEHAT: apa bedanya](/panduan/bpjs-pcare)."
+        }
+      ]
+    },
+    {
+      "id": "dok-membantu",
+      "h": "Bagaimana DOK membantu klinik FKTP",
+      "body": [
+        {
+          "p": "DOK adalah RME (EMR) yang **terintegrasi dengan SATUSEHAT dan BPJS (P-Care dan Antrean)**. Aktivasi koneksi BPJS di DOK dilakukan **per-klinik menggunakan kredensial BPJS milik klinik**. DOK dilengkapi modul konsultasi dengan **SahAIbat Intelligence** (draf SOAP dari rekaman konsultasi) yang selalu ditinjau dan ditandatangani tenaga kesehatan; tidak ada keputusan klinis otomatis."
+        },
+        {
+          "ul": [
+            "Modul: konsultasi dengan SahAIbat Intelligence, e-resep dengan cek keamanan obat dan katalog KFA, 7 toolkit spesialis, maternitas dengan formulir KIA, front office (pendaftaran NIK, antre, booking), farmasi & batch stock, kasir & billing, laporan (LB1, laporan Puskesmas, pembacaan lab/radiologi), SATUSEHAT & BPJS.",
+            "Rencana kerja: suite RME penuh yang juga bekerja offline **segera hadir**. Produk Kader, Bidan, dan aplikasi lapangan SahAIbat sudah bekerja penuh offline dan sinkron saat ada sinyal.",
+            "Pilihan paket: gratis selamanya (15 konsultasi/bulan, didukung SahAIbat Intelligence, tanpa kartu kredit) atau berbayar mulai **Rp60 ribu per bulan** mencakup semua modul dalam satu paket.",
+            "Go-live: DOK aktif dalam 24 jam (garansi) atau bulan berbayar pertama gratis. Migrasi dari RME lama gratis.",
+            "Perlindungan data: data pribadi dan rekam kesehatan disimpan di pusat data di Jakarta. Identitas (nama, NIK, tanggal lahir, dsb.) tidak digunakan untuk melatih model."
+          ]
+        },
+        {
+          "p": "DOK dibangun dan dioperasikan oleh Viantra Health. SahAIbat terdaftar di Indonesia (NIB 1202260248509) dan sebagai PSE di Kominfo/Komdigi."
+        },
+        {
+          "note": "Catatan kepatuhan: Rekam medis elektronik diatur oleh Permenkes 24/2022 tentang Rekam Medis. SATUSEHAT menggunakan standar HL7 FHIR R4. Kebijakan operasional BPJS (mis. pengelolaan profil faskes/jadwal untuk Antrean Mobile JKN) mengikuti ketentuan BPJS Kesehatan dan dapat berubah; rujuk sumber resmi yang tercantum di bagian Sumber."
+        }
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Apa saja yang termasuk bridging BPJS untuk klinik FKTP?",
+      "a": "Dua komponen operasional utama adalah P-Care (pencatatan layanan JKN di FKTP) dan Antrean Mobile JKN (pengambilan nomor antre secara online). Keduanya berjalan berdampingan dengan integrasi SATUSEHAT untuk pertukaran data kesehatan nasional."
+    },
+    {
+      "q": "Bagaimana cara mengaktifkan Antrean Mobile JKN di klinik kami?",
+      "a": "Pastikan klinik Anda menggunakan Aplikasi Antrean Faskes dan koordinasikan dengan Kantor Cabang BPJS untuk memperbarui profil faskes dan jadwal praktik agar tampil di Mobile JKN. Setelah itu, uji coba pengambilan nomor antre oleh peserta dan sinkronkan dengan jam layanan klinik."
+    },
+    {
+      "q": "Apakah DOK terintegrasi dengan BPJS dan SATUSEHAT?",
+      "a": "Ya. DOK terintegrasi dengan SATUSEHAT serta BPJS (P-Care dan Antrean). Koneksi BPJS diaktifkan per-klinik menggunakan kredensial BPJS masing-masing klinik, tanpa mengubah alur kerja Anda."
+    },
+    {
+      "q": "Berapa biaya DOK untuk klinik FKTP?",
+      "a": "Tersedia paket gratis selamanya (15 konsultasi/bulan didukung SahAIbat Intelligence, tanpa kartu kredit). Paket berbayar mulai Rp60 ribu per bulan mencakup semua modul dalam satu paket. DOK aktif dalam 24 jam atau bulan berbayar pertama gratis; migrasi dari RME lama gratis."
+    },
+    {
+      "q": "Apakah bridging BPJS sama dengan integrasi SATUSEHAT?",
+      "a": "Beda fungsi. Bridging BPJS mencakup P-Care dan Antrean Mobile JKN untuk operasional JKN di FKTP. SATUSEHAT adalah ekosistem pertukaran data kesehatan nasional berbasis HL7 FHIR R4. Keduanya sering dikerjakan bersama agar alur data klinik lengkap dan konsisten."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Permenkes 24/2022 tentang Rekam Medis (PDF)",
+      "publisher": "JDIH BPK RI",
+      "url": "https://peraturan.bpk.go.id/Home/Download/301563/Permenkes%20Nomor%2024%20Tahun%202022.pdf"
+    },
+    {
+      "title": "SATUSEHAT menggunakan HL7 FHIR",
+      "publisher": "Kementerian Kesehatan RI (SATUSEHAT)",
+      "url": "https://satusehat.kemkes.go.id/platform/docs/id/fhir/"
+    },
+    {
+      "title": "Apa itu SATUSEHAT (Playbook)",
+      "publisher": "Kementerian Kesehatan RI (SATUSEHAT)",
+      "url": "https://satusehat.kemkes.go.id/platform/docs/id/playbook/introduction/"
+    },
+    {
+      "title": "Mobile JKN – Pendaftaran pelayanan/antrean di FKTP terintegrasi Antrean Faskes & P-Care",
+      "publisher": "BPJS Kesehatan",
+      "url": "https://bpjs-kesehatan.go.id/user-manual-mobile-jkn/pelayanan%20jkn.html"
+    },
+    {
+      "title": "Mobile JKN – Cara ambil nomor antrean FKTP",
+      "publisher": "BPJS Kesehatan",
+      "url": "https://bpjs-kesehatan.go.id/user-manual-mobile-jkn/mobilejkn/antreanfktp.html"
+    }
+  ],
+  "cta": {
+    "h": "Aktifkan bridging BPJS dan SATUSEHAT bersama DOK",
+    "p": "Satu RME untuk konsultasi, e-resep, antrean, pelaporan dan integrasi nasional—aktif dalam 24 jam, paket mulai Rp60 ribu/bulan atau gunakan paket gratis selamanya.",
+    "label": "Lihat DOK untuk Klinik FKTP",
+    "href": "https://www.sahaibatdok.com"
+  },
+  "related": [
+    "bpjs-pcare",
+    "integrasi-satusehat",
+    "rekam-medis-elektronik"
+  ]
+}
