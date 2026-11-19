@@ -101,5 +101,5 @@
     "label": "Coba demo DOK, tanpa daftar",
     "href": "https://www.sahaibatdok.com/#coba"
   },
-  "related": ["software-klinik", "integrasi-satusehat", "bpjs-pcare"]
+  "related": ["software-klinik","software-farmasi-klinik","integrasi-satusehat","bpjs-pcare"]
 }
