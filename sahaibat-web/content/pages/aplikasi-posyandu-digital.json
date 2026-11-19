@@ -277,8 +277,5 @@
     "label": "Isi formulir kemitraan",
     "href": "/impact#ip-partner"
   },
-  "related": [
-    "rekam-medis-elektronik",
-    "integrasi-satusehat"
-  ]
+  "related": ["posyandu-digital-dinas-kesehatan","aplikasi-bidan","integrasi-satusehat"]
 }
