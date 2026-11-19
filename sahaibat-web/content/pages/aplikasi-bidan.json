@@ -224,9 +224,5 @@
     "label": "Isi formulir kemitraan",
     "href": "/impact#ip-partner"
   },
-  "related": [
-    "integrasi-satusehat",
-    "rekam-medis-elektronik",
-    "software-klinik"
-  ]
+  "related": ["aplikasi-posyandu-digital","integrasi-satusehat","rekam-medis-elektronik"]
 }
